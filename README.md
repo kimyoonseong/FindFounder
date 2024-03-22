@@ -1,10 +1,10 @@
 # FIND FOUNDER
 # 우리 FISA 최종 프로젝트
-TEAM : 한상민과아이들
+TEAM : FIFO
 
-DATE : 2024-02-02
+DATE : 2024-03-25 ~ 2024-05-
 
-MEMBERS : 한상민, 김윤성, 백성욱, 장정우
+MEMBERS : 김가영, 김윤성, 김찬기, 박명우, 윤종욱
 
 ## 만든이유
 
