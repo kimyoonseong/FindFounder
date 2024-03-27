@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 
 import com.example.demo.model.dto.ConsultDto;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,13 +31,22 @@ public class Consult {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)//자동 글번호 생성
 	private String consult_id;
+	@Column(nullable = false)
 	private Integer age;//int 는 null허용 x
+	@Column(nullable = false)
 	private boolean sex;
+	@Column(nullable = false,columnDefinition = "VARCHAR(4)")
 	private String residence;
+	@Column(nullable = false)
 	private Integer init_fund;
+	@Column(nullable = false)
 	private Integer competitive;
+	@Column(nullable = false,columnDefinition = "VARCHAR(8)")
 	private String prefer_industry;
+	
+	@Column(nullable = false,columnDefinition = "VARCHAR(4)")
 	private String prefer_loc;
+	@Column(nullable = false)
 	@CreatedDate
 	private Date consult_date;
 	// Customer와 연결
