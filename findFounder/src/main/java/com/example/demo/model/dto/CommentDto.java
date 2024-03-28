@@ -23,9 +23,9 @@ public class CommentDto {
 	public Comment toEntity() {
 		Comment comment = new Comment();
 		
-		comment.setComment_id(this.comment_id);
-		comment.setComment_content(this.comment_content);
-		comment.setComment_date(this.comment_date);
+		comment.setComment_id(this.getComment_id());
+		comment.setComment_content(this.getComment_content());
+		comment.setComment_date(this.getComment_date());
 		
 		return comment;
 		

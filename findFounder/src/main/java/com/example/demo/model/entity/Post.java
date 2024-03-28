@@ -57,13 +57,13 @@ public class Post {
 	
 	public PostDto toDto() {
 		PostDto postDto = new PostDto();
-		postDto.setPost_id(this.post_id);
-		postDto.setPost_title(this.post_title);
-		postDto.setPost_content(this.post_content);
-		postDto.setPost_date(this.post_date);
-		postDto.setPost_like(this.post_like);
-		postDto.setPost_dislike(this.post_dislike);
-		postDto.setPost_views(this.post_views);
+		postDto.setPost_id(this.getPost_id());
+		postDto.setPost_title(this.getPost_title());
+		postDto.setPost_content(this.getPost_content());
+		postDto.setPost_date(this.getPost_date());
+		postDto.setPost_like(this.getPost_like());
+		postDto.setPost_dislike(this.getPost_dislike());
+		postDto.setPost_views(this.getPost_views());
 		return postDto;
 	}
 	

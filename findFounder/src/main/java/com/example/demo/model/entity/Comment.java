@@ -45,9 +45,9 @@ public class Comment {
 	public CommentDto toDto() {
 		CommentDto commentDto = new CommentDto();
 		
-		commentDto.setComment_id(this.comment_id);
-		commentDto.setComment_content(this.comment_content);
-		commentDto.setComment_date(this.comment_date);
+		commentDto.setComment_id(this.getComment_id());
+		commentDto.setComment_content(this.getComment_content());
+		commentDto.setComment_date(this.getComment_date());
 		
 		return commentDto;
 		

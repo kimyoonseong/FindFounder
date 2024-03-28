@@ -28,13 +28,13 @@ public class PostDto {
 	public Post toEntity() {
 		Post post = new Post();
 		
-		post.setPost_id(this.post_id);
-		post.setPost_title(this.post_title);
-		post.setPost_content(this.post_content);
-		post.setPost_date(this.post_date);
-		post.setPost_like(this.post_like);
-		post.setPost_dislike(this.post_dislike);
-		post.setPost_views(this.post_views);
+		post.setPost_id(this.getPost_id());
+		post.setPost_title(this.getPost_title());
+		post.setPost_content(this.getPost_content());
+		post.setPost_date(this.getPost_date());
+		post.setPost_like(this.getPost_like());
+		post.setPost_dislike(this.getPost_dislike());
+		post.setPost_views(this.getPost_views());
 		
 		return post;
 		
