@@ -2,6 +2,8 @@ package com.example.demo.model.entity;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import com.example.demo.model.dto.CustomerDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -50,6 +52,18 @@ public class Customer {
 	@JoinColumn(name = "cus_question_id")
 	private Question question;
 	
+	public CustomerDto toDto() {
+		return	CustomerDto.builder()
+							.cus_code(this.getCus_code())
+							.cus_id(this.getCus_id())
+							.cus_pw(this.getCus_pw())
+							.cus_name(this.getCus_name())
+							.cus_cupons(this.getCus_cupons())
+							.cus_pw_answer(this.getCus_pw_answer())
+							.cus_isconsult(this.getCus_isconsult())
+							.cus_email(this.getCus_email())
+							.build();
+	}
 	
 }
 

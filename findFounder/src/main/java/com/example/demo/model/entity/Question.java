@@ -1,5 +1,7 @@
 package com.example.demo.model.entity;
 
+import com.example.demo.model.dto.QuestionDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,5 +28,13 @@ public class Question {
 	
 	@OneToOne(mappedBy = "question")
 	private Customer customer;
+	
+	public QuestionDto toDto() {
+		return QuestionDto.builder()
+				.cus_question_id(this.getCus_question_id())
+				.question_content(this.getQuestion_content())
+				.build();
+		
+	}
 
 }

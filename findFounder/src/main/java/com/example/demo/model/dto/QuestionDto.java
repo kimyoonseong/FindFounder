@@ -26,8 +26,8 @@ public class QuestionDto {
 	
 	public Question toEntity() {
 		Question question = Question.builder()
-				.cus_question_id(cus_question_id)
-				.question_content(question_content)
+				.cus_question_id(this.getCus_question_id())
+				.question_content(this.getQuestion_content())
 				.build();
 		return question;
 		

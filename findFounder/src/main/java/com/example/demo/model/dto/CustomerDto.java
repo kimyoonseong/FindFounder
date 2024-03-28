@@ -36,16 +36,29 @@ public class CustomerDto {
 	
 	public Customer toEntity() {
 		Customer customer = Customer.builder()
-				.cus_code(cus_code)
-				.cus_id(cus_id)
-				.cus_pw(cus_pw)
-				.cus_name(cus_name)
-				.cus_cupons(cus_cupons)
-				.cus_pw_answer(cus_pw_answer)
-				.cus_isconsult(cus_isconsult)
-				.cus_email(cus_email)
+				.cus_code(this.getCus_code())
+				.cus_id(this.getCus_id())
+				.cus_pw(this.getCus_pw())
+				.cus_name(this.getCus_name())
+				.cus_cupons(this.getCus_cupons())
+				.cus_pw_answer(this.getCus_pw_answer())
+				.cus_isconsult(this.getCus_isconsult())
+				.cus_email(this.getCus_email())
 				.build();
 		return customer;
+	}
+	
+	public CustomerDto toDto() {
+		return	CustomerDto.builder()
+							.cus_code(this.getCus_code())
+							.cus_id(this.getCus_id())
+							.cus_pw(this.getCus_pw())
+							.cus_name(this.getCus_name())
+							.cus_cupons(this.getCus_cupons())
+							.cus_pw_answer(this.getCus_pw_answer())
+							.cus_isconsult(this.getCus_isconsult())
+							.cus_email(this.getCus_email())
+							.build();
 	}
 
 	
