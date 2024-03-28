@@ -48,18 +48,7 @@ public class CustomerDto {
 		return customer;
 	}
 	
-	public CustomerDto toDto() {
-		return	CustomerDto.builder()
-							.cus_code(this.getCus_code())
-							.cus_id(this.getCus_id())
-							.cus_pw(this.getCus_pw())
-							.cus_name(this.getCus_name())
-							.cus_cupons(this.getCus_cupons())
-							.cus_pw_answer(this.getCus_pw_answer())
-							.cus_isconsult(this.getCus_isconsult())
-							.cus_email(this.getCus_email())
-							.build();
-	}
+	
 
 	
 	
