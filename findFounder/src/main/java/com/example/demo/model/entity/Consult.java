@@ -30,7 +30,7 @@ import lombok.ToString;
 public class Consult {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)//자동 글번호 생성
-	private String consult_id;
+	private Integer consult_id;
 	@Column(nullable = false)
 	private Integer age;//int 는 null허용 x
 	@Column(nullable = false)
@@ -41,10 +41,10 @@ public class Consult {
 	private Integer init_fund;
 	@Column(nullable = false)
 	private Integer competitive;
-	@Column(nullable = false,columnDefinition = "VARCHAR(8)")
+	@Column(nullable = false,columnDefinition = "VARCHAR(10)")
 	private String prefer_industry;
 	
-	@Column(nullable = false,columnDefinition = "VARCHAR(4)")
+	@Column(nullable = false,columnDefinition = "VARCHAR(10)")
 	private String prefer_loc;
 	@Column(nullable = false)
 	@CreatedDate

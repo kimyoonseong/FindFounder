@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 //@AllArgsConstructor
 @NoArgsConstructor
 public class ConsultDto {
-	private String cunsult_id;
+	private Integer cunsult_id;
 	private Integer age;//int 는 null허용 x
 	private boolean sex;
 	private String residence;
