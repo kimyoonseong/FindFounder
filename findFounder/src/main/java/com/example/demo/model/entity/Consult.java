@@ -41,10 +41,10 @@ public class Consult {
 	private Integer init_fund;
 	@Column(nullable = false)
 	private Integer competitive;
-	@Column(nullable = false,columnDefinition = "VARCHAR(10)")
+	@Column(nullable = true,columnDefinition = "VARCHAR(10)")
 	private String prefer_industry;
 	
-	@Column(nullable = false,columnDefinition = "VARCHAR(10)")
+	@Column(nullable = true,columnDefinition = "VARCHAR(10)")
 	private String prefer_loc;
 	@Column(nullable = false)
 	@CreatedDate
