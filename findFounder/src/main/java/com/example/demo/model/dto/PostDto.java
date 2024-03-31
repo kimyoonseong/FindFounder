@@ -25,10 +25,10 @@ public class PostDto {
 	private int post_views;
 	
 	
+	
 	public Post toEntity() {
 		Post post = new Post();
 		
-		post.setPost_id(this.getPost_id());
 		post.setPost_title(this.getPost_title());
 		post.setPost_content(this.getPost_content());
 		post.setPost_date(this.getPost_date());

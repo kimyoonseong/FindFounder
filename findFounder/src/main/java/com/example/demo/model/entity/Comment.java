@@ -2,6 +2,8 @@ package com.example.demo.model.entity;
 
 import java.util.Date;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
 
 import com.example.demo.model.dto.CommentDto;
@@ -34,11 +36,13 @@ public class Comment {
 	
 	
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "cus_code")
 	private Customer customer;
 	
 	@ManyToOne
 	@JoinColumn(name = "post_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Post post;
 	
 	
