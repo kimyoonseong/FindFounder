@@ -3,6 +3,8 @@ package com.example.demo.model.entity;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
 
 import com.example.demo.model.dto.PostDto;
@@ -48,6 +50,7 @@ public class Post {
 	
 	@ManyToOne
 	@JoinColumn(name = "cus_code")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Customer customer;
 	
 	
@@ -57,7 +60,6 @@ public class Post {
 	
 	public PostDto toDto() {
 		PostDto postDto = new PostDto();
-		postDto.setPost_id(this.getPost_id());
 		postDto.setPost_title(this.getPost_title());
 		postDto.setPost_content(this.getPost_content());
 		postDto.setPost_date(this.getPost_date());
