@@ -23,7 +23,7 @@ import lombok.ToString;
 @ToString
 public class Customer {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
 	private int cus_code;
 	

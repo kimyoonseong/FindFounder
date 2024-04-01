@@ -14,8 +14,8 @@ import io.swagger.annotations.ApiOperation;
 public class PostController {
 
 	private PostService postService;
-	
-	@ApiOperation(value = "게시글 작성", notes = "게시글을 작성한다.")
-	@PostMapping()
-	public 
+//	
+//	@ApiOperation(value = "게시글 작성", notes = "게시글을 작성한다.")
+//	@PostMapping()
+//	public 
 }
