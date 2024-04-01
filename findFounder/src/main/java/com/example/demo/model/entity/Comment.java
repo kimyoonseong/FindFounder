@@ -25,36 +25,32 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Comment {
 
-	@Id
-	private int comment_id;
-	
-	@Column(nullable = false , length = 300)
-	private String comment_content;
-	
-	@CreatedDate
-	private Date comment_date;
-	
-	
-	@ManyToOne
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "cus_code")
-	private Customer customer;
-	
-	@ManyToOne
-	@JoinColumn(name = "post_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Post post;
-	
-	
-	public CommentDto toDto() {
-		CommentDto commentDto = new CommentDto();
-		
-		commentDto.setComment_id(this.getComment_id());
-		commentDto.setComment_content(this.getComment_content());
-		commentDto.setComment_date(this.getComment_date());
-		
-		return commentDto;
-		
-	}
-	
+    @Id
+    private int commentId;
+
+    @Column(nullable = false, length = 300)
+    private String commentContent;
+
+    @CreatedDate
+    private Date commentDate;
+
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "cus_code")
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Post post;
+
+    public CommentDto toDto() {
+        CommentDto commentDto = new CommentDto();
+
+        commentDto.setCommentId(this.getCommentId());
+        commentDto.setCommentContent(this.getCommentContent());
+        commentDto.setCommentDate(this.getCommentDate());
+
+        return commentDto;
+    }
 }

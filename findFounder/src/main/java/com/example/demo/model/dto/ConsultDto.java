@@ -8,31 +8,30 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data//밑에 둘다 포함하고있다.
-//@AllArgsConstructor
+@Data
 @NoArgsConstructor
 public class ConsultDto {
-	private Integer cunsult_id;
-	private Integer age;//int 는 null허용 x
-	private boolean sex;
-	private String residence;
-	private Integer init_fund;
-	private Integer competitive;
-	private String prefer_industry;
-	private String prefer_loc;
-	private Date consult_date;
-	
-	public Consult toEntity() {
-		Consult consult= new Consult();
-		consult.setConsult_id(this.getCunsult_id());
-		consult.setAge(this.getAge());
-		consult.setSex(this.isSex());
-		consult.setResidence(this.getResidence());
-		consult.setInit_fund(this.getAge());
-		consult.setCompetitive(this.getAge());
-		consult.setPrefer_industry(this.getPrefer_industry());
-		consult.setPrefer_loc(this.getPrefer_loc());
-		consult.setConsult_date(this.getConsult_date());
-		return consult;
-	}
+    private Integer consultId;
+    private Integer age;
+    private boolean sex;
+    private String residence;
+    private Integer initFund;
+    private Integer competitive;
+    private String preferIndustry;
+    private String preferLoc;
+    private Date consultDate;
+    
+    public Consult toEntity() {
+        Consult consult = new Consult();
+        consult.setConsultId(this.getConsultId());
+        consult.setAge(this.getAge());
+        consult.setSex(this.isSex());
+        consult.setResidence(this.getResidence());
+        consult.setInitFund(this.getInitFund());
+        consult.setCompetitive(this.getCompetitive());
+        consult.setPreferIndustry(this.getPreferIndustry());
+        consult.setPreferLoc(this.getPreferLoc());
+        consult.setConsultDate(this.getConsultDate());
+        return consult;
+    }
 }

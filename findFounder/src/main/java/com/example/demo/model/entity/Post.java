@@ -33,19 +33,19 @@ public class Post {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int post_id;
+	private int postId;
 	
 	@Column(nullable = false, length = 32)
-	private String post_title;
+	private String postTitle;
 	@Column(nullable = false, length = 300)
-	private String post_content;
+	private String postContent;
 	@CreatedDate
-	private Date post_date;
+	private Date postDate;
 	@Column(columnDefinition = "INT DEFAULT 0")
-	private int post_like;
+	private int postLike;
 	@Column(columnDefinition = "INT DEFAULT 0")
-	private int post_dislike;
-	private int post_views;
+	private int postDislike;
+	private int postViews;
 	
 	
 	@ManyToOne
@@ -60,15 +60,12 @@ public class Post {
 	
 	public PostDto toDto() {
 		PostDto postDto = new PostDto();
-		postDto.setPost_title(this.getPost_title());
-		postDto.setPost_content(this.getPost_content());
-		postDto.setPost_date(this.getPost_date());
-		postDto.setPost_like(this.getPost_like());
-		postDto.setPost_dislike(this.getPost_dislike());
-		postDto.setPost_views(this.getPost_views());
+		postDto.setPostTitle(this.getPostTitle());
+		postDto.setPostContent(this.getPostContent());
+		postDto.setPostDate(this.getPostDate());
+		postDto.setPostLike(this.getPostLike());
+		postDto.setPostDislike(this.getPostDislike());
+		postDto.setPostViews(this.getPostViews());
 		return postDto;
 	}
-	
-	
-	
 }
