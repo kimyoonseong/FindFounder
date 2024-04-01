@@ -16,25 +16,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostDto {
-	private int post_id;
-	private String post_title;
-	private String post_content;
-	private Date post_date;
-	private int post_like;
-	private int post_dislike;
-	private int post_views;
+	private int postId;
+	private String postTitle;
+	private String postContent;
+	private Date postDate;
+	private int postLike;
+	private int postDislike;
+	private int postViews;
 	
 	
 	
 	public Post toEntity() {
 		Post post = new Post();
 		
-		post.setPost_title(this.getPost_title());
-		post.setPost_content(this.getPost_content());
-		post.setPost_date(this.getPost_date());
-		post.setPost_like(this.getPost_like());
-		post.setPost_dislike(this.getPost_dislike());
-		post.setPost_views(this.getPost_views());
+		post.setPostTitle(this.getPostTitle());
+		post.setPostContent(this.getPostContent());
+		post.setPostDate(this.getPostDate());
+		post.setPostLike(this.getPostLike());
+		post.setPostDislike(this.getPostDislike());
+		post.setPostViews(this.getPostViews());
 		
 		return post;
 		

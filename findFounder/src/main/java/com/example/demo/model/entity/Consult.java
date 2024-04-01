@@ -1,4 +1,5 @@
 package com.example.demo.model.entity;
+
 import java.util.Date;
 import java.util.List;
 
@@ -20,51 +21,57 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
 @Data
-@AllArgsConstructor //둘다 data에 포함되어있음
+@AllArgsConstructor
 @Builder
-@NoArgsConstructor  // JPA 엔티티 클래스에서 기본 생성자가 필요한 경우
+@NoArgsConstructor
 @Entity
 @ToString(exclude="customer")
 public class Consult {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)//자동 글번호 생성
-	private Integer consult_id;
-	@Column(nullable = false)
-	private Integer age;//int 는 null허용 x
-	@Column(nullable = false)
-	private boolean sex;
-	@Column(nullable = false,columnDefinition = "VARCHAR(4)")
-	private String residence;
-	@Column(nullable = false)
-	private Integer init_fund;
-	@Column(nullable = false)
-	private Integer competitive;
-	@Column(nullable = true,columnDefinition = "VARCHAR(10)")
-	private String prefer_industry;
-	
-	@Column(nullable = true,columnDefinition = "VARCHAR(10)")
-	private String prefer_loc;
-	@Column(nullable = false)
-	@CreatedDate
-	private Date consult_date;
-	// Customer와 연결
-	@ManyToOne
-	@JoinColumn(name="cus_code")//Select * from user where id=??
-	Customer customer;
-	public ConsultDto toDto() {
-		ConsultDto dto= new ConsultDto();//->noargsconstructor때문에 가능
-		dto.setCunsult_id(this.getConsult_id());
-		dto.setAge(this.getAge());
-		dto.setSex(this.isSex());
-		dto.setResidence(this.getResidence());
-		dto.setInit_fund(this.getInit_fund());
-		dto.setCompetitive(this.getCompetitive());
-		dto.setPrefer_industry(this.getPrefer_industry());
-		dto.setPrefer_loc(this.getPrefer_loc());
-		dto.setConsult_date(this.getConsult_date());
-		return dto;
-	}
-	
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer consultId;
+    
+    @Column(nullable = false)
+    private Integer age;
+    
+    @Column(nullable = false)
+    private boolean sex;
+    
+    @Column(nullable = false, columnDefinition = "VARCHAR(4)")
+    private String residence;
+    
+    @Column(nullable = false)
+    private Integer initFund;
+    
+    @Column(nullable = false)
+    private Integer competitive;
+    
+    @Column(nullable = true, columnDefinition = "VARCHAR(10)")
+    private String preferIndustry;
+    
+    @Column(nullable = true, columnDefinition = "VARCHAR(10)")
+    private String preferLoc;
+    
+    @Column(nullable = false)
+    @CreatedDate
+    private Date consultDate;
+
+    @ManyToOne
+    @JoinColumn(name="cus_code")
+    private Customer customer;
+    
+    public ConsultDto toDto() {
+        ConsultDto dto = new ConsultDto();
+        dto.setConsultId(this.getConsultId());
+        dto.setAge(this.getAge());
+        dto.setSex(this.isSex());
+        dto.setResidence(this.getResidence());
+        dto.setInitFund(this.getInitFund());
+        dto.setCompetitive(this.getCompetitive());
+        dto.setPreferIndustry(this.getPreferIndustry());
+        dto.setPreferLoc(this.getPreferLoc());
+        dto.setConsultDate(this.getConsultDate());
+        return dto;
+    }
 }

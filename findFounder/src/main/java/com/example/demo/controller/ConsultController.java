@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,22 +18,33 @@ import com.example.demo.service.ConsultService;
 public class ConsultController {
 	private ConsultService service;
 	
+	@Autowired
+    public ConsultController(ConsultService service) {
+        this.service = service;
+    }
 	
 	//2024-03-29 컨설팅 답변       저장 -> 결과화면 
 	@PostMapping("/api/consultation")
-    public String createConsultation(@ModelAttribute ConsultDto dto) {
+    public ConsultDto createConsultation(@ModelAttribute ConsultDto dto) {
 		try {
-			ConsultDto result=service.consult(dto);
-			return "/api/consultation/"+result.getCunsult_id();
+			//ConsultDto result=service.consult(dto);
+			System.out.println(dto.toString());
+			return dto;
+			//return "/api/consultation/"+result.getCunsult_id();
 		} catch (RuntimeException e) {			
-			return "예외발생!!!!!!!!!!!!!";
+			return dto;
 		}
 	}
 	//2024-03-29 컨설팅 결과 
 	@GetMapping("/api/consultation/{consultId}")
-	public String showConsultation(@PathVariable Integer consultId) {
+	public ConsultDto showConsultation(@PathVariable Integer consultId) {
 		//return  "/api/consultation/"+consultId;
-		return "컨설팅 결과 창입니다";
+		
+		// ConsultationService를 사용하여 consultId에 해당하는 데이터 가져오기
+        ConsultDto dto = service.getConsultationById(consultId);
+        return dto;
+		
+	
 	}
 	
 	//2024-03-29 상권 통계 -> flask에 지역, 업종 값넘겨줘야함.

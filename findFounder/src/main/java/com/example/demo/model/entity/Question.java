@@ -1,5 +1,7 @@
 package com.example.demo.model.entity;
 
+import java.util.Date;
+
 import com.example.demo.model.dto.QuestionDto;
 
 import jakarta.persistence.Column;
@@ -8,33 +10,44 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@AllArgsConstructor //둘다 data에 포함되어있음
+
+@NoArgsConstructor  // JPA 엔티티 클래스에서 기본 생성자가 필요한 경우
+
+
+
+@Data
 @Builder
 @Getter
 @Setter
 @Entity
+
 @ToString
 public class Question {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
-	private int cus_question_id;
+	private int cusQuestionId;
 	
 	@Column(nullable = false, length = 10)
-	private String question_content;
+	private String questionContent;
 	
 	@OneToOne(mappedBy = "question")
 	private Customer customer;
 	
 	public QuestionDto toDto() {
 		return QuestionDto.builder()
-				.cus_question_id(this.getCus_question_id())
-				.question_content(this.getQuestion_content())
+				.cusQuestionId(this.getCusQuestionId())
+				.questionContent(this.getQuestionContent())
 				.build();
 		
 	}
