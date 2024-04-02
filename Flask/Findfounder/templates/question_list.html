@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ 
+        {% for item in question_list %}
+            <p>순서: {{ loop.index }} </p>
+            <p>내용: {{ item.content }} </p>
+            <p>제목:<a href="/fisa/detail/{{item.id}}">{{ item.subject }}</a>  </p>
+            <p>게시일: {{ item.create_date }}</p>
+            <p>{{ item}}</p>
+        {% endfor %}
+
+
+        {% if True %}
+            <p>조건문1에 해당하면 실행</p>
+        {% elif 조건문2 %}
+            <p>조건문2에 해당하면 실행</p>
+        {% else %}
+            <p>조건문1, 2 모두 해당하지 않으면 실행</p>
+        {% endif %}
+
+
+        
+</body>
+</html>
