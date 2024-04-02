@@ -25,32 +25,26 @@ import lombok.ToString;
 @NoArgsConstructor(access = AccessLevel.PRIVATE) // @RequestBody를 위해 추가
 public class CustomerDto {
 	
-	private int cus_code;
-	private String cus_id;
-	private String cus_pw;
-	private String cus_name;
-	private int cus_cupons;
-	private String cus_pw_answer;	
-	private Boolean cus_isconsult;
-	private String cus_email;
+	private int cusCode;
+	private String cusId;
+	private String cusPw;
+	private String cusName;
+	private int cusCupons;
+	private String cusPwAnswer;	
+	private Boolean cusIsConsult;
+	private String cusEmail;
 	
 	public Customer toEntity() {
 		Customer customer = Customer.builder()
-				.cus_code(this.getCus_code())
-				.cus_id(this.getCus_id())
-				.cus_pw(this.getCus_pw())
-				.cus_name(this.getCus_name())
-				.cus_cupons(this.getCus_cupons())
-				.cus_pw_answer(this.getCus_pw_answer())
-				.cus_isconsult(this.getCus_isconsult())
-				.cus_email(this.getCus_email())
+				.cusCode(this.getCusCode())
+				.cusId(this.getCusId())
+				.cusPw(this.getCusPw())
+				.cusName(this.getCusName())
+				.cusCupons(this.getCusCupons())
+				.cusPwAnswer(this.getCusPwAnswer())
+				.cusIsConsult(this.getCusIsConsult())
+				.cusEmail(this.getCusEmail())
 				.build();
 		return customer;
 	}
-	
-	
-
-	
-	
-
 }

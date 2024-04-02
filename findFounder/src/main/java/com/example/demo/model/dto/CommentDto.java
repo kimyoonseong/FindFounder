@@ -15,20 +15,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CommentDto {
 
-	
-	private int comment_id;
-	private String comment_content;
-	private Date comment_date;
-	
-	public Comment toEntity() {
-		Comment comment = new Comment();
-		
-		comment.setComment_id(this.getComment_id());
-		comment.setComment_content(this.getComment_content());
-		comment.setComment_date(this.getComment_date());
-		
-		return comment;
-		
-		
-	}
+    private int commentId;
+    private String commentContent;
+    private Date commentDate;
+
+    public Comment toEntity() {
+        Comment comment = new Comment();
+
+        comment.setCommentId(this.getCommentId());
+        comment.setCommentContent(this.getCommentContent());
+        comment.setCommentDate(this.getCommentDate());
+
+        return comment;
+    }
 }

@@ -21,13 +21,13 @@ import lombok.ToString;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class QuestionDto {
 
-	private int cus_question_id;
-	private String question_content;
+	private int cusQuestionId;
+	private String questionContent;
 	
 	public Question toEntity() {
 		Question question = Question.builder()
-				.cus_question_id(this.getCus_question_id())
-				.question_content(this.getQuestion_content())
+				.cusQuestionId(this.getCusQuestionId())
+				.questionContent(this.getQuestionContent())
 				.build();
 		return question;
 		
