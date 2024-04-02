@@ -1,41 +1,44 @@
-//package com.example.demo.controller;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.web.server.Cookie;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.validation.annotation.Validated;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RestController;
-//import com.example.demo.controller.APiUtils;
-//
-//
-//import com.example.demo.model.dto.CustomerDto;
-//import com.example.demo.service.CustomerService;
-//
-//import jakarta.servlet.http.HttpServletResponse;
-//import jakarta.validation.Valid;
-//
-//@RestController
-//public class CustomerController {
-//   
-//   @Autowired
-//   private final CustomerService customerService;
-//   // 회원가입
-//   @PostMapping("/api/user")
-//   public ResponseEntity<?> join(@RequestBody @Valid CustomerDto request, Error error) {
-//      customerService.join(request);
-//      return ResponseEntity.ok(ApiUtils.success(null));
-//   }
-//   // 이미 가입되어있는 회원인지 확인(ID 중복체크)
-//   @PostMapping("/api/user/check")
-//   public ResponseEntity<?> check(@RequestBody @Valid CustomerDto requestDTO, Error error) {
-//      customerService.checkId(requestDTO.getCus_id());
-//      return ResponseEntity.ok(ApiUtils.success(null));
-//   }
-//   
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.server.Cookie;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+import com.example.demo.model.dto.CustomerDto;
+import com.example.demo.service.CustomerService;
+
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
+
+@RestController
+public class CustomerController {
+   
+   @Autowired
+   private CustomerService customerService;
+   // 회원가입
+   @PostMapping("/api/user")
+   public ResponseEntity<?> join(@RequestBody @Valid CustomerDto request, Error error) throws Exception {
+      customerService.join(request);
+      return ResponseEntity.ok(200);
+   }
+   // 이미 가입되어있는 회원인지 확인(ID 중복체크)
+   @PostMapping("/api/user/check")
+   public ResponseEntity<?> check(@RequestBody @Valid CustomerDto requestDTO) throws Exception {
+//   public ResponseEntity<?> check(@RequestBody CustomerDto requestDTO, Error error) throws Exception {
+	   System.out.println("집가고싶다11.");
+      String testText = customerService.checkId(requestDTO.getCusId());
+      
+      return ResponseEntity.ok(200+" "+testText);
+   }
+}
+   
 //   // 로그인
 //   @PostMapping(value="/login")
 //   public ResponseEntity<?> signIn(@RequestBody CustomerDto request, HttpServletResponse response, Error error) {

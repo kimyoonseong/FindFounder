@@ -10,7 +10,7 @@ import com.example.demo.model.entity.Customer;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
-	//Customer findByCusCode(int cus_code);
+	Customer findByCusId(String cusId);
 
 	//Optional<Customer> findById(String id);
 
