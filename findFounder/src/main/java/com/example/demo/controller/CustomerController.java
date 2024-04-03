@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.example.demo.model.dto.CustomerDto;
+import com.example.demo.model.dto.LoginReq;
+import com.example.demo.model.entity.Customer;
+import com.example.demo.service.AuthService;
 import com.example.demo.service.CustomerService;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,11 +23,17 @@ import jakarta.validation.Valid;
 @RestController
 public class CustomerController {
    
-   @Autowired
+   
    private CustomerService customerService;
+   private  AuthService authService;
+  
+   public CustomerController(CustomerService customerService, AuthService authService) {
+	   this.customerService = customerService;
+	   this.authService = authService;
+   }
    // 회원가입
    @PostMapping("/api/user")
-   public ResponseEntity<?> join(@RequestBody @Valid CustomerDto request, Error error) throws Exception {
+   public ResponseEntity<?> join(@RequestBody @Valid CustomerDto request) throws Exception {
       customerService.join(request);
       return ResponseEntity.ok(200);
    }
@@ -32,16 +41,22 @@ public class CustomerController {
    @PostMapping("/api/user/check")
    public ResponseEntity<?> check(@RequestBody @Valid CustomerDto requestDTO) throws Exception {
 //   public ResponseEntity<?> check(@RequestBody CustomerDto requestDTO, Error error) throws Exception {
-	   System.out.println("집가고싶다11.");
-      String testText = customerService.checkId(requestDTO.getCusId());
-      
+//	   System.out.println("집가고싶다11.");
+      String testText = customerService.checkId(requestDTO.getCusId()); 
       return ResponseEntity.ok(200+" "+testText);
    }
-}
+
+   @PostMapping("login")
+   public ResponseEntity<String> getMemberProfile(
+           @Valid @RequestBody LoginReq request
+   ) {
+       String token = authService.login(request);
+       return ResponseEntity.status(HttpStatus.OK).body(token);
+   }
    
-//   // 로그인
+//   2024-04-02 로그인
 //   @PostMapping(value="/login")
-//   public ResponseEntity<?> signIn(@RequestBody CustomerDto request, HttpServletResponse response, Error error) {
+//   public ResponseEntity<?> signIn(@RequestBody CustomerDto request, HttpServletResponse response) {
 //      String jwt = customerService.login(request);
 //      // "Bearer " 접두사 제거
 //      jwt = jwt.replace(JwtTokenProvider.TOKEN_PREFIX, "");
@@ -53,7 +68,14 @@ public class CustomerController {
 //      response.addCookie(cookie);
 //      
 //      return ResponseEntity.ok().header(JwtTokenProvider.HEADER, jwt)
-//            .body(ApiUtils.success(null));
+//            .body(200);
+//	   ----------------------------------------------------
+//	   로그인
+//	   String customer = customerService.login(request);
+	   
+//	   return ResponseEntity.ok(200 + " " + customer);
+	   
+   }
 //   // 로그아웃
 //   
 //   // ID 찾기
@@ -62,10 +84,7 @@ public class CustomerController {
 //   
 //   // 비밀번호 재설정
 //   
-//   // 회원정보 수정
-//   
-//   // 회원정보 상세
+
 //   
 //   // 회원 탈퇴
-//}
-//
+
