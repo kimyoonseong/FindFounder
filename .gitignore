@@ -1,3 +1,4 @@
 /.metadata/
 */_pycache_/
 /Flask/Findfounder/fisaproject
+*/.env
