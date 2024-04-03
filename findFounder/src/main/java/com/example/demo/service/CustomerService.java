@@ -13,7 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.dto.CustomerDto;
 import com.example.demo.model.entity.Customer;
+import com.example.demo.repository.ConsultRepository;
 import com.example.demo.repository.CustomerRepository;
+import com.example.demo.repository.PostRepository;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ public class CustomerService {
    private final CustomerRepository customerRepository;
    private final PasswordEncoder passwordEncoder;
    private final AuthenticationManager authenticationManager;
+   private final ConsultRepository consultRepository;
    
    public String checkId(String cusId) throws Exception {
 	   System.out.println("집가고싶다.");
@@ -51,16 +54,16 @@ public class CustomerService {
       }
    }
 
-   
+   @Transactional
    public String withdraw(int cuscode) {
-//	   Customer customer = customerRepository.findById(cuscode).orElseThrow(()->
-//		new IllegalArgumentException("해당 회원이 없습니다."));
-//	   System.out.println(customer.toString());
-//	   customerRepository.delete(customer);
-	   System.out.println("##########################################");
-	   System.out.println(cuscode);
-	   System.out.println("##########################################");
-	   customerRepository.deleteByCusCode(cuscode);
+	   // comment 삭제
+	   
+	   // post 삭제
+	   
+	   // consult 삭제
+	   consultRepository.deleteAllByCustomer_CusCode(cuscode);
+	   // 회원 삭제
+	   customerRepository.deleteById(cuscode);
 	   return "회원 탈퇴 완료";
    }
 //   

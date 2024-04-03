@@ -7,5 +7,7 @@ import com.example.demo.model.entity.Consult;
 
 @Repository
 public interface ConsultRepository extends JpaRepository<Consult, Integer>{
+	
+	void deleteAllByCustomer_CusCode(int cusCode);
 
 }

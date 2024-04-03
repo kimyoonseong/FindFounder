@@ -69,7 +69,7 @@ public class Consult {
     private Date consultDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="cus_code")
+    @JoinColumn(name="cusCode")
     private Customer customer;
     
     public ConsultDto toDto() {

@@ -5,6 +5,7 @@ import org.springframework.boot.web.server.Cookie;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -91,7 +92,7 @@ public class CustomerController {
 //   
    // 회원 탈퇴
 //	2024-04-03 회원 탈퇴
-	@GetMapping("/api/user/{cuscode}")
+	@DeleteMapping("/api/user/{cuscode}")
 	public ResponseEntity<?> withdraw(@PathVariable int cuscode) throws Exception {
 		customerService.withdraw(cuscode);
 		return ResponseEntity.ok(200);
