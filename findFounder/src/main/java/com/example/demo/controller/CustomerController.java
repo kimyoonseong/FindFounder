@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.dto.CustomerDto;
 import com.example.demo.model.dto.LoginReq;
+import com.example.demo.model.dto.req.CustomerFindPwReq;
 import com.example.demo.model.entity.Customer;
 import com.example.demo.service.AuthService;
 import com.example.demo.service.CustomerService;
@@ -97,6 +98,20 @@ public class CustomerController {
 		customerService.withdraw(cuscode);
 		return ResponseEntity.ok(200);
 		
+	}
+	
+	///api/user?userid=&question=&answer=
+	@GetMapping("/api/user")
+	public ResponseEntity<?> findPw(CustomerFindPwReq req){
+		System.out.println("########################################");
+		System.out.println(customerService.findCusPw(req));
+		System.out.println("########################################");
+		// 서비스에 있는 만든 함수 불러서  req를 인자로 넘겨주고
+		if (customerService.findCusPw(req).equals("비밀번호 수정 가능")) {
+			System.out.println("비밀번호 수정 가능합니다.");
+			return ResponseEntity.ok(200);
+		}
+		return ResponseEntity.ok(300);
 	}
 	
 }
