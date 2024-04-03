@@ -15,7 +15,7 @@ import org.webjars.NotFoundException;
 import com.example.demo.model.dto.ConsultDto;
 import com.example.demo.model.dto.req.PostCreateReq;
 import com.example.demo.model.dto.res.CommonRes;
-import com.example.demo.model.entity.Board;
+
 import com.example.demo.model.entity.Consult;
 import com.example.demo.model.entity.Customer;
 import com.example.demo.model.entity.Post;

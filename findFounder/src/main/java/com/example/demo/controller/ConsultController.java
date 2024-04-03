@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "Consulting Controller", description = "send to Flask and send from Flask ")
+@Tag(name = "컨설팅", description = "send to Flask and send from Flask ")
 public class ConsultController {
 	private ConsultService service;
 	
