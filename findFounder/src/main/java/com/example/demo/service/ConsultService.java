@@ -8,12 +8,17 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 import org.webjars.NotFoundException;
 
 import com.example.demo.model.dto.ConsultDto;
+import com.example.demo.model.dto.req.PostCreateReq;
+import com.example.demo.model.dto.res.CommonRes;
+import com.example.demo.model.entity.Board;
 import com.example.demo.model.entity.Consult;
 import com.example.demo.model.entity.Customer;
+import com.example.demo.model.entity.Post;
 import com.example.demo.repository.ConsultRepository;
 import com.example.demo.repository.CustomerRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -35,37 +40,41 @@ public class ConsultService {
 		this.consultRepo = consultRepo;
 	    this.customerRepo = customerRepo;
 	}
+
 	//2024-03-29 고객 답변 db에 저장
-	public ConsultDto consult(ConsultDto dto) {
+	public CommonRes consult(ConsultDto dto) {
 		Consult consult=dto.toEntity();
-		// 고객의 보유 쿠폰 갯수 확인
+		//consult
+		Optional<Customer> customer = customerRepo.findById(4);//없을수도 있기 때문에 optional
+		if(customer.isPresent()) {
+			Customer cus=customer.get();
+			if (cus.getCusCupons() >= 1) {
+		            // 쿠폰 갯수가 1개 이상이면 상담 정보를 저장
+		            consultRepo.save(consult);
+		            
+		            // 고객의 컨설팅 참여 여부를 true로 변경
+		            if(!cus.getCusIsConsult()) cus.setCusIsConsult(true);
+		            // 고객 쿠폰 -1
+		            int currentCoupon = cus.getCusCupons();
+					cus.setCusCupons(currentCoupon - 1);
+		            customerRepo.save(cus); // 변경된 내용을 저장
+		            CommonRes commonRes = CommonRes.builder().code(200).msg("응답완료").build();
+		    		return commonRes;
+	        } 
+			else {
+		            //throw new RuntimeException("고객의 보유 쿠폰 갯수가 1개 미만입니다.");
+		            CommonRes commonRes = CommonRes.builder().code(400).msg("쿠폰이없슴요").build();
+		    		return commonRes;
+		    		
+		    }
+			
+		}
 		
-		//Customer customer = customerRepo.findByCusCode(consult.getCustomer().getCusCode());
-		//		if (customer != null && customer.getCusCupons() >= 1) {
-		//            // 쿠폰 갯수가 1개 이상이면 상담 정보를 저장
-		//            consultRepo.save(consult);
-		//            
-		//            // 고객의 컨설팅 참여 여부를 true로 변경
-		//            if(!customer.getCusIsConsult()) customer.setCusIsConsult(true);
-		//            customerRepo.save(customer); // 변경된 내용을 저장
-		//        } else {
-		//            throw new RuntimeException("고객의 보유 쿠폰 갯수가 1개 미만입니다.");
-		//        }
-		
-		consult = consultRepo.save(consult); // Consult 엔티티를 DB에 저장하고 저장된 엔티티를 반환
-		System.out.println(consult.toString());
-        // 저장된 Consult 엔티티의 id를 ConsultDto에 설정
-        //dto.setId(consult.getId());
-        
-        // 필요하다면 저장된 엔티티의 다른 정보를 ConsultDto에 설정
-		return dto;
+		CommonRes commonRes = CommonRes.builder().code(400).msg("회원이 존재하지않음").build();
+		return commonRes;
 	}
 	
-//	public ConsultDto getConsultationById(Integer consultId) {
-//        // 데이터베이스 또는 다른 서비스에서 데이터를 가져와서 ConsultDto 객체 생성 후 반환
-//        ConsultDto dto = new ConsultDto();
-//      
-//		return dto;
+
 //	}
 	 public ConsultDto getConsultationById(Integer consultId) {
 		 // 데이터베이스에서 consultId에 해당하는 데이터를 가져오기
@@ -117,6 +126,24 @@ public class ConsultService {
 
 	        // 응답 반환
 	        return response;
+	}
+	//2024 04 03 쿠폰 구매
+	@Transactional
+	public CommonRes buy(int count) {
+		
+		//Customer customer = Customer.builder().cusCode(3).build();
+		Optional<Customer> customer = customerRepo.findById(3);//없을수도 있기 때문에 optional
+		//customer.getCusCupons(customer.getCusCupons()+count);
+		if(customer.isPresent()) {
+			Customer cus=customer.get();
+			int currentCoupon = cus.getCusCupons();
+			cus.setCusCupons(currentCoupon + count);
+			customerRepo.saveAndFlush(cus);
+		}
+		
+		CommonRes commonRes = CommonRes.builder().code(200).msg("쿠폰 구매완료").build();
+		return commonRes;
+		
 	}
 
 	  
