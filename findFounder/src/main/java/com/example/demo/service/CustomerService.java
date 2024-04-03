@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.boot.web.servlet.server.Session.Cookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +28,7 @@ public class CustomerService {
    
    public String checkId(String cusId) throws Exception {
 	   System.out.println("집가고싶다.");
-	      Customer customer = customerRepository.findByCusId(cusId);
+	      Customer customer = customerRepository.findByCusId(cusId).orElseThrow(() -> new UsernameNotFoundException("해당하는 유저가 없습니다."));
 //	      if(customer.getCusId().equals(cusId)) {
 //	         throw new Exception("이미 존재하는 id입니다. : " + cusId);
 //	      }
