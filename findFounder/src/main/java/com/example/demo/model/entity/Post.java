@@ -53,7 +53,7 @@ public class Post {
 	private int postViews;
 	
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cus_code")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Customer customer;
