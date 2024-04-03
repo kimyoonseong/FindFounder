@@ -52,7 +52,7 @@ public class Customer {
     private String cusEmail;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "cus_question_id")
+    @JoinColumn(name = "cusQuestionId")
 //    @OnDelete(action = OnDeleteAction.CASCADE)
     private Question question;
 

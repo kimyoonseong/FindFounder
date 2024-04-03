@@ -54,7 +54,7 @@ public class Post {
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cus_code")
+	@JoinColumn(name = "cusCode")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Customer customer;
 	

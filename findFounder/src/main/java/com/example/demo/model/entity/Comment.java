@@ -37,11 +37,11 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "cus_code")
+    @JoinColumn(name = "cusCode")
     private Customer customer;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "postId")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Post post;
 
