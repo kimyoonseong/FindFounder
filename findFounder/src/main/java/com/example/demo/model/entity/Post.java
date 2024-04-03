@@ -1,16 +1,20 @@
 package com.example.demo.model.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.example.demo.model.dto.PostDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,6 +33,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Post {
 
 	@Id
@@ -60,6 +65,7 @@ public class Post {
 	
 	public PostDto toDto() {
 		PostDto postDto = new PostDto();
+		postDto.setPostId(this.getPostId());
 		postDto.setPostTitle(this.getPostTitle());
 		postDto.setPostContent(this.getPostContent());
 		postDto.setPostDate(this.getPostDate());
