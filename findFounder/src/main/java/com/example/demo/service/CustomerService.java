@@ -15,7 +15,7 @@ import com.example.demo.model.dto.CustomerDto;
 import com.example.demo.model.entity.Customer;
 import com.example.demo.repository.CustomerRepository;
 
-
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor    
@@ -49,6 +49,19 @@ public class CustomerService {
       }catch (Exception e) {
          throw new Exception(e.getMessage());
       }
+   }
+
+   
+   public String withdraw(int cuscode) {
+//	   Customer customer = customerRepository.findById(cuscode).orElseThrow(()->
+//		new IllegalArgumentException("해당 회원이 없습니다."));
+//	   System.out.println(customer.toString());
+//	   customerRepository.delete(customer);
+	   System.out.println("##########################################");
+	   System.out.println(cuscode);
+	   System.out.println("##########################################");
+	   customerRepository.deleteByCusCode(cuscode);
+	   return "회원 탈퇴 완료";
    }
 //   
 //   @Transactional

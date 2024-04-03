@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.example.demo.model.dto.QuestionDto;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -42,7 +43,7 @@ public class Question {
 	@Column(nullable = false, length = 10)
 	private String questionContent;
 	
-	@OneToOne(mappedBy = "question", fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private Customer customer;
 	
 	public QuestionDto toDto() {

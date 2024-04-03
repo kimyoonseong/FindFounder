@@ -1,9 +1,12 @@
 package com.example.demo.model.entity;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import com.example.demo.model.dto.CustomerDto;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -48,8 +51,9 @@ public class Customer {
     @Column(nullable = false, length = 48)
     private String cusEmail;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "cus_question_id")
+//    @OnDelete(action = OnDeleteAction.CASCADE)
     private Question question;
 
     public CustomerDto toDto() {
