@@ -1,8 +1,10 @@
 package com.example.demo.model.dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.example.demo.model.entity.Consult;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +21,7 @@ public class ConsultDto {
     private Integer competitive;
     private String preferIndustry;
     private String preferLoc;
+    @JsonIgnore
     private Date consultDate;
     
     public Consult toEntity() {

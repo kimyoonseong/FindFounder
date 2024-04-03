@@ -1,14 +1,22 @@
 package com.example.demo.model.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.example.demo.model.dto.ConsultDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,6 +35,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @ToString(exclude="customer")
+@EntityListeners(AuditingEntityListener.class)
 public class Consult {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -38,7 +47,7 @@ public class Consult {
     @Column(nullable = false)
     private boolean sex;
     
-    @Column(nullable = false, columnDefinition = "VARCHAR(4)")
+    @Column(nullable = false, columnDefinition = "VARCHAR(10)")
     private String residence;
     
     @Column(nullable = false)
@@ -53,6 +62,7 @@ public class Consult {
     @Column(nullable = true, columnDefinition = "VARCHAR(10)")
     private String preferLoc;
     
+
     @Column(nullable = false)
     @CreatedDate
     private Date consultDate;

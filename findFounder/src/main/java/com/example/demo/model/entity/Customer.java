@@ -30,7 +30,7 @@ public class Customer {
     @Column(nullable = false, length = 16)
     private String cusId;
 
-    @Column(nullable = false, length = 16)
+    @Column(nullable = false, length = 100)
     private String cusPw;
 
     @Column(nullable = false, length = 4)
