@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+            <p>내용: {{ question.content }} </p>
+            <p>제목:{{ question.subject }} </p>
+            <p>게시일: {{ question.create_date }}</p>
+            <p>{{ question}}</p>
+            {% for ans in  question.answer_set %}
+                <hr>
+                {{ans.content}}<br>
+                {{ans.id}}<br>
+            {% endfor%}
+</body>
+</html>
