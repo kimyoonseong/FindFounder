@@ -56,7 +56,7 @@ public class PostController {
 		return ResponseEntity.ok(res);
 	}
 	
-	@Operation(summary = "게시글 전체 조회", description = "게시글 전체 조회")
+	@Operation(summary = "게시글 키워드 조회", description = "게시글 키워드 조회")
 	@GetMapping("search/{keyword}")
 	public ResponseEntity<PostListRes> getPostsByKeyword(@PathVariable String keyword) {
 		PostListRes res = PostListRes.builder().posts(postService.getPostListByKeyword(keyword)).build();

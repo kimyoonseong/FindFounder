@@ -79,7 +79,7 @@ public class PostService {
 	// 게시글 전체 목록
 	@Transactional(readOnly = true)
 	public List<Post> getPostList(){
-		List<Post> posts =  postRepo.findAll();
+		List<Post> posts =  postRepo.findAllFetchJoin();
 		
 		return posts;
 	}
@@ -87,13 +87,13 @@ public class PostService {
 	
 	// 게시글 검색
 	public List<Post> getPostListByKeyword(String keyword){
-		return postRepo.findAllByPostTitleContaining(keyword);
+		return postRepo.findAllByPostTitleContainingFetchJoin(keyword);
 	}
 	
 	
 	// 본인 작성한 게시글 리스트
 	public List<Post> getMyPostList( Customer customer){
-		return postRepo.findAllByCustomer(customer);
+		return postRepo.findAllByPostCustomerFetchJoin(customer);
 	}
 	
 	// 게시글 삭제

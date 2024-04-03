@@ -6,6 +6,7 @@ import com.example.demo.model.dto.CustomerDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -47,7 +48,7 @@ public class Customer {
     @Column(nullable = false, length = 48)
     private String cusEmail;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cus_question_id")
     private Question question;
 
