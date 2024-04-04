@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.dto.CustomerDto;
 import com.example.demo.model.dto.LoginReq;
 import com.example.demo.model.dto.req.CustomerFindPwReq;
+import com.example.demo.model.dto.req.CustomerUpdatePwReq;
 import com.example.demo.model.entity.Customer;
 import com.example.demo.service.AuthService;
 import com.example.demo.service.CustomerService;
@@ -83,12 +84,21 @@ public class CustomerController {
 //   }
 //   // 로그아웃
 //   
-//   // ID 찾기
-//   
-//   // 비밀번호 찾기
-//   
-//   // 비밀번호 재설정
-//   
+//   // 2024-04-04 ID 찾기
+   	 // /api/user?email=
+   @GetMapping("/api/user")
+
+   
+   
+//   // 2024-04-04 비밀번호 재설정
+//   /api/user/pw/{cuscode}?
+   @PostMapping("/api/user/pw/{cusid}")
+   public ResponseEntity<?> updatePw(@PathVariable String cusid, CustomerUpdatePwReq req){
+	   if (customerService.updatePw(cusid, req).equals("비밀번호 수정 완료")) {
+		   return ResponseEntity.ok(200);
+	   }
+	   return ResponseEntity.ok(300);
+   }
 
 //   
    // 회원 탈퇴
@@ -100,12 +110,11 @@ public class CustomerController {
 		
 	}
 	
+	// 2024-04-04 비밀번호 찾기
 	///api/user?userid=&question=&answer=
 	@GetMapping("/api/user")
 	public ResponseEntity<?> findPw(CustomerFindPwReq req){
-		System.out.println("########################################");
-		System.out.println(customerService.findCusPw(req));
-		System.out.println("########################################");
+
 		// 서비스에 있는 만든 함수 불러서  req를 인자로 넘겨주고
 		if (customerService.findCusPw(req).equals("비밀번호 수정 가능")) {
 			System.out.println("비밀번호 수정 가능합니다.");

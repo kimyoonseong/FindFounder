@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 //import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
@@ -10,10 +11,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.model.dto.CustomerDto;
 import com.example.demo.model.dto.req.CustomerFindPwReq;
+import com.example.demo.model.dto.req.CustomerUpdatePwReq;
+import com.example.demo.model.dto.req.PostCreateReq;
+import com.example.demo.model.dto.res.CommonRes;
 import com.example.demo.model.entity.Customer;
+import com.example.demo.model.entity.Post;
 import com.example.demo.repository.ConsultRepository;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.PostRepository;
@@ -33,8 +39,8 @@ public class CustomerService {
    private final QuestionRepository questionRepository;
    
    public String checkId(String cusId) throws Exception {
-	   System.out.println("집가고싶다.");
-	      Customer customer = customerRepository.findByCusId(cusId).orElseThrow(() -> new UsernameNotFoundException("해당하는 유저가 없습니다."));
+	   
+	      Customer customer = findCustomer(cusId);
 //	      if(customer.getCusId().equals(cusId)) {
 //	         throw new Exception("이미 존재하는 id입니다. : " + cusId);
 //	      }
@@ -47,7 +53,7 @@ public class CustomerService {
    
    @Transactional
    public void join(CustomerDto requestDTO) throws Exception {
-      checkId(requestDTO.getCusId());
+//      checkId(requestDTO.getCusId());
       String encodedPassword = passwordEncoder.encode(requestDTO.getCusPw());
       requestDTO.setCusPw(encodedPassword);
       try {
@@ -71,23 +77,56 @@ public class CustomerService {
    }
    
    @Transactional
-   public String findCusPw(CustomerFindPwReq req1) {
+   public String findCusPw(CustomerFindPwReq req) {
 	   
-	   // req : id, questionid, answer
+	   // req1 : id, questionid, answer
 	   // id가 실제로 존재하는 사용자인지 체크 customer
-	   Customer customer = customerRepository.findByCusId(req1.getCusId()).orElseThrow(() -> new UsernameNotFoundException("해당하는 유저가 없습니다."));
-	   // customer q, answer 가져와서
-
-	   // req question, answer가 일치하는지
-	   if (customer.getQuestion().getCusQuestionId() == req1.getCusQuestionId()) {
-		   if (customer.getCusPwAnswer().equals(req1.getCusPwAnswer()) ) {
+	   Customer customer = findCustomer(req.getCusId());
+	  // customer q, answer 가져와서
+	  // req1 question, answer가 일치하는지
+	  //일치할 때 return 문자열, 일치하지 않을 떄 문장열 return
+	   if (customer.getQuestion().getCusQuestionId() == req.getCusQuestionId()) {
+		   if (customer.getCusPwAnswer().equals(req.getCusPwAnswer()) ) {
 			   return "비밀번호 수정 가능";
 		   }
 		   
 	   }
 	   return "비밀번호 수정 불가능";
-	   
-	   //일치할 때 return 문자열, 일치하지 않을 떄 문장열 return
+   }
+   
+//	public CommonRes updatePost(int postid, PostCreateReq postDto) {
+//		Post post = postRepo.findById(postid).orElseThrow(()->
+//		new IllegalArgumentException("해당 게시글이 없습니다."));
+//		post.setPostTitle(postDto.getPostTitle());
+//		post.setPostContent(postDto.getPostContent());
+//		postRepo.saveAndFlush(post);
+//		CommonRes commonRes = CommonRes.builder().code(200).msg("게시글 수정 완료").build();
+//		return commonRes;
+//	}
+//	
+   public Customer findCustomer(int cusCode) {
+	   Customer customer = customerRepository.findById(cusCode).orElseThrow(() -> new NoSuchElementException("해당하는 유저가 없습니다."));
+	   return customer;
+   }
+   
+   public Customer findCustomer(String cusId) {
+	   Customer customer = customerRepository.findByCusId(cusId).orElseThrow(() -> new NoSuchElementException("해당하는 유저가 없습니다."));
+	   return customer;
+   }
+   
+   
+   @Transactional
+   public String updatePw(String cusId, CustomerUpdatePwReq req) {
+	   // 비밀번호 찾기에서 비밀번호 수정 가능이 뜨면
+	   // 입력받았던 아이디에 일치하는 회원을 찾아서 
+	   // 비밀번호 변경 가능하게 해줌.
+	 
+	   Customer customer = findCustomer(cusId);
+	   String encodedPassword = passwordEncoder.encode(customer.getCusPw());
+	   customer.setCusPw(encodedPassword);
+	   customerRepository.save(customer);
+	 
+	   return  "비밀번호 수정 완료";
 	   
    }
 //   
