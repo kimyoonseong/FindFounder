@@ -22,6 +22,7 @@ import com.example.demo.model.dto.req.CustomerUpdatePwReq;
 import com.example.demo.model.entity.Customer;
 import com.example.demo.service.AuthService;
 import com.example.demo.service.CustomerService;
+import com.example.demo.service.EmailService;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -32,10 +33,12 @@ public class CustomerController {
    
    private CustomerService customerService;
    private  AuthService authService;
+   private EmailService emailService;
   
-   public CustomerController(CustomerService customerService, AuthService authService) {
+   public CustomerController(CustomerService customerService, AuthService authService, EmailService emailService) {
 	   this.customerService = customerService;
 	   this.authService = authService;
+	   this.emailService = emailService;
    }
    // 회원가입
    @PostMapping("/api/user")
@@ -82,11 +85,17 @@ public class CustomerController {
 //	   return ResponseEntity.ok(200 + " " + customer);
 	   
 //   }
-//   // 로그아웃
 //   
-//   // 2024-04-04 ID 찾기
+//   // 2024-04-04 ID 찾기 - 이메일 인증
    	 // /api/user?email=
-   @GetMapping("/api/user")
+   @PostMapping("/api/user/dispatch")
+   public ResponseEntity<?> sendEmail(@RequestBody String email) throws Exception{
+	   
+	   String content = "연재야 언제한번 소주 2잔해야지 따라와";
+	   emailService.sendEmail(email, content);
+	   
+	   return ResponseEntity.ok(200);
+   }
 
    
    
@@ -122,5 +131,7 @@ public class CustomerController {
 		}
 		return ResponseEntity.ok(300);
 	}
+	
+//  // 로그아웃
 	
 }
