@@ -30,6 +30,7 @@ public class AuthService {
 		this.jwtUtil = jwtUtil;
 		this.customerRepository = customerRepository;
 		this.encoder = encoder;
+		
 	}
 	
 	

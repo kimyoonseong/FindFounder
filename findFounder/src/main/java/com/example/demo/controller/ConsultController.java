@@ -37,7 +37,7 @@ public class ConsultController {
 	
 	
 	//2024-03-29 컨설팅 응답저장
-	@Operation(summary = "Consult Save", description = "컨설팅 응답 저장")
+	@Operation(summary = "컨설팅 응답 저장", description = "Consult Save")
 	@PostMapping("/api/consultation")
     public ResponseEntity<CommonRes> createConsultation(@RequestBody ConsultDto dto) {
 	
@@ -49,7 +49,7 @@ public class ConsultController {
 	
 	}
 	//2024-03-29 컨설팅 결과 
-	@Operation(summary = "Consult result", description = "프론트 컨설팅 결과")
+	@Operation(summary = "프론트 컨설팅 결과", description = "Consult result")
 	@GetMapping("/api/consultation/{consultId}")
 	public ConsultDto showConsultation(@PathVariable Integer consultId) {
 		//return  "/api/consultation/"+consultId;
