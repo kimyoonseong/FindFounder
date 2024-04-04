@@ -3,12 +3,14 @@ package com.example.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,6 +43,7 @@ public class PostService {
 	// 게시글 작성
 	@Transactional
 	public CommonRes createPost(PostCreateReq postDto) {
+		// customer 찾기
 		Customer customer = Customer.builder().cusCode(3).build();
 		Post post = Post.builder()
 					.postTitle(postDto.getPostTitle())
@@ -70,7 +73,8 @@ public class PostService {
 	public PostDto detailPost(int postId) {
 		Post post = postRepo.findById(postId).orElseThrow(()->
 		new IllegalArgumentException("해당 게시글이 없습니다."));
-		
+		post.setPostViews(post.getPostViews()+1);
+		postRepo.saveAndFlush(post);
 		PostDto postDto = post.toDto();
 		return postDto;
 	}
@@ -86,22 +90,30 @@ public class PostService {
 	
 	
 	// 게시글 검색
+	@Transactional
 	public List<Post> getPostListByKeyword(String keyword){
 		return postRepo.findAllByPostTitleContainingFetchJoin(keyword);
 	}
 	
 	
 	// 본인 작성한 게시글 리스트
+	@Transactional
 	public List<Post> getMyPostList( Customer customer){
 		return postRepo.findAllByPostCustomerFetchJoin(customer);
 	}
 	
 	// 게시글 삭제
+	@Transactional
 	public CommonRes deletePost(int post_id) {
 		
 		postRepo.deleteById(post_id);
 		CommonRes commonRes = CommonRes.builder().code(200).msg("게시글 삭제 완료").build();
 		return commonRes;
+	}
+	
+	@Transactional
+	public Post getPost(int postId) {
+		return postRepo.findById(postId).orElseThrow(() -> new NoSuchElementException("해당하는 게시글이 없습니다."));
 	}
 	
 	

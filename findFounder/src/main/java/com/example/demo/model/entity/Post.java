@@ -10,6 +10,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.example.demo.model.dto.PostDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -56,10 +57,12 @@ public class Post {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cusCode")
 	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnore
 	private Customer customer;
 	
 	
 	@OneToMany(mappedBy = "post")
+	@JsonIgnore
 	private List<Comment> comments;
 	
 	
