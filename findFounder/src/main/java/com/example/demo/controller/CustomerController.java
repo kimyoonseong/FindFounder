@@ -91,7 +91,7 @@ public class CustomerController {
    @PostMapping("/api/user/dispatch")
    public ResponseEntity<?> sendEmail(@RequestBody String email) throws Exception{
 	   
-	   String content = "연재야 언제한번 소주 2잔해야지 따라와";
+	   String content = "제목을 쓰십시오.";
 	   emailService.sendEmail(email, content);
 	   
 	   return ResponseEntity.ok(200);
