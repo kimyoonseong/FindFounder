@@ -86,7 +86,7 @@ public class CustomerController {
 //   
 //   // 2024-04-04 ID 찾기
    	 // /api/user?email=
-   @GetMapping("/api/user")
+//   @GetMapping("/api/user")
 
    
    
