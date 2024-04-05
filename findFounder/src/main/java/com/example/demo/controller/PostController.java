@@ -1,6 +1,11 @@
 package com.example.demo.controller;
 
 import org.springframework.http.ResponseEntity;
+
+import org.springframework.security.core.Authentication;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +24,19 @@ import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.PostRepository;
 import com.example.demo.service.CustomerService;
 import com.example.demo.service.PostService;
-
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import static io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER;
+
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+
 
 
 @RestController
 @RequestMapping("/api/board")
+@Tag(name = "2. 게시글", description = "게시글 컨트롤러 ")
 public class PostController {
 
 	private PostService postService;
@@ -36,7 +48,13 @@ public class PostController {
 	}
 	
 	// 회원코드는 JWT토큰 통해서 가져오기.
-	@Operation(summary = "게시글 작성", description = "제목, 내용, 회원코드, 조회수는 0")
+
+	@Operation(summary = "게시글 작성", description = "제목, 내용, 회원코드, 조회수는 0"
+			,
+            parameters =  {
+                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+            })
+
 	@PostMapping()
 	public ResponseEntity<CommonRes> createPost(@RequestBody PostCreateReq req ) {
 		CommonRes res =  postService.createPost(req);
@@ -54,9 +72,14 @@ public class PostController {
 	}
 	
 	// 회원코드는 JWT토큰 통해서 가져오기.
-	@Operation(summary = "게시글 전체 조회", description = "게시글 전체 조회")
+	@Operation(summary = "게시글 전체 조회", description = "게시글 전체 조회",
+            parameters =  {
+                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+            })
 	@GetMapping()
-	public ResponseEntity<PostListRes> getPosts() {
+	public ResponseEntity<PostListRes> getPosts(Authentication authentication) {
+		System.out.println("#################################################################################11111들어와요");
+		System.out.println(authentication.getName());
 		PostListRes res = PostListRes.builder().posts(postService.getPostList()).build();
 		
 		return ResponseEntity.ok(res);
