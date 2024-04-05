@@ -17,6 +17,7 @@ public class CustomerInfoDto {
 	private String cusId;
 	private String cusPw;
 	private String role = "USER";
+	private int cusCode;
 	
 
 }

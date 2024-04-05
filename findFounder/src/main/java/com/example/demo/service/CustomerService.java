@@ -20,6 +20,7 @@ import com.example.demo.model.dto.req.PostCreateReq;
 import com.example.demo.model.dto.res.CommonRes;
 import com.example.demo.model.entity.Customer;
 import com.example.demo.model.entity.Post;
+import com.example.demo.repository.CommentRepository;
 import com.example.demo.repository.ConsultRepository;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.PostRepository;
@@ -37,6 +38,8 @@ public class CustomerService {
    private final AuthenticationManager authenticationManager;
    private final ConsultRepository consultRepository;
    private final QuestionRepository questionRepository;
+   private final CommentRepository commentRepository;
+   private final PostRepository postRepository;
    
    public String checkId(String cusId) throws Exception {
 	   
@@ -66,9 +69,9 @@ public class CustomerService {
    @Transactional
    public String withdraw(int cuscode) {
 	   // comment 삭제
-	   
+	   commentRepository.deleteAllByCustomer_CusCode(cuscode);
 	   // post 삭제
-	   
+	   postRepository.deleteAllByCustomer_CusCode(cuscode);
 	   // consult 삭제
 	   consultRepository.deleteAllByCustomer_CusCode(cuscode);
 	   // 회원 삭제

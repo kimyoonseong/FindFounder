@@ -43,7 +43,7 @@ public class Question {
 	@Column(nullable = false, length = 10)
 	private String questionContent;
 	
-	@OneToOne(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToOne(mappedBy = "question", fetch = FetchType.LAZY)
 	private Customer customer;
 	
 	public QuestionDto toDto() {
