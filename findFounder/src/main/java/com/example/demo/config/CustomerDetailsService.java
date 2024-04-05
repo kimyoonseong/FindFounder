@@ -24,7 +24,7 @@ public class CustomerDetailsService implements UserDetailsService  {
         Customer customer = customerRepository.findByCusId(cusId)
                 .orElseThrow(() -> new UsernameNotFoundException("해당하는 유저가 없습니다."));
 
-        CustomerInfoDto dto = CustomerInfoDto.builder().cusId(customer.getCusId()).role("USER").cusPw(customer.getCusPw()).build();
+        CustomerInfoDto dto = CustomerInfoDto.builder().cusId(customer.getCusId()).role("USER").cusPw(customer.getCusPw()).cusCode(customer.getCusCode()).build();
 
         return new CustomerDetails(dto);
     }

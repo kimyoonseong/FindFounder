@@ -37,7 +37,7 @@ public class Customer {
     @Column(nullable = false, length = 100)
     private String cusPw;
 
-    @Column(nullable = false, length = 4)
+    @Column(nullable = false, length = 5)
     private String cusName;
 
     @ColumnDefault("0")
@@ -51,7 +51,7 @@ public class Customer {
     @Column(nullable = false, length = 48)
     private String cusEmail;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cusQuestionId")
 //    @OnDelete(action = OnDeleteAction.CASCADE)
     private Question question;

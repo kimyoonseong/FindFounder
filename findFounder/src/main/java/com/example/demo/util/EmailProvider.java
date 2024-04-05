@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 public class EmailProvider {
 	
 	private final JavaMailSender javaMailSender;
-	private final String Subject = "[안녕 안녕 반가워 힘내 친구야]";
+	private final String Subject = "[안녕 안녕 친구야 응원해]";
 	
 	public boolean sendCertifiactionMail(String email, String content) {
 		

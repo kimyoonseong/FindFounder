@@ -24,10 +24,15 @@ import com.example.demo.service.AuthService;
 import com.example.demo.service.CustomerService;
 import com.example.demo.service.EmailService;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @RestController
+@Tag(name = "1. 사용자", description = "회원관련 컨트롤러 ")
 public class CustomerController {
    
    
@@ -42,12 +47,14 @@ public class CustomerController {
    }
    // 회원가입
    @PostMapping("/api/user")
+   @Operation(summary = "회원가입", description = "회원가입")
    public ResponseEntity<?> join(@RequestBody @Valid CustomerDto request) throws Exception {
       customerService.join(request);
       return ResponseEntity.ok(200);
    }
    // 이미 가입되어있는 회원인지 확인(ID 중복체크)
    @PostMapping("/api/user/check")
+   @Operation(summary = "ID 중복체크", description = "ID 중복체크")
    public ResponseEntity<?> check(@RequestBody @Valid CustomerDto requestDTO) throws Exception {
 //   public ResponseEntity<?> check(@RequestBody CustomerDto requestDTO, Error error) throws Exception {
 //	   System.out.println("집가고싶다11.");
@@ -56,6 +63,7 @@ public class CustomerController {
    }
 
    @PostMapping("login")
+   @Operation(summary = "로그인", description = "로그인")
    public ResponseEntity<String> getMemberProfile(
            @Valid @RequestBody LoginReq request
    ) {
@@ -89,9 +97,10 @@ public class CustomerController {
 //   // 2024-04-04 ID 찾기 - 이메일 인증
    	 // /api/user?email=
    @PostMapping("/api/user/dispatch")
+   @Operation(summary = "이메일보내기", description = "이메일보내기")
    public ResponseEntity<?> sendEmail(@RequestBody String email) throws Exception{
 	   
-	   String content = "제목을 쓰십시오.";
+	   String content = "내용을 입력하세요";
 	   emailService.sendEmail(email, content);
 	   
 	   return ResponseEntity.ok(200);
@@ -102,6 +111,7 @@ public class CustomerController {
 //   // 2024-04-04 비밀번호 재설정
 //   /api/user/pw/{cuscode}?
    @PostMapping("/api/user/pw/{cusid}")
+   @Operation(summary = "비밀번호 수정", description = "비밀번호 수정")
    public ResponseEntity<?> updatePw(@PathVariable String cusid, CustomerUpdatePwReq req){
 	   if (customerService.updatePw(cusid, req).equals("비밀번호 수정 완료")) {
 		   return ResponseEntity.ok(200);
@@ -113,6 +123,7 @@ public class CustomerController {
    // 회원 탈퇴
 //	2024-04-03 회원 탈퇴
 	@DeleteMapping("/api/user/{cuscode}")
+	@Operation(summary = "회원 탈퇴", description = "회원 탈퇴")
 	public ResponseEntity<?> withdraw(@PathVariable int cuscode) throws Exception {
 		customerService.withdraw(cuscode);
 		return ResponseEntity.ok(200);
@@ -122,6 +133,7 @@ public class CustomerController {
 	// 2024-04-04 비밀번호 찾기
 	///api/user?userid=&question=&answer=
 	@GetMapping("/api/user")
+	@Operation(summary = "비밀번호 찾기 질문", description = "비밀번호 찾기 질문")
 	public ResponseEntity<?> findPw(CustomerFindPwReq req){
 
 		// 서비스에 있는 만든 함수 불러서  req를 인자로 넘겨주고
@@ -132,6 +144,13 @@ public class CustomerController {
 		return ResponseEntity.ok(300);
 	}
 	
-//  // 로그아웃
+//  // 2024-04-04 로그아웃
+	// /api/user/logout
+//	@PostMapping("/api/user/logout")
+//	public ResponseEntity<?> logout(@Valid @RequestBody LoginReq request) {
+//		String token = authService.logout(request);
+//	    return ResponseEntity.status(HttpStatus.OK).body(token);
+//		
+//	}
 	
 }

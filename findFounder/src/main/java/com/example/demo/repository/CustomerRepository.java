@@ -11,6 +11,8 @@ import com.example.demo.model.entity.Customer;
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
 	Optional<Customer> findByCusId(String cusId);
+	
+	Customer findBYCusName(String cusName);
 
 	void deleteByCusCode(int cuscode);
 

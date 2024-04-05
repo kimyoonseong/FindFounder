@@ -13,6 +13,7 @@ import com.example.demo.model.entity.Customer;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.util.JwtUtil;
 
+import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -52,8 +53,36 @@ public class AuthService {
         
         CustomerInfoDto info = CustomerInfoDto.builder().cusId(customer.getCusId()).role("USER").cusPw(customer.getCusPw()).build();
 
-        String accessToken = jwtUtil.createAccessToken(info);
+        String accessToken = jwtUtil.createToken(info);
         return accessToken;
     }
-
+    
+//    @Transactional
+//    public void logout(String encryptedRefreshToken, String accessToken) {
+//    	this.verifiedRefreshToken(encryptedRefreshToken);
+//    	String refreshToken = aes128Config.decryptAes(encryptedRefreshToken);
+//        Claims claims = jwtUtil.parseClaims(refreshToken);
+//        String email = claims.getSubject();
+//        String redisRefreshToken = redisService.getValues(email);
+//        if (redisService.checkExistsValue(redisRefreshToken)) {
+//            redisService.deleteValues(email);
+//
+//            // 로그아웃 시 Access Token Redis 저장 ( key = Access Token / value = "logout" )
+//            long accessTokenExpirationMillis = JwtUtil.getAccessTokenExpirationMillis();
+//            redisService.setValues(accessToken, "logout", Duration.ofMillis(accessTokenExpirationMillis));
+//        } 
+//    }
+//
+//
+//
+//	private void verifiedRefreshToken(String encryptedRefreshToken) {
+//		if (encryptedRefreshToken == null) {
+//            throw new BusinessLogicException(ExceptionCode.HEADER_REFRESH_TOKEN_NOT_EXISTS);
+//        }
+//	}
+//
+//	  private Customer findMemberByEmail(String email) {
+//	        return CustomerRepository.findByEmail(email)
+//	                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+//	  }
 }
