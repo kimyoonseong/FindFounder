@@ -1,6 +1,7 @@
 package com.example.demo.model.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import com.example.demo.model.dto.QuestionDto;
 
@@ -11,6 +12,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -43,8 +45,8 @@ public class Question {
 	@Column(nullable = false, length = 10)
 	private String questionContent;
 	
-	@OneToOne(mappedBy = "question", fetch = FetchType.LAZY)
-	private Customer customer;
+	@OneToMany(mappedBy = "question", fetch = FetchType.LAZY)
+	private List<Customer> customers;
 	
 	public QuestionDto toDto() {
 		return QuestionDto.builder()

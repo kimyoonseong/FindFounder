@@ -14,12 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.model.dto.CustomerDto;
+import com.example.demo.model.dto.CustomerJoinDto;
 import com.example.demo.model.dto.req.CustomerFindPwReq;
 import com.example.demo.model.dto.req.CustomerUpdatePwReq;
 import com.example.demo.model.dto.req.PostCreateReq;
 import com.example.demo.model.dto.res.CommonRes;
 import com.example.demo.model.entity.Customer;
 import com.example.demo.model.entity.Post;
+import com.example.demo.model.entity.Question;
 import com.example.demo.repository.CommentRepository;
 import com.example.demo.repository.ConsultRepository;
 import com.example.demo.repository.CustomerRepository;
@@ -41,29 +43,52 @@ public class CustomerService {
    private final CommentRepository commentRepository;
    private final PostRepository postRepository;
    
-   public String checkId(String cusId) throws Exception {
+   public boolean checkId(String cusId) throws Exception {
 	   
-	      Customer customer = findCustomer(cusId);
-//	      if(customer.getCusId().equals(cusId)) {
-//	         throw new Exception("이미 존재하는 id입니다. : " + cusId);
-//	      }
-	      return "있어요";
+	      Optional<Customer> customer = customerRepository.findByCusId(cusId);
+	      boolean isExist = true;
+	      if(customer.isEmpty()) {
+	    	 isExist = false;
+	      }
+
+	      return isExist;
 	      
    }
 	   
    
   
-   
+   // 회원가입
    @Transactional
-   public void join(CustomerDto requestDTO) throws Exception {
-//      checkId(requestDTO.getCusId());
-      String encodedPassword = passwordEncoder.encode(requestDTO.getCusPw());
-      requestDTO.setCusPw(encodedPassword);
-      try {
-         customerRepository.save(requestDTO.toEntity());
-      }catch (Exception e) {
-         throw new Exception(e.getMessage());
+   public CommonRes join(CustomerJoinDto customerJoinDTO) throws Exception {
+	   // checkId : false -> 회원가입 가능
+	   // true -> 회원가입 불가능
+	   CommonRes commonRes;
+      if (checkId(customerJoinDTO.getCusId())) {
+    	  commonRes = CommonRes.builder().code(300).msg("중복되는 아이디가 존재합니다. 비밀번호 찾기를 이용하세요").build();
+    	  return commonRes;
       }
+      String encodedPassword = passwordEncoder.encode(customerJoinDTO.getCusPw());
+//      requestDTO.setCusPw(encodedPassword);
+      Question question = questionRepository.findById(customerJoinDTO.getCusQuestionId()).orElseThrow(() -> new NoSuchElementException("해당하는 질문이 없습니다."));
+      Customer customer = Customer.builder()
+//    		  			.cusCupons(0)
+    		  			.cusEmail(customerJoinDTO.getCusEmail())
+    		  			.cusId(customerJoinDTO.getCusId())
+    		  			.cusName(customerJoinDTO.getCusName())
+    		  			.cusPw(encodedPassword)
+    		  			.cusPwAnswer(customerJoinDTO.getCusPwAnswer())
+    		  			.cusIsConsult(false)
+    		  			.question(question)
+    		  			.build();
+      customerRepository.save(customer);
+      commonRes = CommonRes.builder().code(200).msg("회원 가입이 완료되었습니다.").build();
+      return commonRes;
+//      
+//      try {
+//         customerRepository.save(requestDTO.toEntity());
+//      }catch (Exception e) {
+//         throw new Exception(e.getMessage());
+//      }
    }
 
    @Transactional
@@ -89,6 +114,7 @@ public class CustomerService {
 	  // req1 question, answer가 일치하는지
 	  //일치할 때 return 문자열, 일치하지 않을 떄 문장열 return
 	   if (customer.getQuestion().getCusQuestionId() == req.getCusQuestionId()) {
+
 		   if (customer.getCusPwAnswer().equals(req.getCusPwAnswer()) ) {
 			   return "비밀번호 수정 가능";
 		   }
@@ -125,7 +151,7 @@ public class CustomerService {
 	   // 비밀번호 변경 가능하게 해줌.
 	 
 	   Customer customer = findCustomer(cusId);
-	   String encodedPassword = passwordEncoder.encode(customer.getCusPw());
+	   String encodedPassword = passwordEncoder.encode(req.getCusPw());
 	   customer.setCusPw(encodedPassword);
 	   customerRepository.save(customer);
 	 

@@ -31,7 +31,8 @@ public class SecurityConfig {
 	private final JwtUtil jwtUtil;
 	private static final String[] AUTH_WHITELIST = {
              "/swagger-ui/**", "/api-docs", "/swagger-ui-custom.html",
-            "/v3/api-docs/**", "/api-docs/**", "/swagger-ui.html", "/api/v1/auth/**",  "/login", "/api/user"
+            "/v3/api-docs/**", "/api-docs/**", "/swagger-ui.html", "/api/v1/auth/**",  "/login", "/api/user", "/api/user/dispatch"
+            , "/api/user/check", "/api/user/pw/**"
     };
 	@Autowired
 	public SecurityConfig(JwtUtil jwtUtil) {
