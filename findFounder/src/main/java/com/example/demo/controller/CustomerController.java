@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import static io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.server.Cookie;
 import org.springframework.http.HttpStatus;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +31,7 @@ import com.example.demo.model.entity.Customer;
 import com.example.demo.service.AuthService;
 import com.example.demo.service.CustomerService;
 import com.example.demo.service.EmailService;
+import com.example.demo.util.JwtUtil;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
@@ -44,11 +48,13 @@ public class CustomerController {
    private CustomerService customerService;
    private  AuthService authService;
    private EmailService emailService;
+   private JwtUtil jwtUtil;
   
-   public CustomerController(CustomerService customerService, AuthService authService, EmailService emailService) {
+   public CustomerController(CustomerService customerService, AuthService authService, EmailService emailService, JwtUtil jwtUtil) {
 	   this.customerService = customerService;
 	   this.authService = authService;
 	   this.emailService = emailService;
+	   this.jwtUtil = jwtUtil;
    }
    // 회원가입
    @PostMapping("/api/user")
@@ -112,26 +118,35 @@ public class CustomerController {
 //   
    // 회원 탈퇴
 //	2024-04-03 회원 탈퇴
-	@DeleteMapping("/api/user/{cuscode}")
-	@Operation(summary = "회원 탈퇴", description = "회원 탈퇴")
-	public ResponseEntity<?> withdraw(@PathVariable int cuscode) throws Exception {
-		customerService.withdraw(cuscode);
-		return ResponseEntity.ok(200);
+	@DeleteMapping("/api/user")
+	@Operation(summary = "회원 탈퇴", description = "회원 탈퇴",
+			parameters =  {
+                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+            })
+	public ResponseEntity<CommonRes> withdraw(@RequestHeader("X-AUTH-TOKEN") String jwtToken) throws Exception {
+		
+		int cusCode = jwtUtil.getCusCode(jwtToken);
+		
+		CommonRes res = customerService.withdraw(cusCode);
+		return ResponseEntity.ok(res);
 		
 	}
 	
-	// 2024-04-04 비밀번호 찾기
+	// 2024-04-04 비밀번호 찾기 질문
 	///api/user?userid=&question=&answer=
 	@GetMapping("/api/user")
 	@Operation(summary = "비밀번호 찾기 질문", description = "비밀번호 찾기 질문")
-	public ResponseEntity<?> findPw(CustomerFindPwReq req){
-
+	public ResponseEntity<CommonRes> findPw(CustomerFindPwReq req){
+		CommonRes res;
 		// 서비스에 있는 만든 함수 불러서  req를 인자로 넘겨주고
 		if (customerService.findCusPw(req).equals("비밀번호 수정 가능")) {
-			System.out.println("비밀번호 수정 가능합니다.");
-			return ResponseEntity.ok(200);
+			res = CommonRes.builder().code(200).msg("비밀번호 수정 가능합니다.").build();
 		}
-		return ResponseEntity.ok(300);
+		else {
+			res = CommonRes.builder().code(300).msg("비밀번호 수정 불가능합니다.").build();
+	
+		}
+		return ResponseEntity.ok(res);
 	}
 	
 //  // 2024-04-04 로그아웃

@@ -33,5 +33,7 @@ public interface PostRepository extends JpaRepository<Post, Integer>{
     List<Post> findAllByPostCustomerFetchJoin(@Param("customer") Customer customer);
 	
 	void deleteAllByCustomer_CusCode(int cusCode);
+
+	
 	
 }

@@ -111,6 +111,11 @@ public class JwtUtil {
     
         return info;
     }
+    
+    public int getCusCode(String token) {
+    	int cusCode = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().get("cusCode",Integer.class);
+    	return cusCode;
+    }
 
     // 예제 13.15
     /**
