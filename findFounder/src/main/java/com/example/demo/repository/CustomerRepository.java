@@ -12,7 +12,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
 	Optional<Customer> findByCusId(String cusId);
 	
-	Customer findBYCusName(String cusName);
+	Customer findByCusName(String cusName);
 
 	void deleteByCusCode(int cuscode);
 

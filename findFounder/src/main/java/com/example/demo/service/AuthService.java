@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.dto.CustomerInfoDto;
 import com.example.demo.model.dto.LoginReq;
+import com.example.demo.model.dto.res.CommonRes;
+import com.example.demo.model.dto.res.LoginRes;
 import com.example.demo.model.entity.Customer;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.util.JwtUtil;
@@ -37,7 +39,7 @@ public class AuthService {
 	
 	
     @Transactional
-    public String login(LoginReq dto) {
+    public LoginRes login(LoginReq dto) {
         String cusId = dto.getCusId();
         String password = dto.getCusPw();
         Customer customer = customerRepository.findByCusId(cusId).orElseThrow(() -> new UsernameNotFoundException("해당하는 유저가 없습니다."));
@@ -52,10 +54,12 @@ public class AuthService {
             throw new BadCredentialsException("비밀번호가 일치하지 않습니다.");
         }
         
-        CustomerInfoDto info = CustomerInfoDto.builder().cusId(customer.getCusId()).role("USER").cusPw(customer.getCusPw()).build();
+        CustomerInfoDto info = CustomerInfoDto.builder().cusId(customer.getCusId()).role("USER").cusPw(customer.getCusPw()).
+        		cusCode(customer.getCusCode()). build();
 
         String accessToken = jwtUtil.createToken(info);
-        return accessToken;
+        LoginRes loginRes = LoginRes.builder().code(200).msg("로그인 완료되었습니다.").token(accessToken).build();
+        return loginRes;
     }
     
 //    @Transactional

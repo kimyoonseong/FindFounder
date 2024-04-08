@@ -18,7 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.dto.CustomerDto;
 import com.example.demo.model.dto.LoginReq;
 import com.example.demo.model.dto.req.CustomerFindPwReq;
+
 import com.example.demo.model.dto.req.CustomerUpdatePwReq;
+import com.example.demo.model.dto.req.PostCreateReq;
+import com.example.demo.model.dto.res.CommonRes;
+import com.example.demo.model.dto.res.LoginRes;
 import com.example.demo.model.entity.Customer;
 import com.example.demo.service.AuthService;
 import com.example.demo.service.CustomerService;
@@ -64,11 +68,12 @@ public class CustomerController {
 
    @PostMapping("login")
    @Operation(summary = "로그인", description = "로그인")
-   public ResponseEntity<String> getMemberProfile(
-           @Valid @RequestBody LoginReq request
-   ) {
-       String token = authService.login(request);
-       return ResponseEntity.status(HttpStatus.OK).body(token);
+   public ResponseEntity<LoginRes> getMemberProfile(
+		   @RequestBody LoginReq dto
+) {
+       LoginRes res = authService.login(dto);
+//       return ResponseEntity.status(HttpStatus.OK).body(token);
+       return ResponseEntity.ok(res);
    }
    
 //   2024-04-02 로그인
@@ -100,8 +105,8 @@ public class CustomerController {
    @Operation(summary = "이메일보내기", description = "이메일보내기")
    public ResponseEntity<?> sendEmail(@RequestBody String email) throws Exception{
 	   
-	   String content = "내용을 입력하세요";
-	   emailService.sendEmail(email, content);
+	   
+	   emailService.sendEmail(email);
 	   
 	   return ResponseEntity.ok(200);
    }
