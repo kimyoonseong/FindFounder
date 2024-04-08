@@ -47,9 +47,10 @@ public class EmailService {
 		// 3. cusRepostiroy
 		
 		
-		
+
 		emailProvider.sendCertifiactionMail(email, msg);
 		return CommonRes.builder().code(200).msg("이메일이 전송되었습니다.").build();
+
 	}
 	
 //	final JavaMailSender javaMailSender;

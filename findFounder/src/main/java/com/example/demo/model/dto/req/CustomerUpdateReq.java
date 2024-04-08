@@ -7,5 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CustomerUpdateReq {
-
+	 private String cusPw;
+	 private String cusName;
+	 private String cusEmail;
+	 private int cusQuestionId;
 }
