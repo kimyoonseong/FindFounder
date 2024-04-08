@@ -30,7 +30,15 @@ public class EmailService {
 	}
 	
 	
-	public void sendEmail(String email, String msg) {
+	public void sendEmail(String email) {
+		
+		// 1. CustomerRepository -> Input : cusEmail return Customer 
+		// 2. cusRepository 생성자
+		// 3. cusRepostiroy
+		
+		String msg;
+		
+		
 		emailProvider.sendCertifiactionMail(email, msg);
 	}
 	

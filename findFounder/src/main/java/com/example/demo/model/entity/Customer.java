@@ -31,7 +31,7 @@ public class Customer {
     @Column(nullable = false)
     private int cusCode;
 
-    @Column(nullable = false, length = 16)
+    @Column(nullable = false, length = 16, unique=true)
     private String cusId;
 
     @Column(nullable = false, length = 100)
