@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import static io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +23,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -36,26 +40,32 @@ public class ConsultController {
     }
 	
 	
-	//2024-03-29 컨설팅 응답저장
-	@Operation(summary = "컨설팅 응답 저장", description = "Consult Save")
+	//2024-03-29 컨설팅 응답저장 
+	//2024-04-08 jwt인증완료
+	@Operation(summary = "컨설팅 응답 저장", description = "Consult Save",
+			parameters =  {
+                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+            })
 	@PostMapping("/api/consultation")
-    public ResponseEntity<CommonRes> createConsultation(@RequestBody ConsultDto dto) {
+    public ResponseEntity<CommonRes> createConsultation(@RequestHeader("X-AUTH-TOKEN") String jwtToken,
+    		@RequestBody ConsultDto dto) {
 	
-			CommonRes res=service.consult(dto);
-			//ConsultDto result=service.consult(dto);
-			//System.out.println(dto.toString());
+			CommonRes res=service.consult(jwtToken,dto);
 			return ResponseEntity.ok(res);
 			
 	
 	}
 	//2024-03-29 컨설팅 결과 
-	@Operation(summary = "프론트 컨설팅 결과", description = "Consult result")
-	@GetMapping("/api/consultation/{consultId}")
-	public ConsultDto showConsultation(@PathVariable Integer consultId) {
+	@Operation(summary = "프론트 컨설팅 결과", description = "Consult result",
+			parameters =  {
+                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+            })
+	@GetMapping("/api/consultation")
+	public ConsultDto showConsultation(@RequestHeader("X-AUTH-TOKEN") String jwtToken) {
 		//return  "/api/consultation/"+consultId;
 		
 		// ConsultationService를 사용하여 consultId에 해당하는 데이터 가져오기
-        ConsultDto dto = service.getConsultationById(consultId);
+        ConsultDto dto = service.getConsultationById(jwtToken);
         return dto;
 		
 	
@@ -89,11 +99,15 @@ public class ConsultController {
 		   
 		    return service.sendToFlask(jsonDto);
 	    }
-	 //2024 04 03 쿠폰 구매
-	 @Operation(summary = "쿠폰구매", description = "user coupon개수 추가")
+	 //2024 04 03 쿠폰 구매 -> 2024-04-08 jwt인증완료
+	 @Operation(summary = "쿠폰구매", description = "user coupon개수 추가",
+			 parameters =  {
+	                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+	            })
 	 @PostMapping("/api/consultation/coupon/{count}")
-	 public ResponseEntity<CommonRes> buyCoupon(@PathVariable int count) {
-		 CommonRes res=service.buy(count);
+	 public ResponseEntity<CommonRes> buyCoupon(@RequestHeader("X-AUTH-TOKEN") String jwtToken,
+			 @PathVariable int count) {
+		 CommonRes res=service.buy(jwtToken,count);
 		 return ResponseEntity.ok(res);
 		 
 	 }

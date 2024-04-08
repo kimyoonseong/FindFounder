@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
 import org.springframework.boot.web.servlet.server.Session.Cookie;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,8 @@ import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.PostRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -32,37 +35,60 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class MyPageService {
 	   private  CustomerRepository customerRepo;
-
+	   private  ConsultRepository consultRepo;
 	   private  AuthenticationManager authenticationManager;
 	   private  PasswordEncoder encoder;
 	   
+	   @Value("${jwt.secret}")
+	    private String secretKey;
+	   
 		@Autowired
-		public MyPageService( CustomerRepository customerRepo,
+		public MyPageService( CustomerRepository customerRepo,  ConsultRepository consultRepo,
 				AuthenticationManager authenticationManager, PasswordEncoder encoder) {
 		    this.customerRepo = customerRepo;
-
+		    this.consultRepo= consultRepo;
 			this.authenticationManager = authenticationManager;
 			this.encoder = encoder;
 			 if (encoder == null) {
 		            throw new IllegalStateException("PasswordEncoder가 주입되지 않았습니다.");
 		        }
 		    }		
-		public CustomerDto getCusInfo() {
+		public CustomerDto getCusInfo(String jwtToken) {
+			 // JWT 토큰을 해독하여 클레임을 추출
+	        Claims claims = Jwts.parser()
+	                .setSigningKey(secretKey)
+	                .parseClaimsJws(jwtToken)
+	                .getBody();
+	        
+	        // 클레임에서 cusId 값을 가져옴
+	        Integer cusCode = (Integer) claims.get("cusCode");
+
+		 // 가져온 cusCode를 사용하여 사용자의 정보를 조회
+		    Optional<Customer> customer = customerRepo.findById(cusCode);
+
 			// TODO Auto-generated method stub
-			Optional<Customer> customer = customerRepo.findById(3);
+			//Optional<Customer> customer = customerRepo.findById(6);
 			if(customer.isPresent()) {
 				Customer cus=customer.get();
 				CustomerDto dto= cus.toDto();
 				return dto;
 			}
 			else{
-				throw new NotFoundException("Consultation not found with id: " + 3);
+				throw new NotFoundException("Consultation not found with id: " );
 			}
 			
 		}
-		public CommonRes cusUpdate(CustomerDto dto,String nowPW) {
+		public CommonRes cusUpdate(String jwtToken ,CustomerDto dto,String nowPW) {
+			 // JWT 토큰을 해독하여 클레임을 추출
+	        Claims claims = Jwts.parser()
+	                .setSigningKey(secretKey)
+	                .parseClaimsJws(jwtToken)
+	                .getBody();
+	        
+	        // 클레임에서 cusId 값을 가져옴
+	        Integer cusCode = (Integer) claims.get("cusCode");
 			// TODO Auto-generated method stub
-			Optional<Customer> customer = customerRepo.findById(7);//없을수도 있기 때문에 optional
+			Optional<Customer> customer = customerRepo.findById(cusCode);//없을수도 있기 때문에 optional
 			if(customer.isPresent()) {
 				Customer cus=customer.get();
 				
@@ -92,8 +118,17 @@ public class MyPageService {
 		
 		}
 	 
-		public CommonRes cusUpdateExpw(CustomerDto dto) {
-			Optional<Customer> customer = customerRepo.findById(6);//없을수도 있기 때문에 optional
+		public CommonRes cusUpdateExpw(String jwtToken,CustomerDto dto) {
+			 // JWT 토큰을 해독하여 클레임을 추출
+	        Claims claims = Jwts.parser()
+	                .setSigningKey(secretKey)
+	                .parseClaimsJws(jwtToken)
+	                .getBody();
+	        
+	        // 클레임에서 cusId 값을 가져옴
+	        Integer cusCode = (Integer) claims.get("cusCode");
+			// TODO Auto-generated method stub
+			Optional<Customer> customer = customerRepo.findById(cusCode);//없을수도 있기 때문에 optional
 			if(customer.isPresent()) {
 				Customer cus=customer.get();
 				
@@ -109,6 +144,30 @@ public class MyPageService {
 			else{
 				CommonRes commonRes = CommonRes.builder().code(200).msg("회원이 존재하지 않습니다.").build();
 				return commonRes;
+			}
+		}
+		//2024-04-08해당 cuscode의 consult 내역들.
+		public List<Consult> getConsultHistory(String jwtToken) {
+			 // JWT 토큰을 해독하여 클레임을 추출
+	        Claims claims = Jwts.parser()
+	                .setSigningKey(secretKey)
+	                .parseClaimsJws(jwtToken)
+	                .getBody();
+	        
+	        // 클레임에서 cusId 값을 가져옴
+	        Integer cusCode = (Integer) claims.get("cusCode");
+			// TODO Auto-generated method stub
+			//Optional<Customer> customer = customerRepo.findById(cusCode);//없을수도 있기 때문에 optional
+	        System.out.println(cusCode);
+			List<Consult> consultation= consultRepo.findByCusCode(cusCode);
+			// TODO Auto-generated method stub
+			if (!consultation.isEmpty()) {
+			    // 리스트가 비어있지 않은 경우
+			    // 처리할 로직 작성
+			    return consultation;
+			}
+			else{
+				throw new NotFoundException("Consultation not found with id: " );
 			}
 		}
     
