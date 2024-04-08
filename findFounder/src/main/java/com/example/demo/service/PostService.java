@@ -19,8 +19,9 @@ import com.example.demo.model.dto.req.PostCreateReq;
 import com.example.demo.model.dto.res.CommonRes;
 import com.example.demo.model.entity.Customer;
 import com.example.demo.model.entity.Post;
+import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.PostRepository;
-
+import com.example.demo.util.JwtUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,11 +29,12 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class PostService {
 	private PostRepository postRepo;
-	
+	private CustomerRepository customerRepository;
 	
 	@Autowired
-	public PostService(PostRepository postRepository) {
+	public PostService(PostRepository postRepository, CustomerRepository customerRepository) {
 		this.postRepo = postRepository;
+		this.customerRepository = customerRepository;
 	}
 	
 	// 2024-03-31 CRUD 생성
@@ -42,9 +44,10 @@ public class PostService {
 	
 	// 게시글 작성
 	@Transactional
-	public CommonRes createPost(PostCreateReq postDto) {
+	public CommonRes createPost(int cuscode, PostCreateReq postDto) {
 		// customer 찾기
-		Customer customer = Customer.builder().cusCode(3).build();
+//		Customer customer = Customer.builder().cusCode(3).build();
+		Customer customer = customerRepository.findById(cuscode).orElseThrow(() -> new NoSuchElementException("해당하는 사용자가 없습니다."));
 		Post post = Post.builder()
 					.postTitle(postDto.getPostTitle())
 					.postContent(postDto.getPostContent())
@@ -99,6 +102,7 @@ public class PostService {
 	// 본인 작성한 게시글 리스트
 	@Transactional
 	public List<Post> getMyPostList( Customer customer){
+		
 		return postRepo.findAllByPostCustomerFetchJoin(customer);
 	}
 	

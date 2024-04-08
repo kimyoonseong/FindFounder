@@ -19,6 +19,7 @@ import com.example.demo.model.dto.req.CustomerFindPwReq;
 import com.example.demo.model.dto.req.CustomerUpdatePwReq;
 import com.example.demo.model.dto.req.PostCreateReq;
 import com.example.demo.model.dto.res.CommonRes;
+import com.example.demo.model.dto.res.LoginRes;
 import com.example.demo.model.entity.Customer;
 import com.example.demo.model.entity.Post;
 import com.example.demo.model.entity.Question;
@@ -92,7 +93,7 @@ public class CustomerService {
    }
 
    @Transactional
-   public String withdraw(int cuscode) {
+   public CommonRes withdraw(int cuscode) {
 	   // comment 삭제
 	   commentRepository.deleteAllByCustomer_CusCode(cuscode);
 	   // post 삭제
@@ -101,7 +102,11 @@ public class CustomerService {
 	   consultRepository.deleteAllByCustomer_CusCode(cuscode);
 	   // 회원 삭제
 	   customerRepository.deleteById(cuscode);
-	   return "회원 탈퇴 완료";
+	   
+	   
+	   CommonRes commonRes = CommonRes.builder().code(200).msg("회원 탈퇴가 완료되었습니다.").build();
+	   
+	   return commonRes;
    }
    
    @Transactional

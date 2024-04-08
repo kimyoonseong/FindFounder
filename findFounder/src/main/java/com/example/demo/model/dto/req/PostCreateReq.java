@@ -10,6 +10,5 @@ import lombok.Setter;
 public class PostCreateReq {
 	private String postTitle;
 	private String postContent;
-	private int cusCode;
 	private int postView;
 }
