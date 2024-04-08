@@ -39,7 +39,7 @@ public class EmailService {
 		String msg;
 		
 		
-		emailProvider.sendCertifiactionMail(email, msg);
+//		emailProvider.sendCertifiactionMail(email, msg);
 	}
 	
 //	final JavaMailSender javaMailSender;
