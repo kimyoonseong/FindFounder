@@ -50,7 +50,9 @@ public class AuthService {
 
         // 암호화된 password를 디코딩한 값과 입력한 패스워드 값이 다르면 null 반환
         if(!encoder.matches(password, customer.getCusPw())) {
+        	String encodedPassword = encoder.encode(password);
         	System.out.println("살려줘 비밀번호 안맞아요");
+        	System.out.println(encodedPassword + " ::  " +customer.getCusPw() );
             throw new BadCredentialsException("비밀번호가 일치하지 않습니다.");
         }
         

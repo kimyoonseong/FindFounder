@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.example.demo.model.dto.CustomerDto;
+import com.example.demo.model.dto.CustomerJoinDto;
 import com.example.demo.model.dto.LoginReq;
 import com.example.demo.model.dto.req.CustomerFindPwReq;
 
@@ -52,19 +53,20 @@ public class CustomerController {
    // 회원가입
    @PostMapping("/api/user")
    @Operation(summary = "회원가입", description = "회원가입")
-   public ResponseEntity<?> join(@RequestBody @Valid CustomerDto request) throws Exception {
-      customerService.join(request);
-      return ResponseEntity.ok(200);
+   public ResponseEntity<CommonRes> join(@RequestBody @Valid CustomerJoinDto request) throws Exception {
+      CommonRes res = customerService.join(request);
+      return ResponseEntity.ok(res);
    }
+   
+   
    // 이미 가입되어있는 회원인지 확인(ID 중복체크)
-   @PostMapping("/api/user/check")
-   @Operation(summary = "ID 중복체크", description = "ID 중복체크")
-   public ResponseEntity<?> check(@RequestBody @Valid CustomerDto requestDTO) throws Exception {
-//   public ResponseEntity<?> check(@RequestBody CustomerDto requestDTO, Error error) throws Exception {
-//	   System.out.println("집가고싶다11.");
-      String testText = customerService.checkId(requestDTO.getCusId()); 
-      return ResponseEntity.ok(200+" "+testText);
-   }
+//   @PostMapping("/api/user/check")
+//   @Operation(summary = "ID 중복체크", description = "ID 중복체크")
+//   public ResponseEntity<CommonRes> check(@RequestBody @Valid CustomerJoinDto request) throws Exception {
+////   public ResponseEntity<?> check(@RequestBody CustomerDto requestDTO, Error error) throws Exception {
+////	   System.out.println("집가고싶다11.");
+//      return ResponseEntity.ok(customerService.checkId(request.getCusId()));
+//   }
 
    @PostMapping("login")
    @Operation(summary = "로그인", description = "로그인")
@@ -76,39 +78,17 @@ public class CustomerController {
        return ResponseEntity.ok(res);
    }
    
-//   2024-04-02 로그인
-//   @PostMapping(value="/login")
-//   public ResponseEntity<?> signIn(@RequestBody CustomerDto request, HttpServletResponse response) {
-//      String jwt = customerService.login(request);
-//      // "Bearer " 접두사 제거
-//      jwt = jwt.replace(JwtTokenProvider.TOKEN_PREFIX, "");
-//      
-//      // 쿠키 설정
-//      Cookie cookie = new Cookie("jwtToken", jwt);
-//      cookie.setHttpOnly(true);
-//      cookie.setPath("/"); // 모든 경로에서 쿠키 접근 가능
-//      response.addCookie(cookie);
-//      
-//      return ResponseEntity.ok().header(JwtTokenProvider.HEADER, jwt)
-//            .body(200);
-//	   ----------------------------------------------------
-//	   로그인
-//	   String customer = customerService.login(request);
-	   
-//	   return ResponseEntity.ok(200 + " " + customer);
-	   
-//   }
-//   
+
 //   // 2024-04-04 ID 찾기 - 이메일 인증
    	 // /api/user?email=
    @PostMapping("/api/user/dispatch")
    @Operation(summary = "이메일보내기", description = "이메일보내기")
-   public ResponseEntity<?> sendEmail(@RequestBody String email) throws Exception{
+   public ResponseEntity<CommonRes> sendEmail(@RequestBody String email) throws Exception{
 	   
 	   
-	   emailService.sendEmail(email);
+	   CommonRes res = emailService.sendEmail(email);
 	   
-	   return ResponseEntity.ok(200);
+	   return ResponseEntity.ok(res);
    }
 
    
@@ -117,11 +97,16 @@ public class CustomerController {
 //   /api/user/pw/{cuscode}?
    @PostMapping("/api/user/pw/{cusid}")
    @Operation(summary = "비밀번호 수정", description = "비밀번호 수정")
-   public ResponseEntity<?> updatePw(@PathVariable String cusid, CustomerUpdatePwReq req){
+   public ResponseEntity<CommonRes> updatePw(@PathVariable String cusid, CustomerUpdatePwReq req){
+	   CommonRes res;
 	   if (customerService.updatePw(cusid, req).equals("비밀번호 수정 완료")) {
-		   return ResponseEntity.ok(200);
+		   res = CommonRes.builder().code(200).msg("비밀번호 수정이 완료되었습니다.").build();
+		   return ResponseEntity.ok(res);
 	   }
-	   return ResponseEntity.ok(300);
+	   else {
+		   res = CommonRes.builder().code(300).msg("비밀번호 수정이 불가능합니다.").build();
+	   }
+	   return ResponseEntity.ok(res);
    }
 
 //   
