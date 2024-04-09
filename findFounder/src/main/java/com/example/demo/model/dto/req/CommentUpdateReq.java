@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class CommentUpdateReq {
 
-	int cusCode;
+
 	String commentContent;
 	int postId;
 	int commentId;
