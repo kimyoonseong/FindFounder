@@ -19,6 +19,7 @@ import com.example.demo.model.dto.ConsultDto;
 import com.example.demo.model.dto.req.PostCreateReq;
 import com.example.demo.model.dto.res.CommonRes;
 import com.example.demo.service.ConsultService;
+import com.example.demo.util.JwtUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -30,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "컨설팅", description = "send to Flask and send from Flask ")
+@Tag(name = "3. 컨설팅", description = "send to Flask and send from Flask ")
 public class ConsultController {
 	private ConsultService service;
 	

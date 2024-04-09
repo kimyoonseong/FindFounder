@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import static io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER;
+
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,38 +20,60 @@ import com.example.demo.model.dto.req.CommentUpdateReq;
 import com.example.demo.model.dto.res.CommonRes;
 import com.example.demo.model.entity.Comment;
 import com.example.demo.service.CommentService;
+import com.example.demo.util.JwtUtil;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/comment")
+@Tag(name = "3. 댓글", description = "댓글 관련 컨트롤러 ")
 public class CommentController {
 	
 	private CommentService commentService;
+	private JwtUtil jwtUtil;
 	
-	public CommentController(CommentService commentService) {
+	public CommentController(CommentService commentService, JwtUtil jwtUtil) {
 		this.commentService = commentService;
+		this.jwtUtil = jwtUtil;
 	}
 	
 	
 	// 회원코드는 JWT토큰 통해서 가져오기.
-	@Operation(summary = "댓글 작성", description = "제목, 댓글 내용")
+	@Operation(summary = "댓글 작성", description = "제목, 댓글 내용"
+			,
+            parameters =  {
+                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+            })
 	@PostMapping()
-	public ResponseEntity<CommonRes> createComment(@RequestBody CommentCreateReq req ) {
-		CommonRes res =  commentService.createComment(req);
+	public ResponseEntity<CommonRes> createComment(@RequestHeader("X-AUTH-TOKEN") String jwtToken, @RequestBody CommentCreateReq req ) {
+		int cuscode = jwtUtil.getCusCode(jwtToken);
+		CommonRes res =  commentService.createComment(cuscode, req);
 		
 		return ResponseEntity.ok(res);
 	}
 	
-	@Operation(summary = "댓글 수정", description = "제목, 댓글 내용")
+	@Operation(summary = "댓글 수정", description = "제목, 댓글 내용"
+			,
+            parameters =  {
+                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+            })
 	@PatchMapping()
-	public ResponseEntity<CommonRes> updateComment(@RequestBody CommentUpdateReq req ) {
-		CommonRes res =  commentService.updateComment(req);
+	public ResponseEntity<CommonRes> updateComment(@RequestHeader("X-AUTH-TOKEN") String jwtToken, @RequestBody CommentUpdateReq req ) {
+		int cuscode = jwtUtil.getCusCode(jwtToken);
+		
+		CommonRes res =  commentService.updateComment(cuscode, req);
+
 		
 		return ResponseEntity.ok(res);
 	}
 	
-	@Operation(summary = "댓글 리스트", description = "댓글 리스트")
+	@Operation(summary = "댓글 리스트", description = "댓글 리스트"
+			,
+            parameters =  {
+                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+            })
 	@GetMapping("/{postid}")
 	public ResponseEntity<List<Comment>> getComments(@PathVariable int postid) {
 		List<Comment> comments =  commentService.findCommentList(postid);
@@ -56,10 +81,15 @@ public class CommentController {
 		return ResponseEntity.ok(comments);
 	}
 	
-	@Operation(summary = "댓글 삭제", description = "댓글 삭제")
+	@Operation(summary = "댓글 삭제", description = "댓글 삭제"
+			,
+            parameters =  {
+                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+            })
 	@DeleteMapping("/{commentid}")
-	public ResponseEntity<CommonRes> deleteComment(@PathVariable int commentid) {
-		CommonRes res =  commentService.deleteComment(commentid);
+	public ResponseEntity<CommonRes> deleteComment(@RequestHeader("X-AUTH-TOKEN") String jwtToken, @PathVariable int commentid) {
+		int cuscode = jwtUtil.getCusCode(jwtToken);
+		CommonRes res =  commentService.deleteComment(cuscode, commentid);
 		
 		return ResponseEntity.ok(res);
 	}
