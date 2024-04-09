@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.dto.PostDto;
 import com.example.demo.model.dto.req.PostCreateReq;
+import com.example.demo.model.dto.req.ReactionReq;
 import com.example.demo.model.dto.res.CommonRes;
 import com.example.demo.model.dto.res.PostListRes;
 import com.example.demo.model.entity.Customer;
@@ -71,17 +72,19 @@ public class PostController {
 	}
 	
 	// 회원코드는 JWT토큰 통해서 가져오기.
-	@Operation(summary = "게시글 수정", description = "제목, 내용, 회원코드, 조회수, 게시글ID"
-			,
-            parameters =  {
-                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-            })
-	@PostMapping("/{postid}")
-	public ResponseEntity<CommonRes> updatePost(@PathVariable int postid, @RequestBody PostCreateReq req ) {
-		CommonRes res =  postService.updatePost(postid, req);
-		
-		return ResponseEntity.ok(res);
-	}
+		@Operation(summary = "게시글 수정", description = "제목, 내용, 회원코드, 조회수, 게시글ID"
+				,
+	            parameters =  {
+	                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+	            })
+		@PostMapping("/{postid}")
+		public ResponseEntity<CommonRes> updatePost(@RequestHeader("X-AUTH-TOKEN") String jwtToken, @PathVariable int postid, @RequestBody PostCreateReq req ) {
+			
+			int cusCode = jwtUtil.getCusCode(jwtToken);
+			CommonRes res =  postService.updatePost(cusCode, postid, req);
+			
+			return ResponseEntity.ok(res);
+		}
 	
 	// 회원코드는 JWT토큰 통해서 가져오기.
 	@Operation(summary = "게시글 전체 조회", description = "게시글 전체 조회",
@@ -114,8 +117,11 @@ public class PostController {
                     @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
             })
 	@DeleteMapping("/{postid}")
-	public ResponseEntity<CommonRes> deletePostById(@PathVariable int postid) {
-		CommonRes res = postService.deletePost(postid);
+	public ResponseEntity<CommonRes> deletePostById(@RequestHeader("X-AUTH-TOKEN") String jwtToken, @PathVariable int postid) {
+		
+		int cusCode = jwtUtil.getCusCode(jwtToken);
+		
+		CommonRes res = postService.deletePost(cusCode,postid);
 		
 		return ResponseEntity.ok(res);
 	}
@@ -147,6 +153,26 @@ public class PostController {
 		
 		return ResponseEntity.ok(res);
 	}
+	
+	
+	@Operation(summary = "리액션 추가", description = "리액션 True : 좋아요, False : 싫어요"
+			,
+            parameters =  {
+                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+            })
+	@PostMapping("reaction/{postid}")
+	public ResponseEntity<CommonRes> updateReaction(@PathVariable int postid,
+			@RequestHeader("X-AUTH-TOKEN") String jwtToken, 
+			@RequestBody ReactionReq req ) {
+		
+		
+		int cuscode = jwtUtil.getCusCode(jwtToken);
+		
+		CommonRes res =  postService.doReaction(req, cuscode, postid);
+		
+		return ResponseEntity.ok(res);
+	}
+	
 	
 	
 	
