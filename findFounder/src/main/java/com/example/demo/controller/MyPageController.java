@@ -34,11 +34,13 @@ import com.example.demo.service.MyPageService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
+@Tag(name = "5. 마이페이지", description = "마이페이지 컨트롤러 ")
 public class MyPageController {
 
 		@Autowired

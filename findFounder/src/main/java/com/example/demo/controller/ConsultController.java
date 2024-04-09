@@ -31,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "컨설팅", description = "send to Flask and send from Flask ")
+@Tag(name = "4. 컨설팅", description = "send to Flask and send from Flask ")
 public class ConsultController {
 	private ConsultService service;
 	
@@ -74,7 +74,10 @@ public class ConsultController {
 	
 	//2024-03-29 상권 통계 
 	//flask-> springboot
-	@Operation(summary = "analysis", description = "프론트 통계 검색결과")
+	@Operation(summary = "analysis", description = "프론트 통계 검색결과",
+			parameters =  {
+                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+            })
 	@GetMapping("/api/analysis")
 	public String showAnalysis( ) {//Model model 이건 프론트에 보내굎을때.
 	
@@ -82,7 +85,10 @@ public class ConsultController {
 	}
 	
 	//2024-03-29 상권 통계 검색 
-	@Operation(summary = "Search", description = "검색값 flask전송")
+	@Operation(summary = "Search", description = "검색값 flask전송",
+			parameters =  {
+                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+            })
 	@PostMapping("/api/analysis")
 	public String Search (@RequestParam String region, @RequestParam String industry) {
 	
@@ -90,7 +96,10 @@ public class ConsultController {
 	}
 	
 	//2024 04 02 flask로 json dto보내는 메소드
-	@Operation(summary = "FlaskTest", description = "Flask 전송 테스트")
+	@Operation(summary = "FlaskTest", description = "Flask 전송 테스트",
+			parameters =  {
+                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+            })
 	 @PostMapping("/flask")
 	    public String sendToFlask(@RequestBody ConsultDto dto) throws JsonProcessingException {
 		 
