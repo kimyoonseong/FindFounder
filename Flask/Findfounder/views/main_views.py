@@ -4,6 +4,7 @@ from flask import Blueprint, Flask, request, render_template, jsonify
 import boto3, json
 from werkzeug.utils import secure_filename
 from socket import *
+from Findfounder.views.Stat  import get_statistics
 import requests
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -21,14 +22,22 @@ def receive_string():
         #dto_json을 dumps메서드를 사용하여 response에 저장
         response=json.dumps(dto_json,ensure_ascii=False)
 
-        
+        prefer_loc_value = dto_json.get('preferLoc')
+        print(prefer_loc_value)
    	    #Spring에서 받은 데이터를 출력해서 확인
         print(dto_json)
         print(type(dto_json))
-        print(type(response))
-        print(response)
+        #print(type(response))
+        #print(response)
+        #json_data = response.json()
+        #prefer_loc_value = json_data.get('preferLoc')
+       
+       
+        result = get_statistics(prefer_loc_value)
+        print(result)
+        #print(prefer_loc_value)
         #Spring으로 response 전달
-        return response
+        return result
 # @bp.route('/send_stats', methods=['POST'])
 # def send_stats():
 #     # 보낼 JSON 데이터 생성
