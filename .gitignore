@@ -3,3 +3,5 @@
 */_pycache_/
 /Flask/fisaproject
 */.env
+*.pyc
+__pycache__/
