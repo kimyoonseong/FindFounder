@@ -7,9 +7,12 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="js/scripts.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<div>
+		<h1>아이디 찾기</h1>
+		<p>이메일을 입력해주세요.</p>
+	</div>
 </head>
 <body>
-    <h1>Email 전송</h1>
     <form id="emailForm">
         <label for="email">이메일 주소:</label><br>
         <input type="email" id="email" name="email"><br>
@@ -24,6 +27,11 @@
 	
 	            var email = $('#email').val();
 	
+				if (email === '') {
+					alert('이메일을 입력해주세요.');
+					return false; // 이벤트 중지
+				}
+
 	            $.ajax({
 	                type: 'POST',
 	                url: 'http://localhost:8080/api/user/dispatch', // 로그인 엔드포인트 URL
