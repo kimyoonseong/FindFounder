@@ -35,11 +35,11 @@ public class EmailService {
 	
 	
 	public CommonRes sendEmail(String email) {
-		
+		System.out.println("@@@@@@@@@@@@@@@ e mail" + email);
 		// 1. CustomerRepository -> Input : cusEmail return Customer 
-
+		String cusId = customerRepository.findByCusEmail(email).getCusId();
 		String msg = "<h1 style='text-align: center;'>[" + "안녕하세요. 요청하신 아이디입니다."+ "]</h1>" + "<h3 style='text-align: center'>"
-		+ "아이디: " + customerRepository.findByCusEmail(email).getCusId() + "</h3>\"";
+		+ "아이디: " + cusId + "</h3>\"";
 		// 2. cusRepository 생성자
 		if (msg.equals("")) {
 			msg = "일치하는 이메일이 없습니다.";
