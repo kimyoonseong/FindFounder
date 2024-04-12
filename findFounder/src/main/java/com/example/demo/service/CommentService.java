@@ -114,16 +114,17 @@ public class CommentService {
 				commonRes = CommonRes.builder().code(200).msg("댓글 삭제 완료되었습니다.").build();
 			}
 			else {
-			commonRes = CommonRes.builder().code(300).msg("본인이 아니기 때문에 댓글 삭제가 불가능합니다.").build();
+				commonRes = CommonRes.builder().code(300).msg("본인이 아니기 때문에 댓글 삭제가 불가능합니다.").build();
 			}
 		} 
 		else {
-		commonRes = CommonRes.builder().code(400).msg("회원 정보가 존재하지 않습니다.").build();
+			commonRes = CommonRes.builder().code(400).msg("회원 정보가 존재하지 않습니다.").build();
 		}
+		
 		return commonRes;
 			
-		}
+	}
 			
 		
-	}
+}
 

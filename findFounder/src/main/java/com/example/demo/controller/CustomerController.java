@@ -3,10 +3,12 @@ package com.example.demo.controller;
 import static io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.server.Cookie;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +28,7 @@ import com.example.demo.model.dto.req.CustomerFindPwReq;
 import com.example.demo.model.dto.req.CustomerUpdatePwReq;
 import com.example.demo.model.dto.req.PostCreateReq;
 import com.example.demo.model.dto.res.CommonRes;
+import com.example.demo.model.dto.res.EmailRes;
 import com.example.demo.model.dto.res.LoginRes;
 import com.example.demo.model.entity.Customer;
 import com.example.demo.service.AuthService;
@@ -37,6 +40,7 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
@@ -74,25 +78,122 @@ public class CustomerController {
 //      return ResponseEntity.ok(customerService.checkId(request.getCusId()));
 //   }
 
+//    @PostMapping("login")
+//    @Operation(summary = "로그인", description = "로그인")
+//    public ResponseEntity<LoginRes> getMemberProfile(
+// 		   @RequestBody LoginReq dto, HttpServletResponse response
+// ) {
+//        LoginRes res = authService.login(dto);
+//        String token = res.getToken();
+// //       res.setToken("");
+       
+//        Cookie cookie = new Cookie("Set-Cookie", token);
+// //	   cookie.setHttpOnly(true); // JavaScript를 통한 접근 방지
+//        cookie.setPath("/"); // 전체 경로에 대해 쿠키 유효
+//        cookie.setMaxAge(60*60*60);
+//        // 쿠키의 보안 설정 (HTTPS 환경에서만 쿠키를 전송하도록 설정)
+//        // 개발 환경이 아닌 경우에만 Secure 플래그를 활성화해야 할 수 있습니다.
+// //       cookie.setSecure(false);
+       
+//        // 응답에 쿠키 추가
+//        response.addCookie(cookie);
+// //       return ResponseEntity.status(HttpStatus.OK).body(token);
+//        return ResponseEntity.ok(res);
+//    }
+   
+//    @PostMapping("login")
+//    @Operation(summary = "로그인", description = "로그인")
+//    public ResponseEntity<LoginRes> getMemberProfile(
+// 		   @RequestBody LoginReq dto, HttpServletResponse response
+// ) {
+//        LoginRes res = authService.login(dto);
+//        String token = res.getToken();
+// //       res.setToken("");
+       
+// 	   ResponseCookie cookie = ResponseCookie.from("Set-Cookie", token)
+// 			.domain("localhost")
+// 			.path("/*")
+// 			.httpOnly(true)
+// 			.secure(false)
+//  			.maxAge(60*60*60)
+//  			.sameSite("None")
+//  			.build();
+
+// // //	   cookie.setHttpOnly(true); // JavaScript를 통한 접근 방지
+// //        cookie.setPath("/"); // 전체 경로에 대해 쿠키 유효
+// //        cookie.setMaxAge(60*60*60);
+// //        // 쿠키의 보안 설정 (HTTPS 환경에서만 쿠키를 전송하도록 설정)
+// //        // 개발 환경이 아닌 경우에만 Secure 플래그를 활성화해야 할 수 있습니다.
+// //       cookie.setSecure(false);
+       
+//        // 응답에 쿠키 추가
+
+// //       return ResponseEntity.status(HttpStatus.OK).body(token);
+// 		return ResponseEntity.ok()
+// 			.header(HttpHeaders.SET_COOKIE, cookie.toString())
+// 			.build();
+//    }
+//   @PostMapping("login")
+//@Operation(summary = "로그인", description = "로그인")
+//public ResponseEntity<LoginRes> getMemberProfile(
+//        @RequestBody LoginReq dto, HttpServletResponse response
+//) {
+//    LoginRes res = authService.login(dto);
+//    String token = res.getToken();
+//    
+//    ResponseCookie cookie = ResponseCookie.from("Set-Cookie", token)
+//        .domain("localhost")
+//        .path("/*")
+//        .httpOnly(true)
+//        .secure(false)
+//        .maxAge(60*60*60)
+//        .sameSite("Lax")
+//        .build();
+//
+//    res.setToken(cookie.toString()); // Set the token in the response body
+//
+//    Cookie testcookie = new Cookie("token2", "1234");
+//   testcookie.setMaxAge(7 * 24 * 60 * 60); // 쿠키의 만료 시간을 7일로 설정
+//   response.addCookie(testcookie); // 쿠키를 응답에 추가
+//
+//    return ResponseEntity.ok()
+//        .header(HttpHeaders.SET_COOKIE, cookie.toString())
+//        .body(res); // Return the response body with the token
+//}
+   
    @PostMapping("login")
    @Operation(summary = "로그인", description = "로그인")
    public ResponseEntity<LoginRes> getMemberProfile(
-		   @RequestBody LoginReq dto
+		   @RequestBody LoginReq dto, HttpServletResponse response
+		   
 ) {
        LoginRes res = authService.login(dto);
+       String token = res.getToken();
+
+//       res.setToken("");
+       
+       Cookie cookie = new Cookie("Set-Cookie", token);
+	   cookie.setHttpOnly(true); // JavaScript를 통한 접근 방지
+       cookie.setPath("/"); // 전체 경로에 대해 쿠키 유효
+       cookie.setMaxAge(60*60*60);
+       // 쿠키의 보안 설정 (HTTPS 환경에서만 쿠키를 전송하도록 설정)
+       // 개발 환경이 아닌 경우에만 Secure 플래그를 활성화해야 할 수 있습니다.
+       cookie.setSecure(true);
+       
+       // 응답에 쿠키 추가
+       response.addCookie(cookie);
 //       return ResponseEntity.status(HttpStatus.OK).body(token);
        return ResponseEntity.ok(res);
    }
-   
 
 //   // 2024-04-04 ID 찾기 - 이메일 인증
    	 // /api/user?email=
    @PostMapping("/api/user/dispatch")
    @Operation(summary = "이메일보내기", description = "이메일보내기")
-   public ResponseEntity<CommonRes> sendEmail(@RequestBody String email) throws Exception{
+   public ResponseEntity<CommonRes> sendEmail(@RequestBody EmailRes emailDto) throws Exception{
 	   
-	   
-	   CommonRes res = emailService.sendEmail(email);
+	   System.out.println(emailDto.toString());
+	   CommonRes res = emailService.sendEmail(emailDto.getEmail());
 	   
 	   return ResponseEntity.ok(res);
    }
@@ -121,10 +222,14 @@ public class CustomerController {
 	@DeleteMapping("/api/user")
 	@Operation(summary = "회원 탈퇴", description = "회원 탈퇴",
 			parameters =  {
-                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+//                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+                    
             })
-	public ResponseEntity<CommonRes> withdraw(@RequestHeader("X-AUTH-TOKEN") String jwtToken) throws Exception {
+	public ResponseEntity<CommonRes> withdraw(
+//				 @RequestHeader("X-AUTH-TOKEN") String jwtToken
+				  @CookieValue(name = "Set-Cookie", required = false) String jwtToken) throws Exception {
 		
+		System.out.println("@@@@@@@@@@@@@@@@" + jwtToken);
 		int cusCode = jwtUtil.getCusCode(jwtToken);
 		
 		CommonRes res = customerService.withdraw(cusCode);

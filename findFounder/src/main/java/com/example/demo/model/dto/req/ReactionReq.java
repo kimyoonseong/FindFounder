@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Builder
+//@Builder
 //reactionId(PK), postId(FK), reaction(1 like, 0 dislike), cusCode(FK)
 public class ReactionReq {
 
