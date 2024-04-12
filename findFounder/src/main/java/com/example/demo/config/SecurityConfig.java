@@ -33,6 +33,7 @@ public class SecurityConfig {
              "/swagger-ui/**", "/api-docs", "/swagger-ui-custom.html",
             "/v3/api-docs/**", "/api-docs/**", "/swagger-ui.html", "/api/v1/auth/**",  "/login", "/api/user", "/api/user/dispatch"
             , "/api/user/check", "/api/user/pw/**", "/login.html", "/css/**", "/js/**", "/index.html", "/assets/**","/email.html"
+            , "/board.html",  "/tables.html", "/register.html", "/withdrawl.html", "/password.html"
     };
 	@Autowired
 	public SecurityConfig(JwtUtil jwtUtil) {
