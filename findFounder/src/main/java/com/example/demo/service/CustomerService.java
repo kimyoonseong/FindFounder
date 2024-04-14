@@ -68,6 +68,7 @@ public class CustomerService {
     	  commonRes = CommonRes.builder().code(300).msg("중복되는 아이디가 존재합니다. 비밀번호 찾기를 이용하세요").build();
     	  return commonRes;
       }
+      System.out.println(customerJoinDTO.getCusEmail()+" " + customerJoinDTO.getCusPw());
       String encodedPassword = passwordEncoder.encode(customerJoinDTO.getCusPw());
 //      requestDTO.setCusPw(encodedPassword);
       Question question = questionRepository.findById(customerJoinDTO.getCusQuestionId()).orElseThrow(() -> new NoSuchElementException("해당하는 질문이 없습니다."));

@@ -68,7 +68,7 @@
                         <li><a class="dropdown-item" href="401.html">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a id="logoutLink" class="dropdown-item" href="#!">Logout</a></li>
 						<li><a class="dropdown-item" href="withdrawl.html">회원탈퇴</a></li>
                     </ul>
                 </li>
@@ -333,6 +333,29 @@
                         infowindow.setMap(map);
                     });
                     }
+					
+					// logout
+					$(document).ready(function() {
+					    $('#logoutLink').click(function(event) {
+							event.preventDefault();
+					        // 로그아웃 요청을 서버로 보냄
+					        $.ajax({
+					            type: 'Post', // GET 또는 POST, 로그아웃 요청 방식에 따라 변경
+					            url: 'http://localhost:8080/logout', // 로그아웃 엔드포인트 URL
+								
+					            success: function(response) {
+					                console.log('로그아웃 성공:', response);
+					                localStorage.removeItem("access_token", token); // 로컬 스토리지에서 토큰 삭제
+					                alert('로그아웃되었습니다.');
+					                // 로그아웃 후 처리할 작업 추가 (예: 로그인 페이지로 리디렉션)
+					            },
+					            error: function(xhr, status, error) {
+					                console.error('로그아웃 실패:', error);
+					            }
+					        });
+					    });
+					});
+
                 
             </script>
             
