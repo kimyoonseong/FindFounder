@@ -41,7 +41,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @RestController
@@ -253,14 +255,26 @@ public class CustomerController {
 		}
 		return ResponseEntity.ok(res);
 	}
+
 	
-//  // 2024-04-04 로그아웃
-	// /api/user/logout
-//	@PostMapping("/api/user/logout")
-//	public ResponseEntity<?> logout(@Valid @RequestBody LoginReq request) {
-//		String token = authService.logout(request);
-//	    return ResponseEntity.status(HttpStatus.OK).body(token);
-//		
-//	}
+	// 2024-04-14 로그아웃
+
+
+	    @PostMapping("/logout")
+	    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
+	        // 쿠키 만료 시간을 0으로 설정하여 쿠키를 제거합니다.
+	        Cookie[] cookies = request.getCookies();
+	        if (cookies != null) {
+	            for (Cookie cookie : cookies) {
+	                if (cookie.getName().equals("Set-Cookie")) {
+	                    cookie.setMaxAge(0);
+	                    cookie.setPath("/");
+	                    response.addCookie(cookie);
+	                }
+	            }
+	        }
+	        return ResponseEntity.ok("로그아웃되었습니다.");
+	    }
+
 	
 }
