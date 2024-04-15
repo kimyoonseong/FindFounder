@@ -102,7 +102,7 @@ public class ConsultService {
 		return commonRes;
 	}
 	
-
+		
 //2024-04-08 답변 조회
 	 public ConsultDto getConsultationById(String jwtToken) {
 		    // JWT 토큰에서 사용자 식별자 추출
@@ -148,6 +148,17 @@ public class ConsultService {
 	        return restTemplate.postForObject(url, entity, String.class);
 	        //return "실행됨";
 	    }
+	 //2024-04-15 flask에서 해당 카테고리 업종 가져오기. 
+	 public String bringIndustry(String category) {
+		 	RestTemplate restTemplate = new RestTemplate();
+		 	String url = "http://127.0.0.1:5000/call_industry";
+		 	
+		 	HttpHeaders headers = new HttpHeaders();
+		    headers.setContentType(MediaType.APPLICATION_JSON);
+		 	HttpEntity<String> entity = new HttpEntity<>(category, headers);
+		 	String response = restTemplate.postForObject(url, entity, String.class);
+			return response;
+		}
 	 @Transactional
 	public String searchStatic(String region, String industry) {
 		// TODO Auto-generated method stub
@@ -189,6 +200,8 @@ public class ConsultService {
 		return commonRes;
 		
 	}
+
+	
 
 	  
 }
