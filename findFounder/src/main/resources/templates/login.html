@@ -89,7 +89,7 @@
                         localStorage.setItem("access_token", token); // 토큰을 로컬 스토리지에 저장
                     }
 					alert('로그인 완료되었습니다.');
-                     window.location.href = 'index.html'; // 로그인 성공 시 index.html로 리디렉션
+                     window.location.href = 'http://localhost:8080'; // 로그인 성공 시 index.html로 리디렉션
                 },
                 error: function(xhr, status, error) {
                     console.error('로그인 실패:', error);

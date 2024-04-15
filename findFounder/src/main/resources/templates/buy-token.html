@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>토큰 구매 페이지</title>
+    <style>
+        /* CSS 스타일링을 여기에 추가하세요 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .btn-group {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>토큰 구매 페이지</h1>
+        <div class="btn-group">
+            <button type="button" class="btn" onclick="buyCoupon(1)">1개 - 1000원</button>
+            <button type="button" class="btn" onclick="buyCoupon(3)">3개 - 2500원</button>
+            <button type="button" class="btn" onclick="buyCoupon(5)">5개 - 4000원</button>
+            <button type="button" class="btn" onclick="buyCoupon(10)">10개 - 7000원</button>
+        </div>
+    </div>
+    <script>
+  
+
+        function buyCoupon(quantity) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/api/consultation/coupon/" + quantity);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+          
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        alert("쿠폰을 "+ quantity+"개 구매하였습니다");
+                        window.location.href = "http://localhost:8080";
+                    } else {
+                        alert("쿠폰을 구매할 수 없습니다.");
+                    }
+                }
+            };
+
+            xhr.send();
+        }
+
+    </script>
+</body>
+</html>

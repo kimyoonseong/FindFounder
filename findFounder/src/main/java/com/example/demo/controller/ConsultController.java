@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
 import static io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER;
-
+import org.springframework.http.ResponseCookie;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,6 +28,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 
@@ -83,14 +87,16 @@ public class ConsultController {
 	
 		return "해당 결과 화면 보여주기";
 	}
-	
+	//2024-04-15 해당 카테고리 상권 가지고오기
+	@Operation(summary="Call Industry", description="업종 return")
+	@PostMapping("/api/industry")
+	public String Bring(@CookieValue(value = "Set-Cookie") String jwtToken,@RequestParam String category) {
+		return service.bringIndustry(category);
+	}
 	//2024-03-29 상권 통계 검색 
-	@Operation(summary = "Search", description = "검색값 flask전송",
-			parameters =  {
-                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-            })
+	@Operation(summary = "Search", description = "검색값 flask전송")
 	@PostMapping("/api/analysis")
-	public String Search (@RequestParam String region, @RequestParam String industry) {
+	public String Search (@CookieValue(value = "Set-Cookie") String jwtToken,@RequestParam String region, @RequestParam String industry) {
 	
 		return service.searchStatic(region,industry);
 	}
@@ -110,17 +116,32 @@ public class ConsultController {
 		    return service.sendToFlask(jsonDto);
 	    }
 	 //2024 04 03 쿠폰 구매 -> 2024-04-08 jwt인증완료
-	 @Operation(summary = "쿠폰구매", description = "user coupon개수 추가",
-			 parameters =  {
-	                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-	            })
-	 @PostMapping("/api/consultation/coupon/{count}")
-	 public ResponseEntity<CommonRes> buyCoupon(@RequestHeader("X-AUTH-TOKEN") String jwtToken,
-			 @PathVariable int count) {
-		 CommonRes res=service.buy(jwtToken,count);
-		 return ResponseEntity.ok(res);
-		 
-	 }
+//	 @Operation(summary = "쿠폰구매", description = "user coupon개수 추가",
+//			 parameters =  {
+//	                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+//	            })
+//	 @PostMapping("/api/consultation/coupon/{count}")
+//	 public ResponseEntity<CommonRes> buyCoupon(@RequestHeader("X-AUTH-TOKEN") String jwtToken,
+//			 @PathVariable int count) {
+//		 CommonRes res=service.buy(jwtToken,count);
+//		 return ResponseEntity.ok(res);
+//		 
+//	 }
+	@Operation(summary = "쿠폰구매", description = "user coupon개수 추가")
+	    @PostMapping("/api/consultation/coupon/{count}")
+	    public ResponseEntity<CommonRes> buyCoupon(@CookieValue(value = "Set-Cookie") String jwtToken,
+	                                         @PathVariable int count
+	                                         ) {
+	        // 쿠키로부터 토큰을 가져오고 이를 사용하여 쿿ㄱ에 구매를 처리하는 로직
+	        CommonRes res = service.buy(jwtToken, count);
+	        System.out.println(jwtToken);
+	        // 응답으로 토큰을 클라이언트에게 전달하기 위해 쿠키를 설정
+	        //Cookie cookie = new Cookie("X-AUTH-TOKEN", jwtToken);
+	        //cookie.setPath("/"); // 쿠키의 유효 경로 설정 (예시로 전체 경로로 설정)
+	        //response.addCookie(cookie); // 응답에 쿠키 추가
+
+	        return ResponseEntity.ok(res);
+	    }
 	
 	 
 }
