@@ -42,7 +42,7 @@ public class Question {
 	@Column(nullable = false)
 	private int cusQuestionId;
 	
-	@Column(nullable = false, length = 10)
+	@Column(nullable = false, length = 30)
 	private String questionContent;
 	
 	@OneToMany(mappedBy = "question", fetch = FetchType.LAZY)

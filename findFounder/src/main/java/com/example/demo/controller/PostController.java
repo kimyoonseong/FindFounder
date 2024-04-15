@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,9 @@ import com.example.demo.util.JwtUtil;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+
 import static io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER;
 
 import io.swagger.v3.oas.annotations.Parameter;
@@ -55,15 +59,14 @@ public class PostController {
 	
 	// 회원코드는 JWT토큰 통해서 가져오기.
 
-	@Operation(summary = "게시글 작성", description = "제목, 내용, 회원코드, 조회수는 0"
-			,
-            parameters =  {
-                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-            })
+	@Operation(summary = "게시글 작성", description = "제목, 내용, 회원코드, 조회수는 0")
 
 	@PostMapping()
-	public ResponseEntity<CommonRes> createPost(@RequestHeader("X-AUTH-TOKEN") String jwtToken, @RequestBody PostCreateReq req ) {
-		
+	public ResponseEntity<CommonRes> createPost(
+			@RequestHeader("X-AUTH-TOKEN") String jwtToken
+			, @RequestBody PostCreateReq req ) {
+
+		System.out.println(jwtToken);
 		int cusCode = jwtUtil.getCusCode(jwtToken);
 		CommonRes res =  postService.createPost(cusCode, req);
 		
@@ -72,13 +75,10 @@ public class PostController {
 	}
 	
 	// 회원코드는 JWT토큰 통해서 가져오기.
-		@Operation(summary = "게시글 수정", description = "제목, 내용, 회원코드, 조회수, 게시글ID"
-				,
-	            parameters =  {
-	                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-	            })
+		@Operation(summary = "게시글 수정", description = "제목, 내용, 회원코드, 조회수, 게시글ID")
 		@PostMapping("/{postid}")
-		public ResponseEntity<CommonRes> updatePost(@RequestHeader("X-AUTH-TOKEN") String jwtToken, @PathVariable int postid, @RequestBody PostCreateReq req ) {
+		public ResponseEntity<CommonRes> updatePost(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
+				, @PathVariable int postid, @RequestBody PostCreateReq req ) {
 			
 			int cusCode = jwtUtil.getCusCode(jwtToken);
 			CommonRes res =  postService.updatePost(cusCode, postid, req);
@@ -87,37 +87,28 @@ public class PostController {
 		}
 	
 	// 회원코드는 JWT토큰 통해서 가져오기.
-	@Operation(summary = "게시글 전체 조회", description = "게시글 전체 조회",
-            parameters =  {
-                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-            })
+	@Operation(summary = "게시글 전체 조회", description = "게시글 전체 조회")
 	@GetMapping()
-	public ResponseEntity<PostListRes> getPosts(Authentication authentication) {
-
+	public ResponseEntity<PostListRes> getPosts(@CookieValue(name = "Set-Cookie", required = false) String jwtToken) {
+		System.out.println("게시글전체조회");
 		PostListRes res = PostListRes.builder().posts(postService.getPostList()).build();
 		
 		return ResponseEntity.ok(res);
 	}
 	
-	@Operation(summary = "게시글 키워드 조회", description = "게시글 키워드 조회"
-			,
-            parameters =  {
-                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-            })
+	@Operation(summary = "게시글 키워드 조회", description = "게시글 키워드 조회")
 	@GetMapping("search/{keyword}")
-	public ResponseEntity<PostListRes> getPostsByKeyword(@PathVariable String keyword) {
+	public ResponseEntity<PostListRes> getPostsByKeyword(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
+			, @PathVariable String keyword) {
 		PostListRes res = PostListRes.builder().posts(postService.getPostListByKeyword(keyword)).build();
 		
 		return ResponseEntity.ok(res);
 	}
 	
-	@Operation(summary = "게시글 삭제", description = "게시글 삭제"
-			,
-            parameters =  {
-                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-            })
+	@Operation(summary = "게시글 삭제", description = "게시글 삭제")
 	@DeleteMapping("/{postid}")
-	public ResponseEntity<CommonRes> deletePostById(@RequestHeader("X-AUTH-TOKEN") String jwtToken, @PathVariable int postid) {
+	public ResponseEntity<CommonRes> deletePostById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
+			, @PathVariable int postid) {
 		
 		int cusCode = jwtUtil.getCusCode(jwtToken);
 		
@@ -126,25 +117,18 @@ public class PostController {
 		return ResponseEntity.ok(res);
 	}
 	
-	@Operation(summary = "게시글 상세", description = "게시글 상세조회"
-			,
-            parameters =  {
-                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-            })
+	@Operation(summary = "게시글 상세", description = "게시글 상세조회")
 	@GetMapping("/{postid}")
-	public ResponseEntity<PostDto> getPostDetailById(@PathVariable int postid) {
+	public ResponseEntity<PostDto> getPostDetailById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
+			, @PathVariable int postid) {
 		PostDto postDto = postService.detailPost(postid);
 		
 		return ResponseEntity.ok(postDto);
 	}
 	
-	@Operation(summary = "내 게시글 조회", description = "내 게시글 조회"
-			,
-            parameters =  {
-                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-            })
+	@Operation(summary = "내 게시글 조회", description = "내 게시글 조회")
 	@GetMapping("/mypost")
-	public ResponseEntity<PostListRes> getMyPostDetailById(@RequestHeader("X-AUTH-TOKEN") String jwtToken) {
+	public ResponseEntity<PostListRes> getMyPostDetailById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken) {
 		// jwt에서 cuscode 가져오기
 		int cusCode = jwtUtil.getCusCode(jwtToken);
 		Customer customer = customerRepository.findById(cusCode).orElseThrow(() -> new UsernameNotFoundException("해당하는 유저가 없습니다."));
@@ -155,14 +139,10 @@ public class PostController {
 	}
 	
 	
-	@Operation(summary = "리액션 추가", description = "리액션 True : 좋아요, False : 싫어요"
-			,
-            parameters =  {
-                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-            })
+	@Operation(summary = "리액션 추가", description = "리액션 True : 좋아요, False : 싫어요")
 	@PostMapping("reaction/{postid}")
 	public ResponseEntity<CommonRes> updateReaction(@PathVariable int postid,
-			@RequestHeader("X-AUTH-TOKEN") String jwtToken, 
+			@CookieValue(name = "Set-Cookie", required = false) String jwtToken, 
 			@RequestBody ReactionReq req ) {
 		
 		

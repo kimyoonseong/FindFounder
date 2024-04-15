@@ -44,12 +44,12 @@ public class Customer {
     @ColumnDefault("0")
     private int cusCupons;
 
-    @Column(nullable = false, length = 8)
+    @Column(nullable = false, length = 20)
     private String cusPwAnswer;
 
     private Boolean cusIsConsult;
 
-    @Column(nullable = false, length = 48)
+    @Column(nullable = false, length = 48,  unique=true)
     private String cusEmail;
 
     @ManyToOne(fetch = FetchType.LAZY)
