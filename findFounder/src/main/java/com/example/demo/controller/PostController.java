@@ -63,7 +63,7 @@ public class PostController {
 
 	@PostMapping()
 	public ResponseEntity<CommonRes> createPost(
-			@RequestHeader("X-AUTH-TOKEN") String jwtToken
+			@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @RequestBody PostCreateReq req ) {
 
 		System.out.println(jwtToken);
@@ -87,23 +87,23 @@ public class PostController {
 		}
 	
 	// 회원코드는 JWT토큰 통해서 가져오기.
-	@Operation(summary = "게시글 전체 조회", description = "게시글 전체 조회")
-	@GetMapping()
-	public ResponseEntity<PostListRes> getPosts(@CookieValue(name = "Set-Cookie", required = false) String jwtToken) {
-		System.out.println("게시글전체조회");
-		PostListRes res = PostListRes.builder().posts(postService.getPostList()).build();
-		
-		return ResponseEntity.ok(res);
-	}
-	
-	@Operation(summary = "게시글 키워드 조회", description = "게시글 키워드 조회")
-	@GetMapping("search/{keyword}")
-	public ResponseEntity<PostListRes> getPostsByKeyword(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
-			, @PathVariable String keyword) {
-		PostListRes res = PostListRes.builder().posts(postService.getPostListByKeyword(keyword)).build();
-		
-		return ResponseEntity.ok(res);
-	}
+//	@Operation(summary = "게시글 전체 조회", description = "게시글 전체 조회")
+//	@GetMapping()
+//	public ResponseEntity<PostListRes> getPosts(@CookieValue(name = "Set-Cookie", required = false) String jwtToken) {
+//		System.out.println("게시글전체조회");
+//		PostListRes res = PostListRes.builder().posts(postService.getPostList()).build();
+//		
+//		return ResponseEntity.ok(res);
+//	}
+//	
+//	@Operation(summary = "게시글 키워드 조회", description = "게시글 키워드 조회")
+//	@GetMapping("search/{keyword}")
+//	public ResponseEntity<PostListRes> getPostsByKeyword(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
+//			, @PathVariable String keyword) {
+//		PostListRes res = PostListRes.builder().posts(postService.getPostListByKeyword(keyword)).build();
+//		
+//		return ResponseEntity.ok(res);
+//	}
 	
 	@Operation(summary = "게시글 삭제", description = "게시글 삭제")
 	@DeleteMapping("/{postid}")
@@ -126,17 +126,17 @@ public class PostController {
 		return ResponseEntity.ok(postDto);
 	}
 	
-	@Operation(summary = "내 게시글 조회", description = "내 게시글 조회")
-	@GetMapping("/mypost")
-	public ResponseEntity<PostListRes> getMyPostDetailById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken) {
-		// jwt에서 cuscode 가져오기
-		int cusCode = jwtUtil.getCusCode(jwtToken);
-		Customer customer = customerRepository.findById(cusCode).orElseThrow(() -> new UsernameNotFoundException("해당하는 유저가 없습니다."));
-		PostListRes res  = PostListRes.builder().posts(postService.getMyPostList(customer)).build();
-		
-		
-		return ResponseEntity.ok(res);
-	}
+//	@Operation(summary = "내 게시글 조회", description = "내 게시글 조회")
+//	@GetMapping("/mypost")
+//	public ResponseEntity<PostListRes> getMyPostDetailById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken) {
+//		// jwt에서 cuscode 가져오기
+//		int cusCode = jwtUtil.getCusCode(jwtToken);
+//		Customer customer = customerRepository.findById(cusCode).orElseThrow(() -> new UsernameNotFoundException("해당하는 유저가 없습니다."));
+//		PostListRes res  = PostListRes.builder().posts(postService.getMyPostList(customer)).build();
+//		
+//		
+//		return ResponseEntity.ok(res);
+//	}
 	
 	
 	@Operation(summary = "리액션 추가", description = "리액션 True : 좋아요, False : 싫어요")

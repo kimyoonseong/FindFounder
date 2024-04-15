@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import com.example.demo.model.dto.PostDetailDto;
 import com.example.demo.model.entity.Post;
 
 import lombok.Builder;
@@ -14,5 +15,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PostListRes {
-	private List<Post>  posts;
+	private List<PostDetailDto>  posts;
 }

@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.model.dto.PostDetailDto;
 import com.example.demo.model.dto.PostDto;
 import com.example.demo.model.dto.req.PostCreateReq;
 import com.example.demo.model.dto.req.ReactionReq;
@@ -107,7 +109,16 @@ public class PostService {
 	@Transactional(readOnly = true)
 	public List<Post> getPostList(){
 		List<Post> posts =  postRepo.findAllFetchJoin();
-		
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		for(Post post : posts) {
+			PostDetailDto dto = PostDetailDto.builder()
+								.postTitle(post.getPostTitle())
+								.postLike(post.getPostLike())
+								.postViews(post.getPostViews())
+								.writer(post.getCustomer().getCusId())
+								.postDate(sdf1.format(post.getPostDate()))
+								.build();
+		}
 		return posts;
 	}
 	
