@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def get_statistics(signgu_cd_nm):
-    df = pd.read_csv('C:\\Users\\82104\\git\\FindFounder\\Flask\\Findfounder\\views\\VwsmSignguIxQq2.csv', encoding='cp949')
+    df = pd.read_csv('views/VwsmSignguIxQq2.csv', encoding='cp949')
 
     # 입력된 자치구에 해당하는 데이터 필터링
     filtered_df = df[df['SIGNGU_CD_NM'] == signgu_cd_nm]
