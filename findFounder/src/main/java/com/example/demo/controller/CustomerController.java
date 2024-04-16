@@ -204,11 +204,12 @@ public class CustomerController {
    
 //   // 2024-04-04 비밀번호 재설정
 //   /api/user/pw/{cuscode}?
-   @PostMapping("/api/user/pw/{cusid}")
+   @PostMapping("/api/user/pw")
    @Operation(summary = "비밀번호 수정", description = "비밀번호 수정")
-   public ResponseEntity<CommonRes> updatePw(@PathVariable String cusid, CustomerUpdatePwReq req){
+   public ResponseEntity<CommonRes> updatePw(@RequestBody CustomerUpdatePwReq req){
+	   System.out.println(req.getCusId() + " ##" + req.getCusPw());
 	   CommonRes res;
-	   if (customerService.updatePw(cusid, req).equals("비밀번호 수정 완료")) {
+	   if (customerService.updatePw( req).equals("비밀번호 수정 완료")) {
 		   res = CommonRes.builder().code(200).msg("비밀번호 수정이 완료되었습니다.").build();
 		   return ResponseEntity.ok(res);
 	   }
@@ -260,13 +261,15 @@ public class CustomerController {
 	// 2024-04-14 로그아웃
 
 
-	    @PostMapping("/logout")
+	    @PostMapping("/api/user/logout")
 	    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
 	        // 쿠키 만료 시간을 0으로 설정하여 쿠키를 제거합니다.
 	        Cookie[] cookies = request.getCookies();
+
 	        if (cookies != null) {
 	            for (Cookie cookie : cookies) {
 	                if (cookie.getName().equals("Set-Cookie")) {
+	                	System.out.println("쿠키찾음");
 	                    cookie.setMaxAge(0);
 	                    cookie.setPath("/");
 	                    response.addCookie(cookie);

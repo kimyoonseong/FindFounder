@@ -96,7 +96,7 @@
 										
 										<div class="form-group"> 
                                        		<div class="form-floating mb-3 mb-md-0">
-	                                       		<input class="form-control" id="inputPasswordAnswer" type="text" placeholder="비밀번호 질문에 대한 답하시오." />
+	                                       		<input class="form-control" id="inputPasswordAnswer" type="text" placeholder="비밀번호 질문에 대해 답하시오." />
 	                                       		<label for="inputPasswordAnswer">PasswordAnswer</label>
                                        		</div>
 										</div>
@@ -107,7 +107,7 @@
                                     </form>
                                 </div>
                                 <div class="card-footer text-center py-3">
-                                    <div class="small"><a href="login.html">회원이신가요? 로그인 창으로 가시겠습니까?</a></div>
+                                    <div class="small"><a href="login">회원이신가요? 로그인 창으로 가시겠습니까?</a></div>
                                 </div>
                             </div>
                         </div>
@@ -171,7 +171,7 @@
 						console.log('전송한 데이터:', name, email, id, pw, questionId, pwanswer);
 						if(response.code == 200){
 							alert('회원가입 성공했습니다.');
-							window.location.href = 'login.html'; // 로그인 페이지로 리디렉션
+							window.location.href = 'login'; // 로그인 페이지로 리디렉션
 						}
 						if(response.code == 300){
 							alert(response.msg);
