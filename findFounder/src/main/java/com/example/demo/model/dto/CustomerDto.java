@@ -33,7 +33,7 @@ public class CustomerDto {
 	private String cusPwAnswer;	
 	private Boolean cusIsConsult;
 	private String cusEmail;
-	
+	private Integer cusQuestionId;
 	public Customer toEntity() {
 		Customer customer = Customer.builder()
 				.cusCode(this.getCusCode())
@@ -44,6 +44,7 @@ public class CustomerDto {
 				.cusPwAnswer(this.getCusPwAnswer())
 				.cusIsConsult(this.getCusIsConsult())
 				.cusEmail(this.getCusEmail())
+				
 				.build();
 		return customer;
 	}

@@ -67,6 +67,7 @@ public class Customer {
                 .cusPwAnswer(this.getCusPwAnswer())
                 .cusIsConsult(this.getCusIsConsult())
                 .cusEmail(this.getCusEmail())
+                .cusQuestionId(this.getQuestion().getCusQuestionId())
                 .build();
     }
 }
