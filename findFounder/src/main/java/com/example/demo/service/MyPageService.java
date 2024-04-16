@@ -20,9 +20,11 @@ import com.example.demo.model.dto.CustomerDto;
 import com.example.demo.model.dto.res.CommonRes;
 import com.example.demo.model.entity.Consult;
 import com.example.demo.model.entity.Customer;
+import com.example.demo.model.entity.Question;
 import com.example.demo.repository.ConsultRepository;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.PostRepository;
+import com.example.demo.repository.QuestionRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.jsonwebtoken.Claims;
@@ -38,13 +40,14 @@ public class MyPageService {
 	   private  ConsultRepository consultRepo;
 	   private  AuthenticationManager authenticationManager;
 	   private  PasswordEncoder encoder;
-	   
+	   private  QuestionRepository questionRepo;
 	   @Value("${jwt.secret}")
 	    private String secretKey;
 	   
 		@Autowired
 		public MyPageService( CustomerRepository customerRepo,  ConsultRepository consultRepo,
-				AuthenticationManager authenticationManager, PasswordEncoder encoder) {
+				AuthenticationManager authenticationManager, PasswordEncoder encoder
+				, QuestionRepository questionRepo) {
 		    this.customerRepo = customerRepo;
 		    this.consultRepo= consultRepo;
 			this.authenticationManager = authenticationManager;
@@ -52,6 +55,7 @@ public class MyPageService {
 			 if (encoder == null) {
 		            throw new IllegalStateException("PasswordEncoder가 주입되지 않았습니다.");
 		        }
+			 this.questionRepo = questionRepo;
 		    }		
 		public CustomerDto getCusInfo(String jwtToken) {
 			 // JWT 토큰을 해독하여 클레임을 추출
@@ -89,6 +93,8 @@ public class MyPageService {
 	        Integer cusCode = (Integer) claims.get("cusCode");
 			// TODO Auto-generated method stub
 			Optional<Customer> customer = customerRepo.findById(cusCode);//없을수도 있기 때문에 optional
+			Optional<Question> question = questionRepo.findById(dto.getCusQuestionId());
+		    Question que = question.get();
 			if(customer.isPresent()) {
 				Customer cus=customer.get();
 				
@@ -102,6 +108,7 @@ public class MyPageService {
 			            cus.setCusPw(encodedNewPassword);//인코딩된 비번으로 변경.
 			        }
 			        if (dto.getCusPwAnswer() != null) cus.setCusPwAnswer(dto.getCusPwAnswer());
+			        if (dto.getCusQuestionId() != null) cus.setQuestion(que);
 			        customerRepo.saveAndFlush(cus);
 					CommonRes commonRes = CommonRes.builder().code(200).msg("회원정보 수정 완료").build();
 					return commonRes;
@@ -127,6 +134,8 @@ public class MyPageService {
 	        
 	        // 클레임에서 cusId 값을 가져옴
 	        Integer cusCode = (Integer) claims.get("cusCode");
+	        Optional<Question> question = questionRepo.findById(dto.getCusQuestionId());
+	        Question que = question.get();
 			// TODO Auto-generated method stub
 			Optional<Customer> customer = customerRepo.findById(cusCode);//없을수도 있기 때문에 optional
 			if(customer.isPresent()) {
@@ -134,6 +143,7 @@ public class MyPageService {
 				
 				if (dto.getCusEmail() != null) cus.setCusEmail(dto.getCusEmail());
 		        if (dto.getCusName() != null) cus.setCusName(dto.getCusName());
+		        if (dto.getCusQuestionId() != null) cus.setQuestion(que);
 		        if (dto.getCusPwAnswer() != null) cus.setCusPwAnswer(dto.getCusPwAnswer());
 		        customerRepo.saveAndFlush(cus);
 				CommonRes commonRes = CommonRes.builder().code(200).msg("회원정보 수정 완료").build();
