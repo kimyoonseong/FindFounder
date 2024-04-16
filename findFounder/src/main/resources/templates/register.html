@@ -144,15 +144,21 @@
                 var pw = $('#inputPassword').val();
                 var pwanswer = $('#inputPasswordAnswer').val();
 				var select = document.getElementById("ques");
+				if (select.selectedIndex===-1) {
+					alert('모든 입력란을 채워주세요.');
+					return; // 함수 종료
+				}
 				var selectedValue = select.options[select.selectedIndex].value;
+
 				var questionId = selectedValue;
 				console.log(select);
 				console.log(select.selectedIndex);
 				console.log("Selected question ID: " + questionId);
 
+				
 
 				
-				if (name === '' || email === '' || id === '' || pw === '' || pwanswer === '' || questionId === '') {
+				if (name === '' || email === '' || id === '' || pw === '' || pwanswer === '') {
 				        // 하나라도 비어있으면 회원가입 막기
 				        alert('모든 입력란을 채워주세요.');
 				        return false; // 이벤트 중지

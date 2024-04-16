@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <!-- CSS 스타일링은 여기에 추가 -->
+    <style>
+        /* 예시로 간단한 스타일링을 추가할 수 있습니다. */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: #fff;
+            padding: 30px 20px;
+			padding-bottom: 80px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .info {
+            margin-top: 10px;
+        }
+        .info p {
+            margin-bottom: 10px;
+        }
+		/* 사각형 창 스타일링 */
+       .rectangle {
+           border: 1px solid #ccc;
+           padding: 10px;
+           border-radius: 5px;
+           background-color: #f9f9f9;		
+		}
+		   /* 버튼 스타일링 */
+      .button1 {
+          position: absolute;
+          bottom: 125px; /* 수정 */
+          right: 360px; /* 수정 */
+          padding: 10px 20px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+		}
+		
+		.button2 {
+          position: absolute;
+          bottom: 125px; /* 수정 */
+          left: 360px; /* 수정 */
+          padding: 10px 20px;
+          background-color: rgb(255, 0, 0);
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+		}
+		
+		.button3 {
+          position: absolute;
+          bottom: 125px; /* 수정 */
+          right: 480px; /* 수정 */
+          padding: 10px 20px;
+          background-color: rgb(0, 128, 255);
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+		}
+	
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>마이페이지</h1>
+        <div class="info" id="userInfo">
+			<div class = 'rectangle'> 
+				<p><strong>회원 이름:</strong> <span id="name"></span></p>		
+				<p><strong>회원 아이디:</strong> <span id="id"></span></p>	
+				<p><strong>회원 이메일:</strong> <span id="email"></span></p>	
+				<p><strong>컨설팅 쿠폰개수:</strong> <span id="cupons"></span></p>
+				<p><strong>회원 컨설팅 기록 여부:</strong> <span id="isconsult"></span></p>
+				<p><strong>비밀번호 질문:</strong> <span id="questionid"></span></p>
+				<p><strong>비밀번호 질문에 대한 답:</strong> <span id="pwanswer"></span></p>
+				<button class="button2" id="withdrawButton" >회원 탈퇴하기</button>
+				<button class="button1" id="editButton">수정하기</button>
+				<button class="button3" id="mylistButton">내 게시글 목록 조회</button>
+	        </div>
+		</div>	
+    </div>
+
+    <!-- JavaScript 코드 -->
+    <script>
+        // 서버로부터 데이터를 가져오는 함수
+        function fetchData() {
+            fetch('/api/mypage', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'same-origin' // 현재 origin에 대해 자격 증명을 보냄
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('서버 응답이 실패했습니다.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // 받은 데이터를 HTML에 채워 넣습니다.
+				document.getElementById('id').textContent = data.cusId;
+				document.getElementById('name').textContent = data.cusName;
+				document.getElementById('cupons').textContent = data.cusCupons;
+				document.getElementById('pwanswer').textContent = data.cusPwAnswer;
+				document.getElementById('isconsult').textContent = data.cusIsConsult ? 'O' : 'X';
+				document.getElementById('email').textContent = data.cusEmail;
+				let question;
+	              switch (data.cusQuestionId) {
+	                  case 1:
+	                      question = '어릴적 살았던 동네는?';
+	                      break;
+	                  case 2:
+	                      question = '살면서 가장 기억에 남는 사람 이름은?';
+	                      break;
+	                  case 3:
+	                      question = '어릴적 살았던 동네는?';
+	                      break;
+	                  case 4:
+	                      question = '제일 좋아하는 음식은?';
+	                      break;
+	                  case 5:
+	                      question = '졸업한 초등학교 이름은?';
+	                      break;
+	                  default:
+	                      question = '질문이 없습니다.';
+              }
+              document.getElementById('questionid').textContent = question;
+
+          })
+            .catch(error => {
+                console.error('Error:', error);
+                // 오류가 발생했을 때 사용자에게 메시지를 보여줄 수 있습니다.
+            });
+        }
+
+        // 페이지 로드 시 데이터를 가져옵니다.
+        fetchData();
+		
+        document.getElementById('withdrawButton').addEventListener('click', function() {
+        	console.log('회원 탈퇴하기 버튼 클릭됨');		
+			window.location.href = 'withdrawl';
+
+		});
+		
+		document.getElementById('editButton').addEventListener('click', function() {
+			console.log('수정하기 버튼 클릭됨');
+			window.location.href = 'mypage_editor';
+       });
+	   
+	   document.getElementById('mylistButton').addEventListener('click', function() {
+   			console.log('내 게시글 목록 조회 버튼 클릭됨');
+   			//window.location.href = 'mypage_editor';
+      });
+    </script>
+</body>
+</html>
