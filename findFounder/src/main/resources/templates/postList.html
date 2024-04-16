@@ -19,7 +19,7 @@
         }
 
         table {
-            width: 800px;
+            width: 100%;
             border-collapse: collapse;
         }
 
@@ -62,7 +62,7 @@
 
         .paging {
             padding: 20px 0;
-            width: 800px;
+            width: 100%;
         }
 
         .paging>ul {
@@ -88,6 +88,7 @@
             background: #333 !important;
             color: #fff;
         }
+        
     </style>
     </head>
     <body class="sb-nav-fixed">
@@ -118,6 +119,7 @@
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 서울상권 커뮤니티
+                                <button type="button" class="btn btn-primary float-end" onclick="location.href='/post-create'">글 작성</button>
                             </div>
                             <div class="card-body">
                                 <table  class = "resultTable">
@@ -127,11 +129,11 @@
                                 <div class="paging">
 							        <ul>
 							            <li>prev</li>
-							            <li class="active">1</li>
-							            <li>2</li>
-							            <li>3</li>
-							            <li>4</li>
-							            <li>5</li>
+							            <li class="active"><a href = "/post-list?page=1">1</a></li>
+							            <li><a href = "/post-list?page=2">2</a></li>
+							            <li><a href = "/post-list?page=3">3</a></li>
+							            <li><a href = "/post-list?page=4">4</a></li>
+							            <li><a href = "/post-list?page=5">5</a></li>
 							            <li>next</li>
 							        </ul>
 							    </div>
@@ -150,19 +152,21 @@
     </body>
     <script>
    // 클라이언트에서 JWT 쿠키를 가져와서 HTTP 요청 헤더에 포함시키는 예제
+   var url = 'http://localhost:8080/api/board' + window.location.search;
+   console.log(url)
    $(document).ready(
-
+	
     function() {
             $.ajax({
                 type: 'GET',
-                url: 'http://localhost:8080/api/board', // 로그인 엔드포인트 URL
+                url: url, // 로그인 엔드포인트 URL
                 contentType: 'application/json',
                 
                 success: function(response) {
                       // JWT 쿠키 가져오기
                     let result = `
                     	 
-                        <tr>
+                        <tr style="text-align: center">
                             <th>No</th>
                             <th>제목</th>
                             <th>조회수</th>
@@ -178,27 +182,31 @@
                     
                     console.log('게시글 전체 성공:', response);
                     console.log(response.posts);
-                    const posts = response.posts;
+                    const posts = response.posts.content;
                     posts.forEach((post, index) => {
                     	console.log(post)
                     	
-                    	result += `<tr>
-                    				<td>    ${index} </td>    
+                    	result += `<tr data-id="${post.postId}" class="clickable-row">
+                    				<td>    ${index+1} </td>    
 									<td>    ${post.postTitle} </td>    
 									<td>    ${post.postViews} </td>    
 									<td>    ${post.postLike} </td>    
-									<td>    ${post.postLike} </td>
+									<td>    ${post.writer} </td>
 									<td>    ${post.postDate} </td>    
                     				</tr>`;
 
                     });
                     result += "</tbody>"
-                    console.log("#####################")
-                    console.log(result)
-                    document.querySelector('.resultTable').innerHTML = result;
-                    console.log("#####################")
-
                     
+                    document.querySelector('.resultTable').innerHTML = result;
+                 	// 행 클릭 이벤트 추가
+                    $('.clickable-row').on('click', function() {
+                        var postId = $(this).data('id');
+                        console.log(postId)
+                        window.location.href = '/post-details?postid='+postId; 
+                       
+                    });
+                    updatePagination(response.posts.pageable.pageNumber);
                 },
                 error: function(xhr, status, error) {
                     console.error('게시글 전체 실패:', error, status, xhr);
@@ -206,6 +214,17 @@
                     
                 }
             });
+            function updatePagination(activePage) {
+                const pagination = document.querySelector('.paging ul');
+                let pages = pagination.querySelectorAll('li a');
+                pages.forEach(page => {
+                    if (page.textContent == activePage + 1) {
+                        page.parentNode.classList.add('active');
+                    } else {
+                        page.parentNode.classList.remove('active');
+                    }
+                });
+            }
         });
 
 

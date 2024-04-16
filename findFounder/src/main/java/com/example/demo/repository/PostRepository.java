@@ -23,7 +23,7 @@ public interface PostRepository extends JpaRepository<Post, Integer>{
 	
 //	List<Post> findAllByCustomer(Customer customer);
 	
-	@Query("select p from Post p join  p.customer")
+	@Query("select p from Post p join  p.customer order by p.postId DESC")
     List<Post> findAllFetchJoin();
 	
 	@Query("select p from Post p join fetch p.customer where p.postTitle like %:keyword%")

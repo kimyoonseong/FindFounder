@@ -7,14 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class TLPostController {
 
 	
-	@GetMapping("/table")
+	@GetMapping("/post-list")
 	public String getTable() {
-		return "tables";
+		return "postList";
 	}
 	
-	@GetMapping("/post/create")
+	@GetMapping("/post-create")
 	public String getCreatePost() {
-		return "createPost";
+		return "postCreate";
+	}
+	
+	@GetMapping("post-details")
+	public String getPostDetail() {
+		return "postDetail";
 	}
 }
  
