@@ -65,39 +65,70 @@
             
                         <div style="display: flex;">
                             <!-- 지도 생성 -->
-                            <div style="width:70%; height:500px; border: 2px solid #ddd; border-radius: 10px;">
+                            <div style="width:60%; height:500px; border: 2px solid #ddd; border-radius: 10px;">
                                 <div id="map" style="width:100%; height:100%;"></div>
                             </div>
                         
                             <!-- 폼 영역 -->
-                            <div style="width:30%; padding: 20px; border: 2px solid #ddd; border-radius: 10px;">
+                            <div style="width:40%; padding: 20px; border: 2px solid #ddd; border-radius: 10px; position: relative;">
                                 <h2>상권 통계 검색</h2>
                                 <form id="areaCategoryForm">
-                                    <!-- 지역 이름 -->
-                                    <div>
-                                        <label for="areaName">지역 이름:</label>
-                                        <input type="text" id="areaName" name="areaName">
-                                    </div>
-                        
+                                    
+                            
                                     <!-- 카테고리 선택 -->
-                                   
-                                    <div>
-                                        <label for="category">카테고리:</label>
-                                        <select id="category" name="category">
-                                            <option value="음식점">음식점</option>
-                                            <option value="교육">교육</option>
-                                            <option value="서비스">서비스</option>
-                                            <option value="오락">오락</option>
-                                            <option value="소매">소매</option>
-                                        </select>
+                                    <div class="btn-group" role="group" aria-label="카테고리 선택">
+                                        <div class="btn-container" style="margin-bottom: 10px;">
+                                            <button type="button" class="btn btn-primary" onclick="toggleDropdown('음식점', 'categoryDropdown1')">음식점</button>
+                                            <div id="categoryDropdown1" class="category-dropdown" style="display: none;"></div> <!-- 음식점 드롭다운 -->
+                                        </div>
+                                        <!-- 음식점 리스트 -->
+                                        <div id="categoryList1" class="category-list" style="margin-bottom: 10px;"></div>
+                                        
+                                        <div class="btn-container" style="margin-bottom: 10px;">
+                                            <button type="button" class="btn btn-success" onclick="toggleDropdown('교육', 'categoryDropdown2')">교육</button>
+                                            <div id="categoryDropdown2" class="category-dropdown" style="display: none;"></div> <!-- 교육 드롭다운 -->
+                                        </div>
+                                        <!-- 교육 리스트 -->
+                                        <div id="categoryList2" class="category-list" style="margin-bottom: 10px;"></div>
+                            
+                                        <div class="btn-container" style="margin-bottom: 10px;">
+                                            <button type="button" class="btn btn-info" onclick="toggleDropdown('서비스', 'categoryDropdown3')">서비스</button>
+                                            <div id="categoryDropdown3" class="category-dropdown" style="display: none;"></div> <!-- 서비스 드롭다운 -->
+                                        </div>
+                                        <!-- 서비스 리스트 -->
+                                        <div id="categoryList3" class="category-list" style="margin-bottom: 10px;"></div>
+                            
+                                        <div class="btn-container" style="margin-bottom: 10px;">
+                                            <button type="button" class="btn btn-warning" onclick="toggleDropdown('오락', 'categoryDropdown4')">오락</button>
+                                            <div id="categoryDropdown4" class="category-dropdown" style="display: none;"></div> <!-- 오락 드롭다운 -->
+                                        </div>
+                                        <!-- 오락 리스트 -->
+                                        <div id="categoryList4" class="category-list" style="margin-bottom: 10px;"></div>
+                            
+                                        <div class="btn-container" style="margin-bottom: 10px;">
+                                            <button type="button" class="btn btn-danger" onclick="toggleDropdown('소매', 'categoryDropdown5')">소매</button>
+                                            <div id="categoryDropdown5" class="category-dropdown" style="display: none;"></div> <!-- 소매 드롭다운 -->
+                                        </div>
+                                        <!-- 소매 리스트 -->
+                                        <div id="categoryList5" class="category-list" style="margin-bottom: 10px;"></div>
                                     </div>
-                        
-                                   
-                        
+                                    <!-- 지역 이름 -->
+                                    <div style="display: flex; flex-direction: row; justify-content: center;">
+                                        <label for="areaName" style="margin-right: 10px;">지역 이름:</label>
+                                        <input type="text" id="areaName" name="areaName">
+                                        <label for="IndustryName" style="margin-left: 20px; margin-right: 10px;">업종:</label>
+                                        <input type="text" id="IndustryName" name="IndustryName">
+                                    </div>
+                                    <input type="hidden" id="selectedCategory" name="selectedCategory">
+                                    
                                     <!-- 제출 버튼 -->
-                                    <button type="submit">선택 완료</button>
+                                    <button type="button" onclick="submitForm()" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">선택 완료</button>
+
                                 </form>
                             </div>
+                            
+                            
+                            
                         </div>
             
                         <!-- 카드 섹션 -->
@@ -130,26 +161,33 @@
 
             
                         <!-- 차트 섹션 -->
-                        <div class="row mt-5">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
+                        <!-- 그래프를 그릴 Canvas 요소 -->
+                                <!-- 그래프를 그릴 Canvas 요소 -->
+                                <div class="row mt-5">
+                                    <div class="col-xl-6">
+                                        <div class="card mb-4">
+                                            <div class="card-header">
+                                                <i class="fas fa-chart-area me-1"></i>
+                                                Area Chart Example
+                                            </div>
+                                            <div class="card-body">
+                                                <canvas id="myAreaChart" width="100%" height="40"></canvas>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
+                                    <div class="col-xl-6">
+                                        <div class="card mb-4">
+                                            <div class="card-header">
+                                                <i class="fas fa-chart-bar me-1"></i>
+                                                Bar Chart Example
+                                            </div>
+                                            <div class="card-body">
+                                                <canvas id="myBarChart" width="100%" height="40"></canvas>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                                 </div>
-                            </div>
-                        </div>
+                                <canvas id="myAreaChart" width="400" height="400"></canvas>
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
@@ -295,28 +333,7 @@
 
                 
             </script>
-             <script>
-                        document.getElementById("category").addEventListener("change", function() {
-                        // 선택된 카테고리 가져오기
-                        var selectedCategory = this.value;
-                        console.log(this.value);
-                        // 서버로 카테고리를 전송하여 API를 호출
-                        var xhr = new XMLHttpRequest();
-                        xhr.open("POST", "/api/industry", true);
-                        xhr.setRequestHeader("Content-Type", "application/json");
-
-                        xhr.onreadystatechange = function() {
-                            if (xhr.readyState === 4 && xhr.status === 200) {
-                                // API 호출 성공 시 응답을 처리
-                                var industryList = JSON.parse(xhr.responseText);
-                                // 처리할 내용 추가
-                            }
-                        };
-
-                        xhr.send(JSON.stringify({ category: selectedCategory }));
-                    });
-
-             </script>
+            
 			 <script>
 			 	$(document).ready(function() {
 			 	    // 로그아웃 버튼 클릭 이벤트 처리
@@ -341,5 +358,117 @@
 			 	});
 			 
 			 		   </script>
+                       <!-- flask에서 업종리스트가져오기 -->
+                       
+                       <script>
+                        // 선택된 업종을 저장하는 변수
+                        let selectedCategories = [];
+                        // 현재 열려 있는 드롭다운의 아이디를 저장하는 변수
+                        let currentDropdown = null;
+                    
+                        function toggleDropdown(category, dropdownId) {
+                            const dropdown = document.getElementById(dropdownId);
+                            
+                            // 현재 열려 있는 드롭다운이 있으면 닫기
+                            if (currentDropdown !== null && currentDropdown !== dropdownId) {
+                                document.getElementById(currentDropdown).style.display = 'none';
+                            }
+                            
+                            // 현재 열려 있는 드롭다운 설정
+                            currentDropdown = dropdownId;
+                    
+                            // 드롭다운 토글
+                            if (dropdown.style.display === 'block') {
+                                dropdown.style.display = 'none';
+                            } else {
+                                fetch('/api/industry?category=' + encodeURIComponent(category), {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        category: category
+                                    })
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    dropdown.innerHTML = data.map(item => `<button type="button" class="btn btn-secondary" onclick="selectCategory('${item}')">${item}</button>`).join('');
+                                    dropdown.style.display = 'block';
+                                })
+                                .catch(error => console.error('에러 발생:', error));
+                            }
+                        }
+                    
+                        // 카테고리 선택 함수
+                        function selectCategory(category) {
+                            selectedCategories.push(category);
+                            document.getElementById('selectedCategory').value = selectedCategories.join(', ');
+                        }
+                    
+                        // 카테고리 선택 함수
+                            function selectCategory(category) {
+                                selectedCategories.push(category);
+                                document.getElementById('selectedCategory').value = selectedCategories.join(', ');
+                                // 선택된 업종을 input 요소에 저장
+                                document.getElementById('IndustryName').value = category;
+                            }
+
+                         // 기존 JavaScript 코드 블록
+
+                                // 선택된 업종을 저장하는 변수
+                                let selectedCategory = null;
+
+                            // 카테고리 선택 함수
+                            function selectCategory(category) {
+                                selectedCategory = category;
+                                document.getElementById('selectedCategory').value = selectedCategory;
+                                // 선택된 업종을 input 요소에 저장
+                                document.getElementById('IndustryName').value = selectedCategory;
+                                // 선택된 업종 초기화
+                                selectedCategories = [];
+                            }    
+                    </script>
+                    <!-- 통계 api호출 -->
+                    <script>
+                        var myChart; // 전역 변수로 Chart 객체 선언
+                    
+                        function submitForm() {
+                            const areaName = document.getElementById('areaName').value;
+                            const selectedCategory = document.getElementById('selectedCategory').value;
+                            const url = `/api/analysis?region=${encodeURIComponent(areaName)}&industry=${encodeURIComponent(selectedCategory)}`;
+                    
+                            // Fetch API를 사용하여 데이터 가져오기
+                            fetch(url, {
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('서버 응답 오류');
+                                }
+                                return response.json(); // 서버 응답을 JSON 형식으로 변환
+                            })
+                            .then(data => {
+                                console.log('서버 응답:', data); // 서버 응답 확인
+                                drawChart(data); // 데이터를 기반으로 그래프 그리기
+                            })
+                            .catch(error => {
+                                console.error('에러 발생:', error); // 오류 메시지 출력
+                            });
+                        }
+                    
+                       
+                    </script>
+                    
+                                        
+                    
+                    
+                    
+                    
+                    
+                    
+                    
     </body>
 </html>

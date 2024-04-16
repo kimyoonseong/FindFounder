@@ -76,17 +76,7 @@ public class ConsultController {
 	
 	}
 	
-	//2024-03-29 상권 통계 
-	//flask-> springboot
-	@Operation(summary = "analysis", description = "프론트 통계 검색결과",
-			parameters =  {
-                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-            })
-	@GetMapping("/api/analysis")
-	public String showAnalysis( ) {//Model model 이건 프론트에 보내굎을때.
-	
-		return "해당 결과 화면 보여주기";
-	}
+
 	//2024-04-15 해당 카테고리 상권 가지고오기
 	@Operation(summary="Call Industry", description="업종 return")
 	@PostMapping("/api/industry")
@@ -95,7 +85,7 @@ public class ConsultController {
 	}
 	//2024-03-29 상권 통계 검색 
 	@Operation(summary = "Search", description = "검색값 flask전송")
-	@PostMapping("/api/analysis")
+	@GetMapping("/api/analysis")
 	public String Search (@CookieValue(value = "Set-Cookie") String jwtToken,@RequestParam String region, @RequestParam String industry) {
 	
 		return service.searchStatic(region,industry);
