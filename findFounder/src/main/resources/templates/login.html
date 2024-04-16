@@ -32,17 +32,17 @@
                                             <label for="inputPassword" class="text-dark">Password</label>
                                         </div>
 										<div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-											<a class="small" href="email.html">아이디 찾기</a>
+											<a class="small" href="email">아이디 찾기</a>
 										</div>
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small" href="password.html">비밀번호 찾기</a>
+                                            <a class="small" href="password">비밀번호 찾기</a>
                                             <button class="btn btn-primary" type="submit">Login</button>
                                         </div>
                                     </form>
                                     <div id="loginError" class="text-danger mt-2"></div> <!-- 실패 메시지를 표시할 공간 -->
                                 </div>
                                 <div class="card-footer text-center py-3 bg-dark">
-                                    <div class="small text-light"><a href="register.html">회원가입 하시겠습니까?</a></div>
+                                    <div class="small text-light"><a href="register">회원가입 하시겠습니까?</a></div>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                         localStorage.setItem("access_token", token); // 토큰을 로컬 스토리지에 저장
                     }
 					alert('로그인 완료되었습니다.');
-                     window.location.href = 'http://localhost:8080'; // 로그인 성공 시 index.html로 리디렉션
+                     window.location.href = '/'; // 로그인 성공 시 index.html로 리디렉션
                 },
                 error: function(xhr, status, error) {
                     console.error('로그인 실패:', error);

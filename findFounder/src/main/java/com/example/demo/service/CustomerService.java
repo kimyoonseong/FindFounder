@@ -151,12 +151,12 @@ public class CustomerService {
    
    
    @Transactional
-   public String updatePw(String cusId, CustomerUpdatePwReq req) {
+   public String updatePw( CustomerUpdatePwReq req) {
 	   // 비밀번호 찾기에서 비밀번호 수정 가능이 뜨면
 	   // 입력받았던 아이디에 일치하는 회원을 찾아서 
 	   // 비밀번호 변경 가능하게 해줌.
 	 
-	   Customer customer = findCustomer(cusId);
+	   Customer customer = findCustomer(req.getCusId());
 	   String encodedPassword = passwordEncoder.encode(req.getCusPw());
 	   customer.setCusPw(encodedPassword);
 	   customerRepository.save(customer);

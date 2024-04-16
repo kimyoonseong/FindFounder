@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -59,22 +60,16 @@ public class MyPageController {
 	   }
 	   // 회원코드는 JWT토큰 통해서 가져오기.
 	   //2024-04-04
-	   @Operation(summary = "마이페이지 조회", description = "회원정보",
-			   parameters =  {
-	                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-	            })
+	   @Operation(summary = "마이페이지 조회", description = "회원정보")
 	   @GetMapping("/mypage")
-	   public CustomerDto showMyPage(@RequestHeader("X-AUTH-TOKEN") String jwtToken) {
+	   public CustomerDto showMyPage(@CookieValue(name = "Set-Cookie", required = false) String jwtToken) {
 		   CustomerDto dto = Myservice.getCusInfo(jwtToken);
 		   return dto;
 	   }
 	   //2024-04-04
-	   @Operation(summary="회원정보 수정",description="수정",
-			   parameters =  {
-	                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-	            })
+	   @Operation(summary="회원정보 수정",description="수정")
 	   @PatchMapping("/mypage")
-	   public ResponseEntity<CommonRes> updateMyPage(@RequestHeader("X-AUTH-TOKEN") String jwtToken,
+	   public ResponseEntity<CommonRes> updateMyPage(@CookieValue(name = "Set-Cookie", required = false) String jwtToken,
 			   @RequestBody CustomerDto dto, 
 			   @RequestParam(required = false) String nowPW) {
 		   	if(nowPW!=null) {
@@ -90,12 +85,9 @@ public class MyPageController {
 	   
 	   
 	   //2024-04-08 컨설팅 내역 모델내용을 불러와야한
-	   @Operation(summary="컨설팅 내역",description="히스토리 내역들 확인",
-			   parameters =  {
-					   @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-	            })
+	   @Operation(summary="컨설팅 내역",description="히스토리 내역들 확인")
 	   @GetMapping("/mypage/history")   
-	   public List<Consult> consultHistory(@RequestHeader("X-AUTH-TOKEN") String jwtToken) {
+	   public List<Consult> consultHistory(@CookieValue(name = "Set-Cookie", required = false) String jwtToken) {
 		   List<Consult> con=Myservice.getConsultHistory(jwtToken);
 		   return con;
 	   }
