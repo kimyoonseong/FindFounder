@@ -15,5 +15,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PostListRes {
-	private List<PostDetailDto>  posts;
+	private Page<PostDetailDto>  posts;
 }

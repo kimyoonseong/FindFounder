@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.dto.PostDetailDto;
 import com.example.demo.model.dto.PostDto;
 import com.example.demo.model.dto.req.PostCreateReq;
 import com.example.demo.model.dto.req.ReactionReq;
@@ -87,14 +89,16 @@ public class PostController {
 		}
 	
 	// 회원코드는 JWT토큰 통해서 가져오기.
-//	@Operation(summary = "게시글 전체 조회", description = "게시글 전체 조회")
-//	@GetMapping()
-//	public ResponseEntity<PostListRes> getPosts(@CookieValue(name = "Set-Cookie", required = false) String jwtToken) {
-//		System.out.println("게시글전체조회");
-//		PostListRes res = PostListRes.builder().posts(postService.getPostList()).build();
-//		
-//		return ResponseEntity.ok(res);
-//	}
+	@Operation(summary = "게시글 전체 조회", description = "게시글 전체 조회")
+	@GetMapping()
+	public ResponseEntity<PostListRes> getPosts(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
+			, @RequestParam(required = false, defaultValue =  "1") Integer page) {
+		page--;
+		System.out.println("게시글전체조회");
+		PostListRes res = PostListRes.builder().posts(postService.getPostList(page)).build();
+		
+		return ResponseEntity.ok(res);
+	}
 //	
 //	@Operation(summary = "게시글 키워드 조회", description = "게시글 키워드 조회")
 //	@GetMapping("search/{keyword}")
@@ -118,10 +122,10 @@ public class PostController {
 	}
 	
 	@Operation(summary = "게시글 상세", description = "게시글 상세조회")
-	@GetMapping("/{postid}")
-	public ResponseEntity<PostDto> getPostDetailById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
-			, @PathVariable int postid) {
-		PostDto postDto = postService.detailPost(postid);
+	@GetMapping("/detail")
+	public ResponseEntity<PostDetailDto> getPostDetailById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
+			, @RequestParam(required = false) int postid) {
+		PostDetailDto postDto = postService.detailPost(postid);
 		
 		return ResponseEntity.ok(postDto);
 	}

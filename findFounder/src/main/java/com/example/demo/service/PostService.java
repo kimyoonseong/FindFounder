@@ -9,7 +9,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -95,21 +98,36 @@ public class PostService {
 	}
 	
 	// 게시글 상세
-	public PostDto detailPost(int postId) {
+	public PostDetailDto detailPost(int postId) {
 		Post post = postRepo.findById(postId).orElseThrow(()->
 		new IllegalArgumentException("해당 게시글이 없습니다."));
 		post.setPostViews(post.getPostViews()+1);
 		postRepo.saveAndFlush(post);
-		PostDto postDto = post.toDto();
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		PostDetailDto postDto = PostDetailDto.builder()
+								.postTitle(post.getPostTitle())
+								.postLike(post.getPostLike())
+								.postDislike(post.getPostDislike())
+								.postViews(post.getPostViews())
+								.writer(post.getCustomer().getCusId())
+								.postDate(sdf1.format(post.getPostDate()))
+								.postId(post.getPostId())
+								.postContent(post.getPostContent())
+								.build();
 		return postDto;
 	}
 	
 	
 	// 게시글 전체 목록
 	@Transactional(readOnly = true)
-	public List<Post> getPostList(){
+	public Page<PostDetailDto> getPostList(int page){
+		
+		Pageable pageRequest = PageRequest.of(page, 5, Direction.DESC, "postDate");
+//		Page<Post> posts = postRepo.findAllFetchJoin(pageable);
 		List<Post> posts =  postRepo.findAllFetchJoin();
+		
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		List<PostDetailDto> postList = new ArrayList<PostDetailDto>();
 		for(Post post : posts) {
 			PostDetailDto dto = PostDetailDto.builder()
 								.postTitle(post.getPostTitle())
@@ -117,9 +135,16 @@ public class PostService {
 								.postViews(post.getPostViews())
 								.writer(post.getCustomer().getCusId())
 								.postDate(sdf1.format(post.getPostDate()))
+								.postId(post.getPostId())
 								.build();
+			postList.add(dto);
 		}
-		return posts;
+		
+		int start = (int) pageRequest.getOffset();
+		int end = Math.min((start + pageRequest.getPageSize()), postList.size());
+		Page<PostDetailDto> ListPage = new PageImpl<>(postList.subList(start, end), pageRequest, postList.size());
+
+		return ListPage;
 	}
 	
 	

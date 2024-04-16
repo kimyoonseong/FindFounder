@@ -51,6 +51,7 @@ public class CommentService {
 	public CommonRes createComment(int cuscode, CommentCreateReq req) {
 //		Customer customer = customerRepository.findById(req.getCusCode()).orElseThrow(() -> new UsernameNotFoundException("해당하는 유저가 없습니다."));
 		Customer customer = customerRepository.findById(cuscode).orElseThrow(() -> new UsernameNotFoundException("해당하는 사용자가 없습니다."));
+		System.out.println("CommentService postId :" + req.getPostId());
 		Post post = postService.getPost(req.getPostId());
 		Comment comment = Comment.builder()
 							.commentContent(req.getCommentContent())
