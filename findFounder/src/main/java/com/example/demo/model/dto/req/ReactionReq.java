@@ -13,6 +13,6 @@ import lombok.Setter;
 //reactionId(PK), postId(FK), reaction(1 like, 0 dislike), cusCode(FK)
 public class ReactionReq {
 
-	private boolean reaction;
+	private int reaction;
 //	private int postId;
 }
