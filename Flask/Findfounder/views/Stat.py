@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def get_statistics(signgu_cd_nm):
-    df = pd.read_csv('views/VwsmSignguIxQq2.csv', encoding='cp949')
+    df = pd.read_csv('views\csvFolder\VwsmSignguIxQq2.csv', encoding='cp949')
 
     # 입력된 자치구에 해당하는 데이터 필터링
     filtered_df = df[df['SIGNGU_CD_NM'] == signgu_cd_nm]
@@ -33,6 +33,6 @@ def get_statistics(signgu_cd_nm):
     return sorted_data
 
 # 테스트
-signgu_cd_nm = '마포구'
-statistics = get_statistics(signgu_cd_nm)
-print(statistics)
+# signgu_cd_nm = '마포구'
+# statistics = get_statistics(signgu_cd_nm)
+# print(statistics)
