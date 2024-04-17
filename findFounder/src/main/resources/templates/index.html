@@ -13,7 +13,20 @@
                 left: 15px;
                 padding:2px;
             }
-            
+            .category-dropdown {
+                    display: block; /* 블록 요소로 설정하여 세로로 정렬 */
+                    width: auto; /* 너비 자동 조정 */
+                    clear: both; /* 왼쪽과 오른쪽에 어떤 플로팅 요소도 허용하지 않습니다. */
+                    
+                }
+            .btn-container {
+                display: block; /* 가로 레이아웃이 아닌 블록 요소로 설정 */
+                clear: both; /* 부모 요소에서 플로팅된 요소를 지우고 새로운 줄에 배치 */
+            }
+            .btn-group {
+                display: flex; /* 드롭다운 메뉴를 수평으로 배치하는 대신 수직으로 배치합니다. */
+                        flex-wrap: wrap; /* 필요한 경우 아이템들을 여러 줄에 걸쳐 배치합니다. */
+            }
             .info {
                 font-size: 18px;
                 padding:4px;
@@ -70,10 +83,12 @@
                             </div>
                         
                             <!-- 폼 영역 -->
-                            <div style="width:40%; padding: 20px; border: 2px solid #ddd; border-radius: 10px; position: relative;">
+                            <div style="width:40%; padding: 20px; border: 2px solid #ddd; border-radius: 10px; position: relative; overflow-y: auto; max-height: 500px;">
                                 <h2>상권 통계 검색</h2>
                                 <form id="areaCategoryForm">
-                                    
+                                    <form id="areaCategoryForm">
+                                        <!-- 여기에 버튼이 추가될 것입니다. -->
+                                    </form>
                             
                                     <!-- 카테고리 선택 -->
                                     <div class="btn-group" role="group" aria-label="카테고리 선택">
@@ -149,7 +164,7 @@
                                     <div class="card mb-4 custom-card">
 
                                         <div class="card-footer bg-warning text-white border-0">
-                                            <a class="btn btn-warning btn-sm custom-button stretched-link" href="#">
+                                            <a class="btn btn-warning btn-sm custom-button stretched-link" href="consult">
                                                 맞춤 컨설팅 받기
                                                 <i class="fas fa-comment-dots ms-2"></i>
                                             </a>
@@ -327,6 +342,45 @@
                             infowindow.setContent(content); 
                             infowindow.setPosition(mouseEvent.latLng); 
                             infowindow.setMap(map);
+                            var areaName = area.name;
+    
+                            // fetch API를 사용하여 서버의 API를 호출
+                            fetch(`/api/region?category=${areaName}`, {
+                                method: 'POST',
+                                headers: {
+                                    'Cookie': 'Set-Cookie=' + document.cookie // JWT 토큰을 쿠키로 전달
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                // 서버로부터 받은 데이터를 처리
+                                console.log('Received region:', data);
+                                // 받은 데이터를 해독하여 한글로 표시
+                                const form = document.getElementById('areaCategoryForm');
+            
+                                // 기존에 있던 버튼을 모두 제거
+                                form.innerHTML = '';
+                                
+                                // 데이터를 이용하여 버튼을 생성하고 폼 안에 추가
+                                data.forEach(area => {
+                                    const button = document.createElement('button');
+                                    button.textContent = area;
+                                    button.value = area; // 버튼의 값 설정
+                                    button.type = 'button'; // 버튼의 타입을 명시적으로 지정
+                                    button.addEventListener('click', function() {
+                                        // 버튼 클릭 시의 동작을 정의할 수 있음
+                                        document.getElementById('areaName').value = area;
+                                        // 예를 들어, 해당 지역을 선택한 후의 동작을 여기에 정의할 수 있음
+                                        console.log('Selected area:', area);
+                                    });
+                                    
+                                    // 버튼을 폼에 추가
+                                    form.appendChild(button);
+                                });
+                            })
+                            .catch(error => {
+                                console.error('Error fetching region:', error);
+                            });
                         });
                     }
 					

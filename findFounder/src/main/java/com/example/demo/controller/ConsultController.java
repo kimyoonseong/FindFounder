@@ -47,12 +47,9 @@ public class ConsultController {
 	
 	//2024-03-29 컨설팅 응답저장 
 	//2024-04-08 jwt인증완료
-	@Operation(summary = "컨설팅 응답 저장", description = "Consult Save",
-			parameters =  {
-                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-            })
+	@Operation(summary = "컨설팅 응답 저장", description = "Consult Save")
 	@PostMapping("/api/consultation")
-    public ResponseEntity<CommonRes> createConsultation(@RequestHeader("X-AUTH-TOKEN") String jwtToken,
+    public ResponseEntity<CommonRes> createConsultation(@CookieValue(value = "Set-Cookie") String jwtToken,
     		@RequestBody ConsultDto dto) {
 	
 			CommonRes res=service.consult(jwtToken,dto);
@@ -77,12 +74,6 @@ public class ConsultController {
 	}
 	
 
-	//2024-04-15 해당 카테고리 상권 가지고오기
-	@Operation(summary="Call Industry", description="업종 return")
-	@PostMapping("/api/industry")
-	public String Bring(@CookieValue(value = "Set-Cookie") String jwtToken,@RequestParam String category) {
-		return service.bringIndustry(category);
-	}
 	//2024-03-29 상권 통계 검색 
 	@Operation(summary = "Search", description = "검색값 flask전송")
 	@GetMapping("/api/analysis")
@@ -105,18 +96,7 @@ public class ConsultController {
 		   
 		    return service.sendToFlask(jsonDto);
 	    }
-	 //2024 04 03 쿠폰 구매 -> 2024-04-08 jwt인증완료
-//	 @Operation(summary = "쿠폰구매", description = "user coupon개수 추가",
-//			 parameters =  {
-//	                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-//	            })
-//	 @PostMapping("/api/consultation/coupon/{count}")
-//	 public ResponseEntity<CommonRes> buyCoupon(@RequestHeader("X-AUTH-TOKEN") String jwtToken,
-//			 @PathVariable int count) {
-//		 CommonRes res=service.buy(jwtToken,count);
-//		 return ResponseEntity.ok(res);
-//		 
-//	 }
+
 	@Operation(summary = "쿠폰구매", description = "user coupon개수 추가")
 	    @PostMapping("/api/consultation/coupon/{count}")
 	    public ResponseEntity<CommonRes> buyCoupon(@CookieValue(value = "Set-Cookie") String jwtToken,
