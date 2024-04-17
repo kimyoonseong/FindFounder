@@ -200,18 +200,22 @@ public class PostService {
 		Post post =  postRepo.findById(postId).orElseThrow(() -> new NoSuchElementException("해당하는 게시글이 없습니다."));
 		Customer customer = customerRepository.findById(cusCode).orElseThrow(() -> new NoSuchElementException("해당하는 사용자가 없습니다."));
 		Reaction reaction =   reactionRepository.findByPost_PostIdAndCustomer_CusCode(postId, cusCode);
-		CommonRes commonRes = CommonRes.builder().code(100).msg("초기화").build();;
-		
+		CommonRes commonRes = CommonRes.builder().code(100).msg("초기화").build();
+		boolean isLike = false;
+		// 1 like 0 dislike
+		if (req.getReaction() == 1) {
+			isLike = true;
+		}
 		// 1번 케이스 초기의 경우(무조건 생성)
 		if (reaction == null) {
 			reaction = Reaction.builder()
 					.post(post)
 					.customer(customer)
-					.reaction(req.isReaction())
+					.reaction(isLike)
 					.build();
 			reactionRepository.save(reaction);
 			// True인 경우 좋아요
-			if (req.isReaction()) {
+			if (isLike) {
 				post.setPostLike(post.getPostLike()+1);
 			}
 			else {
@@ -223,7 +227,7 @@ public class PostService {
 		// 이미 True(좋아요)
 		else if (reaction.isReaction()){
 			// 좋아요 2번은 삭제
-			if (req.isReaction()) {
+			if (isLike) {
 				reactionRepository.delete(reaction);
 				post.setPostLike(post.getPostLike()-1);
 				
@@ -234,15 +238,15 @@ public class PostService {
 				post.setPostLike(post.getPostLike()-1);
 				post.setPostDislike(post.getPostDislike() + 1);
 				
-				reaction.setReaction(req.isReaction());
+				reaction.setReaction(isLike);
 				reactionRepository.save(reaction);
 				commonRes = CommonRes.builder().code(200).msg("리액션 좋아요 후 싫어요 반영 완료").build();
 			}
 		}
 		// 이미 False(싫어요)
 		else if (! reaction.isReaction()) {
-			if (req.isReaction()) {
-				reaction.setReaction(req.isReaction());
+			if (isLike) {
+				reaction.setReaction(isLike);
 				reactionRepository.save(reaction);
 				
 				post.setPostLike(post.getPostLike() + 1);
