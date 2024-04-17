@@ -6,6 +6,8 @@ from werkzeug.utils import secure_filename
 from socket import *
 from Findfounder.views.Stat  import get_statistics
 from Findfounder.views.Industry import read_industry_from_csv
+from Findfounder.views.SeoulRegion import read_region_from_csv
+#from Findfounder.views.Expend import get_expendstatic
 import requests
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -20,6 +22,15 @@ def call_industry():
         print(jsonify(industry_list))  # 업종 리스트를 JSON 형태로 응답
         
         return jsonify(industry_list)
+
+@bp.route('/call_region',methods=['POST'])
+def call_region():
+        seoulgu = request.get_data(as_text=True)  # 클라이언트로부터 카테고리를 받음
+        region_list = read_region_from_csv(seoulgu)  # CSV 파일에서 해당 카테고리의 업종 리스트를 가져옴
+        print(jsonify(region_list))  # 업종 리스트를 JSON 형태로 응답
+        
+        return jsonify(region_list)
+
 
 @bp.route('/receive_string', methods=['POST'])
 def receive_string():
@@ -38,13 +49,13 @@ def receive_string():
         #print(response)
         #json_data = response.json()
         #prefer_loc_value = json_data.get('preferLoc')
-       
-       
-        result = get_statistics(prefer_loc_value)
-        print(result)
+        
+        #expend_amount=get_expendstatic(prefer_loc_value)
+        industry_life = get_statistics(prefer_loc_value)
+        print(industry_life)
         #print(prefer_loc_value)
         #Spring으로 response 전달
-        return result
+        return industry_life
 
 
 if __name__ == '__main__':
