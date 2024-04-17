@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -10,6 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.model.dto.CommentDetailDto;
+import com.example.demo.model.dto.PostDetailDto;
 import com.example.demo.model.dto.req.CommentCreateReq;
 import com.example.demo.model.dto.req.CommentUpdateReq;
 import com.example.demo.model.dto.res.CommonRes;
@@ -95,11 +98,21 @@ public class CommentService {
 	
 	// detail CommentList
 	@Transactional
-	public List<Comment> findCommentList(int postId){
+	public List<CommentDetailDto> findCommentList(int postId){
 		List<Comment> commentList = new ArrayList<>();
 		commentList = commentRepository.findAllByPost_PostId(postId);
-		
-		return commentList;
+		List<CommentDetailDto> dtoList = new ArrayList<>();
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		for(Comment comment : commentList) {
+			CommentDetailDto dto = CommentDetailDto.builder()
+								.commentContent(comment.getCommentContent())
+								.commentId(comment.getCommentId())
+								.commentDate(sdf1.format(comment.getCommentDate()))
+								.writer(comment.getCustomer().getCusId())
+								.build();
+			dtoList.add(dto);
+		}
+		return dtoList;
 	}
 	
 	// delete Comment

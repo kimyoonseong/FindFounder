@@ -39,6 +39,7 @@
 <script>
 var url = 'http://localhost:8080/api/board/detail' + window.location.search;
 var commentUrl  = 'http://localhost:8080/api/comment'+ window.location.search;
+var reactionUrl = 'http://localhost:8080/api/board/reaction'+ window.location.search;
 $(document).ready(
 		
 	    function() {
@@ -60,28 +61,45 @@ $(document).ready(
 	                	document.getElementById('likeCount').textContent = response.postLike;
 	                	document.getElementById('dislikeCount').textContent = response.postDislike;
 	                }
-	            },
-          		
-          		{
+	            });
+				$.ajax(
+				{
 	                type: 'GET',
 	                url: commentUrl, // 로그인 엔드포인트 URL
 	                contentType: 'application/json',
 	                
 	                success: function(response) {
-	                	console.log(response)
-	                	
-	                	document.getElementById('postTitle').textContent = response.postTitle;
-	                	document.getElementById('writer').textContent = response.writer;
-	                	document.getElementById('postContent').textContent = response.postContent;
-	                	document.getElementById('postViews').textContent = response.postViews;
-	                	document.getElementById('postDate').textContent = response.postDate;
-	                	document.getElementById('postId').textContent = response.postId;
-	                	document.getElementById('likeCount').textContent = response.postLike;
-	                	document.getElementById('dislikeCount').textContent = response.postDislike;
+						var commentsList = document.getElementById('commentsList');
+			            commentsList.innerHTML = ''; // 댓글 목록 초기화
+			            response.forEach(function(comment) {
+			                var commentItem = document.createElement('li');
+			                commentItem.className = 'mb-2';
+			
+			                // 댓글 내용과 작성자 표시
+			                var content = document.createElement('span');
+			                content.textContent = comment.commentContent + " - ";
+			                commentItem.appendChild(content);
+			
+			                var author = document.createElement('strong');
+			                author.textContent = comment.writer;
+			                commentItem.appendChild(author);
+			                
+			                var date = document.createElement('time');
+			                date.textContent = comment.commentDate;
+			                commentItem.appendChild(date);
+
+			                // 삭제 버튼 추가
+			                var deleteButton = document.createElement('button');
+			                deleteButton.className = 'btn btn-danger btn-sm ms-2';
+			                deleteButton.textContent = '삭제';
+			                deleteButton.onclick = function() { deleteComment(comment.commentId); };
+			                commentItem.appendChild(deleteButton);
+			
+			                commentsList.appendChild(commentItem);
+			                
+			            });
 	                }
-	            }
-	            
-	            )
+	            });
 	    
 	    }
 	    );
@@ -117,6 +135,7 @@ function addComment() {
             // 댓글 입력 필드 초기화
             document.getElementById('commentInput').value = '';
             alert('댓글이 성공적으로 작성되었습니다.');
+            location.reload();
         },
         error: function(xhr, status, error) {
             console.error('댓글 작성 실패:', error);
@@ -124,6 +143,86 @@ function addComment() {
         }
     });
 }
+
+
+
+
+function deleteComment(commentId) {
+    $.ajax({
+        type: 'DELETE',
+        url: '/api/comment/' + commentId,
+        contentType: 'application/json',
+        success: function(response) {
+        	console.log(response)
+        	if(response.code == 200){
+        		location.reload();
+        		alert('댓글이 삭제되었습니다.');
+				
+		    }
+		    if(response.code == 300){
+		        alert(response.msg);
+		    }
+            
+            // 댓글 목록에서 해당 댓글을 제거
+            document.querySelectorAll('#commentsList li').forEach(item => {
+                if(item.contains(document.getElementById('delete-' + commentId))) {
+                    item.remove();
+                }
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error('댓글 삭제 실패:', error);
+            alert('댓글 삭제에 실패했습니다.');
+        }
+    });
+}
+</script>
+
+<script>
+// 좋아요 버튼 이벤트 핸들러
+document.getElementById('postLike').addEventListener('click', function() {
+    var postId_str = document.getElementById('postId').textContent;
+    var postId = parseInt(postId_str);
+    data = JSON.stringify({
+    	'reaction': 1
+    });
+    console.log(data);
+    console.log(reactionUrl);
+    $.ajax({
+        type: 'POST',
+        url: reactionUrl, // 좋아요 API 엔드포인트
+        data : data,
+        contentType: 'application/json',
+        success: function(response) {
+        	location.reload();
+            var likeCount = document.getElementById('likeCount');
+            likeCount.textContent = response.newLikeCount; // 서버로부터 받은 새로운 좋아요 수를 업데이트
+        },
+        error: function() {
+            alert('좋아요를 처리하는 데 실패했습니다.');
+        }
+    });
+});
+
+// 싫어요 버튼 이벤트 핸들러
+document.getElementById('postDislike').addEventListener('click', function() {
+    var postId = document.getElementById('postId').textContent;
+    data = JSON.stringify({
+    	'reaction': 0
+    });
+    $.ajax({
+        type: 'POST',
+        url: reactionUrl, // 싫어요 API 엔드포인트
+        data : data,
+        contentType: 'application/json',
+        success: function(response) {
+        	location.reload();
+        },
+        error: function() {
+            alert('싫어요를 처리하는 데 실패했습니다.');
+        }
+    });
+});
 </script>
 </body>
 

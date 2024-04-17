@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.dto.CommentDetailDto;
 import com.example.demo.model.dto.req.CommentCreateReq;
 import com.example.demo.model.dto.req.CommentUpdateReq;
 import com.example.demo.model.dto.res.CommonRes;
@@ -65,9 +66,9 @@ public class CommentController {
 	}
 	
 	@Operation(summary = "댓글 리스트", description = "댓글 리스트")
-	@GetMapping("/")
-	public ResponseEntity<List<Comment>> getComments(@RequestParam(required = false) int postid) {
-		List<Comment> comments =  commentService.findCommentList(postid);
+	@GetMapping()
+	public ResponseEntity<List<CommentDetailDto>> getComments(@RequestParam(required = false) int postid) {
+		List<CommentDetailDto> comments =  commentService.findCommentList(postid);
 		
 		return ResponseEntity.ok(comments);
 	}

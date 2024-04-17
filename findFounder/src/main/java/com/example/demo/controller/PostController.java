@@ -144,8 +144,8 @@ public class PostController {
 	
 	
 	@Operation(summary = "리액션 추가", description = "리액션 True : 좋아요, False : 싫어요")
-	@PostMapping("reaction/{postid}")
-	public ResponseEntity<CommonRes> updateReaction(@PathVariable int postid,
+	@PostMapping("reaction")
+	public ResponseEntity<CommonRes> updateReaction(@RequestParam(required = false) int postid,
 			@CookieValue(name = "Set-Cookie", required = false) String jwtToken, 
 			@RequestBody ReactionReq req ) {
 		
