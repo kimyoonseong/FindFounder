@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -78,13 +79,13 @@ public class PostController {
 	
 	// 회원코드는 JWT토큰 통해서 가져오기.
 		@Operation(summary = "게시글 수정", description = "제목, 내용, 회원코드, 조회수, 게시글ID")
-		@PostMapping("/{postid}")
+		@PatchMapping()
 		public ResponseEntity<CommonRes> updatePost(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
-				, @PathVariable int postid, @RequestBody PostCreateReq req ) {
+				, @RequestParam int postid, @RequestBody PostCreateReq req ) {
 			
 			int cusCode = jwtUtil.getCusCode(jwtToken);
 			CommonRes res =  postService.updatePost(cusCode, postid, req);
-			
+			System.out.println("게시글수정컨트롤러"+res.getMsg());
 			return ResponseEntity.ok(res);
 		}
 	
@@ -100,14 +101,16 @@ public class PostController {
 		return ResponseEntity.ok(res);
 	}
 //	
-//	@Operation(summary = "게시글 키워드 조회", description = "게시글 키워드 조회")
-//	@GetMapping("search/{keyword}")
-//	public ResponseEntity<PostListRes> getPostsByKeyword(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
-//			, @PathVariable String keyword) {
-//		PostListRes res = PostListRes.builder().posts(postService.getPostListByKeyword(keyword)).build();
-//		
-//		return ResponseEntity.ok(res);
-//	}
+	@Operation(summary = "게시글 키워드 조회", description = "게시글 키워드 조회")
+	@GetMapping("search")
+	public ResponseEntity<PostListRes> getPostsByKeyword(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
+			, @RequestParam(required = false, defaultValue =  "1") int page
+			, @RequestParam String keyword) {
+		
+		PostListRes res = PostListRes.builder().posts(postService.getPostListByKeyword(page, keyword)).build();
+		
+		return ResponseEntity.ok(res);
+	}
 	
 	@Operation(summary = "게시글 삭제", description = "게시글 삭제")
 	@DeleteMapping("/{postid}")

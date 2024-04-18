@@ -105,13 +105,12 @@
                         <div id="board-search">
         <div class="container">
             <div class="search-window">
-                <form action="">
-                    <div class="search-wrap">
-                        
-                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-                        <button type="submit" class="btn btn-dark">검색</button>
-                    </div>
-                </form>
+               <form id="searchForm">
+				    <div class="search-wrap">
+				        <input id="searchInput" placeholder="검색어를 입력해주세요." value="">
+				        <button type="submit" class="btn btn-dark">검색</button>
+				    </div>
+				</form>
             </div>
         </div>
     </div>
@@ -229,5 +228,67 @@
 
 
     </script>
-    
+    <script>
+$(document).ready(function() {
+    // 검색 폼 이벤트 리스너 추가
+    $('#searchForm').on('submit', function(e) {
+        e.preventDefault(); // 기본 이벤트 차단
+        const keyword = $('#searchInput').val(); // 검색어 가져오기
+        searchPosts(keyword); // 검색 실행 함수 호출
+    });
+
+    function searchPosts(keyword) {
+    	console.log("검색서비스 테스트"+window.location.search)
+    	var searchUrl = ""
+    	if(!window.location.search){
+    		
+    		searchUrl = "http://localhost:8080/api/board/search?"+"keyword="+keyword;
+    		console.log("널널널"+searchUrl);
+    	}
+    	else{
+    		searchUrl = "http://localhost:8080/api/board/search"+ window.location.search +"& keyword="+keyword;
+    	}
+        
+        $.ajax({
+            type: 'GET',
+            url: searchUrl,
+            contentType: 'application/json',
+            success: function(response) {
+                let result = `
+                    <tr style="text-align: center">
+                        <th>No</th>
+                        <th>제목</th>
+                        <th>조회수</th>
+                        <th>좋아요수</th>
+                        <th>작성자</th>
+                        <th>작성일자</th>
+                    </tr>
+                    <tbody>`;
+                const posts = response.posts.content; // 응답 구조에 따라 경로 수정 필요
+                posts.forEach((post, index) => {
+                    result += `<tr data-id="${post.postId}" class="clickable-row">
+                                    <td>${index + 1}</td>
+                                    <td>${post.postTitle}</td>
+                                    <td>${post.postViews}</td>
+                                    <td>${post.postLike}</td>
+                                    <td>${post.writer}</td>
+                                    <td>${post.postDate}</td>
+                               </tr>`;
+                });
+                result += "</tbody>";
+                $('.resultTable').html(result);
+                // 행 클릭 이벤트 다시 바인딩
+                $('.clickable-row').on('click', function() {
+                    var postId = $(this).data('id');
+                    window.location.href = '/post-details?postid=' + postId;
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('검색 실패:', error);
+                alert('검색 결과를 불러오는데 실패했습니다.');
+            }
+        });
+    }
+});
+</script>
 </html>
