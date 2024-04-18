@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+
+<head>
+	<style>
+		.area {
+			position: absolute;
+			background: #fff;
+			border: 1px solid #888;
+			border-radius: 3px;
+			font-size: 12px;
+			top: -5px;
+			left: 15px;
+			padding: 2px;
+		}
+
+		.info {
+			font-size: 18px;
+			padding: 4px;
+			width: 200px;
+			/* 원하는 너비로 설정 */
+			height: 100%;
+			/* 원하는 높이로 설정 */
+		}
+
+		.info .title {
+			font-weight: bold;
+		}
+
+		.custom-card {
+			max-width: 200px;
+			/* 최대 폭 설정 */
+			margin: 0 auto;
+			/* 가운데 정렬 */
+		}
+
+		.custom-button {
+			padding: 0.25rem 0.5rem;
+			/* 버튼의 패딩 조정 */
+			font-size: 0.7rem;
+			/* 글꼴 크기 조정 */
+		}
+	</style>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+
+	<link href="/css/styles.css" rel="stylesheet" />
+
+
+	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+	<div th:replace="nav.html :: navbar-top"></div>
+	<div id="layoutSidenav">
+		<div id="layoutSidenav_nav">
+			<nav th:replace="nav.html :: navbar-side"></nav>
+		</div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">Find-Founder</h1>
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item active">제 2의 삶을 찾아보세요</li>
+					</ol>
+
+					<div style="display: flex;">
+						<!-- 지도 생성 -->
+						<div style="width:60%; height:500px; border: 2px solid #ddd; border-radius: 10px;">
+							<div id="map" style="width:100%; height:100%;"></div>
+						</div>
+
+						<!-- 폼 영역 -->
+						<div
+							style="width:40%; padding: 20px; border: 2px solid #ddd; border-radius: 10px; position: relative;">
+							<h2>상권 통계 검색</h2>
+							<form id="areaCategoryForm">
+
+
+								<!-- 카테고리 선택 -->
+								<div class="btn-group" role="group" aria-label="카테고리 선택">
+									<div class="btn-container" style="margin-bottom: 10px;">
+										<button type="button" class="btn btn-primary"
+											onclick="toggleDropdown('음식점', 'categoryDropdown1')">음식점</button>
+										<div id="categoryDropdown1" class="category-dropdown" style="display: none;">
+										</div> <!-- 음식점 드롭다운 -->
+									</div>
+									<!-- 음식점 리스트 -->
+									<div id="categoryList1" class="category-list" style="margin-bottom: 10px;"></div>
+
+									<div class="btn-container" style="margin-bottom: 10px;">
+										<button type="button" class="btn btn-success"
+											onclick="toggleDropdown('교육', 'categoryDropdown2')">교육</button>
+										<div id="categoryDropdown2" class="category-dropdown" style="display: none;">
+										</div> <!-- 교육 드롭다운 -->
+									</div>
+									<!-- 교육 리스트 -->
+									<div id="categoryList2" class="category-list" style="margin-bottom: 10px;"></div>
+
+									<div class="btn-container" style="margin-bottom: 10px;">
+										<button type="button" class="btn btn-info"
+											onclick="toggleDropdown('서비스', 'categoryDropdown3')">서비스</button>
+										<div id="categoryDropdown3" class="category-dropdown" style="display: none;">
+										</div> <!-- 서비스 드롭다운 -->
+									</div>
+									<!-- 서비스 리스트 -->
+									<div id="categoryList3" class="category-list" style="margin-bottom: 10px;"></div>
+
+									<div class="btn-container" style="margin-bottom: 10px;">
+										<button type="button" class="btn btn-warning"
+											onclick="toggleDropdown('오락', 'categoryDropdown4')">오락</button>
+										<div id="categoryDropdown4" class="category-dropdown" style="display: none;">
+										</div> <!-- 오락 드롭다운 -->
+									</div>
+									<!-- 오락 리스트 -->
+									<div id="categoryList4" class="category-list" style="margin-bottom: 10px;"></div>
+
+									<div class="btn-container" style="margin-bottom: 10px;">
+										<button type="button" class="btn btn-danger"
+											onclick="toggleDropdown('소매', 'categoryDropdown5')">소매</button>
+										<div id="categoryDropdown5" class="category-dropdown" style="display: none;">
+										</div> <!-- 소매 드롭다운 -->
+									</div>
+									<!-- 소매 리스트 -->
+									<div id="categoryList5" class="category-list" style="margin-bottom: 10px;"></div>
+								</div>
+								<!-- 지역 이름 -->
+								<div style="display: flex; flex-direction: row; justify-content: center;">
+									<label for="areaName" style="margin-right: 10px;">지역 이름:</label>
+									<input type="text" id="areaName" name="areaName">
+									<label for="IndustryName" style="margin-left: 20px; margin-right: 10px;">업종:</label>
+									<input type="text" id="IndustryName" name="IndustryName">
+								</div>
+								<input type="hidden" id="selectedCategory" name="selectedCategory">
+
+								<!-- 제출 버튼 -->
+								<button type="button" onclick="submitForm()"
+									style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">선택
+									완료</button>
+
+							</form>
+						</div>
+
+
+
+					</div>
+
+					<!-- 카드 섹션 -->
+					<div class="container mt-5">
+						<div class="row justify-content-center">
+							<div class="col-md-4">
+								<div class="card mb-4 custom-card">
+
+									<div class="card-footer bg-primary text-white border-0">
+										<a class="btn btn-primary btn-sm custom-button stretched-link" href="buytoken">
+											토큰 구매하기
+											<i class="fas fa-shopping-cart ms-2"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="card mb-4 custom-card">
+
+									<div class="card-footer bg-warning text-white border-0">
+										<a class="btn btn-warning btn-sm custom-button stretched-link" href="#">
+											맞춤 컨설팅 받기
+											<i class="fas fa-comment-dots ms-2"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- 차트 섹션 -->
+					<!-- 그래프를 그릴 Canvas 요소 -->
+					<!-- 그래프를 그릴 Canvas 요소 -->
+					<div class="row mt-5">
+						<div class="col-xl-6">
+							<div class="card mb-4">
+								<div class="card-header">
+									<i class="fas fa-chart-area me-1"></i>
+									Area Chart Example
+								</div>
+								<div class="card-body">
+									<canvas id="myAreaChart" width="100%" height="40"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<div class="card mb-4">
+								<div class="card-header">
+									<i class="fas fa-chart-bar me-1"></i>
+									Bar Chart Example
+								</div>
+								<div class="card-body">
+									<canvas id="myBarChart" width="100%" height="40"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+					<canvas id="myAreaChart" width="400" height="400"></canvas>
+				</div>
+			</main>
+			<footer class="py-4 bg-light mt-auto">
+				<div class="container-fluid px-4">
+					<div class="d-flex align-items-center justify-content-between small">
+						<div class="text-muted">Copyright &copy; Your Website 2023</div>
+						<div>
+							<a href="#">Privacy Policy</a>
+							&middot;
+							<a href="#">Terms &amp; Conditions</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script src="js/scripts.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+	<script src="assets/demo/chart-area-demo.js"></script>
+	<script src="assets/demo/chart-bar-demo.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+		crossorigin="anonymous"></script>
+	<script src="js/datatables-simple-demo.js"></script>
+	<!--여기 까지가 헤더안에 있음-->
+
+	<!-- JavaScript 코드 -->
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4abdb80406262cf828aa65098fbf2578"></script>
+
+	<!-- Bootstrap JS 및 기타 스크립트 -->
+	<!-- Bootstrap JS -->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+	<!-- Font Awesome JS -->
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		// 지도에 폴리곤으로 표시할 영역데이터 배열입니다 
+
+
+		/* 1. JSON 파일을 읽어들여 areas 배열을 채워넣는 작업 */
+		var areas = []; // areas 변수를 먼저 정의합니다.
+		// 1) getJSON도 ajax 메소드와 같이 async(비동기) 방식으로 동작하는데, 순차실행을 위해 이걸 강제로 sync 방식으로 동작하도록 함.
+		$.ajaxSetup({
+			async: false
+		});
+
+		$.getJSON("seoul_municipalities_geo_simple.json", function (geojson) {
+			var units = geojson.features; // 파일에서 key값이 "features"인 것의 value를 통으로 가져옴(이것은 여러지역에 대한 정보를 모두 담고있음)	
+			$.each(units, function (index, unit) { // 1개 지역씩 꺼내서 사용함. val은 그 1개 지역에 대한 정보를 담음
+
+				var name = ''; // 지역 이름
+
+				// areas = unit.geometry.coordinates; // 1개 지역의 영역을 구성하는 도형의 모든 좌표 배열을 가져옴 
+				name = unit.properties.name; // 1개 지역의 이름을 가져옴
+
+				var ob = new Object();
+				ob.name = name;
+				ob.path = [];
+
+				$.each(unit.geometry.coordinates[0], function (index, coordinate) { //.geometry.coordinates[]로 한번 더 감싸져 있어서 index 0번의 것을 꺼내야 배열을 접근가능.
+					ob.path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
+				});
+
+				areas[index] = ob;
+				//console.log(areas[index])
+			});//each
+		});//getJSON
+
+
+		/* 2. 지도 띄우기 */
+
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			mapOption = {
+				center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+				level: 9 // 지도의 확대 레벨
+			};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption),
+			customOverlay = new kakao.maps.CustomOverlay({}),
+			infowindow = new kakao.maps.InfoWindow({removable: true});
+
+		/* 3. 폴리곤 도형을 지도위에 띄우고 마우스 이벤트 붙이기 */
+
+		// 지도에 영역데이터를 폴리곤으로 표시합니다 
+		for (var i = 0, len = areas.length; i < len; i++) {
+			displayArea(areas[i]);
+		}
+
+
+		// 다각형을 생상하고 이벤트를 등록하는 함수입니다
+		function displayArea(area) {
+
+			// 다각형을 생성합니다 
+			var polygon = new kakao.maps.Polygon({
+				map: map, // 다각형을 표시할 지도 객체
+				path: area.path,
+				strokeWeight: 2,
+				strokeColor: '#004c80',
+				strokeOpacity: 0.8,
+				fillColor: '#fff',
+				fillOpacity: 0.7
+			});
+
+			// 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
+			// 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
+			kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
+				polygon.setOptions({fillColor: '#09f'});
+
+				customOverlay.setContent('<div class="area">' + area.name + '</div>');
+
+				customOverlay.setPosition(mouseEvent.latLng);
+				customOverlay.setMap(map);
+			});
+
+			// 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다 
+			kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
+
+				customOverlay.setPosition(mouseEvent.latLng);
+			});
+
+			// 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
+			// 커스텀 오버레이를 지도에서 제거합니다 
+			kakao.maps.event.addListener(polygon, 'mouseout', function () {
+				polygon.setOptions({fillColor: '#fff'});
+				customOverlay.setMap(null);
+			});
+
+			kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
+				var content = '<div class="info">' +
+					'   <div class="title">' + area.name + '</div>' +
+					'   <div class="size">총 면적 : 약 ' + Math.floor(polygon.getArea()) + ' m<sup>2</sup></div>' +
+					'</div>';
+				document.getElementById('areaName').value = area.name;
+
+				infowindow.setContent(content);
+				infowindow.setPosition(mouseEvent.latLng);
+				infowindow.setMap(map);
+			});
+		}
+
+
+
+	</script>
+
+	<script>
+		$(document).ready(function () {
+			// 로그아웃 버튼 클릭 이벤트 처리
+			$('#navdrop li #logout').click(function () {
+				// 로그아웃 API 호출
+				$.ajax({
+					type: 'POST',
+					url: 'http://localhost:8080/api/user/logout',
+					success: function (response) {
+						// 로그아웃 성공 시 작업
+						console.log(response);
+						alert('로그아웃되었습니다.');
+						// 여기에 추가 작업을 할 수 있습니다. 예를 들어 로그인 페이지로 리디렉션 등
+					},
+					error: function (xhr, status, error) {
+						// 로그아웃 실패 시 작업
+						console.error('로그아웃 실패:', error);
+						// 실패 메시지 표시 또는 다른 작업을 수행할 수 있습니다.
+					}
+				});
+			});
+		});
+
+	</script>
+	<!-- flask에서 업종리스트가져오기 -->
+
+	<script>
+		// 선택된 업종을 저장하는 변수
+		let selectedCategories = [];
+		// 현재 열려 있는 드롭다운의 아이디를 저장하는 변수
+		let currentDropdown = null;
+
+		function toggleDropdown(category, dropdownId) {
+			const dropdown = document.getElementById(dropdownId);
+
+			// 현재 열려 있는 드롭다운이 있으면 닫기
+			if (currentDropdown !== null && currentDropdown !== dropdownId) {
+				document.getElementById(currentDropdown).style.display = 'none';
+			}
+
+			// 현재 열려 있는 드롭다운 설정
+			currentDropdown = dropdownId;
+
+			// 드롭다운 토글
+			if (dropdown.style.display === 'block') {
+				dropdown.style.display = 'none';
+			} else {
+				fetch('/api/industry?category=' + encodeURIComponent(category), {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						category: category
+					})
+				})
+					.then(response => response.json())
+					.then(data => {
+						dropdown.innerHTML = data.map(item => `<button type="button" class="btn btn-secondary" onclick="selectCategory('${item}')">${item}</button>`).join('');
+						dropdown.style.display = 'block';
+					})
+					.catch(error => console.error('에러 발생:', error));
+			}
+		}
+
+		// 카테고리 선택 함수
+		function selectCategory(category) {
+			selectedCategories.push(category);
+			document.getElementById('selectedCategory').value = selectedCategories.join(', ');
+		}
+
+		// 카테고리 선택 함수
+		function selectCategory(category) {
+			selectedCategories.push(category);
+			document.getElementById('selectedCategory').value = selectedCategories.join(', ');
+			// 선택된 업종을 input 요소에 저장
+			document.getElementById('IndustryName').value = category;
+		}
+
+		// 기존 JavaScript 코드 블록
+
+		// 선택된 업종을 저장하는 변수
+		let selectedCategory = null;
+
+		// 카테고리 선택 함수
+		function selectCategory(category) {
+			selectedCategory = category;
+			document.getElementById('selectedCategory').value = selectedCategory;
+			// 선택된 업종을 input 요소에 저장
+			document.getElementById('IndustryName').value = selectedCategory;
+			// 선택된 업종 초기화
+			selectedCategories = [];
+		}    
+	</script>
+	<!-- 통계 api호출 -->
+	<script>
+		var myChart; // 전역 변수로 Chart 객체 선언
+
+		function submitForm() {
+			const areaName = document.getElementById('areaName').value;
+			const selectedCategory = document.getElementById('selectedCategory').value;
+			const url = `/api/analysis?region=${encodeURIComponent(areaName)}&industry=${encodeURIComponent(selectedCategory)}`;
+
+			// Fetch API를 사용하여 데이터 가져오기
+			fetch(url, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('서버 응답 오류');
+					}
+					return response.json(); // 서버 응답을 JSON 형식으로 변환
+				})
+				.then(data => {
+					console.log('서버 응답:', data); // 서버 응답 확인
+					drawChart(data); // 데이터를 기반으로 그래프 그리기
+				})
+				.catch(error => {
+					console.error('에러 발생:', error); // 오류 메시지 출력
+				});
+		}
+
+
+	</script>
+	<script>
+		// 로그인 상태를 확인하는 함수
+		function isLoggedIn() {
+			// 클라이언트의 모든 쿠키를 가져옵니다.
+			console.log('###########');
+			const cookies = document.cookie.split(';');
+
+			// 쿠키에서 로그인 상태를 나타내는 특정 쿠키를 찾습니다.
+			for (let i = 0; i < cookies.length; i++) {
+				const cookie = cookies[i].trim();
+				if (cookie.startsWith("Set-Cookie")) {
+					console.log(cookie)
+					return true; // 로그인 상태
+				}
+			}
+			return false; // 로그아웃 상태
+		}
+
+		// 로그아웃 함수
+		function logout() {
+			// 로그아웃 요청을 보내고, 성공시에만 링크를 변경합니다.
+			fetch('/api/user/logout', {
+				method: 'POST'
+			}).then(function (response) {
+				if (response.ok) {
+					document.getElementById('logout').style.display = 'none'; // 로그아웃 링크 숨김
+					document.getElementById('login').style.display = 'block'; // 로그인 링크 표시
+				}
+			});
+		}
+		document.addEventListener('DOMContentLoaded', function () {
+			try {
+				// 오류가 발생할 수 있는 코드
+				console.log("#########");
+
+				// isLoggedIn() 함수 호출
+				if (isLoggedIn()) {
+					document.getElementById('logout').style.display = 'block';
+					document.getElementById('login').style.display = 'none';
+				} else {
+					document.getElementById('logout').style.display = 'none';
+					document.getElementById('login').style.display = 'block';
+				}
+			} catch (error) {
+				// 오류 발생 시 처리
+				console.error("An error occurred:", error);
+			}
+
+			// 각 링크 요소 가져오기
+			const mypageLink = document.querySelector('a[href="mypage_viewer"]');
+			const seoulStatisticsLink = document.querySelector('a[data-bs-target="#collapseLayouts"]');
+			const communityLink = document.querySelector('a[data-bs-target="#collapsePages"]');
+			const inquiryLink = document.querySelector('a[href="charts.html"]');
+
+			// 클릭 이벤트 핸들러 설정
+			mypageLink.addEventListener('click', function (event) {
+				// 로그인 상태를 확인하는 함수 호출
+				if (!isLoggedIn()) {
+					// 로그인 상태가 아닌 경우, 로그인 페이지로 이동
+					alert('로그인해주세요.');
+					window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
+					event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
+				}
+			});
+
+			seoulStatisticsLink.addEventListener('click', function (event) {
+				// 로그인 상태를 확인하는 함수 호출
+				if (!isLoggedIn()) {
+					// 로그인 상태가 아닌 경우, 로그인 페이지로 이동
+					alert('로그인해주세요.');
+					window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
+					event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
+				}
+			});
+
+			communityLink.addEventListener('click', function (event) {
+				// 로그인 상태를 확인하는 함수 호출
+				if (!isLoggedIn()) {
+					// 로그인 상태가 아닌 경우, 로그인 페이지로 이동
+					alert('로그인해주세요.');
+					window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
+					event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
+				}
+			});
+
+			inquiryLink.addEventListener('click', function (event) {
+				// 로그인 상태를 확인하는 함수 호출
+				if (!isLoggedIn()) {
+					// 로그인 상태가 아닌 경우, 로그인 페이지로 이동
+					alert('로그인해주세요.');
+					window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
+					event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
+				}
+			});
+		});
+
+
+
+
+
+	</script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

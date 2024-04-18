@@ -12,13 +12,14 @@
             background-color: #f0f0f0;
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
         .container {
             max-width: 800px;
             margin: 100px auto;
             background-color: #fff;
             padding: 30px 20px;
-			padding-bottom: 80px;
+            padding-bottom: 80px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -31,73 +32,143 @@
         .info p {
             margin-bottom: 10px;
         }
-		/* 사각형 창 스타일링 */
-       .rectangle {
-           border: 1px solid #ccc;
-           padding: 10px;
-           border-radius: 5px;
-           background-color: #f9f9f9;		
-		}
-		   /* 버튼 스타일링 */
-      .button1 {
-          position: absolute;
-          bottom: 125px; /* 수정 */
-          right: 360px; /* 수정 */
-          padding: 10px 20px;
-          background-color: #007bff;
-          color: #fff;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-		}
-		
-		.button2 {
-          position: absolute;
-          bottom: 125px; /* 수정 */
-          left: 360px; /* 수정 */
-          padding: 10px 20px;
-          background-color: rgb(255, 0, 0);
-          color: #fff;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-		}
-		
-		.button3 {
-          position: absolute;
-          bottom: 125px; /* 수정 */
-          right: 480px; /* 수정 */
-          padding: 10px 20px;
-          background-color: rgb(0, 128, 255);
-          color: #fff;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-		}
-	
+        /* 사각형 창 스타일링 */
+        .rectangle {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        /* 버튼 스타일링 */
+        .button1 {
+            position: absolute;
+            bottom: 125px; /* 수정 */
+            right: 360px; /* 수정 */
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button2 {
+            position: absolute;
+            bottom: 125px; /* 수정 */
+            left: 360px; /* 수정 */
+            padding: 10px 20px;
+            background-color: rgb(255, 0, 0);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button3 {
+            position: absolute;
+            bottom: 125px; /* 수정 */
+            right: 480px; /* 수정 */
+            padding: 10px 20px;
+            background-color: rgb(0, 128, 255);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* 모달 창 스타일 */
+        .modal {
+            display: none; /* 모달 숨김 */
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5); /* 배경 어둡게 처리 */
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 모달 내용 스타일 */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 모달 창이 화면 중앙에 위치하도록 조정 */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+        }
+
+        /* 닫기 버튼 스타일 */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
+
 </head>
 <body>
     <div class="container">
         <h1>마이페이지</h1>
         <div class="info" id="userInfo">
-			<div class = 'rectangle'> 
-				<p><strong>회원 이름:</strong> <span id="name"></span></p>		
-				<p><strong>회원 아이디:</strong> <span id="id"></span></p>	
-				<p><strong>회원 이메일:</strong> <span id="email"></span></p>	
-				<p><strong>컨설팅 쿠폰개수:</strong> <span id="cupons"></span></p>
-				<p><strong>회원 컨설팅 기록 여부:</strong> <span id="isconsult"></span></p>
-				<p><strong>비밀번호 질문:</strong> <span id="questionid"></span></p>
-				<p><strong>비밀번호 질문에 대한 답:</strong> <span id="pwanswer"></span></p>
-				<button class="button2" id="withdrawButton" >회원 탈퇴하기</button>
-				<button class="button1" id="editButton">수정하기</button>
-				<button class="button3" id="mylistButton">내 게시글 목록 조회</button>
-	        </div>
-		</div>	
+            <div class='rectangle'>
+                <p><strong>회원 이름:</strong> <span id="name"></span></p>
+                <p><strong>회원 아이디:</strong> <span id="id"></span></p>
+                <p><strong>회원 이메일:</strong> <span id="email"></span></p>
+                <p><strong>컨설팅 쿠폰개수:</strong> <span id="cupons"></span></p>
+                <p><strong>회원 컨설팅 기록 여부:</strong> <span id="isconsult"></span></p>
+                <p><strong>비밀번호 질문:</strong> <span id="questionid"></span></p>
+                <p><strong>비밀번호 질문에 대한 답:</strong> <span id="pwanswer"></span></p>
+                <button class="button2" id="withdrawButton" >회원 탈퇴하기</button>
+                <button class="button1" id="editButton">수정하기</button>
+                <button class="button3" id="mylistButton">내 게시글 목록 조회</button>
+            </div>
+        </div>
     </div>
-
-    <!-- JavaScript 코드 -->
+    <!-- 모달 창 -->
+    <div id="modalContainer" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>회원탈퇴</h1>
+            <p>회원탈퇴를 진행하시겠습니까?</p>
+            <button id="withdrawBtn">탈퇴하기</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        $(document).ready(function() {
+            var originalContainerStyle;
+
+            $("#withdrawButton").click(function() {
+                // 모달이 열리기 전에 원래 컨테이너의 스타일을 저장
+                console.log('버튼 눌림');
+                originalContainerStyle = $(".container").attr("style");
+
+                // 모달을 열기
+                $(".modal").css("display", "block");
+
+            });
+
+            $(".close").click(function() {
+                // 모달이 닫힐 때 원래 컨테이너의 스타일을 복원
+                $(".container").attr("style", originalContainerStyle);
+
+                // 모달을 닫기
+                $(".modal").css("display", "none");
+            });
+        });
+    </script>
+    <script>
+        <!-- JavaScript 코드 -->
+
+
         // 서버로부터 데이터를 가져오는 함수
         function fetchData() {
             fetch('/api/mypage', {
@@ -115,31 +186,31 @@
             })
             .then(data => {
                 // 받은 데이터를 HTML에 채워 넣습니다.
-				document.getElementById('id').textContent = data.cusId;
-				document.getElementById('name').textContent = data.cusName;
-				document.getElementById('cupons').textContent = data.cusCupons;
-				document.getElementById('pwanswer').textContent = data.cusPwAnswer;
-				document.getElementById('isconsult').textContent = data.cusIsConsult ? 'O' : 'X';
-				document.getElementById('email').textContent = data.cusEmail;
-				let question;
-	              switch (data.cusQuestionId) {
-	                  case 1:
-	                      question = '어릴적 살았던 동네는?';
-	                      break;
-	                  case 2:
-	                      question = '살면서 가장 기억에 남는 사람 이름은?';
-	                      break;
-	                  case 3:
-	                      question = '어릴적 살았던 동네는?';
-	                      break;
-	                  case 4:
-	                      question = '제일 좋아하는 음식은?';
-	                      break;
-	                  case 5:
-	                      question = '졸업한 초등학교 이름은?';
-	                      break;
-	                  default:
-	                      question = '질문이 없습니다.';
+                document.getElementById('id').textContent = data.cusId;
+                document.getElementById('name').textContent = data.cusName;
+                document.getElementById('cupons').textContent = data.cusCupons;
+                document.getElementById('pwanswer').textContent = data.cusPwAnswer;
+                document.getElementById('isconsult').textContent = data.cusIsConsult ? 'O' : 'X';
+                document.getElementById('email').textContent = data.cusEmail;
+                let question;
+                  switch (data.cusQuestionId) {
+                      case 1:
+                          question = '어릴적 살았던 동네는?';
+                          break;
+                      case 2:
+                          question = '살면서 가장 기억에 남는 사람 이름은?';
+                          break;
+                      case 3:
+                          question = '어릴적 살았던 동네는?';
+                          break;
+                      case 4:
+                          question = '제일 좋아하는 음식은?';
+                          break;
+                      case 5:
+                          question = '졸업한 초등학교 이름은?';
+                          break;
+                      default:
+                          question = '질문이 없습니다.';
               }
               document.getElementById('questionid').textContent = question;
 
@@ -152,22 +223,50 @@
 
         // 페이지 로드 시 데이터를 가져옵니다.
         fetchData();
-		
-        document.getElementById('withdrawButton').addEventListener('click', function() {
-        	console.log('회원 탈퇴하기 버튼 클릭됨');		
-			window.location.href = 'withdrawl';
 
-		});
-		
-		document.getElementById('editButton').addEventListener('click', function() {
-			console.log('수정하기 버튼 클릭됨');
-			window.location.href = 'mypage_editor';
+       // document.getElementById('withdrawButton').addEventListener('click', function() {
+        //  console.log('회원 탈퇴하기 버튼 클릭됨');
+            //window.location.href = 'withdrawl';
+            //var modal = document.getElementById('myModal');
+              // $(".modal").css("display", "block");
+
+
+        //});
+
+        document.getElementById('editButton').addEventListener('click', function() {
+            console.log('수정하기 버튼 클릭됨');
+            window.location.href = 'mypage_editor';
        });
-	   
-	   document.getElementById('mylistButton').addEventListener('click', function() {
-   			console.log('내 게시글 목록 조회 버튼 클릭됨');
-   			//window.location.href = 'mypage_editor';
+
+       document.getElementById('mylistButton').addEventListener('click', function() {
+            console.log('내 게시글 목록 조회 버튼 클릭됨');
+            //window.location.href = 'mypage_editor';
       });
+
+        // 회원 탈퇴 모달에서 탈퇴 버튼 클릭 시 이벤트 처리
+        document.getElementById("withdrawBtn").addEventListener("click", function() {
+            // 회원 탈퇴 요청을 보낼 URL
+            var url = "http://localhost:8080/api/user";
+
+            // XMLHttpRequest 객체를 사용하여 DELETE 요청을 보냄
+            var xhr = new XMLHttpRequest();
+            xhr.open('DELETE', url);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log('회원 탈퇴 성공:', xhr.responseText);
+                    alert('회원 탈퇴가 완료되었습니다.');
+                    window.location.href = '/';
+                } else {
+                    console.error('회원 탈퇴 실패:', xhr.statusText);
+                    alert('회원 탈퇴에 실패했습니다.');
+                }
+            };
+            xhr.onerror = function() {
+                console.error('회원 탈퇴 요청 실패');
+            };
+            xhr.send();
+        });
     </script>
 </body>
 </html>

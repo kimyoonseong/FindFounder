@@ -175,7 +175,7 @@ public class CustomerController {
 //       res.setToken("");
        
        Cookie cookie = new Cookie("Set-Cookie", token);
-	   cookie.setHttpOnly(true); // JavaScript를 통한 접근 방지
+	   cookie.setHttpOnly(false); // JavaScript를 통한 접근 방지
        cookie.setPath("/"); // 전체 경로에 대해 쿠키 유효
        cookie.setMaxAge(60*60*60);
        // 쿠키의 보안 설정 (HTTPS 환경에서만 쿠키를 전송하도록 설정)
@@ -228,7 +228,7 @@ public class CustomerController {
 //                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
                     
             })
-	public ResponseEntity<CommonRes> withdraw(
+	public ResponseEntity<CommonRes> withdraw(HttpServletRequest request, HttpServletResponse response,
 //				 @RequestHeader("X-AUTH-TOKEN") String jwtToken
 				  @CookieValue(name = "Set-Cookie", required = false) String jwtToken) throws Exception {
 		
@@ -236,6 +236,19 @@ public class CustomerController {
 		int cusCode = jwtUtil.getCusCode(jwtToken);
 		
 		CommonRes res = customerService.withdraw(cusCode);
+		
+		Cookie[] cookies = request.getCookies();
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("Set-Cookie")) {
+                	System.out.println("쿠키찾음");
+                    cookie.setMaxAge(0);
+                    cookie.setPath("/");
+                    response.addCookie(cookie);
+                }
+            }
+        }
 		return ResponseEntity.ok(res);
 		
 	}
