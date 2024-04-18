@@ -3,6 +3,7 @@
 <html>
     <head>
         <style>
+     
             .area {
                 position: absolute;
                 background: #fff;
@@ -179,7 +180,7 @@
                         <!-- 그래프를 그릴 Canvas 요소 -->
                                 <!-- 그래프를 그릴 Canvas 요소 -->
                                 <div class="row mt-5">
-                                    <div class="col-xl-6">
+                                    <!--<div class="col-xl-6">
                                         <div class="card mb-4">
                                             <div class="card-header">
                                                 <i class="fas fa-chart-area me-1"></i>
@@ -189,7 +190,8 @@
                                                 <canvas id="myAreaChart" width="100%" height="40"></canvas>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
+                                    
                                     <div class="col-xl-6">
                                         <div class="card mb-4">
                                             <div class="card-header">
@@ -201,9 +203,30 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="card-body">
+                                        <canvas id="myAreaChart" width="100%" height="40"></canvas>
+                                    </div>
+                               </div>     
+<!--                
+                                    <div class="card-body">
+                                        <canvas id="movingPeopleChart" width="100%" height="40"></canvas>
+                                    </div> -->
+                              
+                                <div class="row mt-5">
+                                    <div class="col-xl-6">
+                                        <div class="card mb-4">
+                                         
+                                                <!-- <canvas id="myAreaChart" width="400" height="400"></canvas> -->
+                                                <canvas id="movingPeopleChart" width="100%" height="40"></canvas>
+                                                <canvas id="movingPeopleChart3" width="100%" height="80"></canvas>
+                                                <canvas id="movingPeopleChart2" width="100%" height="80"s></canvas>
+                                          
+                                        </div>
+                                    </div>
                                 </div>
-                                <canvas id="myAreaChart" width="400" height="400"></canvas>
-                    </div>
+                               
+                      
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
@@ -224,6 +247,7 @@
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/moving_people_chart.js"></script>
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
@@ -338,7 +362,9 @@
                                         '   <div class="size">총 면적 : 약 ' + Math.floor(polygon.getArea()) + ' m<sup>2</sup></div>' +
                                         '</div>';
                             document.getElementById('areaName').value = area.name;
- 
+                            // let weekendPieChart = null;
+                            // let weekdayBarChart = null;
+                            // let weekendBarChart = null;        
                             infowindow.setContent(content); 
                             infowindow.setPosition(mouseEvent.latLng); 
                             infowindow.setMap(map);
@@ -505,8 +531,14 @@
                                 return response.json(); // 서버 응답을 JSON 형식으로 변환
                             })
                             .then(data => {
-                                console.log('서버 응답:', data); // 서버 응답 확인
-                                drawChart(data); // 데이터를 기반으로 그래프 그리기
+                                // industry_life 데이터 추출
+                                const industryLifeData = data.industry_life;
+
+                                // seoul_moving_people 데이터 추출
+                                const seoulMovingPeopleData = data.seoul_moving_people;
+                                console.log('서버 응답:', industryLifeData); // 서버 응답 확인
+                                drawChart(industryLifeData); // 데이터를 기반으로 그래프 그리기
+                                drawChart_moving(seoulMovingPeopleData);
                             })
                             .catch(error => {
                                 console.error('에러 발생:', error); // 오류 메시지 출력

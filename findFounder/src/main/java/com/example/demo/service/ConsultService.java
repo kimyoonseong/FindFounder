@@ -161,10 +161,10 @@ public class ConsultService {
 	        String SearchString="{\"preferIndustry\": \"" + industry + "\", \"preferLoc\": \"" + region + "\"}";
 	        HttpEntity<String> entity = new HttpEntity<>(SearchString, headers);
 	     // REST 호출
-	        String response = restTemplate.postForObject(url, entity, String.class);
+	        //String response = restTemplate.postForObject(url, entity, String.class);
 
 	        // 응답 반환
-	        return response;
+	        return restTemplate.postForObject(url, entity, String.class);
 	}
 	//2024 04 03 쿠폰 구매
 	@Transactional
