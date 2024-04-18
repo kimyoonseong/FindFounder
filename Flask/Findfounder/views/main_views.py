@@ -7,7 +7,7 @@ from socket import *
 from Findfounder.views.Stat  import get_statistics
 from Findfounder.views.Industry import read_industry_from_csv
 from Findfounder.views.SeoulRegion import read_region_from_csv
-#from Findfounder.views.Expend import get_expendstatic
+from Findfounder.views.SeoulMovingPeople import get_people
 import requests
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -52,11 +52,20 @@ def receive_string():
         
         #expend_amount=get_expendstatic(prefer_loc_value)
         industry_life = get_statistics(prefer_loc_value)
-        print(industry_life)
+        #print(industry_life)
+        seoul_moving_people=get_people(prefer_loc_value)
+
+
+ # 두 개의 딕셔너리를 하나로 합치기
+        combined_data = {
+                "industry_life": industry_life,
+                "seoul_moving_people": seoul_moving_people
+        }
         #print(prefer_loc_value)
         #Spring으로 response 전달
-        return industry_life
-
+        #return combined_data
+        # 합쳐진 데이터를 JSON 형식으로 반환
+        return jsonify(combined_data)
 
 if __name__ == '__main__':
     bp.run('0.0.0.0', debug=True)
