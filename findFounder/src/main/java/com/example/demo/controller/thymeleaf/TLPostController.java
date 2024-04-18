@@ -2,6 +2,7 @@ package com.example.demo.controller.thymeleaf;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class TLPostController {
@@ -21,5 +22,13 @@ public class TLPostController {
 	public String getPostDetail() {
 		return "postDetail";
 	}
+	
+	@GetMapping("post-update")
+	public String updatePost() {
+		return "postUpdate";
+	}
+	
+	
+	
 }
  

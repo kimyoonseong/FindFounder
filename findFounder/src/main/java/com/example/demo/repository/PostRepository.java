@@ -26,10 +26,10 @@ public interface PostRepository extends JpaRepository<Post, Integer>{
 	@Query("select p from Post p join  p.customer order by p.postId DESC")
     List<Post> findAllFetchJoin();
 	
-	@Query("select p from Post p join fetch p.customer where p.postTitle like %:keyword%")
+	@Query("select p from Post p join fetch p.customer where p.postTitle like %:keyword% order by p.postId DESC")
     List<Post> findAllByPostTitleContainingFetchJoin(@Param("keyword") String keyword);
 	
-	@Query("select p from Post p join fetch p.customer where p.customer = :customer")
+	@Query("select p from Post p join fetch p.customer where p.customer = :customer order by p.postId DESC")
     List<Post> findAllByPostCustomerFetchJoin(@Param("customer") Customer customer);
 	
 	void deleteAllByCustomer_CusCode(int cusCode);

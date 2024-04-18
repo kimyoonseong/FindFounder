@@ -16,6 +16,8 @@
             <p id="postContent">게시글 내용이 여기에 들어갑니다.</p>
             <p><strong>조회수:</strong> <span id="postViews">0</span></p>
             <p><strong>게시글번호:</strong> <span id="postId">0</span></p>
+            <button id="editPost" class="btn btn-primary">수정</button>
+    		<button id="deletePost" class="btn btn-danger">삭제</button>
             <button id="postLike" class="btn btn-success">좋아요 <span id="likeCount">0</span></button>
             <button id="postDislike" class="btn btn-danger">싫어요 <span id="dislikeCount">0</span></button>
         </div>
@@ -46,7 +48,7 @@ $(document).ready(
 	            $.ajax(
           		{
 	                type: 'GET',
-	                url: url, // 로그인 엔드포인트 URL
+	                url: url, 
 	                contentType: 'application/json',
 	                
 	                success: function(response) {
@@ -224,6 +226,38 @@ document.getElementById('postDislike').addEventListener('click', function() {
     });
 });
 </script>
+<script>
+document.getElementById('editPost').addEventListener('click', function() {
+    var postId = document.getElementById('postId').textContent; // 게시글 ID 가져오기
+    window.location.href = '/post-update?postid=' + postId; // 게시글 수정 페이지로 리다이렉트
+});
+
+
+document.getElementById('deletePost').addEventListener('click', function() {
+    var postId = document.getElementById('postId').textContent;
+    if (confirm("이 게시글을 삭제하시겠습니까?")) {
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/board/' + postId,
+            contentType: 'application/json',
+            success: function(response) {
+            	if(response.code == 200){
+                	alert('게시글이 삭제되었습니다.');
+                	window.location.href = 'post-list'; // 홈으로 리다이렉트
+            	}
+            	if(response.code == 300){
+            		alert('게시글 작성자만 삭제가능합니다.');
+            		location.reload();
+            	}
+            },
+            error: function() {
+                alert('게시글 삭제에 실패했습니다.');
+            }
+        });
+    }
+});
+</script>
+
 </body>
 
 </html>

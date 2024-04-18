@@ -142,6 +142,7 @@ public class PostService {
 		
 		int start = (int) pageRequest.getOffset();
 		int end = Math.min((start + pageRequest.getPageSize()), postList.size());
+		System.out.println("전체서비스" + start + "end" + end);
 		Page<PostDetailDto> ListPage = new PageImpl<>(postList.subList(start, end), pageRequest, postList.size());
 
 		return ListPage;
@@ -149,9 +150,29 @@ public class PostService {
 	
 	
 	// 게시글 검색
-	@Transactional
-	public List<Post> getPostListByKeyword(String keyword){
-		return postRepo.findAllByPostTitleContainingFetchJoin(keyword);
+	@Transactional(readOnly = true)
+	public Page<PostDetailDto> getPostListByKeyword(int page, String keyword){
+		Pageable pageRequest = PageRequest.of(page, 5, Direction.DESC, "postDate");
+		List<Post> posts = postRepo.findAllByPostTitleContainingFetchJoin(keyword);
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		List<PostDetailDto> postList = new ArrayList<PostDetailDto>();
+		for(Post post : posts) {
+			PostDetailDto dto = PostDetailDto.builder()
+								.postTitle(post.getPostTitle())
+								.postLike(post.getPostLike())
+								.postViews(post.getPostViews())
+								.writer(post.getCustomer().getCusId())
+								.postDate(sdf1.format(post.getPostDate()))
+								.postId(post.getPostId())
+								.build();
+			postList.add(dto);
+		}
+		
+		int start = (int) pageRequest.getOffset();
+		int end = Math.min((start + pageRequest.getPageSize()), postList.size());
+		System.out.println("검색서비스 start : " + start + " end : " + end + " 검색결과 : " + posts.size() + " page :" + page+" keyword : " + keyword);
+		Page<PostDetailDto> ListPage = new PageImpl<>(postList.subList(start, end), pageRequest, postList.size());
+		return ListPage;
 	}
 	
 	
