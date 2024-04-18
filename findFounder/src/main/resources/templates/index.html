@@ -519,9 +519,104 @@
                                         
                     
                     
+                    <!--가영누나 로직  -->
+                    <script>
+                        // 로그인 상태를 확인하는 함수
+                        function isLoggedIn() {
+                            // 클라이언트의 모든 쿠키를 가져옵니다.
+                            console.log('###########');
+                            const cookies = document.cookie.split(';');
+                
+                            // 쿠키에서 로그인 상태를 나타내는 특정 쿠키를 찾습니다.
+                            for (let i = 0; i < cookies.length; i++) {
+                                const cookie = cookies[i].trim();
+                                if (cookie.startsWith("Set-Cookie")) {
+                                    console.log(cookie)
+                                    return true; // 로그인 상태
+                                }
+                            }
+                            return false; // 로그아웃 상태
+                        }
+                
+                        // 로그아웃 함수
+                        function logout() {
+                            // 로그아웃 요청을 보내고, 성공시에만 링크를 변경합니다.
+                            fetch('/api/user/logout', {
+                                method: 'POST'
+                            }).then(function (response) {
+                                if (response.ok) {
+                                    document.getElementById('logout').style.display = 'none'; // 로그아웃 링크 숨김
+                                    document.getElementById('login').style.display = 'block'; // 로그인 링크 표시
+                                }
+                            });
+                        }
+                        document.addEventListener('DOMContentLoaded', function () {
+                            try {
+                                // 오류가 발생할 수 있는 코드
+                                console.log("#########");
+                
+                                // isLoggedIn() 함수 호출
+                                if (isLoggedIn()) {
+                                    document.getElementById('logout').style.display = 'block';
+                                    document.getElementById('login').style.display = 'none';
+                                } else {
+                                    document.getElementById('logout').style.display = 'none';
+                                    document.getElementById('login').style.display = 'block';
+                                }
+                            } catch (error) {
+                                // 오류 발생 시 처리
+                                console.error("An error occurred:", error);
+                            }
+                
+                            // 각 링크 요소 가져오기
+                            const mypageLink = document.querySelector('a[href="mypage_viewer"]');
+                            const seoulStatisticsLink = document.querySelector('a[data-bs-target="#collapseLayouts"]');
+                            const communityLink = document.querySelector('a[data-bs-target="#collapsePages"]');
+                            const inquiryLink = document.querySelector('a[href="charts.html"]');
+                
+                            // 클릭 이벤트 핸들러 설정
+                            mypageLink.addEventListener('click', function (event) {
+                                // 로그인 상태를 확인하는 함수 호출
+                                if (!isLoggedIn()) {
+                                    // 로그인 상태가 아닌 경우, 로그인 페이지로 이동
+                                    alert('로그인해주세요.');
+                                    window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
+                                    event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
+                                }
+                            });
+                
+                            seoulStatisticsLink.addEventListener('click', function (event) {
+                                // 로그인 상태를 확인하는 함수 호출
+                                if (!isLoggedIn()) {
+                                    // 로그인 상태가 아닌 경우, 로그인 페이지로 이동
+                                    alert('로그인해주세요.');
+                                    window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
+                                    event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
+                                }
+                            });
+                
+                            communityLink.addEventListener('click', function (event) {
+                                // 로그인 상태를 확인하는 함수 호출
+                                if (!isLoggedIn()) {
+                                    // 로그인 상태가 아닌 경우, 로그인 페이지로 이동
+                                    alert('로그인해주세요.');
+                                    window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
+                                    event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
+                                }
+                            });
+                
+                            inquiryLink.addEventListener('click', function (event) {
+                                // 로그인 상태를 확인하는 함수 호출
+                                if (!isLoggedIn()) {
+                                    // 로그인 상태가 아닌 경우, 로그인 페이지로 이동
+                                    alert('로그인해주세요.');
+                                    window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
+                                    event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
+                                }
+                            });
+                        });
                     
-                    
-                    
+                    </script>
                     
                     
     </body>
