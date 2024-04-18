@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -51,4 +51,87 @@
 
 		   </script>
 	</head>
+</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원탈퇴</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+        /* 모달 창 스타일 */
+        .modal {
+            display: none; /* 모달 숨김 */
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* 모달 창 내용 스타일 */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto; /* 모달 창이 화면 중앙에 위치하도록 조정 */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+        }
+        
+        /* 닫기 버튼 스타일 */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>회원탈퇴</h1>
+            <p>회원탈퇴를 진행하시겠습니까?</p>
+            <button id="withdrawBtn">탈퇴하기</button>
+        </div>
+    </div>
+
+    <script>
+        // 모달 창을 닫는 함수
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        document.getElementById("withdrawBtn").addEventListener("click", function() {
+            // 모달 열기
+            document.getElementById('myModal').style.display = "block";
+        });
+
+        // 닫기 버튼에 이벤트 핸들러 추가
+        document.getElementsByClassName("close")[0].addEventListener("click", function() {
+            closeModal();
+        });
+
+        // 모달 외부 클릭 시 모달 닫기
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('myModal')) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
 </html>

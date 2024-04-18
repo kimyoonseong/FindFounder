@@ -51,5 +51,10 @@ public class TLCustomerController {
 	public String consulting_history() {
 		return "consulting_history";
 	}
+	
+	@GetMapping("/index2")
+	public String loginlogout() {
+		return "index2";
+	}
 
 }
