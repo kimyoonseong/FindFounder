@@ -56,5 +56,14 @@ public class TLCustomerController {
 	public String loginlogout() {
 		return "index2";
 	}
-
+	
+	@GetMapping("/main")
+	public String main() {
+		return "main";
+	}
+	
+	@GetMapping("/main2")
+	public String main2() {
+		return "main2";
+	}
 }
