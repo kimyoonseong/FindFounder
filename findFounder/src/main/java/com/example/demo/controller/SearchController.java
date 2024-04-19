@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -47,12 +48,14 @@ public class SearchController {
 	//2024-04-15 해당 카테고리 상권 가지고오기
 		@Operation(summary="Call Industry", description="업종 return")
 		@PostMapping("/api/industry")
+		@ResponseBody
 		public String Bring(@CookieValue(value = "Set-Cookie") String jwtToken,@RequestParam String category) {
 			return service.bringIndustry(category);
 		}
 //2024-04-15 해당 카테고리 상권 가지고오기
 		@Operation(summary="Call Region", description="행정동 return")
 		@PostMapping("/api/region")
+		@ResponseBody
 		public String Region(@CookieValue(value = "Set-Cookie") String jwtToken,@RequestParam String category) {
 			return service.bringRegion(category);
 		}

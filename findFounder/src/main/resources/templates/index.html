@@ -3,7 +3,15 @@
 <html>
     <head>
         <style>
-     
+            #mostPopularDay {
+                display: inline-block;
+                text-align: center;
+                width: 100%;
+            }
+            
+            .container.mt-5 {
+                display: none;
+            }
             .area {
                 position: absolute;
                 background: #fff;
@@ -138,8 +146,8 @@
                                     <input type="hidden" id="selectedCategory" name="selectedCategory">
                                     
                                     <!-- 제출 버튼 -->
-                                    <button type="button" onclick="submitForm()" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">선택 완료</button>
-
+                                    
+                                    <button id="submitButton" type="button" onclick="submitForm()" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">선택 완료</button>
                                 </form>
                             </div>
                             
@@ -148,7 +156,7 @@
                         </div>
             
                         <!-- 카드 섹션 -->
-                        <div class="container mt-5">
+                        <div class="container mt-8">
                             <div class="row justify-content-center">
                                 <div class="col-md-4">
                                     <div class="card mb-4 custom-card">
@@ -179,53 +187,67 @@
                         <!-- 차트 섹션 -->
                         <!-- 그래프를 그릴 Canvas 요소 -->
                                 <!-- 그래프를 그릴 Canvas 요소 -->
-                                <div class="row mt-5">
-                                    <!--<div class="col-xl-6">
+                                <div class="container mt-5">
+                                    <!-- 유동인구가 가장 많은 요일을 나타내는 요소 -->
+                                    <div class="row mt-3">
+                                        <div class="col-xl-12 text-center">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="card mb-4">
+                                                        <div class="card-body">
+                                                            <p class="fs-4"> 유동인구가 가장 많은 요일은 <span id="mostPopularDay" class="fw-bold"></span>입니다.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="card mb-4">
+                                                        <div class="card-body">
+                                                            <p class="fs-4">일일평균 유동인구는 <span id="totalPopulation" class="fw-bold"></span>명 입니다</p>
+                                                            
+                                                        </div>
+                                                        <div class="card-body text-end">
+                                                            <p class="fs-6 text-muted">*2023년 기준입니다</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="row mt-5">
+                                        <div class="col-xl-4">
+                                            <div class="card mb-4">
+                                                <canvas id="movingPeopleChart" width="100%" height="60"></canvas>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <div class="card mb-4">
+                                                <canvas id="movingPeopleChart3" width="100%" height="60"></canvas>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <div class="card mb-4">
+                                                <canvas id="movingPeopleChart2" width="100%" height="60"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
                                         <div class="card mb-4">
                                             <div class="card-header">
-                                                <i class="fas fa-chart-area me-1"></i>
-                                                Area Chart Example
+                                                <h5 class="card-title"><i class="fas fa-chart-bar me-1"></i> Bar Chart Example</h5>
+                                            </div>
+                                            <!-- 카드 내용 -->
+                                        </div>
+                                        <div class="card mb-4">
+                                            <div class="card-header">
+                                                <h5 class="card-title"><i class="fas fa-chart-bar me-1"></i> 분기별 운영 기간</h5>
                                             </div>
                                             <div class="card-body">
                                                 <canvas id="myAreaChart" width="100%" height="40"></canvas>
                                             </div>
                                         </div>
-                                    </div> -->
-                                    
-                                    <div class="col-xl-6">
-                                        <div class="card mb-4">
-                                            <div class="card-header">
-                                                <i class="fas fa-chart-bar me-1"></i>
-                                                Bar Chart Example
-                                            </div>
-                                            <div class="card-body">
-                                                <canvas id="myBarChart" width="100%" height="40"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card-body">
-                                        <canvas id="myAreaChart" width="100%" height="40"></canvas>
-                                    </div>
-                               </div>     
-<!--                
-                                    <div class="card-body">
-                                        <canvas id="movingPeopleChart" width="100%" height="40"></canvas>
-                                    </div> -->
-                              
-                                <div class="row mt-5">
-                                    <div class="col-xl-6">
-                                        <div class="card mb-4">
-                                         
-                                                <!-- <canvas id="myAreaChart" width="400" height="400"></canvas> -->
-                                                <canvas id="movingPeopleChart" width="100%" height="40"></canvas>
-                                                <canvas id="movingPeopleChart3" width="100%" height="80"></canvas>
-                                                <canvas id="movingPeopleChart2" width="100%" height="80"s></canvas>
-                                          
-                                        </div>
                                     </div>
                                 </div>
-                               
+                                
                       
                 </main>
                 <footer class="py-4 bg-light mt-auto">
@@ -258,9 +280,9 @@
        
             <!-- Bootstrap JS 및 기타 스크립트 -->
             <!-- Bootstrap JS -->
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+            <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script> -->
             <!-- Font Awesome JS -->
-            <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+            <!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
             
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -516,7 +538,11 @@
                             const areaName = document.getElementById('areaName').value;
                             const selectedCategory = document.getElementById('selectedCategory').value;
                             const url = `/api/analysis?region=${encodeURIComponent(areaName)}&industry=${encodeURIComponent(selectedCategory)}`;
-                    
+                                                    // 선택 완료 버튼을 누르면 숨겨진 요소를 보이도록 설정
+                            var elementsToShow = document.querySelectorAll('.container.mt-5');
+                            elementsToShow.forEach(function(element) {
+                                element.style.display = 'block';
+                            });
                             // Fetch API를 사용하여 데이터 가져오기
                             fetch(url, {
                                 method: 'GET',
@@ -539,6 +565,8 @@
                                 console.log('서버 응답:', industryLifeData); // 서버 응답 확인
                                 drawChart(industryLifeData); // 데이터를 기반으로 그래프 그리기
                                 drawChart_moving(seoulMovingPeopleData);
+
+                                // displayTotalPopulation(totalPopulation);
                             })
                             .catch(error => {
                                 console.error('에러 발생:', error); // 오류 메시지 출력
