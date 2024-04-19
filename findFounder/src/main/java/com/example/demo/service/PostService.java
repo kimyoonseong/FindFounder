@@ -142,7 +142,7 @@ public class PostService {
 		
 		int start = (int) pageRequest.getOffset();
 		int end = Math.min((start + pageRequest.getPageSize()), postList.size());
-		System.out.println("전체서비스" + start + "end" + end);
+		System.out.println("검색서비스 start : " + start + " end : " + end + " 검색결과 : " + posts.size() + " page :" + page);
 		Page<PostDetailDto> ListPage = new PageImpl<>(postList.subList(start, end), pageRequest, postList.size());
 
 		return ListPage;

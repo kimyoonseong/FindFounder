@@ -242,12 +242,10 @@ $(document).ready(function() {
     	var searchUrl = ""
     	if(!window.location.search){
     		
-    		searchUrl = "http://localhost:8080/api/board/search?"+"keyword="+keyword;
+    		
     		console.log("널널널"+searchUrl);
     	}
-    	else{
-    		searchUrl = "http://localhost:8080/api/board/search"+ window.location.search +"& keyword="+keyword;
-    	}
+    	searchUrl = "http://localhost:8080/api/board/search?"+"keyword="+keyword;
         
         $.ajax({
             type: 'GET',
