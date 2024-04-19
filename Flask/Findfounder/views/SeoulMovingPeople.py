@@ -19,7 +19,7 @@ def get_people(signgu_cd_nm):
 
     # 총 유동인구수 가져오기
     total_flpop = filtered_df['TOT_FLPOP_CO'].sum()
-
+    total_flpop_day= int(total_flpop/91)
 # 주중과 주말 유동인구를 합산
     weekday_flpop = filtered_df['MON_FLPOP_CO'].sum() + filtered_df['TUES_FLPOP_CO'].sum() + filtered_df['WED_FLPOP_CO'].sum() + filtered_df['THUR_FLPOP_CO'].sum() + filtered_df['FRI_FLPOP_CO'].sum()
     weekend_flpop = filtered_df['SAT_FLPOP_CO'].sum() + filtered_df['SUN_FLPOP_CO'].sum()
@@ -39,7 +39,7 @@ def get_people(signgu_cd_nm):
 
     # 결과를 JSON 형식으로 반환
     result = {
-        '전체유동인구': int(total_flpop),
+        '전체유동인구':total_flpop_day,
         '주중': weekday_ratio,
         '주말': weekend_ratio,
         '월요일': mon_ratio,

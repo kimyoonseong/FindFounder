@@ -8,6 +8,7 @@ from Findfounder.views.Stat  import get_statistics
 from Findfounder.views.Industry import read_industry_from_csv
 from Findfounder.views.SeoulRegion import read_region_from_csv
 from Findfounder.views.SeoulMovingPeople import get_people
+from Findfounder.views.SeoulUseMoney import get_use_money
 import requests
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -39,7 +40,7 @@ def receive_string():
         dto_json=request.get_json()
         #dto_json을 dumps메서드를 사용하여 response에 저장
         response=json.dumps(dto_json,ensure_ascii=False)
-
+        prefer_industry=dto_json.get('preferIndustry')
         prefer_loc_value = dto_json.get('preferLoc')
         print(prefer_loc_value)
    	    #Spring에서 받은 데이터를 출력해서 확인
@@ -54,7 +55,8 @@ def receive_string():
         industry_life = get_statistics(prefer_loc_value)
         #print(industry_life)
         seoul_moving_people=get_people(prefer_loc_value)
-
+        #
+        seoul_use_money=get_use_money(prefer_loc_value)
 
  # 두 개의 딕셔너리를 하나로 합치기
         combined_data = {

@@ -26,15 +26,6 @@ function drawChart_moving(seoulMovingPeopleData) {
         seoulMovingPeopleData['일요일']
     ];
 
-    // 전체 유동인구를 보여주는 부분
-    // const totalPopulationText = `해당 지역의 전체 유동인구수는 ${seoulMovingPeopleData['전체유동인구']}명 입니다.`;
-    // const totalPopulationElement = document.getElementById('totalPopulation');
-    // if (totalPopulationElement) {
-    //     totalPopulationElement.textContent = totalPopulationText;
-    // } else {
-    //     console.error('totalPopulationElement이 존재하지 않습니다.');
-    // }
-
     // 주말과 주중 비율을 보여주는 파이 그래프 그리기
     drawPieChart("movingPeopleChart", ['주말', '주중'], [weekendPercentage, weekdayPercentage]);
 
@@ -43,6 +34,12 @@ function drawChart_moving(seoulMovingPeopleData) {
     drawBarChart2('movingPeopleChart2', ['토', '일'], weekendData);
  
     
+    // 유동인구가 가장 많은 요일 표시
+    const mostPopularDay = findMostPopularDay(weekdayData.concat(weekendData));
+    drawMostPopularDay(mostPopularDay);
+
+    // 일일평균 유동인구 표시
+    displayTotalPopulation(totalPopulation);
 }
 
 // 파이 그래프 그리기 함수
@@ -60,6 +57,21 @@ function drawPieChart(chartId, labels, data) {
                 backgroundColor: ['#007bff', '#28a745'],
             }],
         },
+        options: {
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        var dataset = data.datasets[tooltipItem.datasetIndex];
+                        var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+                            return previousValue + currentValue;
+                        });
+                        var currentValue = dataset.data[tooltipItem.index];
+                        var percentage = Math.floor(((currentValue / total) * 100) + 0.5);  
+                        return percentage + "%";
+                    }
+                }
+            }
+        }
     });
 }
 
@@ -76,18 +88,20 @@ function drawBarChart(chartId, labels, data) {
         data: {
             labels: labels,
             datasets: [{
-                label: '유동인구',
+                label: '주중 유동인구',
                 data: data,
                 backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#f8f9fa'],
             }],
         },
         options: {
             scales: {
-                y: {
-                    beginAtZero: true,
-                    min:minData-1, // 최소값 설정
-                    max:maxData+1  // 최대값 설정
-                }
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        min: 12, // 최소값 설정
+                        max: 16 // 최대값 설정
+                    }
+                }]
             }
         }
     });
@@ -103,19 +117,60 @@ function drawBarChart2(chartId, labels, data) {
         data: {
             labels: labels,
             datasets: [{
-                label: '유동인구',
+                label: '주말 유동인구',
                 data: data,
                 backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#f8f9fa'],
             }],
         },
         options: {
             scales: {
-                y: {
-                    beginAtZero: true,
-                    min: 10, // 최소값 설정
-                    max:20  // 최대값 설정
-                }
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        min: 12, // 최소값 설정
+                        max: 16 // 최대값 설정
+                    }
+                }]
             }
         }
     });
+}
+
+// 유동인구가 가장 많은 요일을 찾는 함수
+function findMostPopularDay(data) {
+    // 요일과 그에 해당하는 유동인구 데이터를 묶음
+    const days = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'];
+    const dayData = days.map((day, index) => ({
+        day: day,
+        population: data[index]
+    }));
+
+    // 유동인구가 가장 많은 요일 찾기
+    let mostPopularDay = dayData[0];
+    for (let i = 1; i < dayData.length; i++) {
+        if (dayData[i].population > mostPopularDay.population) {
+            mostPopularDay = dayData[i];
+        }
+    }
+
+    return mostPopularDay.day;
+}
+
+// 유동인구가 가장 많은 요일을 표시하는 함수
+function drawMostPopularDay(day) {
+    const mostPopularDayElement = document.getElementById('mostPopularDay');
+    if (mostPopularDayElement) {
+        mostPopularDayElement.textContent = day;
+    } else {
+        console.error('mostPopularDayElement이 존재하지 않습니다.');
+    }
+}
+// 일일평균 유동인구 표시 함수
+function displayTotalPopulation(population) {
+    const totalPopulationElement = document.getElementById('totalPopulation');
+    if (totalPopulationElement) {
+        totalPopulationElement.textContent = population.toLocaleString(); // 적절한 형식으로 숫자 표시
+    } else {
+        console.error('totalPopulationElement이 존재하지 않습니다.');
+    }
 }
