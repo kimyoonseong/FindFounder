@@ -106,7 +106,7 @@ public class PostController {
 	public ResponseEntity<PostListRes> getPostsByKeyword(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @RequestParam(required = false, defaultValue =  "1") int page
 			, @RequestParam String keyword) {
-		
+		page--;
 		PostListRes res = PostListRes.builder().posts(postService.getPostListByKeyword(page, keyword)).build();
 		
 		return ResponseEntity.ok(res);
