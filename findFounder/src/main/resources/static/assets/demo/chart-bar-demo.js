@@ -44,3 +44,4 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 //     }
 //   }
 // });
+// 바 차트를 그리는 함수

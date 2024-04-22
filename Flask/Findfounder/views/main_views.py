@@ -9,6 +9,8 @@ from Findfounder.views.Industry import read_industry_from_csv
 from Findfounder.views.SeoulRegion import read_region_from_csv
 from Findfounder.views.SeoulMovingPeople import get_people
 from Findfounder.views.SeoulUseMoney import get_use_money
+from Findfounder.views.SeoulSimilarStore import get_similar
+from Findfounder.views.SeoulZipgack import get_zipgack
 import requests
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -52,19 +54,24 @@ def receive_string():
         #prefer_loc_value = json_data.get('preferLoc')
         
         #expend_amount=get_expendstatic(prefer_loc_value)
+        #운영 영업 개월
         industry_life = get_statistics(prefer_loc_value)
-        #print(industry_life)
+        #유동인구
         seoul_moving_people=get_people(prefer_loc_value)
-        #
+        #분기 평균 지출
         seoul_use_money=get_use_money(prefer_loc_value)
-
- # 두 개의 딕셔너리를 하나로 합치기
+        #유사점포
+        seoul_similar_store= get_similar(prefer_loc_value,prefer_industry)
+        #집객시설
+        seoul_zipgack=get_zipgack(prefer_loc_value)
         combined_data = {
                 "industry_life": industry_life,
-                "seoul_moving_people": seoul_moving_people
+                "seoul_moving_people": seoul_moving_people,
+                "seoul_use_money": seoul_use_money,
+                "seoul_similar_store": seoul_similar_store,
+                "seoul_zipgack" : seoul_zipgack
         }
-        #print(prefer_loc_value)
-        #Spring으로 response 전달
+
         #return combined_data
         # 합쳐진 데이터를 JSON 형식으로 반환
         return jsonify(combined_data)
