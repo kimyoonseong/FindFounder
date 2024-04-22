@@ -75,7 +75,7 @@ public class ConsultController {
 	
 
 	//2024-03-29 상권 통계 검색 
-	@Operation(summary = "Search", description = "검색값 flask전송")
+	@Operation(summary = "통계 검색 ", description = "검색값 flask전송")
 	@GetMapping("/api/analysis")
 	public String Search (@CookieValue(value = "Set-Cookie") String jwtToken,@RequestParam String region, @RequestParam String industry) {
 	

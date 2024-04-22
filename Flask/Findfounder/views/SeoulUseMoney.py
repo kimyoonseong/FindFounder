@@ -2,20 +2,27 @@ import pandas as pd
 def get_use_money(location):
     # 총지출 EXPNDTR_TOTAMT
     if location.endswith('동'):
-        df = pd.read_csv(r'C:\Users\82104\git\FindFounder\Flask\Findfounder\views\csvFolder\Seoul_Use_Earn_Money_dong.csv', encoding='cp949')
+        #df = pd.read_csv(r'C:\Users\82104\git\FindFounder\Flask\Findfounder\views\csvFolder\Seoul_Use_Earn_Money_dong.csv', encoding='cp949')
+        df = pd.read_csv('views\csvFolder\Seoul_Use_Earn_Money_dong.csv', encoding='cp949')
         filter_col = 'ADSTRD_CD_NM'
     elif location.endswith('구'):
-        df = pd.read_csv(r'C:\Users\82104\git\FindFounder\Flask\Findfounder\views\csvFolder\Seoul_Use_Earn_Money_gu.csv', encoding='cp949')
+        #df = pd.read_csv(r'C:\Users\82104\git\FindFounder\Flask\Findfounder\views\csvFolder\Seoul_Use_Earn_Money_gu.csv', encoding='cp949')
+        df = pd.read_csv('views\csvFolder\Seoul_Use_Earn_Money_gu.csv', encoding='cp949')
         filter_col = 'SIGNGU_CD_NM'
     else:
         raise ValueError("Invalid value for signgu_cd_nm. It should end with '동' or '구'.")
-   
+    #print(location)
     # 2023년 데이터만 추출
-    df_2023 = df[df['STDR_YYQU_CD'].astype(str).str.startswith('2023')]
-
+    #df_2023 = df[df['STDR_YYQU_CD'].astype(str).str.startswith('2023')]
+ 
+    df_2023 = df[(df['STDR_YYQU_CD'].astype(str).str.startswith('2023')) & (df[filter_col] == location)]
+    #print(df_2023)
     # 전체 총 지출 계산
     total_spending = df_2023['EXPNDTR_TOTAMT'].sum()
-    print('ㅋㅋ')
+
+    #한분기 평균 지출
+    sector_spending= int(total_spending/3)
+
     # 카테고리 컬럼명 수정
     category_columns = {
         'FDSTFFS_EXPNDTR_TOTAMT': '식료품',
@@ -26,7 +33,7 @@ def get_use_money(location):
         'EDC_EXPNDTR_TOTAMT': '교육비',
         'PLESR_EXPNDTR_TOTAMT': '유흥',
         # 'LSR_CLTUR_EXPNDTR_TOTAMT': '문화생활',
-        # 'ETC_EXPNDTR_TOTAMT': '기타',
+        'ETC_EXPNDTR_TOTAMT': '기타',
         'FD_EXPNDTR_TOTAMT': '식비'
     }
 
@@ -40,13 +47,13 @@ def get_use_money(location):
     top_category_names = [category_columns[col] for col in top_categories.index]
 
     return {
-        '2023년 전체지출': total_spending,
+        '2023년 분기 평균 지출': sector_spending,
         '1위카테고리': top_category_names[0],
         '2위카테고리': top_category_names[1],
         '3위카테고리': top_category_names[2]
     }
 
 # 테스트
-location = '한남동'
+location = '이태원1동'
 result = get_use_money(location)
-print(result)
+#print(result)

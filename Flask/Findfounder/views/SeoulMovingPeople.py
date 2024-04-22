@@ -56,4 +56,4 @@ def get_people(signgu_cd_nm):
     return result
 # 함수 호출
 result_json = get_people('상암동')
-print(result_json)
+#print(result_json)
