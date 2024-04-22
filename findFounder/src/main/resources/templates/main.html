@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+    <head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+        <style>
+
+            .area {
+                position: absolute;
+                background: #fff;
+                border: 1px solid #888;
+                border-radius: 3px;
+                font-size: 12px;
+                top: -5px;
+                left: 15px;
+                padding:2px;
+            }
+            .category-dropdown {
+                    display: block; /* 블록 요소로 설정하여 세로로 정렬 */
+                    width: auto; /* 너비 자동 조정 */
+                    clear: both; /* 왼쪽과 오른쪽에 어떤 플로팅 요소도 허용하지 않습니다. */
+                    
+                }
+            .btn-container {
+                display: block; /* 가로 레이아웃이 아닌 블록 요소로 설정 */
+                clear: both; /* 부모 요소에서 플로팅된 요소를 지우고 새로운 줄에 배치 */
+            }
+            .btn-group {
+                display: flex; /* 드롭다운 메뉴를 수평으로 배치하는 대신 수직으로 배치합니다. */
+                        flex-wrap: wrap; /* 필요한 경우 아이템들을 여러 줄에 걸쳐 배치합니다. */
+            }
+            .info {
+                font-size: 18px;
+                padding:4px;
+                width: 200px; /* 원하는 너비로 설정 */
+                height: 100%; /* 원하는 높이로 설정 */
+            }
+            .info .title {
+                font-weight: bold;
+            }
+			.intro {
+						font-family: "Yeon Sung", system-ui;
+						font-weight: 400;
+						font-style: normal;
+			           font-size: 30px; /* 글자 크기 */
+			           margin-top: 22px; /* 위 여백 조정 */
+			}
+		
+	       .container {
+	           text-align: center;
+	           margin-top: auto; /* 자동으로 상단 여백을 채움 */
+	       }
+			/* span 스타일링 */
+	       .highlight {
+	           font-size: 40px; /* 글자 크기 */
+	           color: rgb(0, 128, 255); /* 텍스트 색상 */
+	       }
+            .custom-card {
+                max-width: 200px; /* 최대 폭 설정 */
+                margin: 0 auto; /* 가운데 정렬 */
+            }
+			
+            .custom-button {
+                padding: 0.25rem 0.5rem; /* 버튼의 패딩 조정 */
+                font-size: 0.7rem; /* 글꼴 크기 조정 */
+            }
+            
+        </style>
+       <meta charset="utf-8" />
+       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+       <meta name="description" content="" />
+       <meta name="author" content="" />
+       
+       <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+      
+       <link href="/css/styles.css" rel="stylesheet" />
+   
+   
+       <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+      
+    </head>
+    <body >
+        <div th:replace="nav.html :: navbar-top"></div>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav th:replace="nav.html :: navbar-side"></nav>
+            </div>
+        
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Find-Founder</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">제 2의 삶을 찾아보세요</li>
+                        </ol>
+						<div class="container">
+							<p class="intro">
+								<span class="highlight">제 2의 인생을 꿈꾸는 분들</span>을 위한
+								상권분석을 도와드립니다.<br>
+								서울시 공공데이터를 바탕으로 <span style="color:rgb(141, 194, 243)">지역별 통계정보</span>를 제공하고 <br>
+								컨설팅을 통해 <span style="color:rgb(141, 194, 243)">개인화 서비스</span>를 제공하고 있습니다. 
+							</p>
+						</div>
+					</div>
+				</main>
+					<div style="text-align: center;">
+						<img th:src="@{/images/introduction.png}" style="width: 70%; margin-top: 70px; height: auto; display: inline-block;">
+					</div>	
+						<footer class="py-4 bg-light mt-auto">
+						                    <div class="container-fluid px-4">
+						                        <div class="d-flex align-items-center justify-content-between small">
+						                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+						                            <div>
+						                                <a href="#">Privacy Policy</a>
+						                                &middot;
+						                                <a href="#">Terms &amp; Conditions</a>
+						                            </div>
+						                        </div>
+						                    </div>
+						                </footer>
+						            </div>
+						            
+						        </div>
+						        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+						        <script src="js/scripts.js"></script>
+						        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+						        <script src="assets/demo/chart-area-demo.js"></script>
+						        <script src="assets/demo/chart-bar-demo.js"></script>
+						        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+						        <script src="js/datatables-simple-demo.js"></script>
+    </body>
+</html>

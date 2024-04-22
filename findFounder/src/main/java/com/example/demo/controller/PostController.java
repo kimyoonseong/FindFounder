@@ -133,17 +133,19 @@ public class PostController {
 		return ResponseEntity.ok(postDto);
 	}
 	
-//	@Operation(summary = "내 게시글 조회", description = "내 게시글 조회")
-//	@GetMapping("/mypost")
-//	public ResponseEntity<PostListRes> getMyPostDetailById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken) {
-//		// jwt에서 cuscode 가져오기
-//		int cusCode = jwtUtil.getCusCode(jwtToken);
-//		Customer customer = customerRepository.findById(cusCode).orElseThrow(() -> new UsernameNotFoundException("해당하는 유저가 없습니다."));
-//		PostListRes res  = PostListRes.builder().posts(postService.getMyPostList(customer)).build();
-//		
-//		
-//		return ResponseEntity.ok(res);
-//	}
+	@Operation(summary = "내 게시글 조회", description = "내 게시글 조회")
+	@GetMapping("/mypost")
+	public ResponseEntity<PostListRes> getMyPostDetailById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
+			, @RequestParam(required = false, defaultValue =  "1") Integer page) {
+		// jwt에서 cuscode 가져오기
+		page--;
+		int cusCode = jwtUtil.getCusCode(jwtToken);
+		Customer customer = customerRepository.findById(cusCode).orElseThrow(() -> new UsernameNotFoundException("해당하는 유저가 없습니다."));
+		PostListRes res  = PostListRes.builder().posts(postService.getMyPostList(page, customer)).build();
+		
+		
+		return ResponseEntity.ok(res);
+	}
 	
 	
 	@Operation(summary = "리액션 추가", description = "리액션 True : 좋아요, False : 싫어요")

@@ -1,388 +1,470 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html>
-    <head>
-        <style>
-            .area {
-                position: absolute;
-                background: #fff;
-                border: 1px solid #888;
-                border-radius: 3px;
-                font-size: 12px;
-                top: -5px;
-                left: 15px;
-                padding:2px;
-            }
-            .category-dropdown {
-                    display: block; /* 블록 요소로 설정하여 세로로 정렬 */
-                    width: auto; /* 너비 자동 조정 */
-                    clear: both; /* 왼쪽과 오른쪽에 어떤 플로팅 요소도 허용하지 않습니다. */
+
+<head>
+	<style>
+		.area {
+			position: absolute;
+			background: #fff;
+			border: 1px solid #888;
+			border-radius: 3px;
+			font-size: 12px;
+			top: -5px;
+			left: 15px;
+			padding: 2px;
+		}
+
+		.category-dropdown {
+			display: block;
+			/* 블록 요소로 설정하여 세로로 정렬 */
+			width: auto;
+			/* 너비 자동 조정 */
+			clear: both;
+			/* 왼쪽과 오른쪽에 어떤 플로팅 요소도 허용하지 않습니다. */
+
+		}
+
+		.btn-container {
+			display: block;
+			/* 가로 레이아웃이 아닌 블록 요소로 설정 */
+			clear: both;
+			/* 부모 요소에서 플로팅된 요소를 지우고 새로운 줄에 배치 */
+		}
+
+		.btn-group {
+			display: flex;
+			/* 드롭다운 메뉴를 수평으로 배치하는 대신 수직으로 배치합니다. */
+			flex-wrap: wrap;
+			/* 필요한 경우 아이템들을 여러 줄에 걸쳐 배치합니다. */
+		}
+
+		.info {
+			font-size: 18px;
+			padding: 4px;
+			width: 200px;
+			/* 원하는 너비로 설정 */
+			height: 100%;
+			/* 원하는 높이로 설정 */
+		}
+
+		.info .title {
+			font-weight: bold;
+		}
+
+		.custom-card {
+			max-width: 200px;
+			/* 최대 폭 설정 */
+			margin: 0 auto;
+			/* 가운데 정렬 */
+		}
+
+		.custom-button {
+			padding: 0.25rem 0.5rem;
+			/* 버튼의 패딩 조정 */
+			font-size: 0.7rem;
+			/* 글꼴 크기 조정 */
+		}
+	</style>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+
+	<link href="/css/styles.css" rel="stylesheet" />
+
+
+	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+	<div th:replace="nav.html :: navbar-top"></div>
+	<div id="layoutSidenav">
+		<div id="layoutSidenav_nav">
+			<nav th:replace="nav.html :: navbar-side"></nav>
+		</div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">Find-Founder</h1>
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item active">개인 맞춤 컨설팅</li>
+					</ol>
+					<!-- 폼 영역 -->
+					<div class="ms-4" style="width:40%;">
+						<form id="consultForm">
+							<div class="mb-3">
+								<label for="ageInput" class="form-label">나이</label>
+								<input type="number" class="form-control" id="ageInput" placeholder="나이를 입력하세요">
+							</div>
+							<div class="mb-3">
+								<label class="form-label">성별</label><br>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="gender" id="maleRadio"
+										value="male">
+									<label class="form-check-label" for="maleRadio">남성</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="gender" id="femaleRadio"
+										value="female">
+									<label class="form-check-label" for="femaleRadio">여성</label>
+								</div>
+							</div>
+							<div class="mb-3">
+								<label for="locationInput" class="form-label">거주지</label>
+								<input type="text" class="form-control" id="locationInput" placeholder="거주지를 입력하세요">
+							</div>
+							<div class="mb-3">
+								<label class="form-label">초기 자본</label><br>
+								<input type="range" class="form-range" id="capitalRange" min="10000000" max="20000000"
+									step="1000000">
+							</div>
+							<div class="mb-3">
+								<label class="form-label">경쟁도</label><br>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="competitiveness" id="lowRadio"
+										value="1">
+									<label class="form-check-label" for="lowRadio">하</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="competitiveness" id="mediumRadio"
+										value="2">
+									<label class="form-check-label" for="mediumRadio">중</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="competitiveness" id="highRadio"
+										value="3">
+									<label class="form-check-label" for="highRadio">상</label>
+								</div>
+							</div>
+							<div class="mb-3">
+								<label class="form-label">선호 업종</label><br>
+								<select class="form-select">
+									<option value="음식점">음식점</option>
+									<option value="교육">교육</option>
+									<option value="오락">오락</option>
+									<option value="소매">소매</option>
+									<option value="상관없음">상관없음</option>
+								</select>
+							</div>
+							<div class="mb-3">
+								<label for="preferredLocationInput" class="form-label">선호 지역</label>
+								<input type="text" class="form-control" id="preferredLocationInput"
+									placeholder="선호 지역을 입력하세요">
+							</div>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+
+					<div style="display: flex;">
+						<!-- 지도 생성 -->
+						<div style="width:60%; height:500px; border: 2px solid #ddd; border-radius: 10px;">
+							<div id="map" style="width:100%; height:100%;"></div>
+						</div>
+
+						<!-- 폼 영역 -->
+
+
+
+					</div>
+
+
+
+
+
+				</div>
+			</main>
+			<footer class="py-4 bg-light mt-auto">
+				<div class="container-fluid px-4">
+					<div class="d-flex align-items-center justify-content-between small">
+						<div class="text-muted">Copyright &copy; Your Website 2023</div>
+						<div>
+							<a href="#">Privacy Policy</a>
+							&middot;
+							<a href="#">Terms &amp; Conditions</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script src="js/scripts.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+	<script src="assets/demo/chart-area-demo.js"></script>
+	<script src="assets/demo/chart-bar-demo.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+		crossorigin="anonymous"></script>
+	<script src="js/datatables-simple-demo.js"></script>
+	<!--여기 까지가 헤더안에 있음-->
+
+	<!-- JavaScript 코드 -->
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4abdb80406262cf828aa65098fbf2578"></script>
+
+	<!-- Bootstrap JS 및 기타 스크립트 -->
+	<!-- Bootstrap JS -->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+	<!-- Font Awesome JS -->
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		// 지도에 폴리곤으로 표시할 영역데이터 배열입니다 
+
+
+		/* 1. JSON 파일을 읽어들여 areas 배열을 채워넣는 작업 */
+		var areas = []; // areas 변수를 먼저 정의합니다.
+		// 1) getJSON도 ajax 메소드와 같이 async(비동기) 방식으로 동작하는데, 순차실행을 위해 이걸 강제로 sync 방식으로 동작하도록 함.
+		$.ajaxSetup({
+			async: false
+		});
+
+		$.getJSON("seoul_municipalities_geo_simple.json", function (geojson) {
+			var units = geojson.features; // 파일에서 key값이 "features"인 것의 value를 통으로 가져옴(이것은 여러지역에 대한 정보를 모두 담고있음)	
+			$.each(units, function (index, unit) { // 1개 지역씩 꺼내서 사용함. val은 그 1개 지역에 대한 정보를 담음
+
+				var name = ''; // 지역 이름
+
+				// areas = unit.geometry.coordinates; // 1개 지역의 영역을 구성하는 도형의 모든 좌표 배열을 가져옴 
+				name = unit.properties.name; // 1개 지역의 이름을 가져옴
+
+				var ob = new Object();
+				ob.name = name;
+				ob.path = [];
+
+				$.each(unit.geometry.coordinates[0], function (index, coordinate) { //.geometry.coordinates[]로 한번 더 감싸져 있어서 index 0번의 것을 꺼내야 배열을 접근가능.
+					ob.path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
+				});
+
+				areas[index] = ob;
+				//console.log(areas[index])
+			});//each
+		});//getJSON
+
+
+		/* 2. 지도 띄우기 */
+
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			mapOption = {
+				center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+				level: 9 // 지도의 확대 레벨
+			};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption),
+			customOverlay = new kakao.maps.CustomOverlay({}),
+			infowindow = new kakao.maps.InfoWindow({removable: true});
+
+		/* 3. 폴리곤 도형을 지도위에 띄우고 마우스 이벤트 붙이기 */
+
+		// 지도에 영역데이터를 폴리곤으로 표시합니다 
+		for (var i = 0, len = areas.length; i < len; i++) {
+			displayArea(areas[i]);
+		}
+
+
+		// 다각형을 생상하고 이벤트를 등록하는 함수입니다
+		function displayArea(area) {
+
+			// 다각형을 생성합니다 
+			var polygon = new kakao.maps.Polygon({
+				map: map, // 다각형을 표시할 지도 객체
+				path: area.path,
+				strokeWeight: 2,
+				strokeColor: '#004c80',
+				strokeOpacity: 0.8,
+				fillColor: '#fff',
+				fillOpacity: 0.7
+			});
+
+			// 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
+			// 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
+			kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
+				polygon.setOptions({fillColor: '#09f'});
+
+				customOverlay.setContent('<div class="area">' + area.name + '</div>');
+
+				customOverlay.setPosition(mouseEvent.latLng);
+				customOverlay.setMap(map);
+			});
+
+			// 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다 
+			kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
+
+				customOverlay.setPosition(mouseEvent.latLng);
+			});
+
+			// 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
+			// 커스텀 오버레이를 지도에서 제거합니다 
+			kakao.maps.event.addListener(polygon, 'mouseout', function () {
+				polygon.setOptions({fillColor: '#fff'});
+				customOverlay.setMap(null);
+			});
+
+			kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
+				var content = '<div class="info">' +
+					'   <div class="title">' + area.name + '</div>' +
+					'   <div class="size">총 면적 : 약 ' + Math.floor(polygon.getArea()) + ' m<sup>2</sup></div>' +
+					'</div>';
+				document.getElementById('areaName').value = area.name;
+
+				infowindow.setContent(content);
+				infowindow.setPosition(mouseEvent.latLng);
+				infowindow.setMap(map);
+			});
+		}
+
+
+
+	</script>
+
+	<script>
+		$(document).ready(function () {
+			// 로그아웃 버튼 클릭 이벤트 처리
+			$('#navdrop li #logout').click(function () {
+				// 로그아웃 API 호출
+				$.ajax({
+					type: 'POST',
+					url: 'http://localhost:8080/api/user/logout',
+					success: function (response) {
+						// 로그아웃 성공 시 작업
+						console.log(response);
+						alert('로그아웃되었습니다.');
+						// 여기에 추가 작업을 할 수 있습니다. 예를 들어 로그인 페이지로 리디렉션 등
+					},
+					error: function (xhr, status, error) {
+						// 로그아웃 실패 시 작업
+						console.error('로그아웃 실패:', error);
+						// 실패 메시지 표시 또는 다른 작업을 수행할 수 있습니다.
+					}
+				});
+			});
+		});
+
+	</script>
+	<!-- flask에서 업종리스트가져오기 -->
+
+
+
+
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			var consultForm = document.getElementById("consultForm");
+
+			if (consultForm) {
+				consultForm.addEventListener("submit", function (event) {
+					event.preventDefault(); // 폼이 기본적으로 제출되는 것을 막음
+
+					// 성별 값을 가져와서 "male"이면 true, 그렇지 않으면 false로 변환
+					var sex = document.querySelector('input[name="gender"]:checked').value === "male";
+					var initFund = parseInt(document.getElementById("capitalRange").value);
+					var age = parseInt(document.getElementById("ageInput").value);
+					var competitive = parseInt(document.querySelector('input[name="competitiveness"]:checked').value);
+					// 폼 데이터 수집
+					var formData = {
+						age: age,
+						sex: sex,
+						residence: document.getElementById("locationInput").value,
+						initFund: initFund, // 수정된 부분
+						competitive: competitive,
+						preferIndustry: document.querySelector('.form-select').value,
+
+						preferLoc: document.getElementById("preferredLocationInput").value
+					};
+					console.log(formData);
+					// fetch API를 사용하여 POST 요청 보냄
+					fetch("/api/consultation", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(formData)
+					})
+						.then(function (response) {
+							if (!response.ok) {
+								throw new Error("오류 발생: " + response.status);
+							}
+							return response.json();
+						})
+						.then(function (data) {
+							// 성공적으로 요청을 처리한 후에 할 일을 작성하세요
+							console.log("된건가?")
+							console.log(data);
+						})
+						.catch(function (error) {
+							// 오류 처리
+							console.error(error);
+						});
+				});
+			}
+		});
+	</script>
+
+	
+	<script>
+		// 로그인, 로그아웃 추가
+		// 로그인 상태를 확인하는 함수
+		function isLoggedIn() {
+			// 클라이언트의 모든 쿠키를 가져옵니다.
+			console.log('###########');
+			const cookies = document.cookie.split(';');
+
+			// 쿠키에서 로그인 상태를 나타내는 특정 쿠키를 찾습니다.
+			for (let i = 0; i < cookies.length; i++) {
+				const cookie = cookies[i].trim();
+				if (cookie.startsWith("Set-Cookie")) {
+					console.log(cookie)
+					return true; // 로그인 상태
+				}
+			}
+			return false; // 로그아웃 상태
+		}
+
+		// 로그아웃 함수
+		function logout() {
+			// 로그아웃 요청을 보내고, 성공시에만 링크를 변경합니다.
+			fetch('/api/user/logout', {
+				method: 'POST'
+			}).then(function (response) {
+				if (response.ok) {
+					document.getElementById('logout').style.display = 'none'; // 로그아웃 링크 숨김
+					document.getElementById('login').style.display = 'block'; // 로그인 링크 표시
+				}
+			});
+		}
+		document.addEventListener('DOMContentLoaded', function () {
+			try {
+				// 오류가 발생할 수 있는 코드
+				console.log("#########");
+
+				// isLoggedIn() 함수 호출
+				if (isLoggedIn()) {
+					document.getElementById('logout').style.display = 'block';
+					document.getElementById('login').style.display = 'none';
+				} else {
+					document.getElementById('logout').style.display = 'none';
+					document.getElementById('login').style.display = 'block';
+				}
+			} catch (error) {
+				// 오류 발생 시 처리
+				console.error("An error occurred:", error);
+			}		
+			
+			});			
+											
+    </script>                
                     
-                }
-            .btn-container {
-                display: block; /* 가로 레이아웃이 아닌 블록 요소로 설정 */
-                clear: both; /* 부모 요소에서 플로팅된 요소를 지우고 새로운 줄에 배치 */
-            }
-            .btn-group {
-                display: flex; /* 드롭다운 메뉴를 수평으로 배치하는 대신 수직으로 배치합니다. */
-                        flex-wrap: wrap; /* 필요한 경우 아이템들을 여러 줄에 걸쳐 배치합니다. */
-            }
-            .info {
-                font-size: 18px;
-                padding:4px;
-                width: 200px; /* 원하는 너비로 설정 */
-                height: 100%; /* 원하는 높이로 설정 */
-            }
-            .info .title {
-                font-weight: bold;
-            }
-            .custom-card {
-                max-width: 200px; /* 최대 폭 설정 */
-                margin: 0 auto; /* 가운데 정렬 */
-            }
-
-            .custom-button {
-                padding: 0.25rem 0.5rem; /* 버튼의 패딩 조정 */
-                font-size: 0.7rem; /* 글꼴 크기 조정 */
-            }
-            
-        </style>
-       <meta charset="utf-8" />
-       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-       <meta name="description" content="" />
-       <meta name="author" content="" />
-       
-       <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-      
-       <link href="/css/styles.css" rel="stylesheet" />
-   
-   
-       <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-      
-    </head>
-    <body >
-        <div th:replace="nav.html :: navbar-top"></div>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav th:replace="nav.html :: navbar-side"></nav>
-            </div>
-        
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Find-Founder</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">개인 맞춤 컨설팅</li>
-                        </ol>
-                        <!-- 폼 영역 -->
-                        <div class="ms-4" style="width:40%;">
-                            <form id="consultForm">
-                                <div class="mb-3">
-                                    <label for="ageInput" class="form-label">나이</label>
-                                    <input type="number" class="form-control" id="ageInput" placeholder="나이를 입력하세요">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">성별</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" id="maleRadio" value="male">
-                                        <label class="form-check-label" for="maleRadio">남성</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" id="femaleRadio" value="female">
-                                        <label class="form-check-label" for="femaleRadio">여성</label>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="locationInput" class="form-label">거주지</label>
-                                    <input type="text" class="form-control" id="locationInput" placeholder="거주지를 입력하세요">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">초기 자본</label><br>
-                                    <input type="range" class="form-range" id="capitalRange" min="10000000" max="20000000" step="1000000">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">경쟁도</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="competitiveness" id="lowRadio" value="1">
-                                        <label class="form-check-label" for="lowRadio">하</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="competitiveness" id="mediumRadio" value="2">
-                                        <label class="form-check-label" for="mediumRadio">중</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="competitiveness" id="highRadio" value="3">
-                                        <label class="form-check-label" for="highRadio">상</label>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">선호 업종</label><br>
-                                    <select class="form-select">
-                                        <option value="음식점">음식점</option>
-                                        <option value="교육">교육</option>
-                                        <option value="오락">오락</option>
-                                        <option value="소매">소매</option>
-                                        <option value="상관없음">상관없음</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="preferredLocationInput" class="form-label">선호 지역</label>
-                                    <input type="text" class="form-control" id="preferredLocationInput" placeholder="선호 지역을 입력하세요">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                        </div>
-
-                        <div style="display: flex;">
-                            <!-- 지도 생성 -->
-                            <div style="width:60%; height:500px; border: 2px solid #ddd; border-radius: 10px;">
-                                <div id="map" style="width:100%; height:100%;"></div>
-                            </div>
-                        
-                            <!-- 폼 영역 -->
-                            
-                            
-                            
-                        </div>
-            
-                      
-
-            
-                        
-                    </div>
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-            
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
-        <!--여기 까지가 헤더안에 있음-->
-        
-        <!-- JavaScript 코드 -->
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4abdb80406262cf828aa65098fbf2578"></script>
-       
-            <!-- Bootstrap JS 및 기타 스크립트 -->
-            <!-- Bootstrap JS -->
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
-            <!-- Font Awesome JS -->
-            <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-            
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <script>
-                // 지도에 폴리곤으로 표시할 영역데이터 배열입니다 
-                
-                
-                /* 1. JSON 파일을 읽어들여 areas 배열을 채워넣는 작업 */
-                var areas = []; // areas 변수를 먼저 정의합니다.
-                // 1) getJSON도 ajax 메소드와 같이 async(비동기) 방식으로 동작하는데, 순차실행을 위해 이걸 강제로 sync 방식으로 동작하도록 함.
-                $.ajaxSetup({
-                    async : false 
-                }); 
-                
-                $.getJSON("seoul_municipalities_geo_simple.json", function(geojson) {
-                    var units = geojson.features; // 파일에서 key값이 "features"인 것의 value를 통으로 가져옴(이것은 여러지역에 대한 정보를 모두 담고있음)	
-                    $.each(units, function(index, unit) { // 1개 지역씩 꺼내서 사용함. val은 그 1개 지역에 대한 정보를 담음
-                
-                        var name = ''; // 지역 이름
-            
-                        // areas = unit.geometry.coordinates; // 1개 지역의 영역을 구성하는 도형의 모든 좌표 배열을 가져옴 
-                        name = unit.properties.name; // 1개 지역의 이름을 가져옴
-            
-                        var ob = new Object();
-                        ob.name = name;
-                        ob.path = [];
-            
-                        $.each(unit.geometry.coordinates[0], function(index, coordinate) { //.geometry.coordinates[]로 한번 더 감싸져 있어서 index 0번의 것을 꺼내야 배열을 접근가능.
-                            ob.path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
-                        });
-                       
-                        areas[index] = ob;
-                        //console.log(areas[index])
-                    });//each
-                });//getJSON
-            
-            
-                /* 2. 지도 띄우기 */
-                
-                var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-                mapOption = { 
-                    center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-                    level: 9 // 지도의 확대 레벨
-                };	
-            
-                var map = new kakao.maps.Map(mapContainer, mapOption),
-                customOverlay = new kakao.maps.CustomOverlay({}),
-                infowindow = new kakao.maps.InfoWindow({removable: true});
-                
-                /* 3. 폴리곤 도형을 지도위에 띄우고 마우스 이벤트 붙이기 */
-                
-                // 지도에 영역데이터를 폴리곤으로 표시합니다 
-                for (var i = 0, len = areas.length; i < len; i++) {
-                    displayArea(areas[i]);
-                }
-            
-             
-             // 다각형을 생상하고 이벤트를 등록하는 함수입니다
-                function displayArea(area) {
-
-                // 다각형을 생성합니다 
-                var polygon = new kakao.maps.Polygon({
-                    map: map, // 다각형을 표시할 지도 객체
-                    path: area.path,
-                    strokeWeight: 2,
-                    strokeColor: '#004c80',
-                    strokeOpacity: 0.8,
-                    fillColor: '#fff',
-                    fillOpacity: 0.7 
-                });
-
-                // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
-                // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
-                kakao.maps.event.addListener(polygon, 'mouseover', function(mouseEvent) {
-                    polygon.setOptions({fillColor: '#09f'});
-
-                    customOverlay.setContent('<div class="area">' + area.name + '</div>');
-                    
-                    customOverlay.setPosition(mouseEvent.latLng); 
-                    customOverlay.setMap(map);
-                });
-
-                // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다 
-                kakao.maps.event.addListener(polygon, 'mousemove', function(mouseEvent) {
-                    
-                    customOverlay.setPosition(mouseEvent.latLng); 
-                });
-
-                // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
-                // 커스텀 오버레이를 지도에서 제거합니다 
-                kakao.maps.event.addListener(polygon, 'mouseout', function() {
-                    polygon.setOptions({fillColor: '#fff'});
-                    customOverlay.setMap(null);
-                }); 
-                
-                        kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
-                            var content = '<div class="info">' + 
-                                        '   <div class="title">' + area.name + '</div>' +
-                                        '   <div class="size">총 면적 : 약 ' + Math.floor(polygon.getArea()) + ' m<sup>2</sup></div>' +
-                                        '</div>';
-                            document.getElementById('areaName').value = area.name;
- 
-                            infowindow.setContent(content); 
-                            infowindow.setPosition(mouseEvent.latLng); 
-                            infowindow.setMap(map);
-                        });
-                    }
-					
-
-                
-            </script>
-            
-			 <script>
-			 	$(document).ready(function() {
-			 	    // 로그아웃 버튼 클릭 이벤트 처리
-			 	    $('#navdrop li #logout').click(function() {
-			 	        // 로그아웃 API 호출
-			 	        $.ajax({
-			 	            type: 'POST',
-			 	            url: 'http://localhost:8080/api/user/logout',
-			 	            success: function(response) {
-			 	                // 로그아웃 성공 시 작업
-								console.log(response);
-			 	                alert('로그아웃되었습니다.');
-			 	                // 여기에 추가 작업을 할 수 있습니다. 예를 들어 로그인 페이지로 리디렉션 등
-			 	            },
-			 	            error: function(xhr, status, error) {
-			 	                // 로그아웃 실패 시 작업
-			 	                console.error('로그아웃 실패:', error);
-			 	                // 실패 메시지 표시 또는 다른 작업을 수행할 수 있습니다.
-			 	            }
-			 	        });
-			 	    });
-			 	});
-			 
-			 		   </script>
-                       <!-- flask에서 업종리스트가져오기 -->
-                       
-                      
-                                        
                     
                     
-                       <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            var consultForm = document.getElementById("consultForm");
-                            
-                            if (consultForm) {
-                                consultForm.addEventListener("submit", function(event) {
-                                    event.preventDefault(); // 폼이 기본적으로 제출되는 것을 막음
-                                   
-                                    // 성별 값을 가져와서 "male"이면 true, 그렇지 않으면 false로 변환
-                                    var sex = document.querySelector('input[name="gender"]:checked').value === "male";
-                                    var initFund = parseInt(document.getElementById("capitalRange").value);
-                                    var age = parseInt(document.getElementById("ageInput").value);
-                                    var competitive= parseInt(document.querySelector('input[name="competitiveness"]:checked').value);
-                                    // 폼 데이터 수집
-                                    var formData = {
-                                        age: age,
-                                        sex: sex,
-                                        residence: document.getElementById("locationInput").value,
-                                        initFund: initFund, // 수정된 부분
-                                        competitive: competitive,
-                                        preferIndustry: document.querySelector('.form-select').value,
+    </body >
 
-                                        preferLoc: document.getElementById("preferredLocationInput").value
-                                    };
-                                    console.log(formData);
-                                    // fetch API를 사용하여 POST 요청 보냄
-                                    fetch("/api/consultation", {
-                                        method: "POST",
-                                        headers: {
-                                            "Content-Type": "application/json"
-                                        },
-                                        body: JSON.stringify(formData)
-                                    })
-                                    .then(function(response) {
-                                        if (!response.ok) {
-                                            throw new Error("오류 발생: " + response.status);
-                                        }
-                                        return response.json();
-                                    })
-                                    .then(function(data) {
-                                        // 성공적으로 요청을 처리한 후에 할 일을 작성하세요
-                                        console.log("된건가?")
-                                        console.log(data);
-                                    })
-                                    .catch(function(error) {
-                                        // 오류 처리
-                                        console.error(error);
-                                    });
-                                });
-                            }
-                        });
-                    </script>
-                    
-                        
-                    
-                    
-                    
-                    
-    </body>
-</html>
+</html >
