@@ -177,10 +177,30 @@ public class PostService {
 	
 	
 	// 본인 작성한 게시글 리스트
-	@Transactional
-	public List<Post> getMyPostList( Customer customer){
+	@Transactional(readOnly=true)
+	public Page<PostDetailDto> getMyPostList(int page, Customer customer){
 		
-		return postRepo.findAllByPostCustomerFetchJoin(customer);
+		Pageable pageRequest = PageRequest.of(page, 5, Direction.DESC, "postDate");
+		List<Post> posts = postRepo.findAllByPostCustomerFetchJoin(customer);
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		List<PostDetailDto> postList = new ArrayList<PostDetailDto>();
+		for(Post post : posts) {
+			PostDetailDto dto = PostDetailDto.builder()
+								.postTitle(post.getPostTitle())
+								.postLike(post.getPostLike())
+								.postViews(post.getPostViews())
+								.writer(post.getCustomer().getCusId())
+								.postDate(sdf1.format(post.getPostDate()))
+								.postId(post.getPostId())
+								.build();
+			postList.add(dto);
+		}
+		
+		int start = (int) pageRequest.getOffset();
+		int end = Math.min((start + pageRequest.getPageSize()), postList.size());
+		System.out.println("검색서비스 start : " + start + " end : " + end + " 검색결과 : " + posts.size() + " page :" + page);
+		Page<PostDetailDto> ListPage = new PageImpl<>(postList.subList(start, end), pageRequest, postList.size());
+		return ListPage;
 	}
 	
 	// 게시글 삭제

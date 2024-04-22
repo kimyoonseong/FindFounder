@@ -66,4 +66,9 @@ public class TLCustomerController {
 	public String main2() {
 		return "main2";
 	}
+	
+	@GetMapping("/mypostlist")
+	public String mypost() {
+		return "mypostlist";
+	}
 }

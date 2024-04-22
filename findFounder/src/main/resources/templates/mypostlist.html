@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>커뮤니티</title>
+	<title>내 게시글 목록</title>
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 	<link href="css/styles.css" rel="stylesheet" />
 	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -100,47 +100,35 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">커뮤니티</h1>
+					<h1 class="mt-4">내 게시글 목록</h1>
 
+					<div id="board-search">
+
+					</div>
 					<div class="card mb-4">
 						<div class="card-header">
 							<i class="fas fa-table me-1"></i>
 							서울상권 커뮤니티
-							<button type="button" class="btn btn-primary float-end"
-								onclick="location.href='/post-create'">글 작성</button>
 						</div>
 						<div class="card-body">
 							<table class="resultTable">
-								<caption> 커뮤니티 </caption>
+								<caption> 내 게시글 목록 </caption>
 
 							</table>
 							<div class="paging">
 								<ul>
 									<li>prev</li>
-									<li class="active"><a href="/post-list?page=1">1</a></li>
-									<li><a href="/post-list?page=2">2</a></li>
-									<li><a href="/post-list?page=3">3</a></li>
-									<li><a href="/post-list?page=4">4</a></li>
-									<li><a href="/post-list?page=5">5</a></li>
+									<li class="active"><a href="/mypostlist?page=1">1</a></li>
+									<li><a href="/mypostlist?page=2">2</a></li>
+									<li><a href="/mypostlist?page=3">3</a></li>
+									<li><a href="/mypostlist?page=4">4</a></li>
+									<li><a href="/mypostlist?page=5">5</a></li>
 									<li>next</li>
 								</ul>
 							</div>
 						</div>
 					</div>
-					<div id="board-search">
-						<div class="container">
-							<div class="search-window">
-								<form id="searchForm">
-									<div class="search-wrap">
-										<input id="searchInput" placeholder="검색어를 입력해주세요." value="" style="width: 300px;">
-										<button type="submit" class="btn btn-dark">검색</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
 				</div>
-
 			</main>
 			<footer th:replace="nav.html :: footer"></footer>
 		</div>
@@ -156,14 +144,14 @@
 </body>
 <script>
 	// 클라이언트에서 JWT 쿠키를 가져와서 HTTP 요청 헤더에 포함시키는 예제
-	var url = 'http://localhost:8080/api/board' + window.location.search;
+	var url = 'http://localhost:8080/api/board/mypost' + window.location.search;
 	console.log(url)
 	$(document).ready(
 
 		function () {
 			$.ajax({
 				type: 'GET',
-				url: url, // 로그인 엔드포인트 URL
+				url: url,
 				contentType: 'application/json',
 
 				success: function (response) {
@@ -184,7 +172,7 @@
 
 
 
-					console.log('게시글 전체 성공:', response);
+					console.log('내 게시글 전체 성공:', response);
 					console.log(response.posts);
 					const posts = response.posts.content;
 					posts.forEach((post, index) => {
@@ -210,89 +198,20 @@
 						window.location.href = '/post-details?postid=' + postId;
 
 					});
-					updatePagination(response.posts.pageable.pageNumber);
 				},
 				error: function (xhr, status, error) {
-					console.error('게시글 전체 실패:', error, status, xhr);
+					console.error('내 게시글 전체 실패:', error, status, xhr);
 
 
 				}
 			});
-			function updatePagination(activePage) {
-				const pagination = document.querySelector('.paging ul');
-				let pages = pagination.querySelectorAll('li a');
-				pages.forEach(page => {
-					if (page.textContent == activePage + 1) {
-						page.parentNode.classList.add('active');
-					} else {
-						page.parentNode.classList.remove('active');
-					}
-				});
-			}
+
 		});
 
 
-</script>
-<script>
-	$(document).ready(function () {
-		// 검색 폼 이벤트 리스너 추가
-		$('#searchForm').on('submit', function (e) {
-			e.preventDefault(); // 기본 이벤트 차단
-			const keyword = $('#searchInput').val(); // 검색어 가져오기
-			searchPosts(keyword); // 검색 실행 함수 호출
-		});
-
-		function searchPosts(keyword) {
-			console.log("검색서비스 테스트" + window.location.search)
-			var searchUrl = ""
-			if (!window.location.search) {
 
 
-				console.log("널널널" + searchUrl);
-			}
-			searchUrl = "http://localhost:8080/api/board/search?" + "keyword=" + keyword;
 
-			$.ajax({
-				type: 'GET',
-				url: searchUrl,
-				contentType: 'application/json',
-				success: function (response) {
-					let result = `
-                    <tr style="text-align: center">
-                        <th>No</th>
-                        <th>제목</th>
-                        <th>조회수</th>
-                        <th>좋아요수</th>
-                        <th>작성자</th>
-                        <th>작성일자</th>
-                    </tr>
-                    <tbody>`;
-					const posts = response.posts.content; // 응답 구조에 따라 경로 수정 필요
-					posts.forEach((post, index) => {
-						result += `<tr data-id="${post.postId}" class="clickable-row">
-                                    <td>${index + 1}</td>
-                                    <td>${post.postTitle}</td>
-                                    <td>${post.postViews}</td>
-                                    <td>${post.postLike}</td>
-                                    <td>${post.writer}</td>
-                                    <td>${post.postDate}</td>
-                               </tr>`;
-					});
-					result += "</tbody>";
-					$('.resultTable').html(result);
-					// 행 클릭 이벤트 다시 바인딩
-					$('.clickable-row').on('click', function () {
-						var postId = $(this).data('id');
-						window.location.href = '/post-details?postid=' + postId;
-					});
-				},
-				error: function (xhr, status, error) {
-					console.error('검색 실패:', error);
-					alert('검색 결과를 불러오는데 실패했습니다.');
-				}
-			});
-		}
-	});
 </script>
 <script>
 	// 로그인, 로그아웃 추가

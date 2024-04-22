@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html>
     <head>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,6 +10,7 @@
 
         <style th:inline="text">
             /* Your CSS styles here */
+
             .area {
                 position: absolute;
                 background: #fff;
@@ -54,6 +54,7 @@
                 text-align: center;
                 margin-top: auto;
             }
+	
             .highlight {
                 font-size: 40px;
                 color: rgb(0, 128, 255);
@@ -66,6 +67,8 @@
                 padding: 0.25rem 0.5rem; /* 버튼의 패딩 조정 */
                 font-size: 0.7rem; /* 글꼴 크기 조정 */
             }
+			
+			@import url('https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap');
             * {
               box-sizing: border-box;
             }
@@ -73,7 +76,7 @@
               box-sizing: border-box;
             }
             
-     
+     	
             button {
               position: relative;
               display: inline-block;
@@ -147,11 +150,9 @@
        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>    	
 
 	</head>
-    <body >
+    <body style="background-color: rgb(235, 235, 235);">
 		        <div id="layoutSidenav">
-		            <div id="layoutSidenav_nav">
-		                <nav th:replace="nav.html :: navbar-side"></nav>
-		            </div>
+		            
 		        
 		            <div id="layoutSidenav_content">
 						<div style="text-align: center;">
@@ -174,7 +175,7 @@
                         
                    
                 <div style="text-align: center;">
-                    <img th:src="@{/images/introduction2.png}" style="width: 70%; margin-top: 100px; height: auto; display: inline-block;">
+                    <img th:src="@{/images/final_project main page 수정.png}" style="width: 70%; margin-top: 100px; height: auto; display: inline-block;">
                 </div>  
 				<!-- "서비스 이용 시작하기" 버튼 -->
 		       <div style="text-align: center; margin-top: 100px;">
@@ -185,7 +186,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div class="text-muted">Copyright &copy; Your Website 2024</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;
