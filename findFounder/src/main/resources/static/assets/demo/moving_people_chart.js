@@ -41,8 +41,6 @@ function drawChart_moving(seoulMovingPeopleData) {
     // 일일평균 유동인구 표시
     displayTotalPopulation(totalPopulation);
 }
-
-// 파이 그래프 그리기 함수
 function drawPieChart(chartId, labels, data) {
     const ctx = document.getElementById(chartId).getContext('2d');
     if (weekendPieChart) {
@@ -54,7 +52,13 @@ function drawPieChart(chartId, labels, data) {
             labels: labels,
             datasets: [{
                 data: data,
-                backgroundColor: ['#007bff', '#28a745'],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)'
+                ],
             }],
         },
         options: {
@@ -70,18 +74,23 @@ function drawPieChart(chartId, labels, data) {
                         return percentage + "%";
                     }
                 }
+            },
+            legend: {
+                position: 'bottom', // 범례 위치 설정
+                labels: {
+                    fontSize: 14, // 범례 라벨 폰트 크기 설정
+                    fontColor: '#333' // 범례 라벨 폰트 색상 설정
+                }
             }
         }
     });
 }
 
-// 막대 그래프 그리기 함수
 function drawBarChart(chartId, labels, data) {
     const ctx = document.getElementById(chartId).getContext('2d');
     if (weekdayBarChart) {
         weekdayBarChart.destroy(); // 이전에 생성된 차트 객체 삭제
     }
-    
 
     weekdayBarChart = new Chart(ctx, {
         type: 'bar',
@@ -90,7 +99,15 @@ function drawBarChart(chartId, labels, data) {
             datasets: [{
                 label: '주중 유동인구',
                 data: data,
-                backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#f8f9fa'],
+                backgroundColor: [
+                    'rgba(163, 217, 155, 0.7)', // 목요일: 연한 올리브 그린
+                    'rgba(92, 184, 92, 0.7)', // 월요일: 연한 녹색
+                    'rgba(100, 158, 69, 0.7)', // 금요일: 진한 올리브 그린
+                    'rgba(60, 118, 61, 0.7)', // 화요일: 중간 녹색
+                    'rgba(32, 78, 32, 0.7)' // 수요일: 진한 녹색
+                   
+                    
+                ],
             }],
         },
         options: {
@@ -98,14 +115,19 @@ function drawBarChart(chartId, labels, data) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        min: 12, // 최소값 설정
-                        max: 16 // 최대값 설정
+                        min: 13, // 최소값 설정
+                        max: 17, // 최대값 설정
+                        precision: 0 // 세로축 소수점 제거
                     }
                 }]
+            },
+            legend: {
+                display: false // 범례 숨기기
             }
         }
     });
 }
+
 function drawBarChart2(chartId, labels, data) {
     const ctx = document.getElementById(chartId).getContext('2d');
     if (weekendBarChart) {
@@ -119,7 +141,13 @@ function drawBarChart2(chartId, labels, data) {
             datasets: [{
                 label: '주말 유동인구',
                 data: data,
-                backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#f8f9fa'],
+                backgroundColor: [
+                    'rgba(255, 205, 86, 0.7)', // 연한 노란색
+                    'rgba(255, 159, 64, 0.7)', // 주황색
+                    'rgba(75, 192, 192, 0.7)', // 청록색
+                    'rgba(153, 102, 255, 0.7)', // 보라색
+                    'rgba(255, 99, 132, 0.7)' // 붉은색
+                ],
             }],
         },
         options: {
@@ -127,14 +155,18 @@ function drawBarChart2(chartId, labels, data) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        min: 12, // 최소값 설정
-                        max: 16 // 최대값 설정
+                        min: 10, // 최소값 설정
+                        max: 17 // 최대값 설정
                     }
                 }]
+            },
+            legend: {
+                display: false // 범례 숨기기
             }
         }
     });
 }
+
 
 // 유동인구가 가장 많은 요일을 찾는 함수
 function findMostPopularDay(data) {
@@ -174,3 +206,35 @@ function displayTotalPopulation(population) {
         console.error('totalPopulationElement이 존재하지 않습니다.');
     }
 }
+
+function drawSimilarChart(data) {
+    const quarters = Object.keys(data); // 분기
+    const counts = Object.values(data); // 유사업종 수
+    
+    // 차트를 그릴 canvas 요소 가져오기
+    const ctx = document.getElementById('myBarChart').getContext('2d');
+    
+    // 바 차트 생성
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: quarters.map(quarter => `2023 ${quarter.charAt(4)}분기`), // 분기 라벨 설정
+        datasets: [{
+          label: '유사업종 수',
+          backgroundColor: 'rgba(54, 162, 235, 0.2)', // 바 색상 설정
+          borderColor: 'rgba(54, 162, 235, 1)', // 바 테두리 색상 설정
+          borderWidth: 1,
+          data: counts // 유사업종 수 데이터 설정
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true // 세로축이 0부터 시작하도록 설정
+            }
+          }]
+        }
+      }
+    });
+  }
