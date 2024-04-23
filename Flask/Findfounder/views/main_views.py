@@ -11,6 +11,8 @@ from Findfounder.views.SeoulMovingPeople import get_people
 from Findfounder.views.SeoulUseMoney import get_use_money
 from Findfounder.views.SeoulSimilarStore import get_similar
 from Findfounder.views.SeoulZipgack import get_zipgack
+from Findfounder.views.Expect_expand_gu import predict_expand_gu
+from Findfounder.views.Expect_expand_dong import predict_expand_dong
 import requests
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -33,6 +35,36 @@ def call_region():
         print(jsonify(region_list))  # 업종 리스트를 JSON 형태로 응답
         
         return jsonify(region_list)
+
+
+
+@bp.route('/receive_string_result',methods=['POST'])
+def receive_result_string():
+       #spring 으로부터 json객체를 전달받응
+        dto_json=request.get_json()
+        #dto_json을 dumps메서드를 사용하여 response에 저장
+        response=json.dumps(dto_json,ensure_ascii=False)
+        prefer_industry=dto_json.get('preferIndustry')
+        prefer_loc_value = dto_json.get('preferLoc')
+       
+
+        if prefer_loc_value.endswith("구"):
+                prediction = predict_expand_gu(prefer_loc_value)
+        elif prefer_loc_value.endswith("동"):
+                prediction = predict_expand_dong(prefer_loc_value)
+        else:
+        # 예외 처리: "구" 또는 "동"으로 끝나지 않는 경우
+                prediction = None
+
+        combined_data = {
+                "loc_expect_expand": prediction
+                
+        }
+        json_prediction = json.dumps(prediction, ensure_ascii=False)
+        #print(prediction)
+        #print(industry_life)
+        return jsonify(combined_data)
+
 
 
 @bp.route('/receive_string', methods=['POST'])

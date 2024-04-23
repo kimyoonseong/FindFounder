@@ -58,22 +58,33 @@ public class ConsultController {
 	
 	}
 	//2024-03-29 컨설팅 결과 
-	@Operation(summary = "프론트 컨설팅 결과", description = "Consult result",
-			parameters =  {
-                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-            })
-	@GetMapping("/api/consultation")
-	public ConsultDto showConsultation(@RequestHeader("X-AUTH-TOKEN") String jwtToken) {
+//	@Operation(summary = "프론트 컨설팅 결과", description = "Consult result",
+//			parameters =  {
+//                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
+//            })
+//	@GetMapping("/api/consultation")
+//	public ConsultDto showConsultation(@RequestHeader("X-AUTH-TOKEN") String jwtToken) {
+//		//return  "/api/consultation/"+consultId;
+//		
+//		// ConsultationService를 사용하여 consultId에 해당하는 데이터 가져오기
+//        ConsultDto dto = service.getConsultationById(jwtToken);
+//        return dto;
+//		
+//	
+//	}
+	//2024 04-23 결과ㄴ
+	@Operation(summary = "프론트 컨설팅 결과", description = "Consult result")
+	@PostMapping("/api/consultation/result")
+	public String showConsultation(@CookieValue(value = "Set-Cookie") String jwtToken) throws JsonProcessingException {
 		//return  "/api/consultation/"+consultId;
-		
+
+	 	
 		// ConsultationService를 사용하여 consultId에 해당하는 데이터 가져오기
-        ConsultDto dto = service.getConsultationById(jwtToken);
-        return dto;
+        //ConsultDto dto = service.getConsultationById(jwtToken);
+        return service.getConsultationById(jwtToken);
 		
 	
 	}
-	
-
 	//2024-03-29 상권 통계 검색 
 	@Operation(summary = "통계 검색 ", description = "검색값 flask전송")
 	@GetMapping("/api/analysis")
