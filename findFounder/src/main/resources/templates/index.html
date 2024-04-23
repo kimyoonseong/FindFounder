@@ -639,11 +639,13 @@
                                 //RegionZipgackDiffSpan.textContent=countZipgack;
                                 //gpt수정부
                                 if (countZipgack > 0) {
-                                    RegionZipgackDiffSpan.textContent = `${countZipgack}개 만큼 더 많습니다.`;
+                                    RegionZipgackDiffSpan.textContent = `${countZipgack}% 만큼 더 많습니다.`;
+                                    RegionZipgackDiffSpan.style.color = "red"; // 글씨가 빨간색으로 변경됩니다
                                 } else if (countZipgack < 0) {
-                                    RegionZipgackDiffSpan.textContent = `${-countZipgack}개 만큼 더 적습니다.`;
+                                    RegionZipgackDiffSpan.textContent = `${-countZipgack}% 만큼 더 적습니다.`;
                                 } else {
                                     RegionZipgackDiffSpan.textContent = "같습니다.";
+                                    RegionZipgackDiffSpan.style.color = "blue"; // 글씨가 파란색으로 변경됩니다
                                 }
                                 // 지역이름 선언부
                                 const areaName = document.getElementById('areaName').value;

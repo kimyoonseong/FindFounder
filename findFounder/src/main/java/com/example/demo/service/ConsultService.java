@@ -104,7 +104,7 @@ public class ConsultService {
 	
 		
 //2024-04-08 답변 조회
-	 public ConsultDto getConsultationById(String jwtToken) {
+	 public String getConsultationById(String jwtToken) throws JsonProcessingException {
 		    // JWT 토큰에서 사용자 식별자 추출
 		 	Claims claims = Jwts.parser()
 	                .setSigningKey(secretKey)
@@ -121,9 +121,27 @@ public class ConsultService {
 			    
 		        Consult consultationEntity = consultationOptional.get();
 		        ConsultDto dto = consultationEntity.toDto();
-		        System.out.println(dto.toString());
-		        
-		        return dto;
+		        //System.out.println(dto.toString());
+		        ObjectMapper objectMapper = new ObjectMapper();
+			    String jsonDto = objectMapper.writeValueAsString(dto);
+			    System.out.println(jsonDto);
+			    RestTemplate restTemplate = new RestTemplate();
+
+		        // 헤더를 JSON으로 설정함
+		        HttpHeaders headers = new HttpHeaders();
+		        headers.setContentType(MediaType.APPLICATION_JSON);
+
+		        // Flask 서버로 전송할 데이터와 헤더를 가진 HttpEntity 객체 생성
+		        //jsonDto를 JSON 형식으로 변환하여 HTTP 요청의 본문으로 보냄. 이를 통해 서버에 JSON 형식의 데이터를 전달할 수 있습니다.
+		        HttpEntity<String> entity = new HttpEntity<>(jsonDto, headers);
+
+		        // 실제 Flask 서버와 연결하기 위한 URL
+		        String url = "http://127.0.0.1:5000/receive_string_result";
+
+		        // Flask 서버로 데이터를 전송하고 받은 응답 값을 반환
+		        //System.out.println(restTemplate.postForObject(url, entity, String.class));
+		        //restTemplate.postForObject(url, entity, String.class);
+		        return restTemplate.postForObject(url, entity, String.class);
 		    } else {
 		        throw new NotFoundException("Consultation not found with id: " + cusCode);
 		    }

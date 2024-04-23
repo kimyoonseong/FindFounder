@@ -17,4 +17,8 @@ public class TLConsultController {
     public String consult() {
         return "consult";  
     }
+	@GetMapping("/result")
+	public String result() {
+		return "result";
+	}
 }

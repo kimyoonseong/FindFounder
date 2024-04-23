@@ -1,0 +1,563 @@
+2024-04-23 17:42:16,767:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:42:16,767:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:42:16,767:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:42:16,767:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:43:36,049:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:43:36,054:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:43:36,054:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:43:36,054:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:43:45,135:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:43:45,135:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:43:45,135:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:43:45,135:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:44:45,035:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:44:45,035:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:44:45,035:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:44:45,035:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:46:46,728:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:46:46,728:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:46:46,728:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:46:46,728:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:46:54,088:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:46:54,088:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:46:54,088:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:46:54,088:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:48:25,721:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:48:25,721:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:48:25,721:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:48:25,721:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:48:33,169:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:48:33,169:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:48:33,169:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:48:33,169:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:51:17,148:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 17:51:17,151:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 17:51:17,158:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 17:51:17,176:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 17:52:12,233:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 17:52:12,234:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 17:52:12,237:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 17:52:12,240:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 17:52:22,096:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:52:22,097:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:52:22,097:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:52:22,097:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:53:49,475:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 17:53:49,477:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 17:53:49,480:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 17:53:49,484:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 17:54:38,756:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:54:38,756:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:54:38,756:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:54:38,756:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:54:42,647:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 17:54:42,650:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 17:54:42,651:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 17:54:42,653:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 17:54:56,198:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:54:56,198:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:54:56,198:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 17:54:56,199:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:09:11,067:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:09:11,067:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:09:11,067:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:09:11,067:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:09:12,112:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:09:12,116:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:09:12,121:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:09:12,128:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:09:58,532:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:09:58,532:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:09:58,532:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:09:58,532:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:09:59,142:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:09:59,145:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:09:59,147:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:09:59,151:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:14:04,970:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:14:04,970:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:14:04,971:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:14:04,971:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:14:07,788:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:14:07,791:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:14:07,792:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:14:07,794:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:14:40,129:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:14:40,129:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:14:40,129:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:14:40,129:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:14:41,862:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:14:41,864:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:14:41,867:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:14:41,871:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:15:03,598:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:15:03,599:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:15:03,599:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:15:03,599:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:15:04,574:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:15:04,576:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:15:04,579:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:15:04,584:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:15:32,691:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:15:32,692:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:15:32,692:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:15:32,692:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:15:33,274:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:15:33,276:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:15:33,277:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:15:33,282:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:15:55,371:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:15:55,371:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:15:55,371:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:15:55,371:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:16:01,617:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:16:01,619:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:16:01,620:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:16:01,622:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:16:02,004:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:70: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  print(forecast_values[0])
+
+2024-04-23 18:16:42,509:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:16:42,509:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:16:42,509:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:16:42,509:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:16:43,729:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:16:43,734:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:16:43,741:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:16:43,745:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:18:58,818:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:18:58,818:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:18:58,818:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:18:58,818:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:19:01,259:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:19:01,262:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:19:01,266:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:19:01,268:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:25:18,897:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:25:18,897:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:25:18,897:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:25:18,897:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:25:23,016:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:25:23,019:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:25:23,021:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:25:23,023:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:26:07,946:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:26:07,946:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:26:07,946:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:26:07,946:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:26:08,579:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:26:08,581:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:26:08,583:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:26:08,585:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:26:52,336:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:26:52,337:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:26:52,337:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:26:52,337:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:27:03,286:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:27:03,288:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:27:03,290:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:27:03,294:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:31:48,990:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:31:48,990:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:31:48,991:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:31:48,991:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:31:52,472:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:31:52,475:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:31:52,477:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:31:52,480:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:32:25,307:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:32:25,307:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:32:25,307:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:32:25,307:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:32:25,914:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:32:25,916:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:32:25,919:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:32:25,923:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:33:20,207:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:33:20,207:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:33:20,207:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:33:20,207:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:33:21,052:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:33:21,057:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:33:21,061:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:33:21,067:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:36:04,455:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:36:04,455:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:36:04,455:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:36:04,455:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:36:05,153:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:36:05,156:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:36:05,158:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:36:05,162:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
+2024-04-23 18:41:18,305:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:41:18,305:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:41:18,305:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:41:18,305:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:41:19,200:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:41:19,202:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:41:19,205:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:41:19,209:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
