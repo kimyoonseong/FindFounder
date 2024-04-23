@@ -561,3 +561,27 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 2024-04-23 18:41:19,209:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
   warn('Too few observations to estimate starting parameters%s.'
 
+2024-04-23 18:41:49,939:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:41:49,939:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:41:49,939:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:41:49,939:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-23 18:41:50,956:WARNING:C:\Users\82104\git\FindFounder\Flask\Findfounder\views\Expect_expand_dong.py:57: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
+
+2024-04-23 18:41:50,958:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:41:50,961:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\base\tsa_model.py:473: ValueWarning: No frequency information was provided, so inferred frequency QS-OCT will be used.
+  self._init_dates(dates, freq)
+
+2024-04-23 18:41:50,966:WARNING:C:\Users\82104\git\FindFounder\Flask\fisaproject\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:866: UserWarning: Too few observations to estimate starting parameters for seasonal ARMA. All parameters except for variances will be set to zeros.
+  warn('Too few observations to estimate starting parameters%s.'
+
