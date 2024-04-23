@@ -45,7 +45,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
+import static net.logstash.logback.argument.StructuredArguments.kv;
+
+@Slf4j
 @RestController
 @Tag(name = "1. 사용자", description = "회원관련 컨트롤러 ")
 public class CustomerController {
@@ -66,6 +70,7 @@ public class CustomerController {
    @PostMapping("/api/user")
    @Operation(summary = "회원가입", description = "회원가입")
    public ResponseEntity<CommonRes> join(@RequestBody @Valid CustomerJoinDto request) throws Exception {
+	   log.debug("회원가입 {}", kv("id", request.getCusId()));
       CommonRes res = customerService.join(request);
       return ResponseEntity.ok(res);
    }
@@ -168,7 +173,9 @@ public class CustomerController {
    public ResponseEntity<LoginRes> getMemberProfile(
 		   @RequestBody LoginReq dto, HttpServletResponse response
 		   
-) {
+) {		
+	   log.debug("로그인 {}", kv("id", dto.getCusId()));
+	   log.debug("로그인 {}");
        LoginRes res = authService.login(dto);
        String token = res.getToken();
 
@@ -194,6 +201,7 @@ public class CustomerController {
    @Operation(summary = "이메일보내기", description = "이메일보내기")
    public ResponseEntity<CommonRes> sendEmail(@RequestBody EmailRes emailDto) throws Exception{
 	   
+	   log.debug("아이디 찾기 - 이메일 {}", kv("email", emailDto.getEmail()));
 	   System.out.println(emailDto.toString());
 	   CommonRes res = emailService.sendEmail(emailDto.getEmail());
 	   
@@ -207,6 +215,8 @@ public class CustomerController {
    @PostMapping("/api/user/pw")
    @Operation(summary = "비밀번호 수정", description = "비밀번호 수정")
    public ResponseEntity<CommonRes> updatePw(@RequestBody CustomerUpdatePwReq req){
+	   
+	   log.debug("비밀번호 수정 {}", kv("new password", req.getCusPw()));
 	   System.out.println(req.getCusId() + " ##" + req.getCusPw());
 	   CommonRes res;
 	   if (customerService.updatePw( req).equals("비밀번호 수정 완료")) {
@@ -232,6 +242,7 @@ public class CustomerController {
 //				 @RequestHeader("X-AUTH-TOKEN") String jwtToken
 				  @CookieValue(name = "Set-Cookie", required = false) String jwtToken) throws Exception {
 		
+		log.debug("회원탈퇴 {}", kv("jwtToken", jwtToken));
 		System.out.println("@@@@@@@@@@@@@@@@" + jwtToken);
 		int cusCode = jwtUtil.getCusCode(jwtToken);
 		
@@ -258,6 +269,7 @@ public class CustomerController {
 	@GetMapping("/api/user")
 	@Operation(summary = "비밀번호 찾기 질문", description = "비밀번호 찾기 질문")
 	public ResponseEntity<CommonRes> findPw(CustomerFindPwReq req){
+		log.debug("비밀번호 찾기 질문 {}", req.getCusId());
 		CommonRes res;
 		// 서비스에 있는 만든 함수 불러서  req를 인자로 넘겨주고
 		if (customerService.findCusPw(req).equals("비밀번호 수정 가능")) {
@@ -277,6 +289,7 @@ public class CustomerController {
 	    @PostMapping("/api/user/logout")
 	    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
 	        // 쿠키 만료 시간을 0으로 설정하여 쿠키를 제거합니다.
+	    	log.debug("로그아웃");
 	        Cookie[] cookies = request.getCookies();
 
 	        if (cookies != null) {
