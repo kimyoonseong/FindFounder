@@ -643,9 +643,10 @@
                                     RegionZipgackDiffSpan.style.color = "red"; // 글씨가 빨간색으로 변경됩니다
                                 } else if (countZipgack < 0) {
                                     RegionZipgackDiffSpan.textContent = `${-countZipgack}% 만큼 더 적습니다.`;
+                                    RegionZipgackDiffSpan.style.color = "blue"; // 글씨가 빨간색으로 변경됩니다
                                 } else {
                                     RegionZipgackDiffSpan.textContent = "같습니다.";
-                                    RegionZipgackDiffSpan.style.color = "blue"; // 글씨가 파란색으로 변경됩니다
+                                    RegionZipgackDiffSpan.style.color = "green"; // 글씨가 파란색으로 변경됩니다
                                 }
                                 // 지역이름 선언부
                                 const areaName = document.getElementById('areaName').value;
@@ -678,8 +679,11 @@
                     <script>
                             // 숫자 포맷팅 함수 정의 억 만단위 끊기
                             function formatNumber(number) {
+                                if(number>=1000000000000){
+                                    return `${Math.floor(number / 1000000000000)}조 ${Math.floor((number%1000000000000) / 100000000)}억 ${Math.floor((number % 100000000) / 10000)}만`;
+                                }
                                 // 숫자가 억 이상일 경우
-                                if (number >= 100000000) {
+                                else if (number >= 100000000) {
                                     return `${Math.floor(number / 100000000)}억 ${Math.floor((number % 100000000) / 10000)}만`;
                                 }
                                 // 숫자가 억 미만일 경우

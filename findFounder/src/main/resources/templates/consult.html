@@ -96,83 +96,92 @@
 						<li class="breadcrumb-item active">개인 맞춤 컨설팅</li>
 					</ol>
 					<!-- 폼 영역 -->
-					<div class="ms-4" style="width:40%;">
-						<form id="consultForm">
-							<div class="mb-3">
-								<label for="ageInput" class="form-label">나이</label>
-								<input type="number" class="form-control" id="ageInput" placeholder="나이를 입력하세요">
-							</div>
-							<div class="mb-3">
-								<label class="form-label">성별</label><br>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="gender" id="maleRadio"
-										value="male">
-									<label class="form-check-label" for="maleRadio">남성</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="gender" id="femaleRadio"
-										value="female">
-									<label class="form-check-label" for="femaleRadio">여성</label>
-								</div>
-							</div>
-							<div class="mb-3">
-								<label for="locationInput" class="form-label">거주지</label>
-								<input type="text" class="form-control" id="locationInput" placeholder="거주지를 입력하세요">
-							</div>
-							<div class="mb-3">
-								<label class="form-label">초기 자본</label><br>
-								<input type="range" class="form-range" id="capitalRange" min="10000000" max="20000000"
-									step="1000000">
-							</div>
-							<div class="mb-3">
-								<label class="form-label">경쟁도</label><br>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="competitiveness" id="lowRadio"
-										value="1">
-									<label class="form-check-label" for="lowRadio">하</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="competitiveness" id="mediumRadio"
-										value="2">
-									<label class="form-check-label" for="mediumRadio">중</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="competitiveness" id="highRadio"
-										value="3">
-									<label class="form-check-label" for="highRadio">상</label>
-								</div>
-							</div>
-							<div class="mb-3">
-								<label class="form-label">선호 업종</label><br>
-								<select class="form-select">
-									<option value="음식점">음식점</option>
-									<option value="교육">교육</option>
-									<option value="오락">오락</option>
-									<option value="오락">서비스</option>
-									<option value="소매">소매</option>
-									<option value="상관없음">상관없음</option>
-								</select>
-							</div>
-							<div class="mb-3">
-								<label for="preferredLocationInput" class="form-label">선호 지역</label>
-								<input type="text" class="form-control" id="preferredLocationInput"
-									placeholder="선호 지역을 입력하세요">
-							</div>
-							<button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
-						</form>
-					</div>
 
-					<div style="display: flex;">
-						<!-- 지도 생성 -->
-						<div style="width:60%; height:500px; border: 2px solid #ddd; border-radius: 10px;">
-							<div id="map" style="width:100%; height:100%;"></div>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="ms-4" style="width:100%;">
+									<form id="consultForm">
+										<form id="consultForm">
+											<div class="mb-3">
+												<label for="ageInput" class="form-label">나이</label>
+												<input type="number" class="form-control" id="ageInput" placeholder="나이를 입력하세요">
+											</div>
+											<div class="mb-3">
+												<label class="form-label">성별</label><br>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="gender" id="maleRadio"
+														value="male">
+													<label class="form-check-label" for="maleRadio">남성</label>
+												</div>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="gender" id="femaleRadio"
+														value="female">
+													<label class="form-check-label" for="femaleRadio">여성</label>
+												</div>
+											</div>
+											<div class="mb-3">
+												<label for="locationInput" class="form-label">거주지</label>
+												<input type="text" class="form-control" id="locationInput" placeholder="거주지를 입력하세요">
+											</div>
+											<div class="mb-3">
+												<label class="form-label">초기 자본</label><br>
+												<div style="position: relative;">
+													<input type="range" class="form-range" id="capitalRange" min="10000000" max="20000000" step="1000000" oninput="updateCapitalValue()">
+													<span id="capitalValue" style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%);"></span>
+												</div>
+											</div>
+											<div class="mb-3">
+												<label class="form-label">경쟁도</label><br>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="competitiveness" id="lowRadio"
+														value="1">
+													<label class="form-check-label" for="lowRadio">하</label>
+												</div>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="competitiveness" id="mediumRadio"
+														value="2">
+													<label class="form-check-label" for="mediumRadio">중</label>
+												</div>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="competitiveness" id="highRadio"
+														value="3">
+													<label class="form-check-label" for="highRadio">상</label>
+												</div>
+											</div>
+											<div class="mb-3">
+												<label class="form-label">선호 업종</label><br>
+												<select class="form-select">
+													<option value="음식점">음식점</option>
+													<option value="교육">교육</option>
+													<option value="오락">오락</option>
+													<option value="오락">서비스</option>
+													<option value="소매">소매</option>
+													<option value="상관없음">상관없음</option>
+												</select>
+											</div>
+											<div class="mb-3">
+												<label for="preferredLocationInput" class="form-label">선호 지역</label>
+												<input type="text" class="form-control" id="preferredLocationInput"
+													placeholder="선호 지역을 입력하세요">
+											</div>
+											<button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+										</form>
+									</form>
+								</div>
+							</div>
+							<div class="col-md-8">
+								<div style="display: flex; justify-content: center;">
+									<!-- 지도 생성 -->
+									<div style="width:70%; height:500px; border: 2px solid #ddd; border-radius: 10px;">
+										<div id="map" style="width:100%; height:100%;"></div>
+									</div>
+								</div>
+							</div>
 						</div>
-
-						<!-- 폼 영역 -->
-
-
-
 					</div>
+
+					
 
 
 
@@ -315,7 +324,7 @@
 					'   <div class="title">' + area.name + '</div>' +
 					'   <div class="size">총 면적 : 약 ' + Math.floor(polygon.getArea()) + ' m<sup>2</sup></div>' +
 					'</div>';
-				document.getElementById('areaName').value = area.name;
+				document.getElementById('preferredLocationInput').value = area.name;
 
 				infowindow.setContent(content);
 				infowindow.setPosition(mouseEvent.latLng);
@@ -364,6 +373,19 @@
 		if (consultForm) {
 			consultForm.addEventListener("submit", function (event) {
 				event.preventDefault(); // 폼이 기본적으로 제출되는 것을 막음
+
+
+				 // 필수 입력값 검사
+				 var ageInput = document.getElementById("ageInput").value;
+                var genderInput = document.querySelector('input[name="gender"]:checked');
+                var locationInput = document.getElementById("locationInput").value;
+                var preferredLocationInput = document.getElementById("preferredLocationInput").value;
+
+                if (!ageInput || !genderInput || !locationInput || !preferredLocationInput) {
+                    alert("모든 항목에 입력해주셔야 합니다!");
+                    return;
+                }
+
 
 				// 성별 값을 가져와서 "male"이면 true, 그렇지 않으면 false로 변환
 				var sex = document.querySelector('input[name="gender"]:checked').value === "male";
@@ -464,7 +486,15 @@
 			});			
 											
     </script>                
-                    
+                    <script>
+						function updateCapitalValue() {
+							var rangeValue = document.getElementById("capitalRange").value;
+							document.getElementById("capitalValue").textContent = "₩" + rangeValue;
+						}
+					
+						// 페이지 로드 시 초기 값 설정
+						updateCapitalValue();
+					</script>
                     
                     
     </body >

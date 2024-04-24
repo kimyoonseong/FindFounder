@@ -6,13 +6,14 @@ from werkzeug.utils import secure_filename
 from socket import *
 from Findfounder.views.Stat  import get_statistics
 from Findfounder.views.Industry import read_industry_from_csv
-from Findfounder.views.SeoulRegion import read_region_from_csv
+from Findfounder.views.SeoulRegion import read_region_from_csv,get_district_from_subdistrict
 from Findfounder.views.SeoulMovingPeople import get_people
 from Findfounder.views.SeoulUseMoney import get_use_money
 from Findfounder.views.SeoulSimilarStore import get_similar
 from Findfounder.views.SeoulZipgack import get_zipgack
-from Findfounder.views.Expect_expand_gu import predict_expand_gu
+from Findfounder.views.Expect_expand_gu import predict_expand_gu,predict_expand_gu2
 from Findfounder.views.Expect_expand_dong import predict_expand_dong
+from Findfounder.views.Expect_sales_gu import predict_sales_gu
 import requests
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -31,7 +32,7 @@ def call_industry():
 @bp.route('/call_region',methods=['POST'])
 def call_region():
         seoulgu = request.get_data(as_text=True)  # 클라이언트로부터 카테고리를 받음
-        region_list = read_region_from_csv(seoulgu)  # CSV 파일에서 해당 카테고리의 업종 리스트를 가져옴
+        region_list = read_region_from_csv(seoulgu)  # CSV 파일에서 해당 카테고리의 지역 리스트를 가져옴
         print(jsonify(region_list))  # 업종 리스트를 JSON 형태로 응답
         
         return jsonify(region_list)
@@ -47,19 +48,33 @@ def receive_result_string():
         prefer_industry=dto_json.get('preferIndustry')
         prefer_loc_value = dto_json.get('preferLoc')
        
-
+        
         if prefer_loc_value.endswith("구"):
-                prediction = predict_expand_gu(prefer_loc_value)
+                prediction = predict_expand_gu(prefer_loc_value)# 자치구 매달 지출예측
+                prediction_sales = predict_sales_gu(prefer_loc_value)
+                combined_data = {
+                "gu" : prefer_loc_value,
+                "loc_expect_expand": prediction#매월 구 지출액 및 예측
+                
+                }
+               
+
+
         elif prefer_loc_value.endswith("동"):
-                prediction = predict_expand_dong(prefer_loc_value)
+                prediction = predict_expand_dong(prefer_loc_value) #행정동 매달 지출 예측
+                region = get_district_from_subdistrict(prefer_loc_value) #행정동의 자치구 가져오기
+                prediction_gu = predict_expand_gu2(region) # 자치구의 행정동 평균 매달 지출 예측
+                combined_data = {
+                "dong"  : prefer_loc_value,
+                "gu" : region,
+                "loc_expect_expand_gu": prediction_gu,#평균 행정동 매달 지출 예측
+                "loc_expect_expand_dong": prediction  #행정동 매달 지출 예측
+                
+                }
         else:
         # 예외 처리: "구" 또는 "동"으로 끝나지 않는 경우
                 prediction = None
 
-        combined_data = {
-                "loc_expect_expand": prediction
-                
-        }
         json_prediction = json.dumps(prediction, ensure_ascii=False)
         #print(prediction)
         #print(industry_life)
