@@ -70,7 +70,7 @@ public class CustomerController {
    @PostMapping("/api/user")
    @Operation(summary = "회원가입", description = "회원가입")
    public ResponseEntity<CommonRes> join(@RequestBody @Valid CustomerJoinDto request) throws Exception {
-	   log.debug("회원가입 {}", kv("id", request.getCusId()));
+	   log.debug("회원가입 아이디 {}", kv("id", request.getCusId()));
       CommonRes res = customerService.join(request);
       return ResponseEntity.ok(res);
    }
@@ -175,7 +175,6 @@ public class CustomerController {
 		   
 ) {		
 	   log.debug("로그인 {}", kv("id", dto.getCusId()));
-	   log.debug("로그인 {}");
        LoginRes res = authService.login(dto);
        String token = res.getToken();
 
@@ -269,7 +268,7 @@ public class CustomerController {
 	@GetMapping("/api/user")
 	@Operation(summary = "비밀번호 찾기 질문", description = "비밀번호 찾기 질문")
 	public ResponseEntity<CommonRes> findPw(CustomerFindPwReq req){
-		log.debug("비밀번호 찾기 질문 {}", req.getCusId());
+		log.debug("비밀번호 찾기 질문 클릭한 회원 아이디 : {}", req.getCusId());
 		CommonRes res;
 		// 서비스에 있는 만든 함수 불러서  req를 인자로 넘겨주고
 		if (customerService.findCusPw(req).equals("비밀번호 수정 가능")) {
@@ -289,7 +288,7 @@ public class CustomerController {
 	    @PostMapping("/api/user/logout")
 	    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
 	        // 쿠키 만료 시간을 0으로 설정하여 쿠키를 제거합니다.
-	    	log.debug("로그아웃");
+	    	log.debug("로그아웃함");
 	        Cookie[] cookies = request.getCookies();
 
 	        if (cookies != null) {
