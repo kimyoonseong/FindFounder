@@ -76,20 +76,25 @@ function drawChart(data) {
           }]
       },
       options: {
-          scales: {
-              x: {
-                  title: {
-                      display: true,
-                      text: '년도와 분기'
-                  }
-              },
-              y: {
-                  title: {
-                      display: true,
-                      text: '운영 영업 개월 평균'
-                  }
-              }
-          }
-      }
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    min:40, // Y축의 최소값
+                    max: 130 // Y축의 최대값
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: '운영 영업 개월 평균'
+                }
+            }],
+            xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: '년도와 분기'
+                }
+            }]
+        }
+    }
   });
 }

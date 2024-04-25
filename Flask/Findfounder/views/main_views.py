@@ -51,11 +51,11 @@ def receive_result_string():
         
         if prefer_loc_value.endswith("구"):
                 prediction = predict_expand_gu(prefer_loc_value)# 자치구 매달 지출예측
-                prediction_sales = predict_sales_gu(prefer_loc_value)
+                prediction_sales = predict_sales_gu(prefer_loc_value,prefer_industry)
                 combined_data = {
                 "gu" : prefer_loc_value,
-                "loc_expect_expand": prediction#매월 구 지출액 및 예측
-                
+                "loc_expect_expand": prediction,#매월 구 지출액 및 예측
+                "industry_expect_expand": prediction_sales
                 }
                
 
