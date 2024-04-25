@@ -31,17 +31,21 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "4. 컨설팅", description = "send to Flask and send from Flask ")
 public class ConsultController {
 	private ConsultService service;
+	private JwtUtil jwtUtil;
 	
 	@Autowired
-    public ConsultController(ConsultService service) {
+    public ConsultController(ConsultService service, JwtUtil jwtUtil) {
         this.service = service;
+        this.jwtUtil = jwtUtil;
     }
 	
 	
@@ -51,7 +55,6 @@ public class ConsultController {
 	@PostMapping("/api/consultation")
     public ResponseEntity<CommonRes> createConsultation(@CookieValue(value = "Set-Cookie") String jwtToken,
     		@RequestBody ConsultDto dto) {
-	
 			CommonRes res=service.consult(jwtToken,dto);
 			return ResponseEntity.ok(res);
 			

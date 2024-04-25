@@ -1,65 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <property resource="application.properties"/>
-    <contextName>${spring.application.name}</contextName>
-    <springProfile name="!non-json-logs">
-        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-            <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-                <providers>
-                    <pattern>
-                        <pattern>
-                            {
-                            "trace": "%X{traceId:-}",
-                            "span": "%X{spanId:-}",
-                            "parent": "%X{parentId:-}",
-                            "exportable": "%X{sampled:-}",
-                            "pid": "${PID:-}"
-                            }
-                        </pattern>
-                    </pattern>
-                    <contextName>
-                        <fieldName>app</fieldName>
-                    </contextName>
-                    <timestamp>
-                        <fieldName>ts</fieldName>
-                        <timeZone>UTC</timeZone>
-                    </timestamp>
-                    <loggerName>
-                        <fieldName>logger</fieldName>
-                    </loggerName>
-                    <logLevel>
-                        <fieldName>level</fieldName>
-                    </logLevel>
-                    <callerData>
-                        <classFieldName>class</classFieldName>
-                        <methodFieldName>method</methodFieldName>
-                        <lineFieldName>line</lineFieldName>
-                        <fileFieldName>file</fileFieldName>
-                    </callerData>
-                    <threadName>
-                        <fieldName>thread</fieldName>
-                    </threadName>
-                    <mdc/>
-                    <arguments>
-                        <includeNonStructuredArguments>false</includeNonStructuredArguments>
-                    </arguments>
-                    <stackTrace>
-                        <fieldName>stack</fieldName>
-                    </stackTrace>
-                    <message>
-                        <fieldName>msg</fieldName>
-                    </message>
-                </providers>
-            </encoder>
-        </appender>
-    </springProfile>
-    <springProfile name="non-json-logs">
-        <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    </springProfile>
-    <logger name="com.ivanfranchin.moviesapi" level="DEBUG" additivity="false">
-        <appender-ref ref="CONSOLE"/>
-    </logger>
+
+    <!-- 패턴 레이아웃 정의 -->
+    <conversionRule conversionWord="userId" converterClass="YourUserIdConverter"/>
+
+    <!-- 로그 출력 형식 정의 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%msg, %d{yyyy-MM-dd HH:mm:ss}%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 로그 레벨 정의 -->
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
     </root>
+
+    <!-- 회원가입 이벤트에 대한 로그 설정 -->
+    <logger name="com.example.CustomerController" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
 </configuration>

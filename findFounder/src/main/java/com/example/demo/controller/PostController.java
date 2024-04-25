@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import org.springframework.http.ResponseEntity;
 
+
 import org.springframework.security.core.Authentication;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -37,6 +38,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 
 import static io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER;
 
@@ -44,7 +46,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 
 
-
+@Slf4j
 @RestController
 @RequestMapping("/api/board")
 @Tag(name = "2. 게시글", description = "게시글 컨트롤러 ")
@@ -68,6 +70,8 @@ public class PostController {
 	public ResponseEntity<CommonRes> createPost(
 			@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @RequestBody PostCreateReq req ) {
+		
+		log.debug("[Log] 게시글 작성 : {}", jwtUtil.getCusId(jwtToken));
 
 		System.out.println(jwtToken);
 		int cusCode = jwtUtil.getCusCode(jwtToken);
@@ -83,6 +87,7 @@ public class PostController {
 		public ResponseEntity<CommonRes> updatePost(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 				, @RequestParam int postid, @RequestBody PostCreateReq req ) {
 			
+			log.debug("[Log] 게시글 수정 : {}", jwtUtil.getCusId(jwtToken));
 			int cusCode = jwtUtil.getCusCode(jwtToken);
 			CommonRes res =  postService.updatePost(cusCode, postid, req);
 			System.out.println("게시글수정컨트롤러"+res.getMsg());
@@ -94,6 +99,9 @@ public class PostController {
 	@GetMapping()
 	public ResponseEntity<PostListRes> getPosts(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @RequestParam(required = false, defaultValue =  "1") Integer page) {
+		
+		log.debug("[Log] 게시글 전체 조회됨 : {}", jwtUtil.getCusId(jwtToken));
+
 		page--;
 		System.out.println("게시글전체조회");
 		PostListRes res = PostListRes.builder().posts(postService.getPostList(page)).build();
@@ -106,6 +114,8 @@ public class PostController {
 	public ResponseEntity<PostListRes> getPostsByKeyword(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @RequestParam(required = false, defaultValue =  "1") int page
 			, @RequestParam String keyword) {
+		
+		log.debug("[Log] 게시글 키워드 조회됨 : {}", jwtUtil.getCusId(jwtToken));
 		page--;
 		PostListRes res = PostListRes.builder().posts(postService.getPostListByKeyword(page, keyword)).build();
 		
@@ -117,6 +127,8 @@ public class PostController {
 	public ResponseEntity<CommonRes> deletePostById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @PathVariable int postid) {
 		
+		log.debug("[Log] 게시글 삭제됨 : {}", jwtUtil.getCusId(jwtToken));
+
 		int cusCode = jwtUtil.getCusCode(jwtToken);
 		
 		CommonRes res = postService.deletePost(cusCode,postid);
@@ -128,6 +140,9 @@ public class PostController {
 	@GetMapping("/detail")
 	public ResponseEntity<PostDetailDto> getPostDetailById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @RequestParam(required = false) int postid) {
+		
+		log.debug("[Log] 게시글 상세 조회 : {}", jwtUtil.getCusId(jwtToken));
+
 		PostDetailDto postDto = postService.detailPost(postid);
 		
 		return ResponseEntity.ok(postDto);
@@ -137,6 +152,9 @@ public class PostController {
 	@GetMapping("/mypost")
 	public ResponseEntity<PostListRes> getMyPostDetailById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @RequestParam(required = false, defaultValue =  "1") Integer page) {
+		
+		log.debug("[Log] 본인 게시글 조회함 : {}", jwtUtil.getCusId(jwtToken));
+
 		// jwt에서 cuscode 가져오기
 		page--;
 		int cusCode = jwtUtil.getCusCode(jwtToken);
@@ -154,7 +172,8 @@ public class PostController {
 			@CookieValue(name = "Set-Cookie", required = false) String jwtToken, 
 			@RequestBody ReactionReq req ) {
 		
-		
+		log.debug("[Log] 리액션 좋아요, 싫어요 누름 : {}", jwtUtil.getCusId(jwtToken));
+
 		int cuscode = jwtUtil.getCusCode(jwtToken);
 		
 		CommonRes res =  postService.doReaction(req, cuscode, postid);
