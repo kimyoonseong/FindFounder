@@ -12,6 +12,6 @@ def read_industry_from_csv(category):
     return "1"
 
 # 테스트
-signgu_cd_nm = '용산구'
-statistics = read_industry_from_csv(signgu_cd_nm)
-print(statistics)
+# signgu_cd_nm = '용산구'
+# statistics = read_industry_from_csv(signgu_cd_nm)
+# print(statistics)
