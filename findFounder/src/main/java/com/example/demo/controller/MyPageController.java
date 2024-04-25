@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import static io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER;
 
 import java.util.List;
 
@@ -32,13 +31,17 @@ import com.example.demo.model.entity.Customer;
 import com.example.demo.service.AuthService;
 import com.example.demo.service.CustomerService;
 import com.example.demo.service.MyPageService;
+import com.example.demo.util.JwtUtil;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+import static net.logstash.logback.argument.StructuredArguments.kv;
 
+@Slf4j
 @RestController
 @RequestMapping("/api")
 @Tag(name = "5. 마이페이지", description = "마이페이지 컨트롤러 ")
@@ -49,20 +52,23 @@ public class MyPageController {
 	   private  AuthService authService;
 	   private MyPageService Myservice;
 	   private  PasswordEncoder encoder;
+	   private JwtUtil jwtUtil;
 	  
 	   
 	   public MyPageController(CustomerService cusService, AuthService authService, 
-			   PasswordEncoder encoder,MyPageService Myservice) {
+			   PasswordEncoder encoder,MyPageService Myservice, JwtUtil jwtUtil) {
 		   this.cusService=cusService;
 		   this.authService=authService;
 		   this.Myservice=Myservice;
 			this.encoder = encoder;
+			this.jwtUtil = jwtUtil;
 	   }
 	   // 회원코드는 JWT토큰 통해서 가져오기.
 	   //2024-04-04
 	   @Operation(summary = "마이페이지 조회", description = "회원정보")
 	   @GetMapping("/mypage")
 	   public CustomerDto showMyPage(@CookieValue(name = "Set-Cookie", required = false) String jwtToken) {
+		   log.debug("[Log] 마이페이지 조회 : {}", jwtUtil.getCusId(jwtToken));
 		   CustomerDto dto = Myservice.getCusInfo(jwtToken);
 		   return dto;
 	   }
@@ -72,6 +78,8 @@ public class MyPageController {
 	   public ResponseEntity<CommonRes> updateMyPage(@CookieValue(name = "Set-Cookie", required = false) String jwtToken,
 			   @RequestBody CustomerDto dto, 
 			   @RequestParam(required = false) String nowPW) {
+		   log.debug("[Log] 회원정보 수정 : {}", jwtUtil.getCusId(jwtToken));
+
 		   	if(nowPW!=null) {
 		   		CommonRes res=Myservice.cusUpdate(jwtToken,dto,nowPW); // 현재 비번 친사람 -> 비번 바꾸겠다는사람
 		   		return ResponseEntity.ok(res); 
@@ -88,6 +96,7 @@ public class MyPageController {
 	   @Operation(summary="컨설팅 내역",description="히스토리 내역들 확인")
 	   @GetMapping("/mypage/history")   
 	   public List<Consult> consultHistory(@CookieValue(name = "Set-Cookie", required = false) String jwtToken) {
+		   log.debug("[Log] 컨설팅 내역 확인 : {}", jwtUtil.getCusId(jwtToken));
 		   List<Consult> con=Myservice.getConsultHistory(jwtToken);
 		   return con;
 	   }

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 import static io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER;
+
 import org.springframework.http.ResponseCookie;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +33,23 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+import static net.logstash.logback.argument.StructuredArguments.kv;
 
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "5. 검색", description = "send to Flask and send from Flask ")
 public class SearchController {
 	private SearchService service;
+	private JwtUtil jwtUtil;
 	
 	@Autowired
-    public SearchController(SearchService service) {
+    public SearchController(SearchService service, JwtUtil jwtUtil) {
         this.service = service;
+        this.jwtUtil = jwtUtil;
     }
 	
 	//2024-04-15 해당 카테고리 상권 가지고오기
@@ -50,6 +57,8 @@ public class SearchController {
 		@PostMapping("/api/industry")
 		@ResponseBody
 		public String Bring(@CookieValue(value = "Set-Cookie") String jwtToken,@RequestParam String category) {
+			log.debug("[Log] 해당 카테고리 업종 상권 가져옴 : {}", jwtUtil.getCusId(jwtToken));
+
 			return service.bringIndustry(category);
 		}
 //2024-04-15 해당 카테고리 상권 가지고오기
@@ -57,6 +66,8 @@ public class SearchController {
 		@PostMapping("/api/region")
 		@ResponseBody
 		public String Region(@CookieValue(value = "Set-Cookie") String jwtToken,@RequestParam String category) {
+			log.debug("[Log] 해당 카테고리 행정동 상권 가져옴 : {}", jwtUtil.getCusId(jwtToken));
+
 			return service.bringRegion(category);
 		}
 

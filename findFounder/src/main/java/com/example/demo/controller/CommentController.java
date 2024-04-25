@@ -30,7 +30,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 
-import static net.logstash.logback.argument.StructuredArguments.kv;
 
 @Slf4j
 @RestController
@@ -52,7 +51,7 @@ public class CommentController {
 	@PostMapping()
 	public ResponseEntity<CommonRes> createComment(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @RequestBody CommentCreateReq req ) {
-		log.debug("댓글 작성 {}", kv("jwtToken", jwtToken));
+		log.debug("[Log] 댓글 작성 : {}", jwtUtil.getCusId(jwtToken));
 		int cuscode = jwtUtil.getCusCode(jwtToken);
 		CommonRes res =  commentService.createComment(cuscode, req);
 		
@@ -62,7 +61,7 @@ public class CommentController {
 	@Operation(summary = "댓글 수정", description = "제목, 댓글 내용")
 	@PatchMapping()
 	public ResponseEntity<CommonRes> updateComment(@CookieValue(name = "Set-Cookie", required = false) String jwtToken, @RequestBody CommentUpdateReq req ) {
-		log.debug("댓글 수정 {}", kv("회원 토큰", jwtToken));
+		log.debug("[Log] 댓글 수정 : {}", jwtUtil.getCusId(jwtToken));
 		int cuscode = jwtUtil.getCusCode(jwtToken);
 		
 		CommonRes res =  commentService.updateComment(cuscode, req);
@@ -74,7 +73,6 @@ public class CommentController {
 	@Operation(summary = "댓글 리스트", description = "댓글 리스트")
 	@GetMapping()
 	public ResponseEntity<List<CommentDetailDto>> getComments(@RequestParam(required = false) int postid) {
-		log.debug("댓글 리스트");
 		List<CommentDetailDto> comments =  commentService.findCommentList(postid);
 		
 		return ResponseEntity.ok(comments);
@@ -84,7 +82,7 @@ public class CommentController {
 	@DeleteMapping("/{commentid}")
 	public ResponseEntity<CommonRes> deleteComment(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @PathVariable int commentid) {
-		log.debug("댓글 삭제 - {} {}", kv("회원 토큰", jwtToken), kv("댓글 아이디", commentid));
+		log.debug("[Log] 댓글 삭제 : {}", jwtUtil.getCusId(jwtToken));
 		int cuscode = jwtUtil.getCusCode(jwtToken);
 		CommonRes res =  commentService.deleteComment(cuscode, commentid);
 		
