@@ -3,6 +3,9 @@ import pickle , json
 import pandas as pd
 from pycaret.regression import *
 from openpyxl import load_workbook
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
 # 예측을 수행하는 함수
 def predict_sales_gu(data,prefer_industry):
     # 입력 데이터를 모델에 전달하여 예측 수행
@@ -79,26 +82,52 @@ def extract_predictions(pred):
     
     return predictions_dict
 
+# def recommend_top_industries(predictions_dict):
+#     # 분기별 상승률이 높은 업종을 저장할 딕셔너리 초기화
+#     quarterly_growth = {}
+
+#     # 분기별로 업종별 상승률 계산
+#     for industry, quarter_data in predictions_dict.items():
+#         # 첫 분기와 마지막 분기의 매출을 이용하여 상승률 계산
+#         start_sales = quarter_data[min(quarter_data)]
+#         end_sales = quarter_data[max(quarter_data)]
+#         growth_rate = (end_sales - start_sales) / start_sales * 100
+
+#         # 업종별 상승률을 딕셔너리에 추가
+#         quarterly_growth[industry] = growth_rate
+
+#     # 상승률이 높은 순으로 업종 정렬
+#     sorted_industries = sorted(quarterly_growth.items(), key=lambda x: x[1], reverse=True)
+
+#     # 추천 딕셔너리 생성
+#     recommendation = {}
+#     for i, (industry, growth_rate) in enumerate(sorted_industries, 1):
+#         recommendation[i] = industry
+
+#     return recommendation
+
 def recommend_top_industries(predictions_dict):
-    # 분기별 상승률이 높은 업종을 저장할 딕셔너리 초기화
-    quarterly_growth = {}
+    growth_rates = {}
 
-    # 분기별로 업종별 상승률 계산
     for industry, quarter_data in predictions_dict.items():
-        # 첫 분기와 마지막 분기의 매출을 이용하여 상승률 계산
-        start_sales = quarter_data[min(quarter_data)]
-        end_sales = quarter_data[max(quarter_data)]
-        growth_rate = (end_sales - start_sales) / start_sales * 100
+      
+        quarters = list(map(int, quarter_data.keys()))  
+        sales = list(quarter_data.values())
+        quarters = np.array(quarters).reshape(-1, 1)  
 
-        # 업종별 상승률을 딕셔너리에 추가
-        quarterly_growth[industry] = growth_rate
+        # Perform linear regression
+        model = LinearRegression()
+        model.fit(quarters, sales)
+        slope = model.coef_[0] 
+        growth_rates[industry] = slope
 
-    # 상승률이 높은 순으로 업종 정렬
-    sorted_industries = sorted(quarterly_growth.items(), key=lambda x: x[1], reverse=True)
 
-    # 추천 딕셔너리 생성
-    recommendation = {}
-    for i, (industry, growth_rate) in enumerate(sorted_industries, 1):
-        recommendation[i] = industry
+    mean_growth = np.mean(list(growth_rates.values()))
+    std_growth = np.std(list(growth_rates.values()))
+    standardized_growth = {industry: (rate - mean_growth) / std_growth for industry, rate in growth_rates.items()}
+
+    sorted_industries = sorted(standardized_growth.items(), key=lambda x: x[1], reverse=True)
+
+    recommendation = {i: industry for i, (industry, _) in enumerate(sorted_industries, 1)}
 
     return recommendation
