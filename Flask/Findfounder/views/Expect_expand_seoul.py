@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import pickle , json
 import pandas as pd
-
+#서울시 지출예측 (모든 구 다 더해서 /25)
 
 
 def predict_expand_seoul():

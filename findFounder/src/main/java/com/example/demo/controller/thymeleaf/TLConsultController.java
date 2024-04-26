@@ -21,4 +21,8 @@ public class TLConsultController {
 	public String result() {
 		return "result";
 	}
+	@GetMapping("/result_more")
+	public String resultMore() {
+		return "result_more";
+	}
 }

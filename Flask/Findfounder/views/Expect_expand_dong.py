@@ -13,6 +13,9 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout, Input
 from pycaret.regression import *
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 import re
+#동 지출 예측
+
+
 df = pd.read_csv('views\csvFolder\Seoul_dong_expand.csv', encoding='cp949')
 pd.options.display.float_format = '{:.0f}'.format
 df = df.sort_values(by=['STDR_YYQU_CD', 'ADSTRD_CD'], ascending=[True, True])
@@ -73,7 +76,7 @@ def predict_expand_dong(prefer_loc_value):
     # print(forecast_values.to_frame())
     result_df = pd.read_csv('views\csvFolder\Seoul_dong_expand.csv', encoding='cp949')[["STDR_YYQU_CD", 'EXPNDTR_TOTAMT', 'ADSTRD_CD_NM']]
     result_df2 = pd.concat([result_df.loc[result_df['ADSTRD_CD_NM'] == prefer_loc_value], temp_df])[["STDR_YYQU_CD", 'EXPNDTR_TOTAMT']]
-    print(result_df2["STDR_YYQU_CD"].unique())
+    #print(result_df2["STDR_YYQU_CD"].unique())
     prediction_dict = {}
     for index, row in result_df2.iterrows() :
         prediction_dict[row['STDR_YYQU_CD']] = row['EXPNDTR_TOTAMT']
@@ -97,7 +100,7 @@ def predict_expand_dong(prefer_loc_value):
     for new_key, old_key in zip(new_keys, last_six_items):
         prediction_dict[new_key] = prediction_dict.pop(old_key)
 
-    print(prediction_dict)
+   # print(prediction_dict)
 
    
     return prediction_dict

@@ -6,7 +6,7 @@ from openpyxl import load_workbook
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
-# 예측을 수행하는 함수
+# 매출 예측
 def predict_sales_gu(data,prefer_industry):
     # 입력 데이터를 모델에 전달하여 예측 수행
     # 2023-07-01부터 2024-10-01까지의 예측

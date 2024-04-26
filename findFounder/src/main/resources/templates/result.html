@@ -149,7 +149,8 @@
 
 					</div> -->
 
-
+					 <!-- 여기에 버튼 추가 -->
+					 <button onclick="window.location.href='/result_more'" class="btn btn-primary mt-4" style="position: fixed; bottom: 20px; right: 20px;">더 많은 분석을 보고싶으신가요?</button>
 
 
 
@@ -301,24 +302,31 @@
 				.then(response => response.json())
 				.then(data => {
 					console.log(data.dong)
-					if (data.dong) {
+					if (data.dong) {//동으로 검색했을때 
 						const dong = data.dong;
 						const gu = data.gu;
-						const expectDongExpand = data.loc_expect_expand_dong;
-						const expectGuExpand = data.loc_expect_expand_gu;
+						const expectDongExpand = data.loc_expect_expand_dong; //동 예상지출
+						const expectGuExpand = data.loc_expect_expand_gu;//구 예상지출
+						const sales = data.loc_expect_sales_dong;
 
+						const recommendedIndustry = data.loc_expect_sales_dong['1']; // 1위 업종 추천
+						const recommendedIndustry2 = data.loc_expect_sales_dong['2']; // 2위 업종 추천
+						const recommendedIndustry3 = data.loc_expect_sales_dong['3']; // 3위 업종 추천
+						//const sales =loc_expect_sales_dong;
 						// HTML 요소 생성
 						const resultDiv = document.createElement('div');
-						resultDiv.innerHTML = `<div style="text-align: center; font-size: 24px;">AI 분석 결과 ${gu}, ${dong}에 xxx를 추천드립니다.</div>`;
+						resultDiv.innerHTML = `<div style="text-align: center; font-size: 24px;">AI 분석 결과 ${gu}, ${dong}에 ${recommendedIndustry}를 추천드립니다.</div>`;
 
 						// 결과를 표시할 부모 요소에 삽입
 						const parentElement = document.getElementById('result-container');
 						parentElement.appendChild(resultDiv);
 
 						console.log(expectDongExpand);
+						drawTopThreeIndustries(sales, recommendedIndustry,recommendedIndustry2,recommendedIndustry3);
 						//동 지출예측 차트
 						drawExpandChart(expectDongExpand, expectGuExpand);
-					} else {
+
+					} else {//구로 검색
 						const gu = data.gu;
 						const expectGuExpand = data.loc_expect_expand;
 						const recommendedIndustry = data.industry_expect_expand['1']; // 1위 업종 추천
