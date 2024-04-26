@@ -14,6 +14,7 @@ from Findfounder.views.SeoulZipgack import get_zipgack
 from Findfounder.views.Expect_expand_gu import predict_expand_gu,predict_expand_gu2
 from Findfounder.views.Expect_expand_dong import predict_expand_dong
 from Findfounder.views.Expect_sales_gu import predict_sales_gu
+from Findfounder.views.Expect_sales_dong import predict_sales_dong
 from Findfounder.views.Expect_expand_seoul import predict_expand_seoul
 import requests
 bp = Blueprint('main', __name__, url_prefix='/')
@@ -52,13 +53,13 @@ def receive_result_string():
         
         if prefer_loc_value.endswith("구"):
                 prediction = predict_expand_gu(prefer_loc_value)# 자치구 매달 지출예측
-                prediction_sales = predict_sales_gu(prefer_loc_value,prefer_industry)
+                prediction_sales = predict_sales_gu(prefer_loc_value,prefer_industry)# 매출예측
                 pediction_seoul=predict_expand_seoul()
                 combined_data = {
                 "gu" : prefer_loc_value,
-                "loc_expect_expand": prediction,#매월 구 지출액 및 예측
-                "loc_expect_expand_whole":pediction_seoul, #매월 모든 구 평균 지출액 및 예측
-                "industry_expect_expand": prediction_sales,
+                "loc_expect_expand": prediction,#매월 구 지출액 및 예측(구단위) 0부터 시작함 
+                "loc_expect_expand_whole":pediction_seoul, #매월 모든 구 평균 지출액 및 예측(시 단위)
+                "industry_expect_expand": prediction_sales, #매출 예측 
                 #"변수":
                 }
                
@@ -68,12 +69,13 @@ def receive_result_string():
                 prediction = predict_expand_dong(prefer_loc_value) #행정동 매달 지출 예측
                 region = get_district_from_subdistrict(prefer_loc_value) #행정동의 자치구 가져오기
                 prediction_gu = predict_expand_gu2(region) # 자치구의 행정동 평균 매달 지출 예측
+                prediction_dong_expand=predict_sales_dong(prefer_loc_value,prefer_industry,region)
                 combined_data = {
                 "dong"  : prefer_loc_value,
                 "gu" : region,
                 "loc_expect_expand_gu": prediction_gu,#평균 행정동 매달 지출 예측
-                "loc_expect_expand_dong": prediction  #행정동 매달 지출 예측
-                
+                "loc_expect_expand_dong": prediction,  #행정동 매달 지출 예측
+                "loc_expect_sales_dong" : prediction_dong_expand #행정동 업종 매출 예측
                 }
         else:
         # 예외 처리: "구" 또는 "동"으로 끝나지 않는 경우

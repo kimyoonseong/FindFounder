@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import pickle , json
 import pandas as pd
-
+#구 지출예측
 
 # 예측을 수행하는 함수
 def predict_expand_gu(data):
@@ -29,7 +29,7 @@ def predict_expand_gu(data):
     #json_prediction = json.dumps(formatted_prediction, ensure_ascii=False)
     #print(json_prediction)
     #print(json_prediction)
-    return dict(formatted_prediction)
+    #return dict(formatted_prediction)
 
 def predict_expand_gu2(data):
     # 입력 데이터를 모델에 전달하여 예측 수행
@@ -62,9 +62,9 @@ def predict_expand_gu2(data):
     print(f"{data}에 해당하는 행정동의 고유 값 개수는 {result}개 입니다.")
     divisor = result
     rounded_result = round_and_divide(formatted_prediction, divisor)
-    print("나눈 결과:", rounded_result)
+    #print("나눈 결과:", rounded_result)
 
-    print("이전 formatted_prediction:", formatted_prediction)
+    #print("이전 formatted_prediction:", formatted_prediction)
     return rounded_result
 
 def count_unique_hood(region_data, gu_value):

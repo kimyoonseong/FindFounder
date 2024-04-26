@@ -1,5 +1,7 @@
 import pandas as pd
 import csv
+
+#상업 리스트
 def read_industry_from_csv(category):
     industry_df = pd.read_csv('views\csvFolder\IndustryList.csv')
     # industry_list = []

@@ -4,31 +4,29 @@ Chart.defaults.color = 'rgba(0, 0, 0, 0)'; // 전역적으로 모든 그래프�
 
 function drawexpectsales(sales) {
     const chartContainer = document.getElementById('chartContainer');
-    const chartRow = document.createElement('div');
-    chartRow.classList.add('chart-row');
-    chartContainer.appendChild(chartRow);
+    chartContainer.innerHTML = ''; // 기존 차트를 모두 지웁니다.
+
+    const numColumns = 3; // 한 행당 최대 열 개수
+    const chartWidth = Math.floor(window.innerWidth / numColumns) - 80; // 차트의 너비는 화면 폭을 기준으로 조절합니다.
+    const chartHeight = 300; // 차트의 고정 높이
 
     let chartCount = 0;
 
-    Object.entries(sales).forEach(([industry, data], index) => {
-        // 순위에 해당하는 업종은 무시
-        if (!isNaN(industry)) {
-            return;
+    for (const [industry, data] of Object.entries(sales)) {
+        if (!isNaN(industry) || chartCount >= 10) {
+            continue;
         }
 
-        // 새로운 차트 컨테이너를 만들어 각 차트를 넣습니다. 이 컨테이너는 3개의 열로 고정됩니다.
-        let currentChartContainer;
-        if (chartCount % 3 === 0) {
-            currentChartContainer = document.createElement('div');
-            currentChartContainer.classList.add('chart-container');
-            chartRow.appendChild(currentChartContainer);
-        } else {
-            currentChartContainer = chartRow.children[Math.floor(chartCount / 3)];
+        // 새로운 차트 컨테이너를 만들고 해당 열에 추가합니다.
+        if (chartCount % numColumns === 0) {
+            var chartRow = document.createElement('div');
+            chartRow.classList.add('chart-row');
+            chartContainer.appendChild(chartRow);
         }
 
         const canvas = document.createElement('canvas');
-        canvas.width = 300; // 임시값
-        canvas.height = 200;
+        canvas.width = chartWidth;
+        canvas.height = chartHeight;
 
         const ctx = canvas.getContext('2d');
         const chart = new Chart(ctx, {
@@ -52,7 +50,12 @@ function drawexpectsales(sales) {
             }
         });
 
-        currentChartContainer.appendChild(canvas);
+        chartRow.appendChild(canvas);
         chartCount++;
-    });
+    }
 }
+
+// // 창 크기가 변경될 때 차트를 다시 그리도록 이벤트 리스너 추가
+// window.addEventListener('resize', () => {
+//     drawexpectsales(sales);
+// });
