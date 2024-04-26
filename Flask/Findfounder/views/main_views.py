@@ -14,6 +14,7 @@ from Findfounder.views.SeoulZipgack import get_zipgack
 from Findfounder.views.Expect_expand_gu import predict_expand_gu,predict_expand_gu2
 from Findfounder.views.Expect_expand_dong import predict_expand_dong
 from Findfounder.views.Expect_sales_gu import predict_sales_gu
+from Findfounder.views.Expect_expand_seoul import predict_expand_seoul
 import requests
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -52,10 +53,13 @@ def receive_result_string():
         if prefer_loc_value.endswith("구"):
                 prediction = predict_expand_gu(prefer_loc_value)# 자치구 매달 지출예측
                 prediction_sales = predict_sales_gu(prefer_loc_value,prefer_industry)
+                pediction_seoul=predict_expand_seoul()
                 combined_data = {
                 "gu" : prefer_loc_value,
                 "loc_expect_expand": prediction,#매월 구 지출액 및 예측
-                "industry_expect_expand": prediction_sales
+                "loc_expect_expand_whole":pediction_seoul, #매월 모든 구 평균 지출액 및 예측
+                "industry_expect_expand": prediction_sales,
+                #"변수":
                 }
                
 

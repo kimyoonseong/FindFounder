@@ -120,23 +120,10 @@
 			<main>
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">Find-Founder</h1>
-					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active">결과 화면 입니다</li>
-					</ol>
+				
 					<!-- 폼 영역 -->
 					
-					<div id="result-container">
-						<!-- 결과가 여기에 표시됩니다. -->
-						
-					</div>
-
-					<div id="charts-container"></div>
-				
 					
-
-					<!-- <div id="chartContainer" class="chart-row"></div> -->
-					<canvas id="dongExpandChart" width="800" height="400" class="mt-5"></canvas>
-
 					<!-- <div style="display: flex;">
 
 						<div style="width:60%; height:500px; border: 2px solid #ddd; border-radius: 10px;">
@@ -309,7 +296,7 @@
 
 						// HTML 요소 생성
 						const resultDiv = document.createElement('div');
-						resultDiv.innerHTML = `<div style="text-align: center; font-size: 24px;">AI 분석 결과 ${gu}, ${dong}에 xxx를 추천드립니다.</div>`;
+						resultDiv.innerHTML = `<div style="text-align: center; font-size: 24px;"> ${gu}, ${dong}에 xxx를 추천드립니다.</div>`;
 
 						// 결과를 표시할 부모 요소에 삽입
 						const parentElement = document.getElementById('result-container');
@@ -332,13 +319,13 @@
 						parentElement.appendChild(resultDiv);
 						// 동 데이터가 없는 경우의 처리
 						//console.log(expectGuExpand);
-						//drawExpandChart2(expectGuExpand);
-						//console.log("동 데이터가 없습니다.");
+						drawExpandChart2(expectGuExpand);
+						console.log("동 데이터가 없습니다.");
 						// 이제 추정 매출
 						const sales=data.industry_expect_expand;
 						console.log(sales);
 						//drawexpectsales(sales);
-						drawTopThreeIndustries(sales, recommendedIndustry,recommendedIndustry2,recommendedIndustry3);
+						//drawTopThreeIndustries(sales, recommendedIndustry,recommendedIndustry2,recommendedIndustry3);
 					}
 
 						})
