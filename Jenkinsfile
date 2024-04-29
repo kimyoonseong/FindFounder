@@ -1,4 +1,3 @@
-# Jenkinsfile
 
 node { 
     withCredentials([[$class: 'UsernamePasswordMultiBinding', 
