@@ -68,7 +68,7 @@ public class MyPageController {
 	   @Operation(summary = "마이페이지 조회", description = "회원정보")
 	   @GetMapping("/mypage")
 	   public CustomerDto showMyPage(@CookieValue(name = "Set-Cookie", required = false) String jwtToken) {
-		   log.debug("[Log] 마이페이지 조회 : {}", jwtUtil.getCusId(jwtToken));
+		   log.info("[Log] 마이페이지 조회 : {}", jwtUtil.getCusId(jwtToken));
 		   CustomerDto dto = Myservice.getCusInfo(jwtToken);
 		   return dto;
 	   }
@@ -78,7 +78,7 @@ public class MyPageController {
 	   public ResponseEntity<CommonRes> updateMyPage(@CookieValue(name = "Set-Cookie", required = false) String jwtToken,
 			   @RequestBody CustomerDto dto, 
 			   @RequestParam(required = false) String nowPW) {
-		   log.debug("[Log] 회원정보 수정 : {}", jwtUtil.getCusId(jwtToken));
+		   log.info("[Log] 회원정보 수정 : {}", jwtUtil.getCusId(jwtToken));
 
 		   	if(nowPW!=null) {
 		   		CommonRes res=Myservice.cusUpdate(jwtToken,dto,nowPW); // 현재 비번 친사람 -> 비번 바꾸겠다는사람
@@ -96,7 +96,7 @@ public class MyPageController {
 	   @Operation(summary="컨설팅 내역",description="히스토리 내역들 확인")
 	   @GetMapping("/mypage/history")   
 	   public List<Consult> consultHistory(@CookieValue(name = "Set-Cookie", required = false) String jwtToken) {
-		   log.debug("[Log] 컨설팅 내역 확인 : {}", jwtUtil.getCusId(jwtToken));
+		   log.info("[Log] 컨설팅 내역 확인 : {}", jwtUtil.getCusId(jwtToken));
 		   List<Consult> con=Myservice.getConsultHistory(jwtToken);
 		   return con;
 	   }
