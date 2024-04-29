@@ -6,13 +6,14 @@ node {
     
     { 
      stage('Pull') {
-           git branch: 'main', credentialsId: 'github-access-token', url: 'https://github.com/kimyoonseong/FindFounder/'
+           git branch: 'develop', credentialsId: 'github-access-token', url: 'https://github.com/kimyoonseong/FindFounder.git'
         }
         
 
       stage('Build') {
             sh(script: '''yes | sudo docker image prune -a''')
-            sh(script: '''sudo docker build -t my-app .''')
+            
+            sh(script: '''sudo docker build -f /var/lib/jenkins/workspace/jenkins-FindFounder/findFounder/ -t my-app .''')
         }
 
       stage('Tag') {
