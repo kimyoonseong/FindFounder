@@ -13,7 +13,7 @@ node {
       stage('Build') {
             sh(script: '''yes | sudo docker image prune -a''') 
             sh(script: '''sudo cp /home/ubuntu/.env /var/lib/jenkins/workspace/jenkins-FindFounder/findFounder/.env''')
-            sh(script: '''sudo cp /home/ubuntu/application.properties /var/lib/jenkins/workspace/jenkins-FindFounder/findFounder/application.properties''')
+            sh(script: '''sudo cp /home/ubuntu/application.properties /var/lib/jenkins/workspace/jenkins-FindFounder/findFounder/src/main/resources/application.properties''')
             sh(script: '''sudo docker build -f /var/lib/jenkins/workspace/jenkins-FindFounder/findFounder/Dockerfile -t my-app .''')
         }
 
