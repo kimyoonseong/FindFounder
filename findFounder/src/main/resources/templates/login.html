@@ -78,7 +78,7 @@
 			console.log(document.cookie)
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost:8080/login', // 로그인 엔드포인트 URL
+                url: '/login', // 로그인 엔드포인트 URL
                 contentType: 'application/json',
                 data: JSON.stringify({ "cusId": email, "cusPw": password }),
                 success: function(response) {

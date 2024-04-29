@@ -32,9 +32,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/scripts.js"></script>
 <script>
-var url = 'http://localhost:8080/api/board/detail' + window.location.search;
-var commentUrl  = 'http://localhost:8080/api/comment'+ window.location.search;
-var reactionUrl = 'http://localhost:8080/api/board/reaction'+ window.location.search;
+var url = '/api/board/detail' + window.location.search;
+var commentUrl  = '/api/comment'+ window.location.search;
+var reactionUrl = '/api/board/reaction'+ window.location.search;
 $(document).ready(
 		
 	    function() {
@@ -79,7 +79,7 @@ document.getElementById('editPost').addEventListener('click', function() {
         console.log(data);
         $.ajax({
             type: 'PATCH',
-            url: 'http://localhost:8080/api/board?postid=' + postId,
+            url: '/api/board?postid=' + postId,
             contentType: 'application/json',
             data: data,
             success: function(response) {

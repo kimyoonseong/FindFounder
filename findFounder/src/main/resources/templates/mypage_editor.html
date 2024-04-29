@@ -224,7 +224,7 @@
 
 				$.ajax({
 					type: 'PATCH',
-					url: 'http://localhost:8080/api/mypage',
+					url: '/api/mypage',
 					contentType: 'application/json',
 					data: JSON.stringify({"cusEmail": email, "cusQuestionId": questionId, "cusPwAnswer": pwanswer}),
 

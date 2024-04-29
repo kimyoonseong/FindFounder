@@ -246,7 +246,7 @@
         // 회원 탈퇴 모달에서 탈퇴 버튼 클릭 시 이벤트 처리
         document.getElementById("withdrawBtn").addEventListener("click", function() {
             // 회원 탈퇴 요청을 보낼 URL
-            var url = "http://localhost:8080/api/user";
+            var url = "/api/user";
 
             // XMLHttpRequest 객체를 사용하여 DELETE 요청을 보냄
             var xhr = new XMLHttpRequest();
