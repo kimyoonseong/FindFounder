@@ -25999,3 +25999,233 @@ pickle: {'deps_info': {'pip': '23.2.1', 'setuptools': '68.0.0', 'pycaret': '3.3.
 2024-04-26 15:03:57,608:INFO:Preloading libraries
 2024-04-26 15:03:57,609:INFO:Set up data.
 2024-04-26 15:03:57,617:INFO:Set up index.
+2024-04-26 16:37:33,962:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-26 16:37:33,968:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-26 16:37:33,968:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-26 16:37:33,968:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-26 16:38:05,985:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-26 16:38:05,985:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-26 16:38:05,985:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-26 16:38:05,986:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-26 16:38:27,751:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\Findfounder\views\SeoulZipgack.py:17: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp2['2023_avg'] = round(avg, 0)
+
+2024-04-26 16:38:27,753:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\Findfounder\views\SeoulZipgack.py:19: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp2['avg_diff'] = (temp2['VIATR_FCLTY_CO']) / round(avg) * 100
+
+2024-04-26 16:38:58,624:INFO:Initializing load_model()
+2024-04-26 16:38:58,624:INFO:load_model(model_name=views\종욱모델링\마포구, platform=None, authentication=None, verbose=True)
+2024-04-26 16:38:58,712:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\fisaproject\lib\site-packages\sklearn\base.py:376: InconsistentVersionWarning: Trying to unpickle estimator SimpleImputer from version 1.4.1.post1 when using version 1.4.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+
+2024-04-26 16:38:58,723:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\fisaproject\lib\site-packages\sklearn\base.py:376: InconsistentVersionWarning: Trying to unpickle estimator ExtraTreeRegressor from version 1.4.1.post1 when using version 1.4.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+
+2024-04-26 16:38:58,951:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\fisaproject\lib\site-packages\sklearn\base.py:376: InconsistentVersionWarning: Trying to unpickle estimator ExtraTreesRegressor from version 1.4.1.post1 when using version 1.4.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+
+2024-04-26 16:38:59,423:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\fisaproject\lib\site-packages\pycaret\internal\pipeline.py:146: UserWarning: Version mismatch:
+current: {'deps_info': {'pip': '24.0', 'setuptools': '65.5.0', 'pycaret': '3.3.1', 'IPython': '8.23.0', 'ipywidgets': '8.1.2', 'tqdm': '4.66.2', 'numpy': '1.26.4', 'pandas': '2.1.4', 'jinja2': '3.1.3', 'scipy': '1.11.4', 'joblib': '1.3.2', 'sklearn': '1.4.2', 'pyod': '1.1.3', 'imblearn': '0.12.2', 'category_encoders': '2.6.3', 'lightgbm': '4.3.0', 'numba': '0.59.1', 'requests': '2.31.0', 'matplotlib': '3.7.5', 'scikitplot': '0.3.7', 'yellowbrick': '1.5', 'plotly': '5.21.0', 'plotly-resampler': 'Not installed', 'kaleido': '0.2.1', 'schemdraw': '0.15', 'statsmodels': '0.14.2', 'sktime': '0.26.0', 'tbats': '1.1.3', 'pmdarima': '2.0.4', 'psutil': '5.9.8', 'markupsafe': '2.1.5', 'pickle5': 'Not installed', 'cloudpickle': '3.0.0', 'deprecation': '2.1.0', 'xxhash': '3.4.1', 'wurlitzer': 'Not installed'}, 'python': {'version': '3.10.10', 'machine': 'AMD64'}}
+pickle: {'deps_info': {'pip': '23.2.1', 'setuptools': '68.0.0', 'pycaret': '3.3.0', 'IPython': '8.15.0', 'ipywidgets': '8.0.4', 'tqdm': '4.65.0', 'numpy': '1.24.3', 'pandas': '2.0.3', 'jinja2': '3.1.2', 'scipy': '1.11.1', 'joblib': '1.2.0', 'sklearn': '1.4.1.post1', 'pyod': '1.1.3', 'imblearn': '0.12.2', 'category_encoders': '2.6.3', 'lightgbm': '4.3.0', 'numba': '0.57.1', 'requests': '2.31.0', 'matplotlib': '3.7.2', 'scikitplot': '0.3.7', 'yellowbrick': '1.5', 'plotly': '5.20.0', 'plotly-resampler': 'Not installed', 'kaleido': '0.2.1', 'schemdraw': '0.15', 'statsmodels': '0.14.0', 'sktime': '0.28.0', 'tbats': '1.1.3', 'pmdarima': '2.0.4', 'psutil': '5.9.0', 'markupsafe': '2.1.1', 'pickle5': 'Not installed', 'cloudpickle': '2.2.1', 'deprecation': '2.1.0', 'xxhash': '2.0.2', 'wurlitzer': 'Not installed'}, 'python': {'version': '3.11.5', 'machine': 'AMD64'}}
+  warnings.warn(
+
+2024-04-26 16:38:59,536:INFO:Initializing predict_model()
+2024-04-26 16:38:59,537:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x000001D24FFC7DF0>, estimator=Pipeline(memory=Memory(location=None),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['STDR_YYQU_CD',
+                                             'SIMILR_INDUTY_STOR_CO',
+                                             'CLSBIZ_STOR_CO', 'OPBIZ_STOR_CO',
+                                             'ETC_EXPNDTR_TOTAMT',
+                                             'TRNSPORT_EXPNDTR_TOTAMT',
+                                             'MCP_EXPNDTR_TOTAMT',
+                                             'PLESR_EXPNDTR_TOTAMT',
+                                             'FDSTFFS_EXPNDTR_TOTAMT',
+                                             'FD_EXPNDTR_TOTAMT',
+                                             'OPR_SALE_MT_AVRG',
+                                             'CLTHS_FTWR_EXPNDTR_TOTAMT',
+                                             '...
+                 TransformerWrapper(include=['SVC_INDUTY_CD',
+                                             'SVC_INDUTY_CD_NM'],
+                                    transformer=SimpleImputer(strategy='most_frequent'))),
+                ('rest_encoding',
+                 TransformerWrapper(include=['SVC_INDUTY_CD',
+                                             'SVC_INDUTY_CD_NM'],
+                                    transformer=TargetEncoder(cols=['SVC_INDUTY_CD',
+                                                                    'SVC_INDUTY_CD_NM'],
+                                                              handle_missing='return_nan'))),
+                ('trained_model',
+                 ExtraTreesRegressor(n_jobs=-1, random_state=3756))]), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x000001D2506E65F0>)
+2024-04-26 16:38:59,538:INFO:Checking exceptions
+2024-04-26 16:38:59,538:INFO:Preloading libraries
+2024-04-26 16:38:59,539:INFO:Set up data.
+2024-04-26 16:38:59,569:INFO:Set up index.
+2024-04-26 16:39:00,443:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\Findfounder\views\Expect_expand_seoul.py:15: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  extracted_data['EXPNDTR_TOTAMT_AVG'] /= 3 #월별로
+
+2024-04-26 16:39:07,249:INFO:Initializing load_model()
+2024-04-26 16:39:07,249:INFO:load_model(model_name=views\종욱모델링\마포구, platform=None, authentication=None, verbose=True)
+2024-04-26 16:39:07,251:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\fisaproject\lib\site-packages\sklearn\base.py:376: InconsistentVersionWarning: Trying to unpickle estimator SimpleImputer from version 1.4.1.post1 when using version 1.4.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+
+2024-04-26 16:39:07,257:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\fisaproject\lib\site-packages\sklearn\base.py:376: InconsistentVersionWarning: Trying to unpickle estimator ExtraTreeRegressor from version 1.4.1.post1 when using version 1.4.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+
+2024-04-26 16:39:07,585:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\fisaproject\lib\site-packages\sklearn\base.py:376: InconsistentVersionWarning: Trying to unpickle estimator ExtraTreesRegressor from version 1.4.1.post1 when using version 1.4.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+
+2024-04-26 16:39:07,587:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\fisaproject\lib\site-packages\pycaret\internal\pipeline.py:146: UserWarning: Version mismatch:
+current: {'deps_info': {'pip': '24.0', 'setuptools': '65.5.0', 'pycaret': '3.3.1', 'IPython': '8.23.0', 'ipywidgets': '8.1.2', 'tqdm': '4.66.2', 'numpy': '1.26.4', 'pandas': '2.1.4', 'jinja2': '3.1.3', 'scipy': '1.11.4', 'joblib': '1.3.2', 'sklearn': '1.4.2', 'pyod': '1.1.3', 'imblearn': '0.12.2', 'category_encoders': '2.6.3', 'lightgbm': '4.3.0', 'numba': '0.59.1', 'requests': '2.31.0', 'matplotlib': '3.7.5', 'scikitplot': '0.3.7', 'yellowbrick': '1.5', 'plotly': '5.21.0', 'plotly-resampler': 'Not installed', 'kaleido': '0.2.1', 'schemdraw': '0.15', 'statsmodels': '0.14.2', 'sktime': '0.26.0', 'tbats': '1.1.3', 'pmdarima': '2.0.4', 'psutil': '5.9.8', 'markupsafe': '2.1.5', 'pickle5': 'Not installed', 'cloudpickle': '3.0.0', 'deprecation': '2.1.0', 'xxhash': '3.4.1', 'wurlitzer': 'Not installed'}, 'python': {'version': '3.10.10', 'machine': 'AMD64'}}
+pickle: {'deps_info': {'pip': '23.2.1', 'setuptools': '68.0.0', 'pycaret': '3.3.0', 'IPython': '8.15.0', 'ipywidgets': '8.0.4', 'tqdm': '4.65.0', 'numpy': '1.24.3', 'pandas': '2.0.3', 'jinja2': '3.1.2', 'scipy': '1.11.1', 'joblib': '1.2.0', 'sklearn': '1.4.1.post1', 'pyod': '1.1.3', 'imblearn': '0.12.2', 'category_encoders': '2.6.3', 'lightgbm': '4.3.0', 'numba': '0.57.1', 'requests': '2.31.0', 'matplotlib': '3.7.2', 'scikitplot': '0.3.7', 'yellowbrick': '1.5', 'plotly': '5.20.0', 'plotly-resampler': 'Not installed', 'kaleido': '0.2.1', 'schemdraw': '0.15', 'statsmodels': '0.14.0', 'sktime': '0.28.0', 'tbats': '1.1.3', 'pmdarima': '2.0.4', 'psutil': '5.9.0', 'markupsafe': '2.1.1', 'pickle5': 'Not installed', 'cloudpickle': '2.2.1', 'deprecation': '2.1.0', 'xxhash': '2.0.2', 'wurlitzer': 'Not installed'}, 'python': {'version': '3.11.5', 'machine': 'AMD64'}}
+  warnings.warn(
+
+2024-04-26 16:39:07,668:INFO:Initializing predict_model()
+2024-04-26 16:39:07,669:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x000001D250082290>, estimator=Pipeline(memory=Memory(location=None),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['STDR_YYQU_CD',
+                                             'SIMILR_INDUTY_STOR_CO',
+                                             'CLSBIZ_STOR_CO', 'OPBIZ_STOR_CO',
+                                             'ETC_EXPNDTR_TOTAMT',
+                                             'TRNSPORT_EXPNDTR_TOTAMT',
+                                             'MCP_EXPNDTR_TOTAMT',
+                                             'PLESR_EXPNDTR_TOTAMT',
+                                             'FDSTFFS_EXPNDTR_TOTAMT',
+                                             'FD_EXPNDTR_TOTAMT',
+                                             'OPR_SALE_MT_AVRG',
+                                             'CLTHS_FTWR_EXPNDTR_TOTAMT',
+                                             '...
+                 TransformerWrapper(include=['SVC_INDUTY_CD',
+                                             'SVC_INDUTY_CD_NM'],
+                                    transformer=SimpleImputer(strategy='most_frequent'))),
+                ('rest_encoding',
+                 TransformerWrapper(include=['SVC_INDUTY_CD',
+                                             'SVC_INDUTY_CD_NM'],
+                                    transformer=TargetEncoder(cols=['SVC_INDUTY_CD',
+                                                                    'SVC_INDUTY_CD_NM'],
+                                                              handle_missing='return_nan'))),
+                ('trained_model',
+                 ExtraTreesRegressor(n_jobs=-1, random_state=3756))]), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x000001D24FF1F7F0>)
+2024-04-26 16:39:07,669:INFO:Checking exceptions
+2024-04-26 16:39:07,670:INFO:Preloading libraries
+2024-04-26 16:39:07,671:INFO:Set up data.
+2024-04-26 16:39:07,704:INFO:Set up index.
+2024-04-26 16:39:08,854:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\Findfounder\views\Expect_expand_seoul.py:15: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  extracted_data['EXPNDTR_TOTAMT_AVG'] /= 3 #월별로
+
+2024-04-26 16:39:10,485:INFO:Initializing load_model()
+2024-04-26 16:39:10,485:INFO:load_model(model_name=views\종욱모델링\마포구, platform=None, authentication=None, verbose=True)
+2024-04-26 16:39:10,487:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\fisaproject\lib\site-packages\sklearn\base.py:376: InconsistentVersionWarning: Trying to unpickle estimator SimpleImputer from version 1.4.1.post1 when using version 1.4.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+
+2024-04-26 16:39:10,497:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\fisaproject\lib\site-packages\sklearn\base.py:376: InconsistentVersionWarning: Trying to unpickle estimator ExtraTreeRegressor from version 1.4.1.post1 when using version 1.4.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+
+2024-04-26 16:39:10,715:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\fisaproject\lib\site-packages\sklearn\base.py:376: InconsistentVersionWarning: Trying to unpickle estimator ExtraTreesRegressor from version 1.4.1.post1 when using version 1.4.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+
+2024-04-26 16:39:10,718:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\fisaproject\lib\site-packages\pycaret\internal\pipeline.py:146: UserWarning: Version mismatch:
+current: {'deps_info': {'pip': '24.0', 'setuptools': '65.5.0', 'pycaret': '3.3.1', 'IPython': '8.23.0', 'ipywidgets': '8.1.2', 'tqdm': '4.66.2', 'numpy': '1.26.4', 'pandas': '2.1.4', 'jinja2': '3.1.3', 'scipy': '1.11.4', 'joblib': '1.3.2', 'sklearn': '1.4.2', 'pyod': '1.1.3', 'imblearn': '0.12.2', 'category_encoders': '2.6.3', 'lightgbm': '4.3.0', 'numba': '0.59.1', 'requests': '2.31.0', 'matplotlib': '3.7.5', 'scikitplot': '0.3.7', 'yellowbrick': '1.5', 'plotly': '5.21.0', 'plotly-resampler': 'Not installed', 'kaleido': '0.2.1', 'schemdraw': '0.15', 'statsmodels': '0.14.2', 'sktime': '0.26.0', 'tbats': '1.1.3', 'pmdarima': '2.0.4', 'psutil': '5.9.8', 'markupsafe': '2.1.5', 'pickle5': 'Not installed', 'cloudpickle': '3.0.0', 'deprecation': '2.1.0', 'xxhash': '3.4.1', 'wurlitzer': 'Not installed'}, 'python': {'version': '3.10.10', 'machine': 'AMD64'}}
+pickle: {'deps_info': {'pip': '23.2.1', 'setuptools': '68.0.0', 'pycaret': '3.3.0', 'IPython': '8.15.0', 'ipywidgets': '8.0.4', 'tqdm': '4.65.0', 'numpy': '1.24.3', 'pandas': '2.0.3', 'jinja2': '3.1.2', 'scipy': '1.11.1', 'joblib': '1.2.0', 'sklearn': '1.4.1.post1', 'pyod': '1.1.3', 'imblearn': '0.12.2', 'category_encoders': '2.6.3', 'lightgbm': '4.3.0', 'numba': '0.57.1', 'requests': '2.31.0', 'matplotlib': '3.7.2', 'scikitplot': '0.3.7', 'yellowbrick': '1.5', 'plotly': '5.20.0', 'plotly-resampler': 'Not installed', 'kaleido': '0.2.1', 'schemdraw': '0.15', 'statsmodels': '0.14.0', 'sktime': '0.28.0', 'tbats': '1.1.3', 'pmdarima': '2.0.4', 'psutil': '5.9.0', 'markupsafe': '2.1.1', 'pickle5': 'Not installed', 'cloudpickle': '2.2.1', 'deprecation': '2.1.0', 'xxhash': '2.0.2', 'wurlitzer': 'Not installed'}, 'python': {'version': '3.11.5', 'machine': 'AMD64'}}
+  warnings.warn(
+
+2024-04-26 16:39:10,781:INFO:Initializing predict_model()
+2024-04-26 16:39:10,782:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x000001D24FF3AEC0>, estimator=Pipeline(memory=Memory(location=None),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['STDR_YYQU_CD',
+                                             'SIMILR_INDUTY_STOR_CO',
+                                             'CLSBIZ_STOR_CO', 'OPBIZ_STOR_CO',
+                                             'ETC_EXPNDTR_TOTAMT',
+                                             'TRNSPORT_EXPNDTR_TOTAMT',
+                                             'MCP_EXPNDTR_TOTAMT',
+                                             'PLESR_EXPNDTR_TOTAMT',
+                                             'FDSTFFS_EXPNDTR_TOTAMT',
+                                             'FD_EXPNDTR_TOTAMT',
+                                             'OPR_SALE_MT_AVRG',
+                                             'CLTHS_FTWR_EXPNDTR_TOTAMT',
+                                             '...
+                 TransformerWrapper(include=['SVC_INDUTY_CD',
+                                             'SVC_INDUTY_CD_NM'],
+                                    transformer=SimpleImputer(strategy='most_frequent'))),
+                ('rest_encoding',
+                 TransformerWrapper(include=['SVC_INDUTY_CD',
+                                             'SVC_INDUTY_CD_NM'],
+                                    transformer=TargetEncoder(cols=['SVC_INDUTY_CD',
+                                                                    'SVC_INDUTY_CD_NM'],
+                                                              handle_missing='return_nan'))),
+                ('trained_model',
+                 ExtraTreesRegressor(n_jobs=-1, random_state=3756))]), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x000001D24FF1F910>)
+2024-04-26 16:39:10,782:INFO:Checking exceptions
+2024-04-26 16:39:10,783:INFO:Preloading libraries
+2024-04-26 16:39:10,785:INFO:Set up data.
+2024-04-26 16:39:10,813:INFO:Set up index.
+2024-04-26 16:39:11,795:WARNING:C:\Users\82105\Desktop\final_project\FindFounder\Flask\Findfounder\views\Expect_expand_seoul.py:15: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  extracted_data['EXPNDTR_TOTAMT_AVG'] /= 3 #월별로
+
+2024-04-27 16:47:50,354:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 16:47:50,356:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 16:47:50,356:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 16:47:50,356:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 16:48:26,749:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 16:48:26,749:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 16:48:26,749:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 16:48:26,749:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 22:09:02,045:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 22:09:02,057:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 22:09:02,058:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 22:09:02,058:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 22:09:31,233:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 22:09:31,248:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 22:09:31,248:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-04-27 22:09:31,248:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.

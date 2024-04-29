@@ -57,7 +57,7 @@ public class SearchController {
 		@PostMapping("/api/industry")
 		@ResponseBody
 		public String Bring(@CookieValue(value = "Set-Cookie") String jwtToken,@RequestParam String category) {
-			log.debug("[Log] 해당 카테고리 업종 상권 가져옴 : {}", jwtUtil.getCusId(jwtToken));
+			log.info("[Log] 해당 카테고리 업종 상권 가져옴 : {}", jwtUtil.getCusId(jwtToken));
 
 			return service.bringIndustry(category);
 		}
@@ -66,7 +66,7 @@ public class SearchController {
 		@PostMapping("/api/region")
 		@ResponseBody
 		public String Region(@CookieValue(value = "Set-Cookie") String jwtToken,@RequestParam String category) {
-			log.debug("[Log] 해당 카테고리 행정동 상권 가져옴 : {}", jwtUtil.getCusId(jwtToken));
+			log.info("[Log] 해당 카테고리 행정동 상권 가져옴 : {}", jwtUtil.getCusId(jwtToken));
 
 			return service.bringRegion(category);
 		}

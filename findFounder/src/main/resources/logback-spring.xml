@@ -1,24 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property resource="application.properties"/>
+	<property resource="application.properties" />
 
-    <!-- 패턴 레이아웃 정의 -->
-    <conversionRule conversionWord="userId" converterClass="YourUserIdConverter"/>
+	<!-- 패턴 레이아웃 정의 -->
+	<conversionRule conversionWord="userId" converterClass="YourUserIdConverter" />
 
-    <!-- 로그 출력 형식 정의 -->
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%msg, %d{yyyy-MM-dd HH:mm:ss}%n</pattern>
-        </encoder>
-    </appender>
+	<!-- 로그 출력 형식 정의 -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%msg, %d{yyyy-MM-dd HH:mm:ss}%n</pattern>
+		</encoder>
+	</appender>
 
-    <!-- 로그 레벨 정의 -->
-    <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
-    </root>
+	<property name="LOG_PATH" value="./logs" />
+	<property name="LOG_FILE_NAME" value="api" />
+	<property name="ERR_LOG_FILE_NAME" value="api-error" />
 
-    <!-- 회원가입 이벤트에 대한 로그 설정 -->
-    <logger name="com.example.CustomerController" level="DEBUG" additivity="false">
-        <appender-ref ref="CONSOLE"/>
-    </logger>
+	<!-- API 로깅 -->
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}
+				- %msg%n
+			</pattern>
+		</encoder>
+
+		<!-- 하루에 한번 압축 후 보관, 최대 30일, 1GB까지 보관 -->
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}.%d{yyyy-MM-dd}.gz</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>1GB</totalSizeCap>
+		</rollingPolicy>
+	</appender>
+
+
+	<!-- 로그 레벨 정의 -->
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+
+	<!-- 회원가입 이벤트에 대한 로그 설정 -->
+	<logger name="com.example.CustomerController" level="INFO"
+		additivity="false">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</logger>
 </configuration>

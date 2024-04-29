@@ -10,22 +10,56 @@
 	<title>커뮤니티</title>
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 	<link href="css/styles.css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 	<style>
 		ul,
 		li {
 			list-style: none;
 		}
 
+		.card {
+			padding: 10px;
+			/* 원하는 패딩 값으로 조절합니다. */
+			max-height: 520px;
+			/* 원하는 최대 높이 값을 지정합니다. */
+			overflow: hidden;
+
+		}
+
+		.card-header .fas {
+			font-size: 24px;
+			/* 아이콘의 크기를 조절합니다. */
+
+		}
+
+		.card-header {
+			font-family: "Yeon Sung", system-ui;
+			font-size: 24px;
+			/* 텍스트의 크기를 조절합니다. */
+		}
+
+		#board-search1 {
+			position: absolute;
+			top: 80px;
+			/* 원하는 위쪽 여백을 설정합니다. */
+			right: 20px;
+			/* 오른쪽으로 이동합니다. */
+		}
+
 		table {
 			width: 100%;
 			border-collapse: collapse;
+			margin-top: 50px;
 		}
 
 		table th {
 			padding: 14px 21px;
-			background: #ececec;
+			background: rgb(227, 241, 255);
 			/* 
                 #efefef
                 #eeeeee
@@ -63,6 +97,7 @@
 		.paging {
 			padding: 20px 0;
 			width: 100%;
+			margin-top: 20px;
 		}
 
 		.paging>ul {
@@ -88,10 +123,42 @@
 			background: #333 !important;
 			color: #fff;
 		}
+
+		.title {
+			font-family: "Yeon Sung", system-ui;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 60px;
+			margin-top: 18px;
+		}
+
+
+		.btn-primary {
+			font-family: "Yeon Sung", system-ui;
+			position: relative;
+			
+			/* 원하는 만큼 위쪽으로 이동합니다. */
+		}
+
+		.btn-dark {
+			font-family: "Yeon Sung", system-ui;
+			/* 변경하고 싶은 글꼴을 지정합니다. */
+		}
+
+		.resultTable th {
+			border-bottom: 2px solid rgb(192, 192, 192);
+			/* 변경하고 싶은 색상을 여기에 지정합니다. */
+		}
+
+		.resultTable td {
+			/* 변경하고 싶은 색상을 여기에 지정합니다. */
+			border-bottom: 1px solid rgb(192, 192, 192);
+			/* 변경하고 싶은 색상을 여기에 지정합니다. */
+		}
 	</style>
 </head>
 
-<body class="sb-nav-fixed">
+<body>
 	<div th:replace="nav.html :: navbar-top"></div>
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
@@ -100,45 +167,53 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">커뮤니티</h1>
+					<div class="title">
+						커뮤니티
+					</div>
 
 					<div class="card mb-4">
 						<div class="card-header">
 							<i class="fas fa-table me-1"></i>
 							서울상권 커뮤니티
-							<button type="button" class="btn btn-primary float-end"
-								onclick="location.href='/post-create'">글 작성</button>
+
 						</div>
+
 						<div class="card-body">
 							<table class="resultTable">
 								<caption> 커뮤니티 </caption>
 
 							</table>
+							<div id="board-search1">
+								<div class="container">
+									<div class="search-window">
+										<form id="searchForm">
+											<div class="search-wrap">
+												<input id="searchInput" placeholder="검색어를 입력해주세요." value=""
+													style="width: 300px;">
+												<button type="submit" class="btn btn-dark">검색</button>
+
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
 							<div class="paging">
 								<ul>
-									<li>prev</li>
-									<li class="active"><a href="/post-list?page=1">1</a></li>
+									<li><a href="#"><i class="fas fa-chevron-left"></i></a></li>
+									<li class="active"><a href="/post-list?page=1">1</a></li>									
 									<li><a href="/post-list?page=2">2</a></li>
 									<li><a href="/post-list?page=3">3</a></li>
 									<li><a href="/post-list?page=4">4</a></li>
 									<li><a href="/post-list?page=5">5</a></li>
-									<li>next</li>
+									<li><a href="#"><i class="fas fa-chevron-right"></i></a></li>
 								</ul>
 							</div>
+							<button type="button" class="btn btn-primary float-end"
+								onclick="location.href='/post-create'">글 작성</button>
+
 						</div>
 					</div>
-					<div id="board-search">
-						<div class="container">
-							<div class="search-window">
-								<form id="searchForm">
-									<div class="search-wrap">
-										<input id="searchInput" placeholder="검색어를 입력해주세요." value="" style="width: 300px;">
-										<button type="submit" class="btn btn-dark">검색</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
+
 				</div>
 
 			</main>

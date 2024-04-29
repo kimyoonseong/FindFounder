@@ -51,7 +51,7 @@ public class CommentController {
 	@PostMapping()
 	public ResponseEntity<CommonRes> createComment(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @RequestBody CommentCreateReq req ) {
-		log.debug("[Log] 댓글 작성 : {}", jwtUtil.getCusId(jwtToken));
+		log.info("[Log] 댓글 작성 : {}", jwtUtil.getCusId(jwtToken));
 		int cuscode = jwtUtil.getCusCode(jwtToken);
 		CommonRes res =  commentService.createComment(cuscode, req);
 		
@@ -61,7 +61,7 @@ public class CommentController {
 	@Operation(summary = "댓글 수정", description = "제목, 댓글 내용")
 	@PatchMapping()
 	public ResponseEntity<CommonRes> updateComment(@CookieValue(name = "Set-Cookie", required = false) String jwtToken, @RequestBody CommentUpdateReq req ) {
-		log.debug("[Log] 댓글 수정 : {}", jwtUtil.getCusId(jwtToken));
+		log.info("[Log] 댓글 수정 : {}", jwtUtil.getCusId(jwtToken));
 		int cuscode = jwtUtil.getCusCode(jwtToken);
 		
 		CommonRes res =  commentService.updateComment(cuscode, req);
@@ -82,7 +82,7 @@ public class CommentController {
 	@DeleteMapping("/{commentid}")
 	public ResponseEntity<CommonRes> deleteComment(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @PathVariable int commentid) {
-		log.debug("[Log] 댓글 삭제 : {}", jwtUtil.getCusId(jwtToken));
+		log.info("[Log] 댓글 삭제 : {}", jwtUtil.getCusId(jwtToken));
 		int cuscode = jwtUtil.getCusCode(jwtToken);
 		CommonRes res =  commentService.deleteComment(cuscode, commentid);
 		

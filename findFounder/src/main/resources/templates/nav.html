@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    
+	
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -15,9 +15,10 @@
 
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 	
+	
 </head>
 <body>
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" th:fragment="navbar-top">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark" 	style="background-color: rgb(0, 27, 53);"th:fragment="navbar-top">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="/">Find-Founder</a>
         <!-- Sidebar Toggle-->
@@ -44,18 +45,18 @@
 		</ul>
     </nav>
 	
-    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" th:fragment="navbar-side">
+    <nav class="sb-sidenav accordion sb-sidenav-dark"	style="background-color: rgb(0, 27, 53);" id="sidenavAccordion" th:fragment="navbar-side">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">내 정보</div>
                             <a class="nav-link" href="mypage_viewer">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                마이페이지
+                                <strong>마이페이지</strong>
                             </a>
                             <div class="sb-sidenav-menu-heading">분석 서비스</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                서울시 상권 통계
+                                <strong>서울시 상권 통계</strong>
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
@@ -67,7 +68,7 @@
                             
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                커뮤니티
+								<strong>커뮤니티</strong>
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
@@ -80,7 +81,7 @@
                             <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                문의
+								<strong>문의</strong>
                             </a>
                             <!--
                             <a class="nav-link" href="tables.html">

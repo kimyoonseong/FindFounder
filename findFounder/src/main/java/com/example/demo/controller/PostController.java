@@ -71,7 +71,7 @@ public class PostController {
 			@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @RequestBody PostCreateReq req ) {
 		
-		log.debug("[Log] 게시글 작성 : {}", jwtUtil.getCusId(jwtToken));
+		log.info("[Log] 게시글 작성 : {}", jwtUtil.getCusId(jwtToken));
 
 		System.out.println(jwtToken);
 		int cusCode = jwtUtil.getCusCode(jwtToken);
@@ -87,10 +87,10 @@ public class PostController {
 		public ResponseEntity<CommonRes> updatePost(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 				, @RequestParam int postid, @RequestBody PostCreateReq req ) {
 			
-			log.debug("[Log] 게시글 수정 : {}", jwtUtil.getCusId(jwtToken));
+			log.info("[Log] 게시글 수정 : {}", jwtUtil.getCusId(jwtToken));
 			int cusCode = jwtUtil.getCusCode(jwtToken);
 			CommonRes res =  postService.updatePost(cusCode, postid, req);
-			System.out.println("게시글수정컨트롤러"+res.getMsg());
+			System.out.println("게시글 수정 컨트롤러"+res.getMsg());
 			return ResponseEntity.ok(res);
 		}
 	
@@ -100,7 +100,7 @@ public class PostController {
 	public ResponseEntity<PostListRes> getPosts(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @RequestParam(required = false, defaultValue =  "1") Integer page) {
 		
-		log.debug("[Log] 게시글 전체 조회됨 : {}", jwtUtil.getCusId(jwtToken));
+		log.info("[Log] 게시글 전체 조회됨 : {}", jwtUtil.getCusId(jwtToken));
 
 		page--;
 		System.out.println("게시글전체조회");
@@ -115,7 +115,7 @@ public class PostController {
 			, @RequestParam(required = false, defaultValue =  "1") int page
 			, @RequestParam String keyword) {
 		
-		log.debug("[Log] 게시글 키워드 조회됨 : {}", jwtUtil.getCusId(jwtToken));
+		log.info("[Log] 게시글 키워드 조회됨 : {}", jwtUtil.getCusId(jwtToken));
 		page--;
 		PostListRes res = PostListRes.builder().posts(postService.getPostListByKeyword(page, keyword)).build();
 		
@@ -127,7 +127,7 @@ public class PostController {
 	public ResponseEntity<CommonRes> deletePostById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @PathVariable int postid) {
 		
-		log.debug("[Log] 게시글 삭제됨 : {}", jwtUtil.getCusId(jwtToken));
+		log.info("[Log] 게시글 삭제됨 : {}", jwtUtil.getCusId(jwtToken));
 
 		int cusCode = jwtUtil.getCusCode(jwtToken);
 		
@@ -141,7 +141,7 @@ public class PostController {
 	public ResponseEntity<PostDetailDto> getPostDetailById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @RequestParam(required = false) int postid) {
 		
-		log.debug("[Log] 게시글 상세 조회 : {}", jwtUtil.getCusId(jwtToken));
+		log.info("[Log] 게시글 상세 조회 : {}", jwtUtil.getCusId(jwtToken));
 
 		PostDetailDto postDto = postService.detailPost(postid);
 		
@@ -153,7 +153,7 @@ public class PostController {
 	public ResponseEntity<PostListRes> getMyPostDetailById(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
 			, @RequestParam(required = false, defaultValue =  "1") Integer page) {
 		
-		log.debug("[Log] 본인 게시글 조회함 : {}", jwtUtil.getCusId(jwtToken));
+		log.info("[Log] 본인 게시글 조회함 : {}", jwtUtil.getCusId(jwtToken));
 
 		// jwt에서 cuscode 가져오기
 		page--;
@@ -172,7 +172,7 @@ public class PostController {
 			@CookieValue(name = "Set-Cookie", required = false) String jwtToken, 
 			@RequestBody ReactionReq req ) {
 		
-		log.debug("[Log] 리액션 좋아요, 싫어요 누름 : {}", jwtUtil.getCusId(jwtToken));
+		log.info("[Log] 리액션 좋아요, 싫어요 누름 : {}", jwtUtil.getCusId(jwtToken));
 
 		int cuscode = jwtUtil.getCusCode(jwtToken);
 		
