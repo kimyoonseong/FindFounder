@@ -12,8 +12,7 @@ node {
 
       stage('Build') {
             sh(script: '''yes | sudo docker image prune -a''')
-            sh(script: '''sudo docker -f /var/lib/jenkins/workspace/jenkins-FindFounder/findFounder/Dockerfile build -t my-app .''')
-            sh(script: '''sudo docker build -t my-app .''')
+            sh(script: '''sudo docker build -f /var/lib/jenkins/workspace/jenkins-FindFounder/findFounder/Dockerfile build -t my-app .''')
         }
 
       stage('Tag') {
