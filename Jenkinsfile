@@ -1,4 +1,3 @@
-
 node { 
     withCredentials([[$class: 'UsernamePasswordMultiBinding', 
         credentialsId: 'docker-login', 
