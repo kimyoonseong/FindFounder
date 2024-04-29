@@ -4,7 +4,7 @@ FROM maven:3.8.4-openjdk-17-slim AS build
 # Copy Maven files for dependency resolution
 COPY ./findFounder/pom.xml ./
 COPY ./findFounder/.mvn .mvn
-COPY /home/ubuntu/.env .env
+COPY ./findFounder/.env .env
 
 # Copy application source code
 COPY ./findFounder/src src
