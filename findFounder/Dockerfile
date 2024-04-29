@@ -4,6 +4,7 @@ FROM maven:3.8.4-openjdk-17-slim AS build
 # Copy Maven files for dependency resolution
 COPY pom.xml ./
 COPY .mvn .mvn
+COPY .env .env
 
 # Copy application source code
 COPY src src
@@ -14,8 +15,11 @@ RUN mvn package
 # Stage 2: Run stage
 FROM openjdk:17-jdk-slim
 
+# Set the working directory for the application
 WORKDIR /app
+
+# Copy the JAR from the build stage
 COPY --from=build /target/*.jar app.jar
-CMD ["java", "-jar", "app.jar"]
 
-
+# Command to run the application
+CMD sh -c "java -jar app.jar"
