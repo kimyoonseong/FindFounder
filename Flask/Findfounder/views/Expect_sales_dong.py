@@ -6,27 +6,49 @@ from openpyxl import load_workbook
 import numpy as np
 from sklearn.linear_model import LinearRegression
 import os
+
+
+def get_pred_var(data) :
+
+    csv_list = os.listdir(f'./views/pred_dong/pred_var')
+    print(csv_list)
+    region_csv = [x for x in csv_list if x.endswith(f"{data}_pred_var_15.csv")][0]
+
+    result = pd.read_csv(f'./views/pred_dong/pred_var/{region_csv}', encoding='cp949') 
+
+    pre_var_list = result.columns.to_list()[7:]
+    mst_temp = pd.read_excel("./views/csvFolder/automatic_name.xlsx")
+    mst_df = mst_temp.drop_duplicates(["A", "B"])
+    mst_df = mst_df.loc[(mst_df["A"].notna()) & (mst_df["B"].notna()), ["A", "B"]]
+    pre_dict = {}
+    for idx, pred_var in enumerate(pre_var_list) :
+        pre_dict[idx+1] = mst_df.loc[mst_df["A"] == pred_var, "B"].values[0]
+
+    return pre_dict
+
+
 # 매출 예측 data =동 region 구
 def predict_sales_dong(data,prefer_industry,region):
     # 입력 데이터를 모델에 전달하여 예측 수행
     # 2023-07-01부터 2024-10-01까지의 예측
     # pickle 파일에서 모델을 로드
-    model_list = os.listdir(f"./views/종욱동모델링/{region} - 모델링/")
+    # model_list = os.listdir(f"./views/종욱동모델링/{region} - 모델링/")
+    model_list = os.listdir(f"./views/pred_dong/model/")
     
     model_pkl = [x for x in model_list if x.endswith(f"{data}.pkl") ][0]
     print(f"model_list : {model_list}, model_pkl : {model_pkl}")
     
-    model = load_model(f'./views/종욱동모델링/{region} - 모델링/{model_pkl[:-4]}')
+    model = load_model(f'./views/pred_dong/model/{model_pkl[:-4]}')
 
 
     # result = pd.read_csv(f'views\종욱동예측결과\{region} - SARIMA예측변수\11680510_{data}_pred_var_15.csv', encoding='cp949') 
     # Findfounder/views/종욱동예측결과/강남구 - SARIMA예측변수/11680510_신사동_pred_var_15.csv
 
-    csv_list = os.listdir(f'./views/종욱동예측결과/{region} - SARIMA예측변수')
+    csv_list = os.listdir(f'./views/pred_dong/pred_var')
     print(csv_list)
     region_csv = [x for x in csv_list if x.endswith(f"{data}_pred_var_15.csv")][0]
-    print(f"region_csv  {region_csv}")
-    result = pd.read_csv(f"./views/종욱동예측결과/{region} - SARIMA예측변수/{region_csv}", encoding = "cp949")
+    print(f"region_csv : {region_csv}")
+    result = pd.read_csv(f"./views/pred_dong/pred_var/{region_csv}", encoding = "cp949")
     #result.drop("prediction_label",axis=1,inplace=True)
     # Findfounder\views\종욱동예측결과\{region} - SARIMA예측변수\11680510_{data}_pred_var_15.csv
     

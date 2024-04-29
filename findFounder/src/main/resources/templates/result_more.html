@@ -104,7 +104,7 @@
 
 	<link href="/css/styles.css" rel="stylesheet" />
 
-
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
 </head>
@@ -120,7 +120,7 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Find-Founder</h1>
                     <h1 class="mt-4">상위 10개의 업종 예상 매출입니다</h1> <!-- 추가된 문구 -->
-                    
+                    <div class = "ranking"></div>
                     <div id="chartContainer" style=" width:30%;"></div>
                 </div>
             </main>
@@ -268,7 +268,7 @@
 				})
 				.then(response => response.json())
 				.then(data => {
-					console.log(data.dong)
+					console.log(data);
 					if (data.dong) {
 						const dong = data.dong;
 						const gu = data.gu;
@@ -277,8 +277,17 @@
 
 						const sales=data.loc_expect_sales_dong;
 						
-						console.log(data);
+						
                         drawexpectsales(sales);//차트 10개 그리는함수
+                        
+                        const var_list = data.pred_var_list;
+                        var_list.forEach((pre_var, index) => {
+    						console.log("동입력");
+							console.log(pre_var);
+    						
+
+    					});
+    					
 
 					} else {
 						const gu = data.gu;
@@ -293,7 +302,28 @@
 
 						// 이제 추정 매출
 						const sales=data.industry_expect_expand;
-						console.log(sales);
+						const var_list = Object.entries(data.pred_var_list);
+						let result = `
+							<tr style="text-align: center">
+	                        <th>순위</th>
+	                        <th>변수명</th>
+	                    </tr>
+	                    <tbody>
+						`;
+						var_list.forEach((pre_var, index) => {
+							console.log(pre_var[1]);
+							result += `<tr >
+                            <td>${pre_var[0]}</td>
+                            <td>${pre_var[1]}</td>
+
+                      		</tr>`;
+
+    					});
+						result += "</tbody>";
+						
+						$('.ranking').html(result);
+						
+						
                         drawexpectsales(sales);//차트 10개 그리는함수
 					}
 
