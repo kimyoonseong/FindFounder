@@ -231,7 +231,7 @@
 </body>
 <script>
 	// 클라이언트에서 JWT 쿠키를 가져와서 HTTP 요청 헤더에 포함시키는 예제
-	var url = 'http://localhost:8080/api/board' + window.location.search;
+	var url = '/api/board' + window.location.search;
 	console.log(url)
 	$(document).ready(
 
@@ -325,7 +325,7 @@
 
 				console.log("널널널" + searchUrl);
 			}
-			searchUrl = "http://localhost:8080/api/board/search?" + "keyword=" + keyword;
+			searchUrl = "/api/board/search?" + "keyword=" + keyword;
 
 			$.ajax({
 				type: 'GET',

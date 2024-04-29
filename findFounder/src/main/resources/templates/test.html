@@ -218,7 +218,7 @@
 					        // 로그아웃 요청을 서버로 보냄
 					        $.ajax({
 					            type: 'Post', // GET 또는 POST, 로그아웃 요청 방식에 따라 변경
-					            url: 'http://localhost:8080/logout', // 로그아웃 엔드포인트 URL
+					            url: '/logout', // 로그아웃 엔드포인트 URL
 								
 					            success: function(response) {
 					                console.log('로그아웃 성공:', response);

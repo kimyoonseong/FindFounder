@@ -58,7 +58,7 @@
 
 												$.ajax({
 													type: 'POST',
-													url: 'http://localhost:8080/api/user/dispatch', // 로그인 엔드포인트 URL
+													url: 'api/user/dispatch', // 로그인 엔드포인트 URL
 													contentType: 'application/json',
 													data: JSON.stringify({"email": email}),
 													success: function (response) {

@@ -378,7 +378,7 @@
 				// 로그아웃 API 호출
 				$.ajax({
 					type: 'POST',
-					url: 'http://localhost:8080/api/user/logout',
+					url: '/api/user/logout',
 					success: function (response) {
 						// 로그아웃 성공 시 작업
 						console.log(response);
