@@ -11,8 +11,9 @@ node {
         
 
       stage('Build') {
-            sh(script: '''yes | sudo docker image prune -a''')
+            sh(script: '''yes | sudo docker image prune -a''') 
             sh(script: '''sudo cp /home/ubuntu/.env /var/lib/jenkins/workspace/jenkins-FindFounder/findFounder/.env''')
+            sh(script: '''sudo cp /home/ubuntu/application.properties /var/lib/jenkins/workspace/jenkins-FindFounder/findFounder/application.properties''')
             sh(script: '''sudo docker build -f /var/lib/jenkins/workspace/jenkins-FindFounder/findFounder/Dockerfile -t my-app .''')
         }
 
@@ -27,8 +28,8 @@ node {
       
       stage('Deploy') {
             sshagent(credentials: ['aws-ssh-pem-key']) {
-                sh(script: 'ssh -o StrictHostKeyChecking=no ubuntu@13.125.183.79 "sudo docker rm -f docker-flask"')
-                sh(script: 'ssh ubuntu@13.125.183.79 "sudo docker run --name docker-flask --env-file .env -e TZ=Asia/Seoul -p 80:80 -d -t \${DOCKER_USER_ID}/my-app:\${BUILD_NUMBER}"')
+                sh(script: 'ssh -o StrictHostKeyChecking=no ubuntu@13.125.183.79 "sudo docker rm -f my-app"')
+                sh(script: 'ssh ubuntu@13.125.183.79 "sudo docker run --name my-app --env-file .env -e TZ=Asia/Seoul -p 80:8080 -d -t \${DOCKER_USER_ID}/my-app:\${BUILD_NUMBER}"')
         }
     }
 
