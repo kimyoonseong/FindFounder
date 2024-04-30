@@ -49,19 +49,26 @@ def receive_result_string():
         response=json.dumps(dto_json,ensure_ascii=False)
         prefer_industry=dto_json.get('preferIndustry')
         prefer_loc_value = dto_json.get('preferLoc')
-        print("teststets")
+        
         
         if prefer_loc_value.endswith("구"):
                 prediction = predict_expand_gu(prefer_loc_value)# 자치구 매달 지출예측
                 prediction_sales = predict_sales_gu(prefer_loc_value,prefer_industry)# 매출예측
                 pediction_seoul=predict_expand_seoul()
                 pre_var_list = get_pred_var(prefer_loc_value)
+                if prefer_industry == "상관없음":
+                        industry_cnt = 10
+                else :
+                        industry_cnt = len(read_industry_from_csv(prefer_industry))
+                
+                print(prediction_sales)
                 combined_data = {
                 "gu" : prefer_loc_value,
                 "loc_expect_expand": prediction,#매월 구 지출액 및 예측(구단위) 0부터 시작함 
                 "loc_expect_expand_whole":pediction_seoul, #매월 모든 구 평균 지출액 및 예측(시 단위)
                 "industry_expect_expand": prediction_sales, #매출 예측 
                 "pred_var_list" : pre_var_list,
+                "industry_cnt" : industry_cnt
                 #"변수":
                 }
                
@@ -133,5 +140,5 @@ def receive_string():
         # 합쳐진 데이터를 JSON 형식으로 반환
         return jsonify(combined_data)
 
-if __name__ == '__main__':
-    bp.run('0.0.0.0', debug=True)
+# if __name__ == '__main__':
+#     bp.run('0.0.0.0', debug=True)
