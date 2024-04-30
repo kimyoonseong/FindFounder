@@ -11,7 +11,7 @@ import os
 def get_pred_var(data) :
 
     csv_list = os.listdir(f'./views/pred_dong/pred_var')
-    print(csv_list)
+
     region_csv = [x for x in csv_list if x.endswith(f"{data}_pred_var_15.csv")][0]
 
     result = pd.read_csv(f'./views/pred_dong/pred_var/{region_csv}', encoding='cp949') 
@@ -41,16 +41,16 @@ def predict_sales_dong(data,prefer_industry,region):
     model = load_model(f'./views/pred_dong/model/{model_pkl[:-4]}')
 
 
-    # result = pd.read_csv(f'views\종욱동예측결과\{region} - SARIMA예측변수\11680510_{data}_pred_var_15.csv', encoding='cp949') 
+    # result = pd.read_csv(f'views/종욱동예측결과/{region} - SARIMA예측변수/11680510_{data}_pred_var_15.csv', encoding='cp949') 
     # Findfounder/views/종욱동예측결과/강남구 - SARIMA예측변수/11680510_신사동_pred_var_15.csv
 
     csv_list = os.listdir(f'./views/pred_dong/pred_var')
-    print(csv_list)
+    
     region_csv = [x for x in csv_list if x.endswith(f"{data}_pred_var_15.csv")][0]
     print(f"region_csv : {region_csv}")
     result = pd.read_csv(f"./views/pred_dong/pred_var/{region_csv}", encoding = "cp949")
     #result.drop("prediction_label",axis=1,inplace=True)
-    # Findfounder\views\종욱동예측결과\{region} - SARIMA예측변수\11680510_{data}_pred_var_15.csv
+    # Findfounder/views/종욱동예측결과/{region} - SARIMA예측변수/11680510_{data}_pred_var_15.csv
     
 
     pred = predict_model(model, data = result)
@@ -72,7 +72,7 @@ def predict_sales_dong(data,prefer_industry,region):
     # pred 데이터프레임의 컬럼명을 변경
     pred.rename(columns=dict(zip(rename_column['A'], rename_column['B'])), inplace=True)
     #print(pred)
-    industry= pd.read_csv('views\csvFolder\IndustryList.csv')
+    industry= pd.read_csv('views/csvFolder/IndustryList.csv')
     #print(industry.columns)
     if prefer_industry in industry.columns:
         category = industry[prefer_industry].dropna().tolist()

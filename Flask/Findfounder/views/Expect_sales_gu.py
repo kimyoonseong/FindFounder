@@ -12,7 +12,7 @@ import os
 def get_pred_var(data) :
 
     csv_list = os.listdir(f'./views/pred_gu/pred_var')
-    print(csv_list)
+
     region_csv = [x for x in csv_list if x.endswith(f"{data}_pred_var_15.csv")][0]
 
     result = pd.read_csv(f'./views/pred_gu/pred_var/{region_csv}', encoding='cp949') 
@@ -39,7 +39,7 @@ def predict_sales_gu(data,prefer_industry):
 
 
     csv_list = os.listdir(f'./views/pred_gu/pred_var')
-    print(csv_list)
+    
     region_csv = [x for x in csv_list if x.endswith(f"{data}_pred_var_15.csv")][0]
 
     result = pd.read_csv(f'./views/pred_gu/pred_var/{region_csv}', encoding='cp949') 
@@ -66,7 +66,7 @@ def predict_sales_gu(data,prefer_industry):
     # pred 데이터프레임의 컬럼명을 변경
     pred.rename(columns=dict(zip(rename_column['A'], rename_column['B'])), inplace=True)
     #print(pred)
-    industry= pd.read_csv('views\csvFolder\IndustryList.csv')
+    industry= pd.read_csv('views/csvFolder/IndustryList.csv')
     #print(industry.columns)
     if prefer_industry in industry.columns:
         category = industry[prefer_industry].dropna().tolist()

@@ -16,7 +16,7 @@ import re
 #동 지출 예측
 
 
-df = pd.read_csv('views\csvFolder\Seoul_dong_expand.csv', encoding='cp949')
+df = pd.read_csv('views/csvFolder/Seoul_dong_expand.csv', encoding='cp949')
 pd.options.display.float_format = '{:.0f}'.format
 df = df.sort_values(by=['STDR_YYQU_CD', 'ADSTRD_CD'], ascending=[True, True])
 pd.set_option('display.max_rows',None)
@@ -74,7 +74,7 @@ def predict_expand_dong(prefer_loc_value):
     temp_df.rename(columns = {'index' : "STDR_YYQU_CD", 'predicted_mean' : 'EXPNDTR_TOTAMT'}, inplace = True)
 
     # print(forecast_values.to_frame())
-    result_df = pd.read_csv('views\csvFolder\Seoul_dong_expand.csv', encoding='cp949')[["STDR_YYQU_CD", 'EXPNDTR_TOTAMT', 'ADSTRD_CD_NM']]
+    result_df = pd.read_csv('views/csvFolder/Seoul_dong_expand.csv', encoding='cp949')[["STDR_YYQU_CD", 'EXPNDTR_TOTAMT', 'ADSTRD_CD_NM']]
     result_df2 = pd.concat([result_df.loc[result_df['ADSTRD_CD_NM'] == prefer_loc_value], temp_df])[["STDR_YYQU_CD", 'EXPNDTR_TOTAMT']]
     #print(result_df2["STDR_YYQU_CD"].unique())
     prediction_dict = {}

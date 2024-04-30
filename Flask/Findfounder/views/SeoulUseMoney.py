@@ -2,12 +2,12 @@ import pandas as pd
 def get_use_money(location):
     # 총지출 EXPNDTR_TOTAMT
     if location.endswith('동'):
-        #df = pd.read_csv(r'C:\Users\82104\git\FindFounder\Flask\Findfounder\views\csvFolder\Seoul_Use_Earn_Money_dong.csv', encoding='cp949')
-        df = pd.read_csv('views\csvFolder\Seoul_Use_Earn_Money_dong.csv', encoding='cp949')
+        #df = pd.read_csv(r'C:/Users/82104/git/FindFounder/Flask/Findfounder/views/csvFolder/Seoul_Use_Earn_Money_dong.csv', encoding='cp949')
+        df = pd.read_csv('views/csvFolder/Seoul_Use_Earn_Money_dong.csv', encoding='cp949')
         filter_col = 'ADSTRD_CD_NM'
     elif location.endswith('구'):
-        #df = pd.read_csv(r'C:\Users\82104\git\FindFounder\Flask\Findfounder\views\csvFolder\Seoul_Use_Earn_Money_gu.csv', encoding='cp949')
-        df = pd.read_csv('views\csvFolder\Seoul_Use_Earn_Money_gu.csv', encoding='cp949')
+        #df = pd.read_csv(r'C:/Users/82104/git/FindFounder/Flask/Findfounder/views/csvFolder/Seoul_Use_Earn_Money_gu.csv', encoding='cp949')
+        df = pd.read_csv('views/csvFolder/Seoul_Use_Earn_Money_gu.csv', encoding='cp949')
         filter_col = 'SIGNGU_CD_NM'
     else:
         raise ValueError("Invalid value for signgu_cd_nm. It should end with '동' or '구'.")
@@ -54,6 +54,6 @@ def get_use_money(location):
     }
 
 # 테스트
-location = '이태원1동'
-result = get_use_money(location)
+# location = '이태원1동'
+# result = get_use_money(location)
 #print(result)
