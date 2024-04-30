@@ -2,12 +2,12 @@
 FROM maven:3.8.4-openjdk-17-slim AS build
 
 # Copy Maven files for dependency resolution
-COPY pom.xml ./
-COPY .mvn .mvn
-COPY .env .env
+COPY ./findFounder/pom.xml ./
+COPY ./findFounder/.mvn .mvn
+COPY ./findFounder/.env .env
 
 # Copy application source code
-COPY src src
+COPY ./findFounder/src src
 
 # Build the project and create the executable JAR
 RUN mvn package
