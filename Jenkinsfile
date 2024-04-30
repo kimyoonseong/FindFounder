@@ -28,8 +28,8 @@ node {
       
       stage('Deploy') {
             sshagent(credentials: ['aws-ssh-pem-key']) {
-                sh(script: 'ssh -o StrictHostKeyChecking=no ubuntu@13.125.183.79 "sudo docker rm -f my-app"')
-                sh(script: 'ssh ubuntu@13.125.183.79 "sudo docker run --name my-app --env-file .env -e TZ=Asia/Seoul -p 80:8080 -d -t \${DOCKER_USER_ID}/my-app:\${BUILD_NUMBER}"')
+                sh(script: 'ssh -o StrictHostKeyChecking=no ubuntu@15.164.184.189 "sudo docker rm -f my-app"')
+                sh(script: 'ssh ubuntu@15.164.184.189 "sudo docker run --name my-app --env-file .env -e TZ=Asia/Seoul -p 80:8080 -d -t \${DOCKER_USER_ID}/my-app:\${BUILD_NUMBER}"')
         }
     }
 
