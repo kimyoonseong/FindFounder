@@ -2,11 +2,11 @@ import pandas as pd
 def get_zipgack(signgu_cd_nm):
     if signgu_cd_nm.endswith('동'):
         #df = pd.read_csv(r'C:/Users/82104/git/FindFounder/Flask/Findfounder/views/csvFolder/Seoul_zipgack_dong.csv', encoding='cp949')
-        df = pd.read_csv('views/csvFolder/Seoul_zipgack_dong.csv', encoding='cp949')
+        df = pd.read_csv('./views/csvFolder/Seoul_zipgack_dong.csv', encoding='cp949')
         filter_col = 'ADSTRD_CD_NM'
     if signgu_cd_nm.endswith('구'):
         #df = pd.read_csv(r'C:/Users/82104/git/FindFounder/Flask/Findfounder/views/csvFolder/Seoul_zipgack_gu.csv', encoding='cp949')
-        df = pd.read_csv('views/csvFolder/Seoul_zipgack_gu.csv', encoding='cp949')
+        df = pd.read_csv('./views/csvFolder/Seoul_zipgack_gu.csv', encoding='cp949')
         filter_col = 'SIGNGU_CD_NM'
     col_name = 'VIATR_FCLTY_CO'
     col_list = df.columns.to_list()
