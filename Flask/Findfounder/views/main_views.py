@@ -49,7 +49,7 @@ def receive_result_string():
         response=json.dumps(dto_json,ensure_ascii=False)
         prefer_industry=dto_json.get('preferIndustry')
         prefer_loc_value = dto_json.get('preferLoc')
-       
+        print("teststets")
         
         if prefer_loc_value.endswith("구"):
                 prediction = predict_expand_gu(prefer_loc_value)# 자치구 매달 지출예측
