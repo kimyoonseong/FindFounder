@@ -1,7 +1,7 @@
 FROM tiangolo/uwsgi-nginx:python3.10
 
 # Install requirements
-COPY requirements.txt /tmp/requirements.txt
+COPY ./Flask/requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 # URL under which static (not modified by Python) files will be requested
@@ -15,7 +15,7 @@ ENV STATIC_PATH /app/static
 ENV STATIC_INDEX 0
 
 # Add demo app
-COPY . /app 
+COPY ./Flask /app 
 WORKDIR /app/Findfounder
 
 
