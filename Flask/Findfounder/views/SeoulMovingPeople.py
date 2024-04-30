@@ -3,14 +3,14 @@ import json
 
 def get_people(signgu_cd_nm):
     # CSV 파일에서 데이터를 읽어옴
-    #df = pd.read_csv('views\csvFolder\Seoul_people_moving_gu.csv', encoding='cp949')
+    #df = pd.read_csv('views/csvFolder/Seoul_people_moving_gu.csv', encoding='cp949')
     if signgu_cd_nm.endswith('동'):
-        #df = pd.read_csv(r'C:\Users\82104\git\FindFounder\Flask\Findfounder\views\csvFolder\Seoul_people_moving_dong.csv', encoding='cp949')
-        df = pd.read_csv('views\csvFolder\Seoul_people_moving_dong.csv', encoding='cp949')
+        #df = pd.read_csv(r'C:/Users/82104/git/FindFounder/Flask/Findfounder/views/csvFolder/Seoul_people_moving_dong.csv', encoding='cp949')
+        df = pd.read_csv('views/csvFolder/Seoul_people_moving_dong.csv', encoding='cp949')
         filter_col = 'ADSTRD_CD_NM'
     elif signgu_cd_nm.endswith('구'):
-        #df = pd.read_csv(r'C:\Users\82104\git\FindFounder\Flask\Findfounder\views\csvFolder\Seoul_people_moving_gu.csv', encoding='cp949')
-        df = pd.read_csv('views\csvFolder\Seoul_people_moving_gu.csv', encoding='cp949')
+        #df = pd.read_csv(r'C:/Users/82104/git/FindFounder/Flask/Findfounder/views/csvFolder/Seoul_people_moving_gu.csv', encoding='cp949')
+        df = pd.read_csv('views/csvFolder/Seoul_people_moving_gu.csv', encoding='cp949')
         filter_col = 'SIGNGU_CD_NM'
     else:
         raise ValueError("Invalid value for signgu_cd_nm. It should end with '동' or '구'.")
@@ -55,5 +55,5 @@ def get_people(signgu_cd_nm):
     #return json.dumps(result, indent=4, ensure_ascii=False)
     return result
 # 함수 호출
-result_json = get_people('상암동')
+# result_json = get_people('상암동')
 #print(result_json)
