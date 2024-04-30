@@ -15,14 +15,14 @@ ENV STATIC_PATH /app/static
 ENV STATIC_INDEX 0
 
 # Add demo app
-COPY . /app
-WORKDIR /app
+COPY . /app 
+WORKDIR /app/Findfounder
 
 
 # Expose port 5000 (or the port your Flask app runs on)
 EXPOSE 5000
 
 # Set the Flask app environment variable
-ENV FLASK_APP=main.py
+ENV FLASK_APP main:app
 
 CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
