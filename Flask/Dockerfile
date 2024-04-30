@@ -25,4 +25,4 @@ EXPOSE 5000
 # Set the Flask app environment variable
 ENV FLASK_APP main:app
 
-CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0"]
