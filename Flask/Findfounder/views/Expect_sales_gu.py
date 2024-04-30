@@ -10,7 +10,7 @@ import os
 # 예측변수 리스트
 
 def get_pred_var(data) :
-
+    print("ㅅㄷㄴㅅㄴㄷㅅㄴ")
     csv_list = os.listdir(f'./views/pred_gu/pred_var')
     print(csv_list)
     region_csv = [x for x in csv_list if x.endswith(f"{data}_pred_var_15.csv")][0]
