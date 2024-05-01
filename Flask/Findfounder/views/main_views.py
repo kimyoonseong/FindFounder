@@ -4,27 +4,30 @@ from flask import Blueprint, Flask, request, render_template, jsonify
 import boto3, json
 from werkzeug.utils import secure_filename
 from socket import *
-from Findfounder.views.Stat  import get_statistics
-from Findfounder.views.Industry import read_industry_from_csv
-from Findfounder.views.SeoulRegion import read_region_from_csv,get_district_from_subdistrict
-from Findfounder.views.SeoulMovingPeople import get_people
-from Findfounder.views.SeoulUseMoney import get_use_money
-from Findfounder.views.SeoulSimilarStore import get_similar
-from Findfounder.views.SeoulZipgack import get_zipgack
-from Findfounder.views.Expect_expand_gu import predict_expand_gu,predict_expand_gu2
-from Findfounder.views.Expect_expand_dong import predict_expand_dong
-from Findfounder.views.Expect_sales_gu import predict_sales_gu, get_pred_var
-from Findfounder.views.Expect_sales_dong import predict_sales_dong
-from Findfounder.views.Expect_expand_seoul import predict_expand_seoul
+from views.Stat  import get_statistics
+from views.Industry import read_industry_from_csv
+from views.SeoulRegion import read_region_from_csv,get_district_from_subdistrict
+from views.SeoulMovingPeople import get_people
+from views.SeoulUseMoney import get_use_money
+from views.SeoulSimilarStore import get_similar
+from views.SeoulZipgack import get_zipgack
+from views.Expect_expand_gu import predict_expand_gu,predict_expand_gu2
+from views.Expect_expand_dong import predict_expand_dong
+from views.Expect_sales_gu import predict_sales_gu, get_pred_var
+from views.Expect_sales_dong import predict_sales_dong
+from views.Expect_expand_seoul import predict_expand_seoul
 import requests
-bp = Blueprint('main', __name__, url_prefix='/')
+bp = Blueprint('main', __name__)
 
 
-@bp.route('/')
-def home():
-	return "home"
+# @bp.route('/')
+# def home():
+# 	return "home"
+
+
 @bp.route('/call_industry',methods=['POST'])
 def call_industry():
+        
         category = request.get_data(as_text=True)  # 클라이언트로부터 카테고리를 받음
         industry_list = read_industry_from_csv(category)  # CSV 파일에서 해당 카테고리의 업종 리스트를 가져옴
         print(jsonify(industry_list))  # 업종 리스트를 JSON 형태로 응답
