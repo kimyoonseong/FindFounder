@@ -8,7 +8,7 @@ from sklearn.linear_model import LinearRegression
 import os
 
 
-def get_pred_var(data) :
+def get_pred_var_dong(data) :
 
     csv_list = os.listdir(f'./views/pred_dong/pred_var')
 
@@ -88,7 +88,8 @@ def predict_sales_dong(data,prefer_industry,region):
     predictions_dict2=recommend_top_industries(predictions_dict)
     # 결과 출력
     predictions_dict2_str_keys = {str(k): v for k, v in predictions_dict2.items()}
-
+    order_dict_key = [*predictions_dict2.values()]
+    predictions_dict = {category: predictions_dict[category] for category in order_dict_key}
     # 첫 번째 딕셔너리에 두 번째 딕셔너리를 추가
     predictions_dict.update(predictions_dict2_str_keys)
     #print(pred)

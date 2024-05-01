@@ -14,6 +14,7 @@ if __name__ == "main":
     os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
     from views import main_views
     app.register_blueprint(main_views.bp)
+    app.json.sort_keys = False
     # Only for debugging while developing
     app.run(host='0.0.0.0', debug=True)
 
