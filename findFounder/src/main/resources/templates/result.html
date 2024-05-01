@@ -93,6 +93,7 @@
 		.chart-title {
 			text-align: center;
 		}
+		
 	</style>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -134,23 +135,14 @@
 				
 					
 
-					<!-- <div id="chartContainer" class="chart-row"></div> -->
-					<canvas id="dongExpandChart" width="800" height="400" class="mt-5"></canvas>
-
-					<!-- <div style="display: flex;">
-
-						<div style="width:60%; height:500px; border: 2px solid #ddd; border-radius: 10px;">
-							<div id="map" style="width:100%; height:100%;"></div>
-						</div>
-
-						
-
-
-
-					</div> -->
+					<div class="chart-and-table-container">
+						<canvas id="dongExpandChart" width="800" height="400"></canvas>
+						<div id="expand-table"></div>
+					</div>
 
 					 <!-- 여기에 버튼 추가 -->
-					 <button onclick="window.location.href='/result_more'" class="btn btn-primary mt-4" style="position: fixed; bottom: 20px; right: 20px;">더 많은 분석을 보고싶으신가요?</button>
+					 <button onclick="window.location.href='/result_more'" class="btn btn-info mt-4" style="position: static; bottom: 20px; left:200px;">대출상품</button>
+					 <button onclick="window.location.href='/result_more'" class="btn btn-primary mt-4" style="position: static; bottom: 20px; right:200px;">더 많은 분석을 보고싶으신가요?</button>
 
 
 
@@ -301,7 +293,7 @@
 				})
 				.then(response => response.json())
 				.then(data => {
-					console.log(data.dong)
+					console.log(data);
 					if (data.dong) {//동으로 검색했을때 
 						const dong = data.dong;
 						const gu = data.gu;
@@ -321,15 +313,48 @@
 						const parentElement = document.getElementById('result-container');
 						parentElement.appendChild(resultDiv);
 
-						console.log(expectDongExpand);
-						console.log(expectGuExpand);
+						
+						
 						drawTopThreeIndustries(sales, recommendedIndustry,recommendedIndustry2,recommendedIndustry3);
 						//동 지출예측 차트
-						drawExpandChart(expectDongExpand, expectGuExpand);
+						drawExpandChart(gu, dong, expectDongExpand, expectGuExpand);
+
+						
+						const expectDongExpandList = Object.entries(expectDongExpand);
+						const expectGuExpandList = Object.entries(expectGuExpand);
+						const cnt = expectGuExpandList.length;
+						console.log(cnt);
+						let expandTable = `<table border="1" 						class="table table-bordered">
+													<tr>
+							                        <th>분기</th>
+							                        <th>${dong} 예상 소비</th>
+							                        <th>${gu} 예상 소비</th>
+							                    </tr>
+							                    <tbody>`;
+													
+						for(let i  = 0 ; i < cnt ; i++){
+							
+						let formattedDongExpand = Number(expectDongExpandList[i][1]).toLocaleString();
+						   let formattedGuExpand = Number(expectGuExpandList[i][1]).toLocaleString();
+						
+						   expandTable += `<tr>
+						                       <td>${expectDongExpandList[i][0]}</td>
+						                       <td>${formattedDongExpand}원</td>
+						                       <td>${formattedGuExpand}원</td>
+						                   </tr>`;
+							}
+						
+						expandTable += "</tbody></table>";
+						console.log(expandTable);
+						const tableContainer = document.getElementById('expand-table');
+						tableContainer.innerHTML = expandTable;
+						
+						
 
 					} else {//구로 검색
 						const gu = data.gu;
 						const expectGuExpand = data.loc_expect_expand;
+						const expectSeoulExpand = data.loc_expect_expand_whole;
 						const recommendedIndustry = data.industry_expect_expand['1']; // 1위 업종 추천
 						const recommendedIndustry2 = data.industry_expect_expand['2']; // 2위 업종 추천
 						const recommendedIndustry3 = data.industry_expect_expand['3']; // 3위 업종 추천
@@ -348,6 +373,38 @@
 						console.log(data);
 						//drawexpectsales(sales);
 						drawTopThreeIndustries(sales, recommendedIndustry,recommendedIndustry2,recommendedIndustry3);
+						
+						drawExpandChart("서울", gu, expectSeoulExpand, expectGuExpand);
+						
+												
+						const expectSeoulExpandList = Object.entries(expectSeoulExpand);
+						const expectGuExpandList = Object.entries(expectGuExpand);
+						const cnt = expectGuExpandList.length;
+						console.log(cnt);
+						let expandTable = `<table border="1" class="table table-bordered">
+													<tr>
+							                        <th>분기</th>
+							                        <th>서울시 예상 소비</th>
+							                        <th>${gu} 예상 소비</th>
+							                    </tr>
+							                    <tbody>`;
+													
+						for(let i  = 0 ; i < cnt ; i++){
+							
+						let formattedSeoulExpand = Number(expectSeoulExpandList[i][1]).toLocaleString();
+						   let formattedGuExpand = Number(expectGuExpandList[i][1]).toLocaleString();
+						
+						   expandTable += `<tr>
+						                       <td>${expectSeoulExpandList[i][0]}</td>
+						                       <td>${formattedSeoulExpand}원</td>
+						                       <td>${formattedGuExpand}원</td>
+						                   </tr>`;
+							}
+						
+						expandTable += "</tbody></table>";
+						console.log(expandTable);
+						const tableContainer = document.getElementById('expand-table');
+						tableContainer.innerHTML = expandTable;
 					}
 
 						})
