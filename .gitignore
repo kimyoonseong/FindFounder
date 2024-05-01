@@ -5,3 +5,6 @@
 */.env
 *.pyc
 __pycache__/
+/Flask/Findfounder/logs.log
+/findFounder/logs/*
+*/__pycache__/
