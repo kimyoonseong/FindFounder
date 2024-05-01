@@ -8,11 +8,11 @@ import os
 # def create_app():
 app = Flask(__name__)
 
-if __name__ == "__main__":
-    
+if __name__ == "main":
+
     # app.config['TF_ENABLE_ONEDNN_OPTS'] = '0'
     os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
-    from .views import main_views
+    from views import main_views
     app.register_blueprint(main_views.bp)
     # Only for debugging while developing
     app.run(host='0.0.0.0', debug=True)

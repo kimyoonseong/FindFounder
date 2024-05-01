@@ -3,6 +3,7 @@ import csv
 
 #상업 리스트
 def read_industry_from_csv(category):
+    print(11111)
     industry_df = pd.read_csv('./views/csvFolder/IndustryList.csv')
     # industry_list = []
     industry_list = industry_df[category][industry_df[category].notna()].to_list()
