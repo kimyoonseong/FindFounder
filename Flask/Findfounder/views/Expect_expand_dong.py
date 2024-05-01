@@ -8,8 +8,6 @@ import joblib
 from collections import Counter
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 from sklearn.metrics import mean_absolute_percentage_error
-from tensorflow.keras.models import Sequential, Model
-from tensorflow.keras.layers import LSTM, Dense, Dropout, Input
 from pycaret.regression import *
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 import re
@@ -59,26 +57,36 @@ def predict_expand_dong(prefer_loc_value):
     # 데이터 전처리
     data['STDR_YYQU_CD'] = pd.to_datetime(data['STDR_YYQU_CD'])
     data.set_index('STDR_YYQU_CD', inplace=True)
-
+    forecast_start = '2019-01-01'  # 수정된 부분
+    selected_data = data[data.index >= forecast_start]
     # SARIMA 모델 훈련
-    model = SARIMAX(data['EXPNDTR_TOTAMT'], order=(1, 1, 1), seasonal_order=(1, 1, 1, 12))
+    model = SARIMAX(selected_data['EXPNDTR_TOTAMT'], order=(1, 1, 1), seasonal_order=(1, 1, 1, 12))
     results = model.fit()
 
     # 2023-07-01부터 2024-10-01까지의 예측
-    forecast_start = '2023-07-01'
+    # forecast_start = '2023-07-01'
     forecast_end = '2024-10-01'
     forecast = results.get_prediction(start=pd.to_datetime(forecast_start), end=pd.to_datetime(forecast_end), dynamic=False)
     forecast_values = forecast.predicted_mean
+    for index in selected_data.index:
+        if index in forecast_values.index:
+            forecast_values.loc[index] = selected_data.loc[index]['EXPNDTR_TOTAMT']
     temp_df = forecast_values.to_frame().reset_index()
 
     temp_df.rename(columns = {'index' : "STDR_YYQU_CD", 'predicted_mean' : 'EXPNDTR_TOTAMT'}, inplace = True)
 
     # print(forecast_values.to_frame())
-    result_df = pd.read_csv('./views/csvFolder/Seoul_dong_expand.csv', encoding='cp949')[["STDR_YYQU_CD", 'EXPNDTR_TOTAMT', 'ADSTRD_CD_NM']]
-    result_df2 = pd.concat([result_df.loc[result_df['ADSTRD_CD_NM'] == prefer_loc_value], temp_df])[["STDR_YYQU_CD", 'EXPNDTR_TOTAMT']]
+
+
+    # result_df = pd.read_csv('./views/csvFolder/Seoul_dong_expand.csv', encoding='cp949')[["STDR_YYQU_CD", 'EXPNDTR_TOTAMT', 'ADSTRD_CD_NM']]
+    # result_df2 = pd.concat([result_df.loc[result_df['ADSTRD_CD_NM'] == prefer_loc_value], temp_df])[["STDR_YYQU_CD", 'EXPNDTR_TOTAMT']]
+
+
     #print(result_df2["STDR_YYQU_CD"].unique())
+
+
     prediction_dict = {}
-    for index, row in result_df2.iterrows() :
+    for index, row in temp_df.iterrows() :
         prediction_dict[row['STDR_YYQU_CD']] = row['EXPNDTR_TOTAMT']
 
     # 딕셔너리에서 key를 날짜로, value를 예측값으로 하는 딕셔너리로 변환
@@ -94,7 +102,7 @@ def predict_expand_dong(prefer_loc_value):
     last_six_items = list(prediction_dict.keys())[-6:]
 
     # 새로운 키 값 생성
-    new_keys = ['202331', '20234', '20241', '20242', '20243', '20244']
+    new_keys = ['2023-07-01', '2023-10-01', '2024-01-01', '2024-04-01', '2024-07-01', '2024-10-01']
 
     # 기존 딕셔너리의 키를 변경
     for new_key, old_key in zip(new_keys, last_six_items):

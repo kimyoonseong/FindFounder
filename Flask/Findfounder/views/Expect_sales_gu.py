@@ -9,8 +9,8 @@ import os
 
 # 예측변수 리스트
 
-def get_pred_var(data) :
-    print("ㅅㄷㄴㅅㄴㄷㅅㄴ")
+def get_pred_var_gu(data) :
+  
     csv_list = os.listdir(f'./views/pred_gu/pred_var')
 
     region_csv = [x for x in csv_list if x.endswith(f"{data}_pred_var_15.csv")][0]
@@ -82,6 +82,8 @@ def predict_sales_gu(data,prefer_industry):
     predictions_dict2=recommend_top_industries(predictions_dict)
     # 결과 출력
     predictions_dict2_str_keys = {str(k): v for k, v in predictions_dict2.items()}
+    order_dict_key = [*predictions_dict2.values()]
+    predictions_dict = {category: predictions_dict[category] for category in order_dict_key}
 
     # 첫 번째 딕셔너리에 두 번째 딕셔너리를 추가
     predictions_dict.update(predictions_dict2_str_keys)
