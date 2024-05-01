@@ -66,7 +66,7 @@ def predict_sales_gu(data,prefer_industry):
     # pred 데이터프레임의 컬럼명을 변경
     pred.rename(columns=dict(zip(rename_column['A'], rename_column['B'])), inplace=True)
     #print(pred)
-    industry= pd.read_csv('views/csvFolder/IndustryList.csv')
+    industry= pd.read_csv('./views/csvFolder/IndustryList.csv')
     #print(industry.columns)
     if prefer_industry in industry.columns:
         category = industry[prefer_industry].dropna().tolist()

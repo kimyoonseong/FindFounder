@@ -56,7 +56,7 @@ def predict_sales_dong(data,prefer_industry,region):
     pred = predict_model(model, data = result)
     
    # Excel 파일 열기
-    wb = load_workbook(filename='views/csvFolder/automatic_name.xlsx')
+    wb = load_workbook(filename='./views/csvFolder/automatic_name.xlsx')
 
     # 첫 번째 시트 선택
     sheet = wb.active
@@ -72,7 +72,7 @@ def predict_sales_dong(data,prefer_industry,region):
     # pred 데이터프레임의 컬럼명을 변경
     pred.rename(columns=dict(zip(rename_column['A'], rename_column['B'])), inplace=True)
     #print(pred)
-    industry= pd.read_csv('views/csvFolder/IndustryList.csv')
+    industry= pd.read_csv('./views/csvFolder/IndustryList.csv')
     #print(industry.columns)
     if prefer_industry in industry.columns:
         category = industry[prefer_industry].dropna().tolist()

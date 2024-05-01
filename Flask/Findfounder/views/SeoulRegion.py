@@ -5,7 +5,7 @@ def remove_word(df, column, word):
     return df
 
 def read_region_from_csv(category):
-    region_df1 = pd.read_csv('views/csvFolder/seoul.csv', encoding='utf-8')
+    region_df1 = pd.read_csv('./views/csvFolder/seoul.csv', encoding='utf-8')
 
     # 빈 열 제거
     region_df1 = region_df1.dropna(axis=1, how='all')
@@ -24,7 +24,7 @@ def read_region_from_csv(category):
 # 테스트
 def get_district_from_subdistrict(subdistrict):
     # 행정동에 해당하는 자치구 찾기
-    region_df = pd.read_csv('views/csvFolder/seoul.csv', encoding='utf-8')
+    region_df = pd.read_csv('./views/csvFolder/seoul.csv', encoding='utf-8')
    # 행정동에 해당하는 행을 찾고, 그 행의 자치구 값을 가져옴
     district = region_df.loc[region_df['행정동'] == subdistrict, '자치구'].iloc[0]
     print(district)

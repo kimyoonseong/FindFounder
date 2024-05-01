@@ -8,7 +8,7 @@ def predict_expand_gu(data):
     # 입력 데이터를 모델에 전달하여 예측 수행
     # 2023-07-01부터 2024-10-01까지의 예측
     # pickle 파일에서 모델을 로드
-    with open(f'views/modelFolder/expect_expand_gu/{data}.pkl', 'rb') as f:
+    with open(f'./views/modelFolder/expect_expand_gu/{data}.pkl', 'rb') as f:
         model = pickle.load(f)
     
     forecast_start = '2019-01-01'
@@ -35,7 +35,7 @@ def predict_expand_gu2(data):
     # 입력 데이터를 모델에 전달하여 예측 수행
     # 2023-07-01부터 2024-10-01까지의 예측
     # pickle 파일에서 모델을 로드
-    with open(f'views/modelFolder/expect_expand_gu/{data}.pkl', 'rb') as f:
+    with open(f'./views/modelFolder/expect_expand_gu/{data}.pkl', 'rb') as f:
         model = pickle.load(f)
     
     forecast_start = '2019-01-01'
@@ -56,7 +56,7 @@ def predict_expand_gu2(data):
     #json_prediction = json.dumps(formatted_prediction, ensure_ascii=False)
     #print(json_prediction)
     #print(json_prediction)
-    region_data=pd.read_csv('views/csvFolder/seoul.csv', encoding='utf-8')
+    region_data=pd.read_csv('./views/csvFolder/seoul.csv', encoding='utf-8')
     # 입력 받은 자치구 값에 대한 고유한 행정동 개수 계산
     result = count_unique_hood(region_data, data)
     print(f"{data}에 해당하는 행정동의 고유 값 개수는 {result}개 입니다.")
