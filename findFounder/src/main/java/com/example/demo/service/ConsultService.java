@@ -141,7 +141,7 @@ public class ConsultService {
 		        // Flask 서버로 데이터를 전송하고 받은 응답 값을 반환
 		        //System.out.println(restTemplate.postForObject(url, entity, String.class));
 		        //restTemplate.postForObject(url, entity, String.class);
-		        System.out.println(restTemplate.postForObject(url, entity, String.class).toString());
+		        
 		        return restTemplate.postForObject(url, entity, String.class);
 		    } else {
 		        throw new NotFoundException("Consultation not found with id: " + cusCode);

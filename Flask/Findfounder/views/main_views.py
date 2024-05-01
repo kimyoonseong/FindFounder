@@ -104,8 +104,7 @@ def receive_result_string():
                 prediction = None
 
         json_prediction = json.dumps(prediction, ensure_ascii=False)
-        print("#@#@#@#@#@#")
-        print(json.dumps(combined_data))
+  
         #print(industry_life)
         return jsonify(combined_data)
 

@@ -93,6 +93,17 @@
 		.chart-title {
 			text-align: center;
 		}
+		.ranking {
+		    display: flex;
+		    justify-content: space-around; /* 테이블 사이의 간격을 일정하게 유지 */
+		    align-items: flex-start; /* 테이블을 상단에 정렬 */
+		}
+		
+		.rankingService, .rankingVar {
+		    flex: 1; /* 두 요소가 동일한 너비를 가지도록 설정 */
+		    min-width: 50%; /* 각 요소의 최소 너비를 화면의 반으로 설정 */
+		    padding: 10px; /* 테이블 주위에 여백 추가 */
+		}
 	</style>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -281,7 +292,7 @@
 
 						const sales=data.loc_expect_sales_dong;
 						const var_list = Object.entries(data.pred_var_list);
-						let result = `<table border="1" style="text-align: center">
+						let result = `<table class="table table-bordered" style="text-align: center">
 							<tr >
 	                        <th>순위</th>
 	                        <th>변수명</th>
@@ -306,7 +317,7 @@
 						
 						
 						let result2 = `
-							<table border="1" style="text-align: center">
+							<table 	class="table table-bordered" style="text-align: center">
 							<tr >
 	                        <th>순위</th>
 	                        <th>서비스명</th>
@@ -346,7 +357,7 @@
 						// 이제 추정 매출
 						const sales=data.industry_expect_expand;
 						const var_list = Object.entries(data.pred_var_list);
-						let result = `<table border="1" style="text-align: center">
+						let result = `<table class="table table-bordered" style="text-align: center">
 							<tr >
 	                        <th>순위</th>
 	                        <th>변수명</th>
@@ -371,7 +382,7 @@
 						
 						
 						let result2 = `
-							<table border="1" style="text-align: center">
+							<table 						class="table table-bordered" style="text-align: center">
 							<tr >
 	                        <th>순위</th>
 	                        <th>서비스명</th>

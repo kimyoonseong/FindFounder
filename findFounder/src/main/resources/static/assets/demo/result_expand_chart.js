@@ -2,7 +2,7 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 Chart.defaults.color = 'rgba(0, 0, 0, 0)'; // 전역적으로 모든 그래프의 배경색을 투명하게 설정합니다.
 
-function drawExpandChart(data, data2) {
+function drawExpandChart(gu, dong, data, data2) {
     // 날짜 배열과 값 배열 생성
     let dates = Object.keys(data);
     const values = Object.values(data);
@@ -23,13 +23,13 @@ function drawExpandChart(data, data2) {
         data: {
             labels: dates,
             datasets: [{
-                label: '동 월평균 지출 예상',
+                label: dong+' 월평균 소비 예상',
                 data: values,
                 borderColor: 'red', // 첫 번째 그래프 색상
                 //backgroundColor: 'rgba(255, 0, 0, 0.00)',
                 tension: 0.1
             }, {
-                label: '구 월평균 지출 예상',
+                label: gu+' 월평균 소비 예상',
                 data: values2,
                 borderColor: 'blue', // 두 번째 그래프 색상
                 //backgroundColor: 'rgba(0, 0, 255, 0.00)',
@@ -47,7 +47,7 @@ function drawExpandChart(data, data2) {
                 y: {
                     title: {
                         display: true,
-                        text: '월평균 지출'
+                        text: '월평균 소비'
                     }
                 }
             }
