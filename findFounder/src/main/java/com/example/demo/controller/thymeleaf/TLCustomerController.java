@@ -71,4 +71,9 @@ public class TLCustomerController {
 	public String mypost() {
 		return "mypostlist";
 	}
+	
+	@GetMapping("/loan")
+	public String loan_information() {
+		return "loan";
+	}
 }

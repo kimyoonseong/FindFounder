@@ -155,6 +155,7 @@
 			border-bottom: 1px solid rgb(192, 192, 192);
 			/* 변경하고 싶은 색상을 여기에 지정합니다. */
 		}
+		
 	</style>
 </head>
 
@@ -198,6 +199,8 @@
 								</div>
 							</div>
 							<div class="paging">
+								<button type="button" class="btn btn-primary float-end" style="margin-bottom: 20px;"
+																								onclick="location.href='/post-create'">글 작성</button>
 								<ul>
 									<li><a href="#"><i class="fas fa-chevron-left"></i></a></li>
 									<li class="active"><a href="/post-list?page=1">1</a></li>									
@@ -207,10 +210,10 @@
 									<li><a href="/post-list?page=5">5</a></li>
 									<li><a href="#"><i class="fas fa-chevron-right"></i></a></li>
 								</ul>
-							</div>
-							<button type="button" class="btn btn-primary float-end"
-								onclick="location.href='/post-create'">글 작성</button>
+								
 
+							</div>
+							
 						</div>
 					</div>
 
