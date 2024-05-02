@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import com.example.demo.model.dto.ConsultDto;
+import com.example.demo.model.dto.CustomerDto;
 import com.example.demo.model.dto.req.PostCreateReq;
 import com.example.demo.model.dto.res.CommonRes;
 import com.example.demo.service.ConsultService;
@@ -25,6 +26,8 @@ import com.example.demo.util.JwtUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -126,6 +129,10 @@ public class ConsultController {
 
 	        return ResponseEntity.ok(res);
 	    }
-	
-	 
+	@Operation(summary = "쿠폰 수 체크", description = "user coupon개수 체크")
+	@GetMapping("/api/consultation/check-coupons")
+    public ResponseEntity<Integer> checkCoupons(@CookieValue("jwtToken") String jwtToken) {
+		   int currentCoupons = service.checkCoupons(jwtToken);
+		   return ResponseEntity.ok(currentCoupons);
+}
 }

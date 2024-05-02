@@ -209,6 +209,27 @@ public class ConsultService {
 		return commonRes;
 		
 	}
+	
+	// 쿠폰 수 체크
+		@Transactional
+		public int checkCoupons(String jwtToken) {
+	       
+	            Claims claims = Jwts.parser()
+	                               .setSigningKey("secretKey") // 서버에서 사용하는 비밀키 설정
+	                               .parseClaimsJws(jwtToken)
+	                               .getBody();
+
+	            Integer cusCode = (Integer) claims.get("cusCode");
+	    		Optional<Customer> customer = customerRepo.findById(cusCode);//없을수도 있기 때문에 optional
+
+	    		if(customer.isPresent()) {
+	    			Customer cus=customer.get();
+	    			int currentCoupons= cus.getCusCupons();
+					return currentCoupons;    			
+	    		}
+	    		throw new NotFoundException("Coupons not found with id: " + cusCode);
+		}
+
 
 	
 
