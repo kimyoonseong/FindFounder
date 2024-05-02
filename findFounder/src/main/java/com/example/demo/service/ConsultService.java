@@ -24,6 +24,7 @@ import com.example.demo.model.entity.Customer;
 import com.example.demo.model.entity.Post;
 import com.example.demo.repository.ConsultRepository;
 import com.example.demo.repository.CustomerRepository;
+import com.example.demo.util.JwtUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -39,13 +40,15 @@ public class ConsultService {
     private final ObjectMapper objectMapper;
     @Value("${jwt.secret}")
     private String secretKey;
+    private JwtUtil jwtUtil;
    
 	@Autowired
-	public ConsultService(ConsultRepository consultRepo, CustomerRepository customerRepo) {
+	public ConsultService(ConsultRepository consultRepo, CustomerRepository customerRepo, JwtUtil jwtUtil) {
 	    
 		this.objectMapper = new ObjectMapper();
 		this.consultRepo = consultRepo;
 	    this.customerRepo = customerRepo;
+	    this.jwtUtil = jwtUtil;
 	}
 
 	//2024-03-29 고객 답변 db에 저장
@@ -214,20 +217,20 @@ public class ConsultService {
 		@Transactional
 		public int checkCoupons(String jwtToken) {
 	       
-	            Claims claims = Jwts.parser()
-	                               .setSigningKey("secretKey") // 서버에서 사용하는 비밀키 설정
-	                               .parseClaimsJws(jwtToken)
-	                               .getBody();
-
-	            Integer cusCode = (Integer) claims.get("cusCode");
-	    		Optional<Customer> customer = customerRepo.findById(cusCode);//없을수도 있기 때문에 optional
+//	            Claims claims = Jwts.parser()
+//	                               .setSigningKey("secretKey") // 서버에서 사용하는 비밀키 설정
+//	                               .parseClaimsJws(jwtToken)
+//	                               .getBody();
+				int cuscode = jwtUtil.getCusCode(jwtToken);
+//	            Integer cusCode = (Integer) claims.get("cusCode");
+	    		Optional<Customer> customer = customerRepo.findById(cuscode);//없을수도 있기 때문에 optional
 
 	    		if(customer.isPresent()) {
 	    			Customer cus=customer.get();
 	    			int currentCoupons= cus.getCusCupons();
 					return currentCoupons;    			
 	    		}
-	    		throw new NotFoundException("Coupons not found with id: " + cusCode);
+	    		throw new NotFoundException("Coupons not found with id: " + cuscode);
 		}
 
 
