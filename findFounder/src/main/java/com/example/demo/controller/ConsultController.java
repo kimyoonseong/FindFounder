@@ -131,8 +131,8 @@ public class ConsultController {
 	    }
 	@Operation(summary = "쿠폰 수 체크", description = "user coupon개수 체크")
 	@GetMapping("/api/consultation/check-coupons")
-    public ResponseEntity<Integer> checkCoupons(@CookieValue("jwtToken") String jwtToken) {
+    public ResponseEntity<String> checkCoupons(@CookieValue(value = "Set-Cookie") String jwtToken) {
 		   int currentCoupons = service.checkCoupons(jwtToken);
-		   return ResponseEntity.ok(currentCoupons);
+		   return ResponseEntity.ok("{\"couponCount\":" + currentCoupons + "}");
 }
 }
