@@ -12,6 +12,6 @@ def predict_expand_seoul():
     # 딕셔너리 형식으로 변환하여 반환
     data_dict = extracted_data.set_index('STDR_YYQU_CD').to_dict()['EXPNDTR_TOTAMT_AVG']
     # 'EXPNDTR_TOTAMT_AVG'의 값을 3으로 나누고 딕셔너리 형식으로 변환하여 반환
-    extracted_data['EXPNDTR_TOTAMT_AVG'] /= 3 #월별로
+    extracted_data['EXPNDTR_TOTAMT_AVG'] = round(extracted_data['EXPNDTR_TOTAMT_AVG']/3, 0) #월별로
     data_dict = extracted_data.set_index('STDR_YYQU_CD').to_dict()['EXPNDTR_TOTAMT_AVG']
     return data_dict
