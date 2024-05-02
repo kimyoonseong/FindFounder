@@ -23,13 +23,13 @@ function drawExpandChart(gu, dong, data, data2) {
         data: {
             labels: dates,
             datasets: [{
-                label: dong+' 월평균 소비 예상',
+                label: gu+' 월평균 소비 예상',
                 data: values,
                 borderColor: 'red', // 첫 번째 그래프 색상
                 //backgroundColor: 'rgba(255, 0, 0, 0.00)',
                 tension: 0.1
             }, {
-                label: gu+' 월평균 소비 예상',
+                label: dong+' 월평균 소비 예상',
                 data: values2,
                 borderColor: 'blue', // 두 번째 그래프 색상
                 //backgroundColor: 'rgba(0, 0, 255, 0.00)',
