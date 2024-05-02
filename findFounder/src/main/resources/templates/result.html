@@ -121,7 +121,7 @@
 	<meta name="description" content="" />
 	<meta name="author" content="" />
 
-	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+	<link href="https://fastly.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 
 	<link href="/css/styles.css" rel="stylesheet" />
 
@@ -183,13 +183,13 @@
 		</div>
 
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+	<script src="https://fastly.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
 	<script src="js/scripts.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 	<script src="assets/demo/chart-area-demo.js"></script>
 	<script src="assets/demo/chart-bar-demo.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+	<script src="https://fastly.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
 		crossorigin="anonymous"></script>
 	<script src="js/datatables-simple-demo.js"></script>
 	<!--여기 까지가 헤더안에 있음-->
@@ -363,7 +363,6 @@
 						                       <td>${formattedDongExpand}원</td>
 						                       <td>${formattedGuExpand}원</td>
 						                   </tr>`;
-						console.log(expectDongExpandList[i][0].substr(0, 4))
 						if(expectDongExpandList[i][0].substr(0, 4) === "2023"){
 							avg2023 += expectDongExpandList[i][1];
 							}
@@ -426,7 +425,8 @@
 							                        <th>${gu} 예상 소비</th>
 							                    </tr>
 							                    <tbody>`;
-													
+						var avg2023 = 0;
+						var avg2024 = 0;
 						for(let i  = 0 ; i < cnt ; i++){
 							
 						let formattedSeoulExpand = Number(expectSeoulExpandList[i][1]).toLocaleString();
@@ -437,10 +437,26 @@
 						                       <td>${formattedSeoulExpand}원</td>
 						                       <td>${formattedGuExpand}원</td>
 						                   </tr>`;
+	                   if(expectGuExpandList[i][0].substr(0, 4) === "2023"){
+							avg2023 += expectGuExpandList[i][1];
 							}
+						else if(expectGuExpandList[i][0].substr(0, 4) === "2024"){
+							avg2024 += expectGuExpandList[i][1];
+							}
+						}
+						console.log("자치구 평균 구하기");
+						console.log(avg2023, avg2024);
+						const preMsg = document.getElementById('pre-msg');
+						if(avg2023 > avg2024){
+							
+							preMsg.innerHTML = gu+" 소비는 <span class='decrease'>감소</span>할 전망입니다.";
+						}
+						else if (avg2023 <= avg2024){
+							preMsg.innerHTML = gu+" 소비는  <span class='increase'>증가</span>할 전망입니다.";
+						}
 						
 						expandTable += "</tbody></table>";
-						console.log(expandTable);
+						
 						const tableContainer = document.getElementById('expand-table');
 						tableContainer.innerHTML = expandTable;
 					}
