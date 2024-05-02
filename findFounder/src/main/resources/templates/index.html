@@ -246,7 +246,7 @@
 
 		}
 
-		
+
 		.btn {
 			width: 120px;
 			height: 40px;
@@ -267,10 +267,14 @@
 		.row.col {
 			width: 10%;
 		}
+
 		.form-control {
-		    width:50px;            /* 드롭다운의 너비를 200px로 설정 */
-		    margin-top: 10px;        /* 위쪽 여백을 10px로 설정 */
-		    margin-bottom: 10px;     /* 아래쪽 여백을 10px로 설정 */
+			width: 50px;
+			/* 드롭다운의 너비를 200px로 설정 */
+			margin-top: 10px;
+			/* 위쪽 여백을 10px로 설정 */
+			margin-bottom: 10px;
+			/* 아래쪽 여백을 10px로 설정 */
 		}
 	</style>
 	<meta charset="utf-8" />
@@ -319,199 +323,201 @@
 								<h2>상권 통계 검색</h2>
 							</div>
 							<div class="btn-3d">
-							<form id="areaCategoryForm">
 								<form id="areaCategoryForm">
-									<!-- 여기에 버튼이 추가될 것입니다. -->
-								</form>
-							
-								<!-- 카테고리 선택 -->
-								<div class="btn-group" role="group" aria-label="카테고리 선택">
-									<div class="container" style="text-align: center;">
-										<div class="row">
+									<form id="areaCategoryForm">
+										<!-- 여기에 버튼이 추가될 것입니다. -->
+									</form>
 
-											<div class="col custom-grid custom-col"
-												style="display: inline-block; white-space: normal;">
+									<!-- 카테고리 선택 -->
+									<div class="btn-group" role="group" aria-label="카테고리 선택">
+										<div class="container" style="text-align: center;">
+											<div class="row">
 
-												<div class="btn-container"
-													style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; align-items: flex-start;">
-													<div class="image-container" style="width:100px;">
-														<img th:src="@{/images/restaurant.png}"
-															style="width: 80%; height: auto;">
-													</div>
-													<div class="button-container"
-														style="display: flex; flex-direction: row;">
-														<button type="button" class="btn btn-primary custom-btn"
-															onclick="toggleDropdown('음식점', 'categoryDropdown1')"
-															style="white-space: nowrap;">음식점</button>
-													</div>
-												</div>
-											</div>
+												<div class="col custom-grid custom-col"
+													style="display: inline-block; white-space: normal;">
 
-
-
-											<div class="											col custom-grid custom-col"
-												style="display: inline-block; white-space: normal;">
-												<div class="btn-container"
-													style="margin-bottom: 10px;  display: flex; flex-direction:column; align-items: center; align-items: flex-start;">
-													<div class="image-container" style="width: 100px;">
-														<img th:src="@{/images/education.png}"
-															style="width: 80%; height: auto;">
-													</div>
-													<div class="button-container"
-														style="display: flex; flex-direction: row;">
-														<button type="button" class="btn btn-success custom-btn"
-															onclick="toggleDropdown('교육', 'categoryDropdown2')"
-															style="white-space: nowrap;">교육</button>
-
+													<div class="btn-container"
+														style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; align-items: flex-start;">
+														<div class="image-container" style="width:100px;">
+															<img th:src="@{/images/restaurant.png}"
+																style="width: 80%; height: auto;">
+														</div>
+														<div class="button-container"
+															style="display: flex; flex-direction: row;">
+															<button type="button" class="btn btn-primary custom-btn"
+																onclick="toggleDropdown('음식점', 'categoryDropdown1')"
+																style="white-space: nowrap;">음식점</button>
+														</div>
 													</div>
 												</div>
-											</div>
 
 
 
-											<div class="											col custom-grid custom-col"
-												style="display: inline-block; white-space: normal;">
-												<div class="btn-container"
-													style="margin-bottom: 10px;	 display: flex; flex-direction: column; align-items: center; align-items: flex-start;">
+												<div class="											col custom-grid custom-col"
+													style="display: inline-block; white-space: normal;">
+													<div class="btn-container"
+														style="margin-bottom: 10px;  display: flex; flex-direction:column; align-items: center; align-items: flex-start;">
+														<div class="image-container" style="width: 100px;">
+															<img th:src="@{/images/education.png}"
+																style="width: 80%; height: auto;">
+														</div>
+														<div class="button-container"
+															style="display: flex; flex-direction: row;">
+															<button type="button" class="btn btn-success custom-btn"
+																onclick="toggleDropdown('교육', 'categoryDropdown2')"
+																style="white-space: nowrap;">교육</button>
 
-													<div class="image-container" style="width:100px;">
-
-														<img th:src="@{/images/service.png}"
-															style="width: 80%; height: auto;">
-													</div>
-													<div class="button-container">
-														<button type="button" class="btn btn-info custom-btn"
-															onclick="toggleDropdown('서비스', 'categoryDropdown3')">서비스</button>
-
-													</div>
-												</div>
-											</div>
-
-
-
-
-											<div class="											col custom-grid custom-col"
-												style="display: inline-block; white-space: normal;">
-												<div class="btn-container"
-													style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; align-items: flex-start;">
-
-													<div class="image-container" style="width:100px; ">
-
-														<img th:src="@{/images/entertainment.png}"
-															style="width: 80%; height: auto;">
-													</div>
-													<div class="button-container">
-														<button type="button" class="btn btn-warning custom-btn"
-															onclick="toggleDropdown('오락', 'categoryDropdown4')">오락</button>
-
+														</div>
 													</div>
 												</div>
-											</div>
 
 
 
-											<div class="											col custom-grid custom-col"
-												style="display: inline-block; white-space: normal;">
-												<div class="btn-container"
-													style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; align-items: flex-start;">
-													<div class="image-container" style="width:100px;">
+												<div class="											col custom-grid custom-col"
+													style="display: inline-block; white-space: normal;">
+													<div class="btn-container"
+														style="margin-bottom: 10px;	 display: flex; flex-direction: column; align-items: center; align-items: flex-start;">
 
-														<img th:src="@{/images/retail.png}"
-															style="width: 80%; height: auto;">
+														<div class="image-container" style="width:100px;">
+
+															<img th:src="@{/images/service.png}"
+																style="width: 80%; height: auto;">
+														</div>
+														<div class="button-container">
+															<button type="button" class="btn btn-info custom-btn"
+																onclick="toggleDropdown('서비스', 'categoryDropdown3')">서비스</button>
+
+														</div>
 													</div>
-													<div class="button-container">
+												</div>
 
-														<button type="button" class="btn btn-danger custom-btn"
-															onclick="toggleDropdown('소매', 'categoryDropdown5')">소매</button>
+
+
+
+												<div class="											col custom-grid custom-col"
+													style="display: inline-block; white-space: normal;">
+													<div class="btn-container"
+														style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; align-items: flex-start;">
+
+														<div class="image-container" style="width:100px; ">
+
+															<img th:src="@{/images/entertainment.png}"
+																style="width: 80%; height: auto;">
+														</div>
+														<div class="button-container">
+															<button type="button" class="btn btn-warning custom-btn"
+																onclick="toggleDropdown('오락', 'categoryDropdown4')">오락</button>
+
+														</div>
+													</div>
+												</div>
+
+
+
+												<div class="											col custom-grid custom-col"
+													style="display: inline-block; white-space: normal;">
+													<div class="btn-container"
+														style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; align-items: flex-start;">
+														<div class="image-container" style="width:100px;">
+
+															<img th:src="@{/images/retail.png}"
+																style="width: 80%; height: auto;">
+														</div>
+														<div class="button-container">
+
+															<button type="button" class="btn btn-danger custom-btn"
+																onclick="toggleDropdown('소매', 'categoryDropdown5')">소매</button>
+
+														</div>
 
 													</div>
-
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
 
 
-								<div class="row">
-									<div id="categoryDropdown1" class="category-dropdown"
-										style="display: inline-block;">
-									</div> <!-- 음식점 드롭다운 -->
+									<div class="row">
+										<div id="categoryDropdown1" class="category-dropdown"
+											style="display: inline-block;">
+										</div> <!-- 음식점 드롭다운 -->
 
 
 
-									<!-- 음식점 리스트 -->
-									<div id="categoryList1" class="category-list" style="margin-bottom: 10px;">
+										<!-- 음식점 리스트 -->
+										<div id="categoryList1" class="category-list" style="margin-bottom: 10px;">
+										</div>
+
+										<div id="categoryDropdown2" class="category-dropdown"
+											style="display: inline-block;">
+											<!-- 교육 드롭다운 내용 -->
+										</div>
+
+
+										<!-- 교육 리스트 -->
+										<div id="categoryList2" class="category-list" style="margin-bottom: 10px;">
+										</div>
+										<div id="categoryDropdown3" class="category-dropdown"
+											style="display:inline-block;">
+										</div> <!-- 서비스 드롭다운 -->
+
+
+										<!-- 서비스 리스트 -->
+										<div id="categoryList3" class="category-list" style="margin-bottom: 10px;">
+										</div>
+										<div id="categoryDropdown4" class="category-dropdown"
+											style="display: inline-block;">
+										</div> <!-- 오락 드롭다운 -->
+
+										<!-- 오락 리스트 -->
+										<div id="categoryList4" class="category-lit" style="margin-bottom: 10px;">
+										</div>
+										<div id="categoryDropdown5" class="category-dropdown"
+											style="display: inline-block;">
+										</div> <!-- 소매 드롭다운 -->
+
+
+										<!-- 소매 리스트 -->
+										<div id="categoryList5" class="category-list" style="margin-bottom: 5px;">
+										</div>
 									</div>
 
-									<div id="categoryDropdown2" class="category-dropdown"
-										style="display: inline-block;">
-										<!-- 교육 드롭다운 내용 -->
+
+
+
+
+
+
+
+									<!-- 지역 이름 -->
+									<div style="display: flex; flex-direction: row; justify-content: center;">
+										<label for="areaName" style="margin-right: 10px;">지역
+											이름</label>
+										<input type="text" id="areaName" name="areaName">
+										<label for="IndustryName"
+											style="margin-left: 20px; margin-right: 10px;">업종</label>
+										<input type="text" id="IndustryName" name="IndustryName">
 									</div>
+									<input type="hidden" id="selectedCategory" name="selectedCategory">
+									<button id="submitButton" type="button" onclick="submitForm()"
+										style="margin-top: 60px;bottom: 40px; margin-left: 50px; height:10%;">선택
+										완료</button>
 
 
-									<!-- 교육 리스트 -->
-									<div id="categoryList2" class="category-list" style="margin-bottom: 10px;">
-									</div>
-									<div id="categoryDropdown3" class="category-dropdown" style="display:inline-block;">
-									</div> <!-- 서비스 드롭다운 -->
+								</form>
+							</div>
 
 
-									<!-- 서비스 리스트 -->
-									<div id="categoryList3" class="category-list" style="margin-bottom: 10px;">
-									</div>
-									<div id="categoryDropdown4" class="category-dropdown"
-										style="display: inline-block;">
-									</div> <!-- 오락 드롭다운 -->
-
-									<!-- 오락 리스트 -->
-									<div id="categoryList4" class="category-lit" style="margin-bottom: 10px;">
-									</div>
-									<div id="categoryDropdown5" class="category-dropdown"
-										style="display: inline-block;">
-									</div> <!-- 소매 드롭다운 -->
-
-
-									<!-- 소매 리스트 -->
-									<div id="categoryList5" class="category-list" style="margin-bottom: 5px;">
-									</div>
-								</div>
-
-
-
-
-
-
-
-
-								<!-- 지역 이름 -->
-								<div style="display: flex; flex-direction: row; justify-content: center;">
-									<label for="areaName" style="margin-right: 10px;">지역
-										이름</label>
-									<input type="text" id="areaName" name="areaName">
-									<label for="IndustryName" style="margin-left: 20px; margin-right: 10px;">업종</label>
-									<input type="text" id="IndustryName" name="IndustryName">
-								</div>
-								<input type="hidden" id="selectedCategory" name="selectedCategory">
-								<button id="submitButton" type="button" onclick="submitForm()"
-									style="margin-top: 60px;bottom: 40px; margin-left: 50px; height:10%;">선택
-									완료</button>
-
-
-							</form>
 						</div>
-
-
 					</div>
-				</div>
-				<!-- 제출 버튼 -->
+					<!-- 제출 버튼 -->
 
+
+				</div>
 
 		</div>
-
+		`
 	</div>
-	`
-</div>
 	<!-- 카드 섹션 -->
 	<div class="container mt-8">
 		<div class="row justify-content-center">
@@ -539,7 +545,7 @@
 										<i class="fas fa-comment-dots ms-2"></i>
 									</a>
 								</div>-->
-				<button class="btn-3d yellow" onclick="window.location.href='consult'">
+				<button class="btn-3d yellow" id="consultbtn" onclick="window.location.href='consult'">
 					AI 맞춤 컨설팅 받기
 					<i class="fas fa-comment-dots ms-2"></i>
 				</button>
@@ -692,7 +698,7 @@
 			</div>
 		</footer>
 	</div>
-</div>
+	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
@@ -861,6 +867,12 @@
 							option.textContent = area;
 							select.appendChild(option);
 						});
+
+						const defaultOption = document.createElement('option');
+						defaultOption.text = 'Choose...';
+						defaultOption.disabled = true;
+						defaultOption.selected = true;
+						select.insertBefore(defaultOption, select.firstChild);
 
 						// 드롭다운 변경 이벤트 리스너 추가
 						select.addEventListener('change', function () {
@@ -1228,6 +1240,43 @@
 		});
 
 	</script>
+
+	<script>
+		// 쿠폰 개수가 0일 때 'AI 맞춤 컨설팅받기' 클릭해도 페이지 못 넘어가도록
+
+
+		// 쿠폰을 확인하고 컨설팅 데이터를 전송하는 함수
+
+		document.addEventListener("DOMContentLoaded", function () {
+			// 쿠폰 확인 함수
+			function checkCouponsAndRedirect() {
+				fetch('/api/consultation/check-coupons')
+					.then(response => response.json())
+					.then(couponCount => {
+						if (couponCount > 0) {
+							// 쿠폰이 1개 이상 있으면 컨설팅 페이지로 이동
+							window.location.href = 'consult';
+						} else {
+							// 쿠폰이 없으면 경고창 표시
+							alert('쿠폰을 구매해주세요.');
+							window.location.reload();
+						}
+					})
+					.catch(error => {
+						console.error('쿠폰 확인 중 오류 발생:', error);
+						alert('쿠폰 확인 중 문제가 발생했습니다.');
+					});
+			}
+
+			// 컨설팅 버튼 이벤트 리스너 설정
+			const consultButton = document.getElementById('consultbtn');
+			consultButton.addEventListener('click', function (event) {
+				event.preventDefault(); // 기본 이벤트 작동을 막음
+				checkCouponsAndRedirect(); // 쿠폰 확인 및 페이지 이동 처리
+			});
+		});
+	</script>
+
 
 
 </body>
