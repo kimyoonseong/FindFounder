@@ -157,6 +157,14 @@
 			max-height: 500px;
 		}
 
+		.statics_font {
+			font-family: 'KCC-Hanbit', sans-serif;
+
+
+			position: relative;
+
+		}
+
 		.btn-3d {
 			font-family: 'KCC-Hanbit', sans-serif;
 			position: relative;
@@ -512,24 +520,24 @@
 					</div>
 					<!-- 제출 버튼 -->
 					<div class="container mt-8">
-							<div class="row justify-content-center">
-								<div class="col-md-4">
-					
-					
-					
-									<!--<a class="btn btn-primary btn-sm custom-button stretched-link " href="buytoken">
+						<div class="row justify-content-center">
+							<div class="col-md-4">
+
+
+
+								<!--<a class="btn btn-primary btn-sm custom-button stretched-link " href="buytoken">
 															쿠폰 구매하기
 															<i class="fas fa-shopping-cart ms-2"></i>
 														</a>-->
-									<button class="btn-3d blue" onclick="window.location.href='buytoken'">
-										쿠폰 구매하기
-										<i class="fas fa-shopping-cart ms-2"></i>
-									</button>
-					
-					
-								</div>
-								<div class="col-md-4">
-									<!--<div class="card mb-4 custom-card mt-4">
+								<button class="btn-3d blue" onclick="window.location.href='buytoken'">
+									쿠폰 구매하기
+									<i class="fas fa-shopping-cart ms-2"></i>
+								</button>
+
+
+							</div>
+							<div class="col-md-4">
+								<!--<div class="card mb-4 custom-card mt-4">
 					
 													<div class="card-footer bg-warning text-white border-0">
 														<a class="btn btn-warning btn-sm custom-button stretched-link" href="consult">
@@ -537,20 +545,24 @@
 															<i class="fas fa-comment-dots ms-2"></i>
 														</a>
 													</div>-->
-									<button class="btn-3d yellow" id="consultbtn" >
-										AI 맞춤 컨설팅 받기
-										<i class="fas fa-comment-dots ms-2"></i>
-									</button>
-									<!--</div>-->
-								</div>
+								<button class="btn-3d yellow" id="consultbtn">
+									AI 맞춤 컨설팅 받기
+									<i class="fas fa-comment-dots ms-2"></i>
+								</button>
+								<!--</div>-->
 							</div>
 						</div>
+					</div>
 
 				</div>
-				<div class="container mt-5">
-				
+
+
+				<div class="statics_font">
+					<div class="container mt-5">
+
 						<p class="fs-4">
-							<span id="areaNameSpan" class="fw-bold"></span> 의 <span id="industryNameSpan" class="fw-bold"></span> 통계
+							<span id="areaNameSpan" class="fw-bold"></span> 의 <span id="industryNameSpan"
+								class="fw-bold"></span> 통계
 							결과입니다
 						</p>
 						<hr> <!-- 밑줄 -->
@@ -568,9 +580,9 @@
 												<p class="fs-6 text-muted">*2023년 기준입니다</p>
 											</div>
 										</div>
-				
+
 									</div>
-				
+
 									<div class="col-md-6">
 										<div class="card mb-4">
 											<div class="card-body">
@@ -580,15 +592,15 @@
 											</div>
 										</div>
 									</div>
-				
-				
-				
-				
-				
+
+
+
+
+
 								</div>
 							</div>
 						</div>
-				
+
 						<div class="col">
 							<div class="row">
 								<div class="col-md-6">
@@ -623,15 +635,16 @@
 								</div>
 							</div>
 						</div>
-				
-				
+
+
 						<div class="row mt-3">
 							<div class="col-xl-12 text-center">
 								<div class="row">
 									<div class="col-md-6">
 										<div class="card mb-4">
 											<div class="card-body">
-												<p class="fs-4"> 유동인구가 가장 많은 요일은 <span id="mostPopularDay" class="fw-bold"></span>입니다.
+												<p class="fs-4"> 유동인구가 가장 많은 요일은 <span id="mostPopularDay"
+														class="fw-bold"></span>입니다.
 												</p>
 												<p class="fs-6 text-muted">*2023년 기준입니다</p>
 											</div>
@@ -640,9 +653,10 @@
 									<div class="col-md-6">
 										<div class="card mb-4">
 											<div class="card-body">
-												<p class="fs-4">일일평균 유동인구는 <span id="totalPopulation" class="fw-bold"></span>명 입니다
+												<p class="fs-4">일일평균 유동인구는 <span id="totalPopulation"
+														class="fw-bold"></span>명 입니다
 												</p>
-				
+
 											</div>
 											<div class="card-body text-end">
 												<p class="fs-6 text-muted">*2023년 기준입니다</p>
@@ -651,7 +665,7 @@
 									</div>
 								</div>
 							</div>
-				
+
 							<div class="row mt-5">
 								<div class="col-xl-4">
 									<div class="card mb-4">
@@ -669,34 +683,35 @@
 									</div>
 								</div>
 							</div>
-				
+
 						</div>
 
+					</div>
+					`
+				</div>
+				<!-- 카드 섹션 -->
 		</div>
-		`
-	</div>
-	<!-- 카드 섹션 -->
-	
-	</div>
 
+	</div>
+</body>
 	<!-- 차트 섹션 -->
 	<!-- 그래프를 그릴 Canvas 요소 -->
 	<!-- 그래프를 그릴 Canvas 요소 -->
-	
 
-		</main>
-		<footer class="py-4 bg-light mt-auto">
-			<div class="container-fluid px-4">
-				<div class="d-flex align-items-center justify-content-between small">
-					<div class="text-muted">Copyright &copy; Your Website 2024</div>
-					<div>
-						<a href="#">Privacy Policy</a>
-						&middot;
-						<a href="#">Terms &amp; Conditions</a>
-					</div>
+
+	</main>
+	<footer class="py-4 bg-light mt-auto">
+		<div class="container-fluid px-4">
+			<div class="d-flex align-items-center justify-content-between small">
+				<div class="text-muted">Copyright &copy; Your Website 2024</div>
+				<div>
+					<a href="#">Privacy Policy</a>
+					&middot;
+					<a href="#">Terms &amp; Conditions</a>
 				</div>
 			</div>
-		</footer>
+		</div>
+	</footer>
 	</div>
 	</div>
 
@@ -710,580 +725,579 @@
 	<script src="assets/demo/chart-bar-demo.js"></script>
 	<script src="assets/demo/similar_store_chart.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-			crossorigin="anonymous"></script>
+		crossorigin="anonymous"></script>
 
-	
+
 	<!--여기 까지가 헤더안에 있음-->
 </body>
-	<!-- JavaScript 코드 -->
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4abdb80406262cf828aa65098fbf2578"></script>
+<!-- JavaScript 코드 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4abdb80406262cf828aa65098fbf2578"></script>
 
-	<!-- Bootstrap JS 및 기타 스크립트 -->
-	<!-- Bootstrap JS -->
-	<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script> -->
-	<!-- Font Awesome JS -->
-	<!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
-
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script>
-		// 지도에 폴리곤으로 표시할 영역데이터 배열입니다 
+<!-- Bootstrap JS 및 기타 스크립트 -->
+<!-- Bootstrap JS -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script> -->
+<!-- Font Awesome JS -->
+<!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
 
 
-		/* 1. JSON 파일을 읽어들여 areas 배열을 채워넣는 작업 */
-		var areas = []; // areas 변수를 먼저 정의합니다.
-		// 1) getJSON도 ajax 메소드와 같이 async(비동기) 방식으로 동작하는데, 순차실행을 위해 이걸 강제로 sync 방식으로 동작하도록 함.
-		$.ajaxSetup({
-			async: false
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	// 지도에 폴리곤으로 표시할 영역데이터 배열입니다 
+
+
+	/* 1. JSON 파일을 읽어들여 areas 배열을 채워넣는 작업 */
+	var areas = []; // areas 변수를 먼저 정의합니다.
+	// 1) getJSON도 ajax 메소드와 같이 async(비동기) 방식으로 동작하는데, 순차실행을 위해 이걸 강제로 sync 방식으로 동작하도록 함.
+	$.ajaxSetup({
+		async: false
+	});
+
+	$.getJSON("seoul_municipalities_geo_simple.json", function (geojson) {
+		var units = geojson.features; // 파일에서 key값이 "features"인 것의 value를 통으로 가져옴(이것은 여러지역에 대한 정보를 모두 담고있음)	
+		$.each(units, function (index, unit) { // 1개 지역씩 꺼내서 사용함. val은 그 1개 지역에 대한 정보를 담음
+
+			var name = ''; // 지역 이름
+
+			// areas = unit.geometry.coordinates; // 1개 지역의 영역을 구성하는 도형의 모든 좌표 배열을 가져옴 
+			name = unit.properties.name; // 1개 지역의 이름을 가져옴
+
+			var ob = new Object();
+			ob.name = name;
+			ob.path = [];
+
+			$.each(unit.geometry.coordinates[0], function (index, coordinate) { //.geometry.coordinates[]로 한번 더 감싸져 있어서 index 0번의 것을 꺼내야 배열을 접근가능.
+				ob.path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
+			});
+
+			areas[index] = ob;
+			//console.log(areas[index])
+		});//each
+	});//getJSON
+
+
+	/* 2. 지도 띄우기 */
+
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+			level: 9 // 지도의 확대 레벨
+		};
+
+	var map = new kakao.maps.Map(mapContainer, mapOption),
+		customOverlay = new kakao.maps.CustomOverlay({}),
+		infowindow = new kakao.maps.InfoWindow({removable: true});
+
+	/* 3. 폴리곤 도형을 지도위에 띄우고 마우스 이벤트 붙이기 */
+
+	// 지도에 영역데이터를 폴리곤으로 표시합니다 
+	for (var i = 0, len = areas.length; i < len; i++) {
+		displayArea(areas[i]);
+	}
+
+
+	// 다각형을 생상하고 이벤트를 등록하는 함수입니다
+	function displayArea(area) {
+
+		// 다각형을 생성합니다 
+		var polygon = new kakao.maps.Polygon({
+			map: map, // 다각형을 표시할 지도 객체
+			path: area.path,
+			strokeWeight: 2,
+			strokeColor: '#004c80',
+			strokeOpacity: 0.8,
+			fillColor: '#fff',
+			fillOpacity: 0.7
 		});
 
-		$.getJSON("seoul_municipalities_geo_simple.json", function (geojson) {
-			var units = geojson.features; // 파일에서 key값이 "features"인 것의 value를 통으로 가져옴(이것은 여러지역에 대한 정보를 모두 담고있음)	
-			$.each(units, function (index, unit) { // 1개 지역씩 꺼내서 사용함. val은 그 1개 지역에 대한 정보를 담음
+		// 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
+		// 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
+		kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
+			polygon.setOptions({fillColor: '#09f'});
 
-				var name = ''; // 지역 이름
+			customOverlay.setContent('<div class="area">' + area.name + '</div>');
 
-				// areas = unit.geometry.coordinates; // 1개 지역의 영역을 구성하는 도형의 모든 좌표 배열을 가져옴 
-				name = unit.properties.name; // 1개 지역의 이름을 가져옴
+			customOverlay.setPosition(mouseEvent.latLng);
+			customOverlay.setMap(map);
+		});
 
-				var ob = new Object();
-				ob.name = name;
-				ob.path = [];
+		// 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다 
+		kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
 
-				$.each(unit.geometry.coordinates[0], function (index, coordinate) { //.geometry.coordinates[]로 한번 더 감싸져 있어서 index 0번의 것을 꺼내야 배열을 접근가능.
-					ob.path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
-				});
+			customOverlay.setPosition(mouseEvent.latLng);
+		});
 
-				areas[index] = ob;
-				//console.log(areas[index])
-			});//each
-		});//getJSON
+		// 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
+		// 커스텀 오버레이를 지도에서 제거합니다 
+		kakao.maps.event.addListener(polygon, 'mouseout', function () {
+			polygon.setOptions({fillColor: '#fff'});
+			customOverlay.setMap(null);
+		});
 
+		kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
+			var content = '<div class="info">' +
+				'   <div class="title">' + area.name + '</div>' +
+				'   <div class="size">총 면적 : 약 ' + Math.floor(polygon.getArea()) + ' m<sup>2</sup></div>' +
+				'</div>';
+			document.getElementById('areaName').value = area.name;
+			// let weekendPieChart = null;
+			// let weekdayBarChart = null;
+			// let weekendBarChart = null;        
+			infowindow.setContent(content);
+			infowindow.setPosition(mouseEvent.latLng);
+			infowindow.setMap(map);
+			var areaName = area.name;
 
-		/* 2. 지도 띄우기 */
+			// fetch API를 사용하여 서버의 API를 호출
+			fetch(`/api/region?category=${areaName}`, {
+				method: 'POST',
+				headers: {
+					'Cookie': 'Set-Cookie=' + document.cookie // JWT 토큰을 쿠키로 전달
+				}
+			})
+				.then(response => response.json())
+				.then(data => {
+					// 서버로부터 받은 데이터를 처리
+					console.log('Received region:', data);
+					// 받은 데이터를 해독하여 한글로 표시
+					const form = document.getElementById('areaCategoryForm');
 
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-			mapOption = {
-				center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-				level: 9 // 지도의 확대 레벨
-			};
+					// 기존에 있던 버튼을 모두 제거
+					form.innerHTML = '';
 
-		var map = new kakao.maps.Map(mapContainer, mapOption),
-			customOverlay = new kakao.maps.CustomOverlay({}),
-			infowindow = new kakao.maps.InfoWindow({removable: true});
+					// 선택된 구를 표시하는 요소 추가
+					const selectedAreaDiv = document.createElement('div');
+					selectedAreaDiv.textContent = `선택된 구: ${areaName}`;
+					form.appendChild(selectedAreaDiv);
 
-		/* 3. 폴리곤 도형을 지도위에 띄우고 마우스 이벤트 붙이기 */
+					// 데이터를 이용하여 버튼을 생성하고 폼 안에 추가
+					// 드롭다운 리스트 생성
+					const select = document.createElement('select');
+					select.id = 'areaSelect';
+					select.className = 'form-control'; // Bootstrap 클래스 적용
 
-		// 지도에 영역데이터를 폴리곤으로 표시합니다 
-		for (var i = 0, len = areas.length; i < len; i++) {
-			displayArea(areas[i]);
-		}
-
-
-		// 다각형을 생상하고 이벤트를 등록하는 함수입니다
-		function displayArea(area) {
-
-			// 다각형을 생성합니다 
-			var polygon = new kakao.maps.Polygon({
-				map: map, // 다각형을 표시할 지도 객체
-				path: area.path,
-				strokeWeight: 2,
-				strokeColor: '#004c80',
-				strokeOpacity: 0.8,
-				fillColor: '#fff',
-				fillOpacity: 0.7
-			});
-
-			// 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
-			// 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
-			kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
-				polygon.setOptions({fillColor: '#09f'});
-
-				customOverlay.setContent('<div class="area">' + area.name + '</div>');
-
-				customOverlay.setPosition(mouseEvent.latLng);
-				customOverlay.setMap(map);
-			});
-
-			// 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다 
-			kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
-
-				customOverlay.setPosition(mouseEvent.latLng);
-			});
-
-			// 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
-			// 커스텀 오버레이를 지도에서 제거합니다 
-			kakao.maps.event.addListener(polygon, 'mouseout', function () {
-				polygon.setOptions({fillColor: '#fff'});
-				customOverlay.setMap(null);
-			});
-
-			kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
-				var content = '<div class="info">' +
-					'   <div class="title">' + area.name + '</div>' +
-					'   <div class="size">총 면적 : 약 ' + Math.floor(polygon.getArea()) + ' m<sup>2</sup></div>' +
-					'</div>';
-				document.getElementById('areaName').value = area.name;
-				// let weekendPieChart = null;
-				// let weekdayBarChart = null;
-				// let weekendBarChart = null;        
-				infowindow.setContent(content);
-				infowindow.setPosition(mouseEvent.latLng);
-				infowindow.setMap(map);
-				var areaName = area.name;
-
-				// fetch API를 사용하여 서버의 API를 호출
-				fetch(`/api/region?category=${areaName}`, {
-					method: 'POST',
-					headers: {
-						'Cookie': 'Set-Cookie=' + document.cookie // JWT 토큰을 쿠키로 전달
-					}
-				})
-					.then(response => response.json())
-					.then(data => {
-						// 서버로부터 받은 데이터를 처리
-						console.log('Received region:', data);
-						// 받은 데이터를 해독하여 한글로 표시
-						const form = document.getElementById('areaCategoryForm');
-
-						// 기존에 있던 버튼을 모두 제거
-						form.innerHTML = '';
-
-						// 선택된 구를 표시하는 요소 추가
-						const selectedAreaDiv = document.createElement('div');
-						selectedAreaDiv.textContent = `선택된 구: ${areaName}`;
-						form.appendChild(selectedAreaDiv);
-
-						// 데이터를 이용하여 버튼을 생성하고 폼 안에 추가
-						// 드롭다운 리스트 생성
-						const select = document.createElement('select');
-						select.id = 'areaSelect';
-						select.className = 'form-control'; // Bootstrap 클래스 적용
-
-						// 데이터를 이용하여 드롭다운 리스트에 옵션을 추가
-						data.forEach(area => {
-							const option = document.createElement('option');
-							option.value = area;
-							option.textContent = area;
-							select.appendChild(option);
-						});
-
-						const defaultOption = document.createElement('option');
-						defaultOption.text = 'Choose...';
-						defaultOption.disabled = true;
-						defaultOption.selected = true;
-						select.insertBefore(defaultOption, select.firstChild);
-
-						// 드롭다운 변경 이벤트 리스너 추가
-						select.addEventListener('change', function () {
-							document.getElementById('areaName').value = this.value;
-							console.log('Selected area:', this.value);
-						});
-
-						// 드롭다운 리스트를 폼에 추가
-						form.appendChild(select);
-					})
-
-					.catch(error => {
-						console.error('Error fetching region:', error);
+					// 데이터를 이용하여 드롭다운 리스트에 옵션을 추가
+					data.forEach(area => {
+						const option = document.createElement('option');
+						option.value = area;
+						option.textContent = area;
+						select.appendChild(option);
 					});
-			});
-		}
 
+					const defaultOption = document.createElement('option');
+					defaultOption.text = 'Choose...';
+					defaultOption.disabled = true;
+					defaultOption.selected = true;
+					select.insertBefore(defaultOption, select.firstChild);
 
+					// 드롭다운 변경 이벤트 리스너 추가
+					select.addEventListener('change', function () {
+						document.getElementById('areaName').value = this.value;
+						console.log('Selected area:', this.value);
+					});
 
-	</script>
+					// 드롭다운 리스트를 폼에 추가
+					form.appendChild(select);
+				})
 
-	<script>
-		$(document).ready(function () {
-			// 로그아웃 버튼 클릭 이벤트 처리
-			$('#navdrop li #logout').click(function () {
-				// 로그아웃 API 호출
-				$.ajax({
-					type: 'POST',
-					url: '/api/user/logout',
-					success: function (response) {
-						// 로그아웃 성공 시 작업
-						console.log(response);
-						alert('로그아웃되었습니다.');
-						// 여기에 추가 작업을 할 수 있습니다. 예를 들어 로그인 페이지로 리디렉션 등
-					},
-					error: function (xhr, status, error) {
-						// 로그아웃 실패 시 작업
-						console.error('로그아웃 실패:', error);
-						// 실패 메시지 표시 또는 다른 작업을 수행할 수 있습니다.
-					}
+				.catch(error => {
+					console.error('Error fetching region:', error);
 				});
+		});
+	}
+
+
+
+</script>
+
+<script>
+	$(document).ready(function () {
+		// 로그아웃 버튼 클릭 이벤트 처리
+		$('#navdrop li #logout').click(function () {
+			// 로그아웃 API 호출
+			$.ajax({
+				type: 'POST',
+				url: '/api/user/logout',
+				success: function (response) {
+					// 로그아웃 성공 시 작업
+					console.log(response);
+					alert('로그아웃되었습니다.');
+					// 여기에 추가 작업을 할 수 있습니다. 예를 들어 로그인 페이지로 리디렉션 등
+				},
+				error: function (xhr, status, error) {
+					// 로그아웃 실패 시 작업
+					console.error('로그아웃 실패:', error);
+					// 실패 메시지 표시 또는 다른 작업을 수행할 수 있습니다.
+				}
 			});
 		});
+	});
 
-	</script>
-	<!-- flask에서 업종리스트가져오기 -->
+</script>
+<!-- flask에서 업종리스트가져오기 -->
 
-	<script>
-		// 선택된 업종을 저장하는 변수
-		let selectedCategories = [];
-		// 현재 열려 있는 드롭다운의 아이디를 저장하는 변수
-		let currentDropdown = null;
+<script>
+	// 선택된 업종을 저장하는 변수
+	let selectedCategories = [];
+	// 현재 열려 있는 드롭다운의 아이디를 저장하는 변수
+	let currentDropdown = null;
 
-		function toggleDropdown(category, dropdownId) {
-			const dropdown = document.getElementById(dropdownId);
+	function toggleDropdown(category, dropdownId) {
+		const dropdown = document.getElementById(dropdownId);
 
-			// 현재 열려 있는 드롭다운이 있으면 닫기
-			if (currentDropdown !== null && currentDropdown !== dropdownId) {
-				document.getElementById(currentDropdown).style.display = 'none';
-			}
+		// 현재 열려 있는 드롭다운이 있으면 닫기
+		if (currentDropdown !== null && currentDropdown !== dropdownId) {
+			document.getElementById(currentDropdown).style.display = 'none';
+		}
 
-			// 현재 열려 있는 드롭다운 설정
-			currentDropdown = dropdownId;
+		// 현재 열려 있는 드롭다운 설정
+		currentDropdown = dropdownId;
 
-			// 드롭다운 토글
-			if (dropdown.style.display === 'block') {
-				dropdown.style.display = 'none';
-			} else {
-				fetch('/api/industry?category=' + encodeURIComponent(category), {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({
-						category: category
-					})
+		// 드롭다운 토글
+		if (dropdown.style.display === 'block') {
+			dropdown.style.display = 'none';
+		} else {
+			fetch('/api/industry?category=' + encodeURIComponent(category), {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					category: category
 				})
-					.then(response => response.json())
-					.then(data => {
-						// 드롭다운 버튼을 생성하기 전에 HTML 문자열을 미리 준비합니다.
-						let buttonsHTML = '<div id="buttonContainer"  white-space: nowrap;">';
+			})
+				.then(response => response.json())
+				.then(data => {
+					// 드롭다운 버튼을 생성하기 전에 HTML 문자열을 미리 준비합니다.
+					let buttonsHTML = '<div id="buttonContainer"  white-space: nowrap;">';
 
-						// 데이터를 순회하면서 버튼을 생성합니다.
-						data.forEach((item, index) => {
-							// 5개의 버튼마다 새로운 행을 시작합니다.
-							if (index % 3 === 0) {
-								buttonsHTML += '<div class="row" >';
-							}
+					// 데이터를 순회하면서 버튼을 생성합니다.
+					data.forEach((item, index) => {
+						// 5개의 버튼마다 새로운 행을 시작합니다.
+						if (index % 3 === 0) {
+							buttonsHTML += '<div class="row" >';
+						}
 
-							// 버튼을 생성하고 HTML 문자열에 추가합니다.
-							buttonsHTML += `<div class="col-md-2" style="margin-right:4em;" ><button type="button" class="btn btn-secondary" style="width: 155px;font-size: 14px;" onclick="selectCategory('${item}')">${item}</button></div>`;
+						// 버튼을 생성하고 HTML 문자열에 추가합니다.
+						buttonsHTML += `<div class="col-md-2" style="margin-right:4em;" ><button type="button" class="btn btn-secondary" style="width: 155px;font-size: 14px;" onclick="selectCategory('${item}')">${item}</button></div>`;
 
-							// 5개의 버튼마다 행을 닫습니다.
-							if ((index + 1) % 3 === 0 || index === data.length - 1) {
-								buttonsHTML += '</div>';
-							}
-						});
-						buttonsHTML += '</div>';
-						console.log(buttonsHTML);
-						// 준비된 HTML 문자열을 드롭다운에 적용합니다.
-						dropdown.innerHTML = buttonsHTML;
+						// 5개의 버튼마다 행을 닫습니다.
+						if ((index + 1) % 3 === 0 || index === data.length - 1) {
+							buttonsHTML += '</div>';
+						}
+					});
+					buttonsHTML += '</div>';
+					console.log(buttonsHTML);
+					// 준비된 HTML 문자열을 드롭다운에 적용합니다.
+					dropdown.innerHTML = buttonsHTML;
 
-						dropdown.style.display = 'block';
-					})
-					.catch(error => console.error('에러 발생:', error));
-			}
-
-
-			// 이미지 크기 변경을 막는 함수
-			function disableImageResize() {
-				const image = document.querySelector('#categoryDropdown1 img');
-				image.style.width = '50%';
-				image.style.marginTop = '-20px';
-				image.style.marginBottom = '10px';
-			}
-
-
-
-			// 초기화 함수
-			function init() {
-				// 음식점 버튼에 이벤트 리스너 추가
-				document.querySelector('#categoryDropdown1 button').addEventListener('click', function () {
-					// 이미지 크기 변경을 막음
-					disableImageResize();
-				});
-			}
-
-			// DOM 로드 시 초기화 함수 호출
-			document.addEventListener('DOMContentLoaded', init)
+					dropdown.style.display = 'block';
+				})
+				.catch(error => console.error('에러 발생:', error));
 		}
 
-		// 카테고리 선택 함수
-		function selectCategory(category) {
-			selectedCategories.push(category);
-			document.getElementById('selectedCategory').value = selectedCategories.join(', ');
+
+		// 이미지 크기 변경을 막는 함수
+		function disableImageResize() {
+			const image = document.querySelector('#categoryDropdown1 img');
+			image.style.width = '50%';
+			image.style.marginTop = '-20px';
+			image.style.marginBottom = '10px';
 		}
 
-		// 카테고리 선택 함수
-		function selectCategory(category) {
-			selectedCategories.push(category);
-			document.getElementById('selectedCategory').value = selectedCategories.join(', ');
-			// 선택된 업종을 input 요소에 저장
-			document.getElementById('IndustryName').value = category;
-		}
 
-		// 기존 JavaScript 코드 블록
 
-		// 선택된 업종을 저장하는 변수
-		let selectedCategory = null;
-
-		// 카테고리 선택 함수
-		function selectCategory(category) {
-			selectedCategory = category;
-			document.getElementById('selectedCategory').value = selectedCategory;
-			// 선택된 업종을 input 요소에 저장
-			document.getElementById('IndustryName').value = selectedCategory;
-			// 선택된 업종 초기화
-			selectedCategories = [];
-		}    
-	</script>
-	<!-- 통계 api호출 -->
-	<script>
-		var myChart; // 전역 변수로 Chart 객체 선언
-
-		function submitForm() {
-			const areaName = document.getElementById('areaName').value;
-			const selectedCategory = document.getElementById('selectedCategory').value;
-			const url = `/api/analysis?region=${encodeURIComponent(areaName)}&industry=${encodeURIComponent(selectedCategory)}`;
-			// 선택 완료 버튼을 누르면 숨겨진 요소를 보이도록 설정
-			var elementsToShow = document.querySelectorAll('.container.mt-5');
-			elementsToShow.forEach(function (element) {
-				element.style.display = 'block';
+		// 초기화 함수
+		function init() {
+			// 음식점 버튼에 이벤트 리스너 추가
+			document.querySelector('#categoryDropdown1 button').addEventListener('click', function () {
+				// 이미지 크기 변경을 막음
+				disableImageResize();
 			});
-			// Fetch API를 사용하여 데이터 가져오기
-			fetch(url, {
+		}
+
+		// DOM 로드 시 초기화 함수 호출
+		document.addEventListener('DOMContentLoaded', init)
+	}
+
+	// 카테고리 선택 함수
+	function selectCategory(category) {
+		selectedCategories.push(category);
+		document.getElementById('selectedCategory').value = selectedCategories.join(', ');
+	}
+
+	// 카테고리 선택 함수
+	function selectCategory(category) {
+		selectedCategories.push(category);
+		document.getElementById('selectedCategory').value = selectedCategories.join(', ');
+		// 선택된 업종을 input 요소에 저장
+		document.getElementById('IndustryName').value = category;
+	}
+
+	// 기존 JavaScript 코드 블록
+
+	// 선택된 업종을 저장하는 변수
+	let selectedCategory = null;
+
+	// 카테고리 선택 함수
+	function selectCategory(category) {
+		selectedCategory = category;
+		document.getElementById('selectedCategory').value = selectedCategory;
+		// 선택된 업종을 input 요소에 저장
+		document.getElementById('IndustryName').value = selectedCategory;
+		// 선택된 업종 초기화
+		selectedCategories = [];
+	}    
+</script>
+<!-- 통계 api호출 -->
+<script>
+	var myChart; // 전역 변수로 Chart 객체 선언
+
+	function submitForm() {
+		const areaName = document.getElementById('areaName').value;
+		const selectedCategory = document.getElementById('selectedCategory').value;
+		const url = `/api/analysis?region=${encodeURIComponent(areaName)}&industry=${encodeURIComponent(selectedCategory)}`;
+		// 선택 완료 버튼을 누르면 숨겨진 요소를 보이도록 설정
+		var elementsToShow = document.querySelectorAll('.container.mt-5');
+		elementsToShow.forEach(function (element) {
+			element.style.display = 'block';
+		});
+		// Fetch API를 사용하여 데이터 가져오기
+		fetch(url, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('서버 응답 오류');
+				}
+				return response.json(); // 서버 응답을 JSON 형식으로 변환
+			})
+			.then(data => {
+				// industry_life 데이터 추출
+				const industryLifeData = data.industry_life;
+
+				// seoul_moving_people 데이터 추출
+				const seoulMovingPeopleData = data.seoul_moving_people;
+				const seoulSimilarStore = data.seoul_similar_store;
+				const seoulUseMoney = data.seoul_use_money;
+				const seoulZipgack = data.seoul_zipgack;
+				drawChart(industryLifeData); // 데이터를 기반으로 그래프 그리기
+				drawChart_moving(seoulMovingPeopleData);
+				drawSimilarChart(seoulSimilarStore);
+				const moneyRegion = seoulUseMoney['2023년 분기 평균 지출'];
+				const moneyRegionSpan = document.getElementById('moneyRegionValue');
+				// moneyRegion 값을 포맷팅하여 출력합니다.
+				moneyRegionSpan.textContent = formatNumber(moneyRegion);
+				// displayTotalPopulation(totalPopulation);
+				const countZipgack = seoulZipgack['avg_diff'];
+				const RegionZipgackDiffSpan = document.getElementById('avg_diff');
+				//RegionZipgackDiffSpan.textContent=countZipgack;
+				//gpt수정부
+				if (countZipgack > 0) {
+					RegionZipgackDiffSpan.textContent = `${countZipgack}% 만큼 더 많습니다.`;
+					RegionZipgackDiffSpan.style.color = "red"; // 글씨가 빨간색으로 변경됩니다
+				} else if (countZipgack < 0) {
+					RegionZipgackDiffSpan.textContent = `${-countZipgack}% 만큼 더 적습니다.`;
+					RegionZipgackDiffSpan.style.color = "blue"; // 글씨가 빨간색으로 변경됩니다
+				} else {
+					RegionZipgackDiffSpan.textContent = "같습니다.";
+					RegionZipgackDiffSpan.style.color = "green"; // 글씨가 파란색으로 변경됩니다
+				}
+				// 지역이름 선언부
+				const areaName = document.getElementById('areaName').value;
+				const areaNameSpan = document.getElementById('areaNameSpan');
+				areaNameSpan.textContent = areaName;
+				const areaNameSpan1 = document.getElementById('areaNameSpan1');
+				areaNameSpan1.textContent = areaName;
+				const areaNameSpan2 = document.getElementById('areaNameSpan2');
+				areaNameSpan2.textContent = areaName;
+
+
+				const industryName1 = document.getElementById('selectedCategory').value;
+
+
+				const industryNameSpan = document.getElementById('industryNameSpan');
+				industryNameSpan.textContent = industryName1;
+
+				const industryNameSpan2 = document.getElementById('industryNameSpan2');
+				industryNameSpan2.textContent = industryName1;
+				// 지출 순위
+				const firstCategory = seoulUseMoney['1위카테고리'];
+				const secondCategory = seoulUseMoney['2위카테고리'];
+				const thirdCategory = seoulUseMoney['3위카테고리'];
+
+				const rankingSpan = document.getElementById('rankingSpan');
+				rankingSpan.innerHTML = `<br>1위: ${firstCategory}<br>2위: ${secondCategory}<br>3위: ${thirdCategory}<br>`;
+			})
+			.catch(error => {
+				console.error('에러 발생:', error); // 오류 메시지 출력
+			});
+	}
+
+
+</script>
+<script>
+	// 숫자 포맷팅 함수 정의 억 만단위 끊기
+	function formatNumber(number) {
+		if (number >= 1000000000000) {
+			return `${Math.floor(number / 1000000000000)}조 ${Math.floor((number % 1000000000000) / 100000000)}억 ${Math.floor((number % 100000000) / 10000)}만`;
+		}
+		// 숫자가 억 이상일 경우
+		else if (number >= 100000000) {
+			return `${Math.floor(number / 100000000)}억 ${Math.floor((number % 100000000) / 10000)}만`;
+		}
+		// 숫자가 억 미만일 경우
+		else {
+			return `${Math.floor(number / 10000)}만`;
+		}
+	}
+</script>
+
+
+
+<!--가영누나 로직  -->
+<script>
+	// 로그인 상태를 확인하는 함수
+	function isLoggedIn() {
+		// 클라이언트의 모든 쿠키를 가져옵니다.
+		console.log('###########');
+		const cookies = document.cookie.split(';');
+
+		// 쿠키에서 로그인 상태를 나타내는 특정 쿠키를 찾습니다.
+		for (let i = 0; i < cookies.length; i++) {
+			const cookie = cookies[i].trim();
+			if (cookie.startsWith("Set-Cookie")) {
+				console.log(cookie)
+				return true; // 로그인 상태
+			}
+		}
+		return false; // 로그아웃 상태
+	}
+
+	// 로그아웃 함수
+	function logout() {
+		// 로그아웃 요청을 보내고, 성공시에만 링크를 변경합니다.
+		fetch('/api/user/logout', {
+			method: 'POST'
+		}).then(function (response) {
+			if (response.ok) {
+				document.getElementById('logout').style.display = 'none'; // 로그아웃 링크 숨김
+				document.getElementById('login').style.display = 'block'; // 로그인 링크 표시
+			}
+		});
+	}
+	document.addEventListener('DOMContentLoaded', function () {
+		try {
+			// 오류가 발생할 수 있는 코드
+			console.log("#########");
+
+			// isLoggedIn() 함수 호출
+			if (isLoggedIn()) {
+				document.getElementById('logout').style.display = 'block';
+				document.getElementById('login').style.display = 'none';
+			} else {
+				document.getElementById('logout').style.display = 'none';
+				document.getElementById('login').style.display = 'block';
+			}
+		} catch (error) {
+			// 오류 발생 시 처리
+			console.error("An error occurred:", error);
+		}
+
+		// 각 링크 요소 가져오기
+		const mypageLink = document.querySelector('a[href="mypage_viewer"]');
+		const seoulStatisticsLink = document.querySelector('a[data-bs-target="#collapseLayouts"]');
+		const communityLink = document.querySelector('a[data-bs-target="#collapsePages"]');
+		const inquiryLink = document.querySelector('a[href="charts.html"]');
+
+		// 클릭 이벤트 핸들러 설정
+		mypageLink.addEventListener('click', function (event) {
+			// 로그인 상태를 확인하는 함수 호출
+			if (!isLoggedIn()) {
+				// 로그인 상태가 아닌 경우, 로그인 페이지로 이동
+				alert('로그인해주세요.');
+				window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
+				event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
+			}
+		});
+
+		seoulStatisticsLink.addEventListener('click', function (event) {
+			// 로그인 상태를 확인하는 함수 호출
+			if (!isLoggedIn()) {
+				// 로그인 상태가 아닌 경우, 로그인 페이지로 이동
+				alert('로그인해주세요.');
+				window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
+				event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
+			}
+		});
+
+		communityLink.addEventListener('click', function (event) {
+			// 로그인 상태를 확인하는 함수 호출
+			if (!isLoggedIn()) {
+				// 로그인 상태가 아닌 경우, 로그인 페이지로 이동
+				alert('로그인해주세요.');
+				window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
+				event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
+			}
+		});
+
+		inquiryLink.addEventListener('click', function (event) {
+			// 로그인 상태를 확인하는 함수 호출
+			if (!isLoggedIn()) {
+				// 로그인 상태가 아닌 경우, 로그인 페이지로 이동
+				alert('로그인해주세요.');
+				window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
+				event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
+			}
+		});
+	});
+
+</script>
+
+<script>
+	// 쿠폰 개수가 0일 때 'AI 맞춤 컨설팅받기' 클릭해도 페이지 못 넘어가도록
+
+
+	// 쿠폰을 확인하고 컨설팅 데이터를 전송하는 함수
+
+	document.addEventListener("DOMContentLoaded", function () {
+		// 쿠폰 확인 함수
+		function checkCouponsAndRedirect() {
+			fetch('/api/consultation/check-coupons', {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json'
 				}
+
 			})
-				.then(response => {
-					if (!response.ok) {
-						throw new Error('서버 응답 오류');
-					}
-					return response.json(); // 서버 응답을 JSON 형식으로 변환
-				})
+				.then(response => response.json())
 				.then(data => {
-					// industry_life 데이터 추출
-					const industryLifeData = data.industry_life;
-
-					// seoul_moving_people 데이터 추출
-					const seoulMovingPeopleData = data.seoul_moving_people;
-					const seoulSimilarStore = data.seoul_similar_store;
-					const seoulUseMoney = data.seoul_use_money;
-					const seoulZipgack = data.seoul_zipgack;
-					drawChart(industryLifeData); // 데이터를 기반으로 그래프 그리기
-					drawChart_moving(seoulMovingPeopleData);
-					drawSimilarChart(seoulSimilarStore);
-					const moneyRegion = seoulUseMoney['2023년 분기 평균 지출'];
-					const moneyRegionSpan = document.getElementById('moneyRegionValue');
-					// moneyRegion 값을 포맷팅하여 출력합니다.
-					moneyRegionSpan.textContent = formatNumber(moneyRegion);
-					// displayTotalPopulation(totalPopulation);
-					const countZipgack = seoulZipgack['avg_diff'];
-					const RegionZipgackDiffSpan = document.getElementById('avg_diff');
-					//RegionZipgackDiffSpan.textContent=countZipgack;
-					//gpt수정부
-					if (countZipgack > 0) {
-						RegionZipgackDiffSpan.textContent = `${countZipgack}% 만큼 더 많습니다.`;
-						RegionZipgackDiffSpan.style.color = "red"; // 글씨가 빨간색으로 변경됩니다
-					} else if (countZipgack < 0) {
-						RegionZipgackDiffSpan.textContent = `${-countZipgack}% 만큼 더 적습니다.`;
-						RegionZipgackDiffSpan.style.color = "blue"; // 글씨가 빨간색으로 변경됩니다
+					console.log('Received data:', data);  // 응답 데이터 확인
+					if (data.couponCount > 0) {
+						// 쿠폰이 1개 이상 있으면 컨설팅 페이지로 이동
+						window.location.href = 'consult';
 					} else {
-						RegionZipgackDiffSpan.textContent = "같습니다.";
-						RegionZipgackDiffSpan.style.color = "green"; // 글씨가 파란색으로 변경됩니다
+						// 쿠폰이 없으면 경고창 표시
+						alert('쿠폰을 구매해주세요.');
+						window.location.reload();
 					}
-					// 지역이름 선언부
-					const areaName = document.getElementById('areaName').value;
-					const areaNameSpan = document.getElementById('areaNameSpan');
-					areaNameSpan.textContent = areaName;
-					const areaNameSpan1 = document.getElementById('areaNameSpan1');
-					areaNameSpan1.textContent = areaName;
-					const areaNameSpan2 = document.getElementById('areaNameSpan2');
-					areaNameSpan2.textContent = areaName;
-
-
-					const industryName1 = document.getElementById('selectedCategory').value;
-
-
-					const industryNameSpan = document.getElementById('industryNameSpan');
-					industryNameSpan.textContent = industryName1;
-
-					const industryNameSpan2 = document.getElementById('industryNameSpan2');
-					industryNameSpan2.textContent = industryName1;
-					// 지출 순위
-					const firstCategory = seoulUseMoney['1위카테고리'];
-					const secondCategory = seoulUseMoney['2위카테고리'];
-					const thirdCategory = seoulUseMoney['3위카테고리'];
-
-					const rankingSpan = document.getElementById('rankingSpan');
-					rankingSpan.innerHTML = `<br>1위: ${firstCategory}<br>2위: ${secondCategory}<br>3위: ${thirdCategory}<br>`;
 				})
 				.catch(error => {
-					console.error('에러 발생:', error); // 오류 메시지 출력
+					console.error('쿠폰 확인 중 오류 발생:', error);
+					alert('쿠폰 확인 중 문제가 발생했습니다.');
 				});
+
 		}
+		// 컨설팅 버튼 이벤트 리스너 설정
+		const consultButton = document.getElementById('consultbtn');
+		consultButton.addEventListener('click', function (event) {
+			event.preventDefault(); // 기본 이벤트 작동을 막음
+			checkCouponsAndRedirect(); // 쿠폰 확인 및 페이지 이동 처리
 
-
-	</script>
-	<script>
-		// 숫자 포맷팅 함수 정의 억 만단위 끊기
-		function formatNumber(number) {
-			if (number >= 1000000000000) {
-				return `${Math.floor(number / 1000000000000)}조 ${Math.floor((number % 1000000000000) / 100000000)}억 ${Math.floor((number % 100000000) / 10000)}만`;
-			}
-			// 숫자가 억 이상일 경우
-			else if (number >= 100000000) {
-				return `${Math.floor(number / 100000000)}억 ${Math.floor((number % 100000000) / 10000)}만`;
-			}
-			// 숫자가 억 미만일 경우
-			else {
-				return `${Math.floor(number / 10000)}만`;
-			}
-		}
-	</script>
-
-
-
-	<!--가영누나 로직  -->
-	<script>
-		// 로그인 상태를 확인하는 함수
-		function isLoggedIn() {
-			// 클라이언트의 모든 쿠키를 가져옵니다.
-			console.log('###########');
-			const cookies = document.cookie.split(';');
-
-			// 쿠키에서 로그인 상태를 나타내는 특정 쿠키를 찾습니다.
-			for (let i = 0; i < cookies.length; i++) {
-				const cookie = cookies[i].trim();
-				if (cookie.startsWith("Set-Cookie")) {
-					console.log(cookie)
-					return true; // 로그인 상태
-				}
-			}
-			return false; // 로그아웃 상태
-		}
-
-		// 로그아웃 함수
-		function logout() {
-			// 로그아웃 요청을 보내고, 성공시에만 링크를 변경합니다.
-			fetch('/api/user/logout', {
-				method: 'POST'
-			}).then(function (response) {
-				if (response.ok) {
-					document.getElementById('logout').style.display = 'none'; // 로그아웃 링크 숨김
-					document.getElementById('login').style.display = 'block'; // 로그인 링크 표시
-				}
-			});
-		}
-		document.addEventListener('DOMContentLoaded', function () {
-			try {
-				// 오류가 발생할 수 있는 코드
-				console.log("#########");
-
-				// isLoggedIn() 함수 호출
-				if (isLoggedIn()) {
-					document.getElementById('logout').style.display = 'block';
-					document.getElementById('login').style.display = 'none';
-				} else {
-					document.getElementById('logout').style.display = 'none';
-					document.getElementById('login').style.display = 'block';
-				}
-			} catch (error) {
-				// 오류 발생 시 처리
-				console.error("An error occurred:", error);
-			}
-
-			// 각 링크 요소 가져오기
-			const mypageLink = document.querySelector('a[href="mypage_viewer"]');
-			const seoulStatisticsLink = document.querySelector('a[data-bs-target="#collapseLayouts"]');
-			const communityLink = document.querySelector('a[data-bs-target="#collapsePages"]');
-			const inquiryLink = document.querySelector('a[href="charts.html"]');
-
-			// 클릭 이벤트 핸들러 설정
-			mypageLink.addEventListener('click', function (event) {
-				// 로그인 상태를 확인하는 함수 호출
-				if (!isLoggedIn()) {
-					// 로그인 상태가 아닌 경우, 로그인 페이지로 이동
-					alert('로그인해주세요.');
-					window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
-					event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
-				}
-			});
-
-			seoulStatisticsLink.addEventListener('click', function (event) {
-				// 로그인 상태를 확인하는 함수 호출
-				if (!isLoggedIn()) {
-					// 로그인 상태가 아닌 경우, 로그인 페이지로 이동
-					alert('로그인해주세요.');
-					window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
-					event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
-				}
-			});
-
-			communityLink.addEventListener('click', function (event) {
-				// 로그인 상태를 확인하는 함수 호출
-				if (!isLoggedIn()) {
-					// 로그인 상태가 아닌 경우, 로그인 페이지로 이동
-					alert('로그인해주세요.');
-					window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
-					event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
-				}
-			});
-
-			inquiryLink.addEventListener('click', function (event) {
-				// 로그인 상태를 확인하는 함수 호출
-				if (!isLoggedIn()) {
-					// 로그인 상태가 아닌 경우, 로그인 페이지로 이동
-					alert('로그인해주세요.');
-					window.location.href = 'login'; // 로그인 페이지 URL로 변경 필요
-					event.preventDefault(); // 클릭 이벤트의 기본 동작을 막음 (링크 이동 취소)
-				}
-			});
 		});
+	});
+</script>
 
-	</script>
-
-	<script>
-		// 쿠폰 개수가 0일 때 'AI 맞춤 컨설팅받기' 클릭해도 페이지 못 넘어가도록
-
-
-		// 쿠폰을 확인하고 컨설팅 데이터를 전송하는 함수
-
-		document.addEventListener("DOMContentLoaded", function () {
-			// 쿠폰 확인 함수
-			function checkCouponsAndRedirect() {
-				fetch('/api/consultation/check-coupons', {
-					method: 'GET',
-					headers: {
-										'Content-Type': 'application/json'
-									}
-					
-				})
-					.then(response => response.json())
-					.then(data => {
-						console.log('Received data:', data);  // 응답 데이터 확인
-						if (data.couponCount > 0) {
-							// 쿠폰이 1개 이상 있으면 컨설팅 페이지로 이동
-							window.location.href = 'consult';
-						} else {
-							// 쿠폰이 없으면 경고창 표시
-							alert('쿠폰을 구매해주세요.');
-							window.location.reload();
-						}
-					})
-					.catch(error => {
-						console.error('쿠폰 확인 중 오류 발생:', error);
-						alert('쿠폰 확인 중 문제가 발생했습니다.');
-					});
-			
-			}
-			// 컨설팅 버튼 이벤트 리스너 설정
-			const consultButton = document.getElementById('consultbtn');
-			consultButton.addEventListener('click', function (event) {
-				event.preventDefault(); // 기본 이벤트 작동을 막음
-				checkCouponsAndRedirect(); // 쿠폰 확인 및 페이지 이동 처리
-				
-			});
-		});
-	</script>
-	
 </html>
