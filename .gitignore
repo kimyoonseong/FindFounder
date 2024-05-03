@@ -8,3 +8,4 @@ __pycache__/
 /Flask/Findfounder/logs.log
 /findFounder/logs/*
 */__pycache__/
+/Flask/myproject.cmd
