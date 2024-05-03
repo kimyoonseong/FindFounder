@@ -77,6 +77,9 @@
             $.ajax({
                 type: 'POST',
                 url: url, 
+                xhrFields: {
+                    withCredentials: true
+                },
                 contentType: 'application/json',
                 data: JSON.stringify({"postTitle" : postTitle,  "postContent": postContent, "postView" : 0}),
                 success: function(response) {

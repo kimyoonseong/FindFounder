@@ -53,6 +53,9 @@ $(document).ready(
           		{
 	                type: 'GET',
 	                url: url, 
+                    xhrFields: {
+                        withCredentials: true
+                    },
 	                contentType: 'application/json',
 	                
 	                success: function(response) {
@@ -72,6 +75,9 @@ $(document).ready(
 				{
 	                type: 'GET',
 	                url: commentUrl, // 로그인 엔드포인트 URL
+                    xhrFields: {
+                        withCredentials: true
+                    },
 	                contentType: 'application/json',
 	                
 	                success: function(response) {
@@ -129,6 +135,9 @@ function addComment() {
     $.ajax({
         type: 'POST',
         url: '/api/comment', // 댓글 작성 API
+        xhrFields: {
+            withCredentials: true
+        },
         contentType: 'application/json',
         data: data,
         success: function(response) {
@@ -157,6 +166,9 @@ function deleteComment(commentId) {
     $.ajax({
         type: 'DELETE',
         url: '/api/comment/' + commentId,
+        xhrFields: {
+            withCredentials: true
+        },
         contentType: 'application/json',
         success: function(response) {
         	console.log(response)
@@ -197,6 +209,9 @@ document.getElementById('postLike').addEventListener('click', function() {
     $.ajax({
         type: 'POST',
         url: reactionUrl, // 좋아요 API 엔드포인트
+        xhrFields: {
+            withCredentials: true
+        },
         data : data,
         contentType: 'application/json',
         success: function(response) {
@@ -219,6 +234,9 @@ document.getElementById('postDislike').addEventListener('click', function() {
     $.ajax({
         type: 'POST',
         url: reactionUrl, // 싫어요 API 엔드포인트
+        xhrFields: {
+            withCredentials: true
+        },
         data : data,
         contentType: 'application/json',
         success: function(response) {
@@ -243,6 +261,9 @@ document.getElementById('deletePost').addEventListener('click', function() {
         $.ajax({
             type: 'DELETE',
             url: '/api/board/' + postId,
+            xhrFields: {
+                withCredentials: true
+            },
             contentType: 'application/json',
             success: function(response) {
             	if(response.code == 200){

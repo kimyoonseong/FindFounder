@@ -379,6 +379,9 @@
 				$.ajax({
 					type: 'POST',
 					url: '/api/user/logout',
+					xhrFields: {
+						withCredentials: true
+					},
 					success: function (response) {
 						// 로그아웃 성공 시 작업
 						console.log(response);
@@ -420,6 +423,7 @@
 			} else {
 				fetch('/api/industry?category=' + encodeURIComponent(category), {
 					method: 'POST',
+					credentials: 'include',
 					headers: {
 						'Content-Type': 'application/json'
 					},
@@ -477,6 +481,7 @@
 			// Fetch API를 사용하여 데이터 가져오기
 			fetch(url, {
 				method: 'GET',
+				credentials: 'include',
 				headers: {
 					'Content-Type': 'application/json'
 				}

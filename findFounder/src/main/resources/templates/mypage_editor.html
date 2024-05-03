@@ -153,6 +153,7 @@
 		function fetchData() {
 			fetch('/api/mypage', {
 				method: 'GET',
+				credentials: 'include',
 				headers: {
 					'Content-Type': 'application/json',
 				},
@@ -225,6 +226,9 @@
 				$.ajax({
 					type: 'PATCH',
 					url: '/api/mypage',
+					xhrFields: {
+						withCredentials: true
+					},
 					contentType: 'application/json',
 					data: JSON.stringify({"cusEmail": email, "cusQuestionId": questionId, "cusPwAnswer": pwanswer}),
 

@@ -152,6 +152,9 @@
 			$.ajax({
 				type: 'GET',
 				url: url,
+				xhrFields: {
+					withCredentials: true
+				},
 				contentType: 'application/json',
 
 				success: function (response) {
@@ -236,7 +239,8 @@
 	function logout() {
 		// 로그아웃 요청을 보내고, 성공시에만 링크를 변경합니다.
 		fetch('/api/user/logout', {
-			method: 'POST'
+			method: 'POST',
+			credentials: 'include'
 		}).then(function (response) {
 			if (response.ok) {
 				document.getElementById('logout').style.display = 'none'; // 로그아웃 링크 숨김

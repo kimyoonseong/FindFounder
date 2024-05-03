@@ -344,6 +344,9 @@
 				$.ajax({
 					type: 'POST',
 					url: '/api/user/logout',
+					xhrFields: {
+						withCredentials: true
+					},
 					success: function (response) {
 						// 로그아웃 성공 시 작업
 						console.log(response);
@@ -407,6 +410,7 @@
 				// fetch API를 사용하여 POST 요청 보냄
 				fetch("/api/consultation", {
 					method: "POST",
+					credentials: 'include',
 					headers: {
 						"Content-Type": "application/json"
 					},
@@ -457,7 +461,8 @@
 		function logout() {
 			// 로그아웃 요청을 보내고, 성공시에만 링크를 변경합니다.
 			fetch('/api/user/logout', {
-				method: 'POST'
+				method: 'POST',
+				credentials: 'include'
 			}).then(function (response) {
 				if (response.ok) {
 					document.getElementById('logout').style.display = 'none'; // 로그아웃 링크 숨김
