@@ -15,6 +15,23 @@
 			padding: 2px;
 		}
 
+		.breadcrumb-item {
+			font-family: "Yeon Sung", system-ui;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 23px;
+			margin-top: 3px;
+		}
+
+		.title {
+			font-family: "Yeon Sung", system-ui;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 60px;
+			margin-top: 18px;
+		}
+
+
 		.category-dropdown {
 			display: block;
 			/* 블록 요소로 설정하여 세로로 정렬 */
@@ -65,6 +82,24 @@
 			font-size: 0.7rem;
 			/* 글꼴 크기 조정 */
 		}
+
+		.mb-3 {
+			font-family: "Yeon Sung", system-ui;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 27px;
+			margin-top: 3px;
+		}
+
+		.form-check-label {
+			font-family: "Yeon Sung", system-ui;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 20px;
+			margin-top: 3px;
+		}
+		
+		
 	</style>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -91,7 +126,7 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Find-Founder</h1>
+					<div class="title">Find-Founder</div>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item active">개인 맞춤 컨설팅</li>
 					</ol>
@@ -105,47 +140,52 @@
 										<form id="consultForm">
 											<div class="mb-3">
 												<label for="ageInput" class="form-label">나이</label>
-												<input type="number" class="form-control" id="ageInput" placeholder="나이를 입력하세요">
+												<input type="number" class="form-control" id="ageInput"
+													placeholder="나이를 입력하세요">
 											</div>
 											<div class="mb-3">
 												<label class="form-label">성별</label><br>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="gender" id="maleRadio"
-														value="male">
+												<div class="form-check form-check-inline" style="font-size: 16px;">
+													<input class="form-check-input" type="radio" name="gender"
+														id="maleRadio" value="male">
 													<label class="form-check-label" for="maleRadio">남성</label>
 												</div>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="gender" id="femaleRadio"
-														value="female">
+												<div class="form-check form-check-inline" style="font-size: 16px;">
+													<input class="form-check-input" type="radio" name="gender"
+														id="femaleRadio" value="female">
 													<label class="form-check-label" for="femaleRadio">여성</label>
 												</div>
 											</div>
 											<div class="mb-3">
 												<label for="locationInput" class="form-label">거주지</label>
-												<input type="text" class="form-control" id="locationInput" placeholder="거주지를 입력하세요">
+												<input type="text" class="form-control" id="locationInput"
+													placeholder="거주지를 입력하세요">
 											</div>
 											<div class="mb-3">
 												<label class="form-label">초기 자본</label><br>
 												<div style="position: relative;">
-													<input type="range" class="form-range" id="capitalRange" min="10000000" max="20000000" step="1000000" oninput="updateCapitalValue()">
-													<span id="capitalValue" style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%);"></span>
+													<input type="range" class="form-range" id="capitalRange"
+														min="10000000" max="20000000" step="1000000"
+														oninput="updateCapitalValue()">
+													<span id="capitalValue"
+														style="position: absolute; font-size:16px; top: -20px; left: 50%; transform: translateX(-50%);"></span>
 												</div>
 											</div>
 											<div class="mb-3">
 												<label class="form-label">경쟁도</label><br>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="competitiveness" id="lowRadio"
-														value="1">
+												<div class="form-check form-check-inline" style="font-size : 16px;">
+													<input class="form-check-input" type="radio" name="competitiveness"
+														id="lowRadio" value="1">
 													<label class="form-check-label" for="lowRadio">하</label>
 												</div>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="competitiveness" id="mediumRadio"
-														value="2">
+												<div class="form-check form-check-inline" style="font-size : 16px;">
+													<input class="form-check-input" type="radio" name="competitiveness"
+														id="mediumRadio" value="2">
 													<label class="form-check-label" for="mediumRadio">중</label>
 												</div>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="competitiveness" id="highRadio"
-														value="3">
+												<div class="form-check form-check-inline" style="font-size : 16px;">
+													<input class="form-check-input" type="radio" name="competitiveness"
+														id="highRadio" value="3">
 													<label class="form-check-label" for="highRadio">상</label>
 												</div>
 											</div>
@@ -165,7 +205,8 @@
 												<input type="text" class="form-control" id="preferredLocationInput"
 													placeholder="선호 지역을 입력하세요">
 											</div>
-											<button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+											<button type="submit" class="btn btn-primary"
+												id="submitButton">Submit</button>
 										</form>
 									</form>
 								</div>
@@ -181,7 +222,7 @@
 						</div>
 					</div>
 
-					
+
 
 
 
@@ -371,73 +412,73 @@
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
-		var consultForm = document.getElementById("consultForm");
+			var consultForm = document.getElementById("consultForm");
 
-		if (consultForm) {
-			consultForm.addEventListener("submit", function (event) {
-				event.preventDefault(); // 폼이 기본적으로 제출되는 것을 막음
-
-
-				 // 필수 입력값 검사
-				 var ageInput = document.getElementById("ageInput").value;
-                var genderInput = document.querySelector('input[name="gender"]:checked');
-                var locationInput = document.getElementById("locationInput").value;
-                var preferredLocationInput = document.getElementById("preferredLocationInput").value;
-
-                if (!ageInput || !genderInput || !locationInput || !preferredLocationInput) {
-                    alert("모든 항목에 입력해주셔야 합니다!");
-                    return;
-                }
+			if (consultForm) {
+				consultForm.addEventListener("submit", function (event) {
+					event.preventDefault(); // 폼이 기본적으로 제출되는 것을 막음
 
 
-				// 성별 값을 가져와서 "male"이면 true, 그렇지 않으면 false로 변환
-				var sex = document.querySelector('input[name="gender"]:checked').value === "male";
-				var initFund = parseInt(document.getElementById("capitalRange").value);
-				var age = parseInt(document.getElementById("ageInput").value);
-				var competitive = parseInt(document.querySelector('input[name="competitiveness"]:checked').value);
-				// 폼 데이터 수집
-				var formData = {
-					age: age,
-					sex: sex,
-					residence: document.getElementById("locationInput").value,
-					initFund: initFund, // 수정된 부분
-					competitive: competitive,
-					preferIndustry: document.querySelector('.form-select').value,
-					preferLoc: document.getElementById("preferredLocationInput").value
-				};
-				console.log(formData);
+					// 필수 입력값 검사
+					var ageInput = document.getElementById("ageInput").value;
+					var genderInput = document.querySelector('input[name="gender"]:checked');
+					var locationInput = document.getElementById("locationInput").value;
+					var preferredLocationInput = document.getElementById("preferredLocationInput").value;
 
-				// fetch API를 사용하여 POST 요청 보냄
-				fetch("/api/consultation", {
-					method: "POST",
-					credentials: 'include',
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify(formData)
-				})
-				.then(function (response) {
-					if (!response.ok) {
-						throw new Error("오류 발생: " + response.status);
+					if (!ageInput || !genderInput || !locationInput || !preferredLocationInput) {
+						alert("모든 항목에 입력해주셔야 합니다!");
+						return;
 					}
-					return response.json();
-				})
-				.then(function (data) {
-					console.log(data);
-					// 결과 페이지로 이동
-					window.location.href = "/result";
-				})
-				.catch(function (error) {
-					// 오류 처리
-					console.error(error);
+
+
+					// 성별 값을 가져와서 "male"이면 true, 그렇지 않으면 false로 변환
+					var sex = document.querySelector('input[name="gender"]:checked').value === "male";
+					var initFund = parseInt(document.getElementById("capitalRange").value);
+					var age = parseInt(document.getElementById("ageInput").value);
+					var competitive = parseInt(document.querySelector('input[name="competitiveness"]:checked').value);
+					// 폼 데이터 수집
+					var formData = {
+						age: age,
+						sex: sex,
+						residence: document.getElementById("locationInput").value,
+						initFund: initFund, // 수정된 부분
+						competitive: competitive,
+						preferIndustry: document.querySelector('.form-select').value,
+						preferLoc: document.getElementById("preferredLocationInput").value
+					};
+					console.log(formData);
+
+					// fetch API를 사용하여 POST 요청 보냄
+					fetch("/api/consultation", {
+						method: "POST",
+						credentials: 'include',
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(formData)
+					})
+						.then(function (response) {
+							if (!response.ok) {
+								throw new Error("오류 발생: " + response.status);
+							}
+							return response.json();
+						})
+						.then(function (data) {
+							console.log(data);
+							// 결과 페이지로 이동
+							window.location.href = "/result";
+						})
+						.catch(function (error) {
+							// 오류 처리
+							console.error(error);
+						});
 				});
-			});
-		}
-	});
+			}
+		});
 
 	</script>
 
-	
+
 	<script>
 		// 로그인, 로그아웃 추가
 		// 로그인 상태를 확인하는 함수
@@ -486,22 +527,22 @@
 			} catch (error) {
 				// 오류 발생 시 처리
 				console.error("An error occurred:", error);
-			}		
-			
-			});			
-											
-    </script>                
-                    <script>
-						function updateCapitalValue() {
-							var rangeValue = document.getElementById("capitalRange").value;
-							document.getElementById("capitalValue").textContent = "₩" + rangeValue;
-						}
-					
-						// 페이지 로드 시 초기 값 설정
-						updateCapitalValue();
-					</script>
-                    
-                    
-    </body >
+			}
 
-</html >
+		});
+
+	</script>
+	<script>
+		function updateCapitalValue() {
+			var rangeValue = document.getElementById("capitalRange").value;
+			document.getElementById("capitalValue").textContent = "₩" + rangeValue;
+		}
+
+		// 페이지 로드 시 초기 값 설정
+		updateCapitalValue();
+	</script>
+
+
+</body>
+
+</html>

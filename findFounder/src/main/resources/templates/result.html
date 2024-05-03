@@ -4,14 +4,23 @@
 
 <head>
 	<style>
+		#expand-table {
+		    width: 40%;    /* 너비를 부모의 80%로 설정 */
+		    height: 50%; /* 높이를 400픽셀로 설정 */
+			margin:0 auto;
+		}
 		#result-container {
-			margin-bottom: 80px; /* 아래쪽으로 20px 간격 추가 */
+			margin-bottom: 80px;
+			/* 아래쪽으로 20px 간격 추가 */
 		}
 
 		#chartContainer {
-			margin-top: 80px; /* 위쪽으로 20px 간격 추가 */
+			margin-top: 80px;
+			/* 위쪽으로 20px 간격 추가 */
 			margin-bottom: 80px;
 		}
+		
+
 		.area {
 			position: absolute;
 			background: #fff;
@@ -22,23 +31,26 @@
 			left: 15px;
 			padding: 2px;
 		}
+
 		.chart-row {
 			display: flex;
 			justify-content: space-between;
 			margin-bottom: 20px;
-			width: 100%; /* 부모 요소의 너비를 100%로 설정 */
+			width: 100%;
+			/* 부모 요소의 너비를 100%로 설정 */
 		}
-		/* 차트의 크기를 조정합니다 */
-        .chart-container {
-            width: 33%;
-            display: inline-block;
-            margin: 10px 0;
-			height: 300px; 
-        }
 
-        .chart {
-            width: 100%;
-        }
+		/* 차트의 크기를 조정합니다 */
+		.chart-container {
+			width: 33%;
+			display: inline-block;
+			margin: 10px 0;
+			height: 300px;
+		}
+
+		.chart {
+			width: 100%;
+		}
 
 		.category-dropdown {
 			display: block;
@@ -90,36 +102,92 @@
 			font-size: 0.7rem;
 			/* 글꼴 크기 조정 */
 		}
+
 		.chart-title {
 			text-align: center;
 		}
 
-.increase {
-    color: green; /* 증가를 녹색으로 표시 */
-    font-weight: bold; /* 텍스트를 굵게 표시 */
-}
+		.increase {
+			color: green;
+			/* 증가를 녹색으로 표시 */
+			font-weight: bold;
+			/* 텍스트를 굵게 표시 */
+			font-family: 'KCC-Hanbit', sans-serif;
+		}
 
-.decrease {
-    color: red; /* 감소를 빨간색으로 표시 */
-    font-weight: bold; /* 텍스트를 굵게 표시 */
-}
-#pre-msg {
-    white-space: nowrap; /* 줄바꿈 없이 한 줄로 표시 */
-    overflow: hidden; /* 내용이 너무 길 경우 숨김 처리 */
-    text-overflow: ellipsis; /* 내용이 너무 길 경우 말줄임표로 표시 */
-    text-align: center;
-    font-size: 30px;
-}
-#pre-msg span {
-    display: inline; /* 강제로 인라인으로 처리 */
-    white-space: nowrap; /* 내부에서 줄바꿈 없음 */
-}
+		.decrease {
+			color: red;
+			/* 감소를 빨간색으로 표시 */
+			font-family: 'KCC-Hanbit', sans-serif;
+			font-weight: bold;
+			/* 텍스트를 굵게 표시 */
+		}
+
+		#pre-msg {
+			white-space: nowrap;
+			/* 줄바꿈 없이 한 줄로 표시 */
+			overflow: hidden;
+			/* 내용이 너무 길 경우 숨김 처리 */
+			text-overflow: ellipsis;
+			/* 내용이 너무 길 경우 말줄임표로 표시 */
+			text-align: center;
+			font-size: 30px;
+		}
+
+		#pre-msg span {
+			display: inline;
+			/* 강제로 인라인으로 처리 */
+			white-space: nowrap;
+			/* 내부에서 줄바꿈 없음 */
+		}
+		@font-face {
+		    font-family: 'KCC-Hanbit';
+		    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/KCC-Hanbit.woff2') format('woff2');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		
+		
+		.breadcrumb-item {
+			font-family: "Yeon Sung", system-ui;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 23px;
+			margin-top: 3px;
+		}
+
+		.title {
+			font-family: "Yeon Sung", system-ui;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 60px;
+			margin-top: 18px;
+		}
+
+		.result {
+			font-family: 'KCC-Hanbit', sans-serif;
+			width: 60%;
+			padding: 30px;
+			border: none;
+			border-radius: 10px;
+			position: relative;
+			overflow-y: auto;
+			max-height: 500px;
+		}
+
+		.custom-btn {
+			font-family: "Yeon Sung", system-ui !important; 
+			
+			font-style: normal;
+			
+		}
 	</style>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
+	<link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
 
 	<link href="https://fastly.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 
@@ -140,30 +208,33 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Find-Founder</h1>
+					<div class="title">Find-Founder</div>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item active">결과 화면 입니다</li>
 					</ol>
 					<!-- 폼 영역 -->
 					<div class="card mb-3">
-					<div id="result-container" class="card-body">
-						<!-- 결과가 여기에 표시됩니다. -->
-						
-					</div>
+						<div id="result-container" class="card-body">
+							<!-- 결과가 여기에 표시됩니다. -->
 
-					<div id="charts-container"></div>
-				
+						</div>
+
+						<div id="charts-container"></div>
+
 					</div>
 					<div id="pre-msg" class="card mb-4" style="text-align: center; font-size: 30px;"></div>
-					<div class="chart-and-table-container">
-						<canvas id="dongExpandChart" width="800" height="400"></canvas>
+					<div class="chart-and-table-container"					width="200" height="200">
+						<canvas id="dongExpandChart" ></canvas>
 						<div id="expand-table"></div>
 					</div>
 
-					 <!-- 여기에 버튼 추가 -->
-					 <button onclick="window.location.href='/result_more'" class="btn btn-info mt-4" style="position: static; bottom: 20px; left:200px;">대출상품</button>
-					 <button onclick="window.location.href='/result_more'" class="btn btn-primary mt-4" style="position: static; bottom: 20px; right:200px;">더 많은 분석을 보고싶으신가요?</button>
-
+					<!-- 여기에 버튼 추가 -->
+					<div row>
+						<button onclick="window.location.href='/result_more'" class="btn btn-info mt-4 custom-btn"
+						style="position: static; bottom: 20px; margin-left:400px;">대출상품 정보 보기</button>
+						<button onclick="window.location.href='/result_more'" class="btn btn-primary mt-4 custom-btn"
+						style="position: static; bottom: 20px; margin-right:400px;">더 많은 분석을 보고싶으신가요?</button>
+					</div>
 
 
 				</div>
@@ -206,7 +277,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
 	<!-- Font Awesome JS -->
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
+	<link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -240,14 +311,14 @@
 
 
 
-	
-	
+
+
 	<script>
 		// 로그인, 로그아웃 추가
 		// 로그인 상태를 확인하는 함수
 		function isLoggedIn() {
 			// 클라이언트의 모든 쿠키를 가져옵니다.
-			
+
 			const cookies = document.cookie.split(';');
 
 			// 쿠키에서 로그인 상태를 나타내는 특정 쿠키를 찾습니다.
@@ -277,7 +348,7 @@
 		document.addEventListener('DOMContentLoaded', function () {
 			try {
 				// 오류가 발생할 수 있는 코드
-				
+
 
 				// isLoggedIn() 함수 호출
 				if (isLoggedIn()) {
@@ -290,29 +361,29 @@
 			} catch (error) {
 				// 오류 발생 시 처리
 				console.error("An error occurred:", error);
-			}		
-			
-			});			
-											
-    </script>                
-	
-<!-- 최종 결과화면 호출 스크립트 -->
-	<script>
-			// result.html에서 실행될 JavaScript 코드
-			document.addEventListener("DOMContentLoaded", function() {
-				// 결과를 가져올 URL
-				var url = "/api/consultation/result";
+			}
 
-				// Fetch API를 사용하여 데이터 가져오기
-				fetch(url, {
-					method: "POST",
-					credentials: 'include',
-					headers: {
-						"Content-Type": "application/json",
-						// 쿠키 값 전달
-						"Cookie": document.cookie
-					}
-				})
+		});
+
+	</script>
+
+	<!-- 최종 결과화면 호출 스크립트 -->
+	<script>
+		// result.html에서 실행될 JavaScript 코드
+		document.addEventListener("DOMContentLoaded", function () {
+			// 결과를 가져올 URL
+			var url = "/api/consultation/result";
+
+			// Fetch API를 사용하여 데이터 가져오기
+			fetch(url, {
+				method: "POST",
+				credentials: 'include',
+				headers: {
+					"Content-Type": "application/json",
+					// 쿠키 값 전달
+					"Cookie": document.cookie
+				}
+			})
 				.then(response => response.json())
 				.then(data => {
 					console.log(data);
@@ -329,19 +400,20 @@
 						//const sales =loc_expect_sales_dong;
 						// HTML 요소 생성
 						const resultDiv = document.createElement('div');
-						resultDiv.innerHTML = `<div style="text-align: center; font-size: 24px;">AI 분석 결과 ${gu}, ${dong}에 ${recommendedIndustry}를 추천드립니다.</div>`;
+						resultDiv.className = 'result';
+						resultDiv.innerHTML = `<div style="text-align: center; font-size: 40px;">AI 분석 결과 ${gu}, ${dong}에 ${recommendedIndustry} 추천드립니다.</div>`;
 
 						// 결과를 표시할 부모 요소에 삽입
 						const parentElement = document.getElementById('result-container');
 						parentElement.appendChild(resultDiv);
 
-						
-						
-						drawTopThreeIndustries(sales, recommendedIndustry,recommendedIndustry2,recommendedIndustry3);
-						//동 지출예측 차트
-						drawExpandChart(gu, dong, expectGuExpand, expectDongExpand );
 
-						
+
+						drawTopThreeIndustries(sales, recommendedIndustry, recommendedIndustry2, recommendedIndustry3);
+						//동 지출예측 차트
+						drawExpandChart(gu, dong, expectGuExpand, expectDongExpand);
+
+
 						const expectDongExpandList = Object.entries(expectDongExpand);
 						const expectGuExpandList = Object.entries(expectGuExpand);
 						const cnt = expectGuExpandList.length;
@@ -355,40 +427,41 @@
 							                    <tbody>`;
 						var avg2023 = 0;
 						var avg2024 = 0;
-						for(let i  = 0 ; i < cnt ; i++){
-							
-						let formattedDongExpand = Number(expectDongExpandList[i][1]).toLocaleString();
-						let formattedGuExpand = Number(expectGuExpandList[i][1]).toLocaleString();
-						
-						   expandTable += `<tr>
+						for (let i = 0; i < cnt; i++) {
+
+							let formattedDongExpand = Number(expectDongExpandList[i][1]).toLocaleString();
+							let formattedGuExpand = Number(expectGuExpandList[i][1]).toLocaleString();
+
+							expandTable += `<tr>
 						                       <td>${expectDongExpandList[i][0]}</td>
 						                       <td>${formattedDongExpand}원</td>
 						                       <td>${formattedGuExpand}원</td>
 						                   </tr>`;
-						if(expectDongExpandList[i][0].substr(0, 4) === "2023"){
-							avg2023 += expectDongExpandList[i][1];
+							if (expectDongExpandList[i][0].substr(0, 4) === "2023") {
+								avg2023 += expectDongExpandList[i][1];
 							}
-						else if(expectDongExpandList[i][0].substr(0, 4) === "2024"){
-							avg2024 += expectDongExpandList[i][1];
+							else if (expectDongExpandList[i][0].substr(0, 4) === "2024") {
+								avg2024 += expectDongExpandList[i][1];
 							}
 						}
-						
+
 						console.log(avg2023, avg2024);
 						const preMsg = document.getElementById('pre-msg');
-						if(avg2023 > avg2024){
-							
-							preMsg.innerHTML = dong+" 소비는 <span class='decrease'>감소</span>할 전망입니다.";
+						
+						if (avg2023 > avg2024) {
+
+							preMsg.innerHTML = dong + " 소비는 <span class='decrease'>감소</span>할 전망입니다.";
 						}
 						else {
-							preMsg.innerHTML = dong+" 소비는  <span class='increase'>증가</span>할 전망입니다.";
+							preMsg.innerHTML = dong + " 소비는  <span class='increase'>증가</span>할 전망입니다.";
 						}
-						
+						preMsg.style.fontFamily='KCC-Hanbit', sans-serif;
 						expandTable += "</tbody></table>";
-						
+
 						const tableContainer = document.getElementById('expand-table');
 						tableContainer.innerHTML = expandTable;
-						
-						
+
+
 
 					} else {//구로 검색
 						const gu = data.gu;
@@ -398,8 +471,9 @@
 						const recommendedIndustry2 = data.industry_expect_expand['2']; // 2위 업종 추천
 						const recommendedIndustry3 = data.industry_expect_expand['3']; // 3위 업종 추천
 						const resultDiv = document.createElement('div');
-						resultDiv.innerHTML = `<div style="text-align: center; font-size: 24px;">AI 분석 결과 ${gu}에 ${recommendedIndustry}를 추천드립니다.</div>`;
-						
+						resultDiv.className = 'result';
+						resultDiv.innerHTML = `<div style="text-align: center; font-size: 24px;">AI 분석 결과 ${gu}에 ${recommendedIndustry} 추천드립니다.</div>`;
+
 						// 결과를 표시할 부모 요소에 삽입
 						const parentElement = document.getElementById('result-container');
 						parentElement.appendChild(resultDiv);
@@ -408,14 +482,14 @@
 						//drawExpandChart2(expectGuExpand);
 						//console.log("동 데이터가 없습니다.");
 						// 이제 추정 매출
-						const sales=data.industry_expect_expand;
+						const sales = data.industry_expect_expand;
 						console.log(data);
 						//drawexpectsales(sales);
-						drawTopThreeIndustries(sales, recommendedIndustry,recommendedIndustry2,recommendedIndustry3);
-						
+						drawTopThreeIndustries(sales, recommendedIndustry, recommendedIndustry2, recommendedIndustry3);
+
 						drawExpandChart("서울", gu, expectSeoulExpand, expectGuExpand);
-						
-												
+
+
 						const expectSeoulExpandList = Object.entries(expectSeoulExpand);
 						const expectGuExpandList = Object.entries(expectGuExpand);
 						const cnt = expectGuExpandList.length;
@@ -429,51 +503,51 @@
 							                    <tbody>`;
 						var avg2023 = 0;
 						var avg2024 = 0;
-						for(let i  = 0 ; i < cnt ; i++){
-							
-						let formattedSeoulExpand = Number(expectSeoulExpandList[i][1]).toLocaleString();
-						   let formattedGuExpand = Number(expectGuExpandList[i][1]).toLocaleString();
-						
-						   expandTable += `<tr>
+						for (let i = 0; i < cnt; i++) {
+
+							let formattedSeoulExpand = Number(expectSeoulExpandList[i][1]).toLocaleString();
+							let formattedGuExpand = Number(expectGuExpandList[i][1]).toLocaleString();
+
+							expandTable += `<tr>
 						                       <td>${expectSeoulExpandList[i][0]}</td>
 						                       <td>${formattedSeoulExpand}원</td>
 						                       <td>${formattedGuExpand}원</td>
 						                   </tr>`;
-	                   if(expectGuExpandList[i][0].substr(0, 4) === "2023"){
-							avg2023 += expectGuExpandList[i][1];
+							if (expectGuExpandList[i][0].substr(0, 4) === "2023") {
+								avg2023 += expectGuExpandList[i][1];
 							}
-						else if(expectGuExpandList[i][0].substr(0, 4) === "2024"){
-							avg2024 += expectGuExpandList[i][1];
+							else if (expectGuExpandList[i][0].substr(0, 4) === "2024") {
+								avg2024 += expectGuExpandList[i][1];
 							}
 						}
 						console.log("자치구 평균 구하기");
 						console.log(avg2023, avg2024);
 						const preMsg = document.getElementById('pre-msg');
-						if(avg2023 > avg2024){
-							
-							preMsg.innerHTML = gu+" 소비는 <span class='decrease'>감소</span>할 전망입니다.";
+						if (avg2023 > avg2024) {
+
+							preMsg.innerHTML = gu + " 소비는 <span class='decrease'>감소</span>할 전망입니다.";
 						}
-						else if (avg2023 <= avg2024){
-							preMsg.innerHTML = gu+" 소비는  <span class='increase'>증가</span>할 전망입니다.";
+						else if (avg2023 <= avg2024) {
+							preMsg.innerHTML = gu + " 소비는  <span class='increase'>증가</span>할 전망입니다.";
 						}
-						
+
 						expandTable += "</tbody></table>";
-						
+
 						const tableContainer = document.getElementById('expand-table');
 						tableContainer.innerHTML = expandTable;
 					}
 
-						})
-							
-							
-						.catch(error => {
-							console.error("Error fetching data:", error);
-							// 오류 처리
-						});
-					});
-	</script>
-                    
-                    
-    </body >
+				})
 
-</html >
+
+				.catch(error => {
+					console.error("Error fetching data:", error);
+					// 오류 처리
+				});
+		});
+	</script>
+
+
+</body>
+
+</html>
