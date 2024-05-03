@@ -79,7 +79,7 @@
 		}
 
 		.custom-card {
-			max-width: 300px;
+			max-width: 200px;
 			/* 최대 폭 설정 */
 			margin: 0 auto;
 			/* 가운데 정렬 */
@@ -283,7 +283,7 @@
 	<meta name="description" content="" />
 	<meta name="author" content="" />
 
-	<link href="/css/style.min.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 
 	<link href="/css/styles.css" rel="stylesheet" />
 
@@ -511,178 +511,178 @@
 						</div>
 					</div>
 					<!-- 제출 버튼 -->
-
+					<div class="container mt-8">
+							<div class="row justify-content-center">
+								<div class="col-md-4">
+					
+					
+					
+									<!--<a class="btn btn-primary btn-sm custom-button stretched-link " href="buytoken">
+															쿠폰 구매하기
+															<i class="fas fa-shopping-cart ms-2"></i>
+														</a>-->
+									<button class="btn-3d blue" onclick="window.location.href='buytoken'">
+										쿠폰 구매하기
+										<i class="fas fa-shopping-cart ms-2"></i>
+									</button>
+					
+					
+								</div>
+								<div class="col-md-4">
+									<!--<div class="card mb-4 custom-card mt-4">
+					
+													<div class="card-footer bg-warning text-white border-0">
+														<a class="btn btn-warning btn-sm custom-button stretched-link" href="consult">
+															AI 맞춤 컨설팅 받기
+															<i class="fas fa-comment-dots ms-2"></i>
+														</a>
+													</div>-->
+									<button class="btn-3d yellow" id="consultbtn" >
+										AI 맞춤 컨설팅 받기
+										<i class="fas fa-comment-dots ms-2"></i>
+									</button>
+									<!--</div>-->
+								</div>
+							</div>
+						</div>
 
 				</div>
+				<div class="container mt-5">
+				
+						<p class="fs-4">
+							<span id="areaNameSpan" class="fw-bold"></span> 의 <span id="industryNameSpan" class="fw-bold"></span> 통계
+							결과입니다
+						</p>
+						<hr> <!-- 밑줄 -->
+						<!-- 2023년 분기 평균 지출과 최고지출 카테고리 top 3 -->
+						<div class="row mt-3">
+							<div class="col-xl-12 text-center">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="card mb-4">
+											<div class="card-body">
+												<p class="fs-4">
+													<span id="areaNameSpan1" class="fw-bold"></span> 평균 분기별 총 지출은<br>
+													<span id="moneyRegionValue" class="fw-bold"></span>원 입니다.
+												</p>
+												<p class="fs-6 text-muted">*2023년 기준입니다</p>
+											</div>
+										</div>
+				
+									</div>
+				
+									<div class="col-md-6">
+										<div class="card mb-4">
+											<div class="card-body">
+												<p class="fs-4">2023년 <span id="areaNameSpan"></span> 지출 카테고리 순위는
+													<span id="rankingSpan" class="fw-bold"></span> 입니다
+												</p>
+											</div>
+										</div>
+									</div>
+				
+				
+				
+				
+				
+								</div>
+							</div>
+						</div>
+				
+						<div class="col">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="card mb-4">
+										<div class="card-body text-center">
+											<p class="fs-4">2023년 <span id="areaNameSpan2" class="fw-bold"></span> <br>
+												집객시설 갯수는
+												인접 지역 보다 <br>
+												<span id="avg_diff" class="fw-bold"></span>
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="card mb-4">
+										<div class="card-header">
+											<h5 class="card-title"><i class="fas fa-chart-bar me-1"></i> 2023년 <span
+													id="industryNameSpan2" class="fw-bold"></span> 유사업종 개수입니다</h5>
+										</div>
+										<div class="card-body">
+											<canvas id="myBarChart" width="100%" height="40"></canvas>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="card mb-4">
+								<div class="card-header">
+									<h5 class="card-title"><i class="fas fa-chart-bar me-1"></i> 분기별 운영 기간</h5>
+								</div>
+								<div class="card-body">
+									<canvas id="myAreaChart" width="100%" height="40"></canvas>
+								</div>
+							</div>
+						</div>
+				
+				
+						<div class="row mt-3">
+							<div class="col-xl-12 text-center">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="card mb-4">
+											<div class="card-body">
+												<p class="fs-4"> 유동인구가 가장 많은 요일은 <span id="mostPopularDay" class="fw-bold"></span>입니다.
+												</p>
+												<p class="fs-6 text-muted">*2023년 기준입니다</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="card mb-4">
+											<div class="card-body">
+												<p class="fs-4">일일평균 유동인구는 <span id="totalPopulation" class="fw-bold"></span>명 입니다
+												</p>
+				
+											</div>
+											<div class="card-body text-end">
+												<p class="fs-6 text-muted">*2023년 기준입니다</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+				
+							<div class="row mt-5">
+								<div class="col-xl-4">
+									<div class="card mb-4">
+										<canvas id="movingPeopleChart" width="100%" height="60"></canvas>
+									</div>
+								</div>
+								<div class="col-xl-4">
+									<div class="card mb-4">
+										<canvas id="movingPeopleChart3" width="100%" height="60"></canvas>
+									</div>
+								</div>
+								<div class="col-xl-4">
+									<div class="card mb-4">
+										<canvas id="movingPeopleChart2" width="100%" height="60"></canvas>
+									</div>
+								</div>
+							</div>
+				
+						</div>
 
 		</div>
 		`
 	</div>
 	<!-- 카드 섹션 -->
-	<div class="container mt-8">
-		<div class="row justify-content-center">
-			<div class="col-md-4">
-
-
-
-				<!--<a class="btn btn-primary btn-sm custom-button stretched-link " href="buytoken">
-										쿠폰 구매하기
-										<i class="fas fa-shopping-cart ms-2"></i>
-									</a>-->
-				<button class="btn-3d blue" onclick="window.location.href='buytoken'">
-					쿠폰 구매하기
-					<i class="fas fa-shopping-cart ms-2"></i>
-				</button>
-
-
-			</div>
-			<div class="col-md-4">
-				<!--<div class="card mb-4 custom-card mt-4">
-
-								<div class="card-footer bg-warning text-white border-0">
-									<a class="btn btn-warning btn-sm custom-button stretched-link" href="consult">
-										AI 맞춤 컨설팅 받기
-										<i class="fas fa-comment-dots ms-2"></i>
-									</a>
-								</div>-->
-				<button class="btn-3d yellow" id="consultbtn" >
-					AI 맞춤 컨설팅 받기
-					<i class="fas fa-comment-dots ms-2"></i>
-				</button>
-				<!--</div>-->
-			</div>
-		</div>
+	
 	</div>
-
 
 	<!-- 차트 섹션 -->
 	<!-- 그래프를 그릴 Canvas 요소 -->
 	<!-- 그래프를 그릴 Canvas 요소 -->
-	<div class="container mt-5">
-
-		<p class="fs-4">
-			<span id="areaNameSpan" class="fw-bold"></span> 의 <span id="industryNameSpan" class="fw-bold"></span> 통계
-			결과입니다
-		</p>
-		<hr> <!-- 밑줄 -->
-		<!-- 2023년 분기 평균 지출과 최고지출 카테고리 top 3 -->
-		<div class="row mt-3">
-			<div class="col-xl-12 text-center">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="card mb-4">
-							<div class="card-body">
-								<p class="fs-4">
-									<span id="areaNameSpan1" class="fw-bold"></span> 평균 분기별 총 지출은<br>
-									<span id="moneyRegionValue" class="fw-bold"></span>원 입니다.
-								</p>
-								<p class="fs-6 text-muted">*2023년 기준입니다</p>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="col-md-6">
-						<div class="card mb-4">
-							<div class="card-body">
-								<p class="fs-4">2023년 <span id="areaNameSpan"></span> 지출 카테고리 순위는
-									<span id="rankingSpan" class="fw-bold"></span> 입니다
-								</p>
-							</div>
-						</div>
-					</div>
-
-
-
-
-
-				</div>
-			</div>
-		</div>
-
-		<div class="col">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="card mb-4">
-						<div class="card-body text-center">
-							<p class="fs-4">2023년 <span id="areaNameSpan2" class="fw-bold"></span> <br>
-								집객시설 갯수는
-								인접 지역 보다 <br>
-								<span id="avg_diff" class="fw-bold"></span>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="card mb-4">
-						<div class="card-header">
-							<h5 class="card-title"><i class="fas fa-chart-bar me-1"></i> 2023년 <span
-									id="industryNameSpan2" class="fw-bold"></span> 유사업종 개수입니다</h5>
-						</div>
-						<div class="card-body">
-							<canvas id="myBarChart" width="100%" height="40"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="card mb-4">
-				<div class="card-header">
-					<h5 class="card-title"><i class="fas fa-chart-bar me-1"></i> 분기별 운영 기간</h5>
-				</div>
-				<div class="card-body">
-					<canvas id="myAreaChart" width="100%" height="40"></canvas>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="row mt-3">
-			<div class="col-xl-12 text-center">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="card mb-4">
-							<div class="card-body">
-								<p class="fs-4"> 유동인구가 가장 많은 요일은 <span id="mostPopularDay" class="fw-bold"></span>입니다.
-								</p>
-								<p class="fs-6 text-muted">*2023년 기준입니다</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="card mb-4">
-							<div class="card-body">
-								<p class="fs-4">일일평균 유동인구는 <span id="totalPopulation" class="fw-bold"></span>명 입니다
-								</p>
-
-							</div>
-							<div class="card-body text-end">
-								<p class="fs-6 text-muted">*2023년 기준입니다</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row mt-5">
-				<div class="col-xl-4">
-					<div class="card mb-4">
-						<canvas id="movingPeopleChart" width="100%" height="60"></canvas>
-					</div>
-				</div>
-				<div class="col-xl-4">
-					<div class="card mb-4">
-						<canvas id="movingPeopleChart3" width="100%" height="60"></canvas>
-					</div>
-				</div>
-				<div class="col-xl-4">
-					<div class="card mb-4">
-						<canvas id="movingPeopleChart2" width="100%" height="60"></canvas>
-					</div>
-				</div>
-			</div>
-
-		</div>
-
+	
 
 		</main>
 		<footer class="py-4 bg-light mt-auto">
@@ -709,6 +709,8 @@
 	<script src="assets/demo/expand_category_chart.js"></script>
 	<script src="assets/demo/chart-bar-demo.js"></script>
 	<script src="assets/demo/similar_store_chart.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+			crossorigin="anonymous"></script>
 
 	
 	<!--여기 까지가 헤더안에 있음-->
