@@ -42,6 +42,9 @@ $(document).ready(
           		{
 	                type: 'GET',
 	                url: url, 
+                    xhrFields: {
+                        withCredentials: true
+                    },
 	                contentType: 'application/json',
 	                
 	                success: function(response) {
@@ -80,6 +83,9 @@ document.getElementById('editPost').addEventListener('click', function() {
         $.ajax({
             type: 'PATCH',
             url: '/api/board?postid=' + postId,
+            xhrFields: {
+                withCredentials: true
+            },
             contentType: 'application/json',
             data: data,
             success: function(response) {

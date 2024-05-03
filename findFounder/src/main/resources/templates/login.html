@@ -79,6 +79,9 @@
             $.ajax({
                 type: 'POST',
                 url: '/login', // 로그인 엔드포인트 URL
+                xhrFields: {
+                    withCredentials: true
+                },
                 contentType: 'application/json',
                 data: JSON.stringify({ "cusId": email, "cusPw": password }),
                 success: function(response) {

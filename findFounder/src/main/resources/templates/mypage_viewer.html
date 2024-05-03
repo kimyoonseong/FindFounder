@@ -173,6 +173,7 @@
         function fetchData() {
             fetch('/api/mypage', {
                 method: 'GET',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
                 },

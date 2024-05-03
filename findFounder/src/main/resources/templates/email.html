@@ -59,6 +59,9 @@
 												$.ajax({
 													type: 'POST',
 													url: 'api/user/dispatch', // 로그인 엔드포인트 URL
+													xhrFields: {
+														withCredentials: true
+													},
 													contentType: 'application/json',
 													data: JSON.stringify({"email": email}),
 													success: function (response) {

@@ -850,6 +850,7 @@
 			// fetch API를 사용하여 서버의 API를 호출
 			fetch(`/api/region?category=${areaName}`, {
 				method: 'POST',
+				credentials: 'include',
 				headers: {
 					'Cookie': 'Set-Cookie=' + document.cookie // JWT 토큰을 쿠키로 전달
 				}
@@ -917,6 +918,9 @@
 			$.ajax({
 				type: 'POST',
 				url: '/api/user/logout',
+				xhrFields: {
+					withCredentials: true
+				},
 				success: function (response) {
 					// 로그아웃 성공 시 작업
 					console.log(response);
@@ -958,6 +962,7 @@
 		} else {
 			fetch('/api/industry?category=' + encodeURIComponent(category), {
 				method: 'POST',
+				credentials: 'include',
 				headers: {
 					'Content-Type': 'application/json'
 				},
@@ -1064,6 +1069,7 @@
 		// Fetch API를 사용하여 데이터 가져오기
 		fetch(url, {
 			method: 'GET',
+			credentials: 'include',
 			headers: {
 				'Content-Type': 'application/json'
 			}
@@ -1180,7 +1186,9 @@
 	function logout() {
 		// 로그아웃 요청을 보내고, 성공시에만 링크를 변경합니다.
 		fetch('/api/user/logout', {
-			method: 'POST'
+			method: 'POST',
+			credentials: 'include'
+
 		}).then(function (response) {
 			if (response.ok) {
 				document.getElementById('logout').style.display = 'none'; // 로그아웃 링크 숨김
@@ -1267,6 +1275,7 @@
 		function checkCouponsAndRedirect() {
 			fetch('/api/consultation/check-coupons', {
 				method: 'GET',
+				credentials: 'include',
 				headers: {
 					'Content-Type': 'application/json'
 				}

@@ -265,7 +265,8 @@
 		function logout() {
 			// 로그아웃 요청을 보내고, 성공시에만 링크를 변경합니다.
 			fetch('/api/user/logout', {
-				method: 'POST'
+				method: 'POST',
+				credentials: 'include'
 			}).then(function (response) {
 				if (response.ok) {
 					document.getElementById('logout').style.display = 'none'; // 로그아웃 링크 숨김
@@ -305,6 +306,7 @@
 				// Fetch API를 사용하여 데이터 가져오기
 				fetch(url, {
 					method: "POST",
+					credentials: 'include',
 					headers: {
 						"Content-Type": "application/json",
 						// 쿠키 값 전달
