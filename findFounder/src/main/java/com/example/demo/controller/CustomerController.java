@@ -186,7 +186,7 @@ public class CustomerController {
        cookie.setMaxAge(60*60*60);
        // 쿠키의 보안 설정 (HTTPS 환경에서만 쿠키를 전송하도록 설정)
        // 개발 환경이 아닌 경우에만 Secure 플래그를 활성화해야 할 수 있습니다.
-       cookie.setSecure(true);
+       cookie.setSecure(false);
        
        // 응답에 쿠키 추가
        response.addCookie(cookie);
