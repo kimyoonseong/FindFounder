@@ -76,6 +76,12 @@
 
 		.info .title {
 			font-weight: bold;
+			
+		}
+		
+		.info .size {
+			font-family: "Yeon Sung", system-ui;
+			font-size: 20px;
 		}
 
 		.custom-card {
@@ -508,7 +514,7 @@
 									</div>
 									<input type="hidden" id="selectedCategory" name="selectedCategory">
 									<button id="submitButton" type="button" onclick="submitForm()"
-										style="margin-top: 60px;bottom: 40px; margin-left: 50px; height:10%;">선택
+										style="margin-top: 40px;bottom: 40px; margin-left: 50px; height:10%;">선택
 										완료</button>
 
 
@@ -684,51 +690,58 @@
 								</div>
 							</div>
 
+							<div class="row mt-6" style="font-size: 20px;">
+								<div class="col-md-8">
+									더 구체적인 정보를 얻고 싶으시다면 쿠폰 구매 후 AI 컨설팅 받는 것을 추천드립니다!
+								</div>
+
+							</div>
+
 						</div>
 
 					</div>
-					`
+
 				</div>
 				<!-- 카드 섹션 -->
 		</div>
 
 	</div>
 </body>
-	<!-- 차트 섹션 -->
-	<!-- 그래프를 그릴 Canvas 요소 -->
-	<!-- 그래프를 그릴 Canvas 요소 -->
+<!-- 차트 섹션 -->
+<!-- 그래프를 그릴 Canvas 요소 -->
+<!-- 그래프를 그릴 Canvas 요소 -->
 
 
-	</main>
-	<footer class="py-4 bg-light mt-auto">
-		<div class="container-fluid px-4">
-			<div class="d-flex align-items-center justify-content-between small">
-				<div class="text-muted">Copyright &copy; Your Website 2024</div>
-				<div>
-					<a href="#">Privacy Policy</a>
-					&middot;
-					<a href="#">Terms &amp; Conditions</a>
-				</div>
+</main>
+<footer class="py-4 bg-light mt-auto">
+	<div class="container-fluid px-4">
+		<div class="d-flex align-items-center justify-content-between small">
+			<div class="text-muted">Copyright &copy; Your Website 2024</div>
+			<div>
+				<a href="#">Privacy Policy</a>
+				&middot;
+				<a href="#">Terms &amp; Conditions</a>
 			</div>
 		</div>
-	</footer>
 	</div>
-	</div>
+</footer>
+</div>
+</div>
 
 
 
-	<script src="js/scripts.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script src="assets/demo/chart-area-demo.js"></script>
-	<script src="assets/demo/moving_people_chart.js"></script>
-	<script src="assets/demo/expand_category_chart.js"></script>
-	<script src="assets/demo/chart-bar-demo.js"></script>
-	<script src="assets/demo/similar_store_chart.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="assets/demo/chart-area-demo.js"></script>
+<script src="assets/demo/moving_people_chart.js"></script>
+<script src="assets/demo/expand_category_chart.js"></script>
+<script src="assets/demo/chart-bar-demo.js"></script>
+<script src="assets/demo/similar_store_chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+	crossorigin="anonymous"></script>
 
 
-	<!--여기 까지가 헤더안에 있음-->
+<!--여기 까지가 헤더안에 있음-->
 </body>
 <!-- JavaScript 코드 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4abdb80406262cf828aa65098fbf2578"></script>
@@ -1308,5 +1321,32 @@
 		});
 	});
 </script>
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		// 선택 완료 버튼 이벤트 리스너 추가
+		const submitButton = document.getElementById('submitButton');
+		submitButton.addEventListener('click', function () {
+			// 버튼을 화면 아래로 이동하는 로직
+			const bottomButtonContainer = document.createElement('div');
+			bottomButtonContainer.setAttribute('class', 'button-container fixed-bottom pb-3 bg-light');
 
+			// 쿠폰 구매와 AI 컨설팅 버튼 찾기
+			const buyCouponButton = document.querySelector('.btn-3d.blue');
+			const aiConsultingButton = document.querySelector('.btn-3d.yellow');
+
+			// 새로운 컨테이너에 버튼 추가
+			bottomButtonContainer.appendChild(buyCouponButton);
+			bottomButtonContainer.appendChild(aiConsultingButton);
+
+			// 새로운 컨테이너를 body의 끝에 추가
+			document.body.appendChild(bottomButtonContainer);
+
+			// 원래 위치에서 버튼 제거
+			buyCouponButton.style.margin = '0 10px';  // 버튼 사이의 간격 조정
+			aiConsultingButton.style.margin = '0 10px';  // 버튼 사이의 간격 조정
+		});
+
+});
+
+</script>
 </html>
