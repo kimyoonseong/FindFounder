@@ -35,6 +35,13 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/api/comment")
 @Tag(name = "3. 댓글", description = "댓글 관련 컨트롤러 ")
+/*
+Comment Controller
+1. createComment : 댓글 작성
+2. updateComment : 댓글 수정
+3. getComments   : 게시글에 있는 전체 댓글 리스트
+4. deleteComment : 댓글 삭제
+*/
 public class CommentController {
 	
 	private CommentService commentService;
@@ -46,7 +53,7 @@ public class CommentController {
 	}
 	
 	
-	// 회원코드는 JWT토큰 통해서 가져오기.
+	// 댓글 작성
 	@Operation(summary = "댓글 작성", description = "제목, 댓글 내용")
 	@PostMapping()
 	public ResponseEntity<CommonRes> createComment(@CookieValue(name = "Set-Cookie", required = false) String jwtToken
@@ -58,6 +65,8 @@ public class CommentController {
 		return ResponseEntity.ok(res);
 	}
 	
+	
+	// 댓글 수정
 	@Operation(summary = "댓글 수정", description = "제목, 댓글 내용")
 	@PatchMapping()
 	public ResponseEntity<CommonRes> updateComment(@CookieValue(name = "Set-Cookie", required = false) String jwtToken, @RequestBody CommentUpdateReq req ) {
@@ -70,6 +79,8 @@ public class CommentController {
 		return ResponseEntity.ok(res);
 	}
 	
+	
+	// 댓글 리스트
 	@Operation(summary = "댓글 리스트", description = "댓글 리스트")
 	@GetMapping()
 	public ResponseEntity<List<CommentDetailDto>> getComments(@RequestParam(required = false) int postid) {
@@ -78,6 +89,8 @@ public class CommentController {
 		return ResponseEntity.ok(comments);
 	}
 	
+	
+	// 댓글 삭제
 	@Operation(summary = "댓글 삭제", description = "댓글 삭제")
 	@DeleteMapping("/{commentid}")
 	public ResponseEntity<CommonRes> deleteComment(@CookieValue(name = "Set-Cookie", required = false) String jwtToken

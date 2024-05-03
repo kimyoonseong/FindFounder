@@ -52,6 +52,16 @@ import static net.logstash.logback.argument.StructuredArguments.kv;
 @Slf4j
 @RestController
 @Tag(name = "1. 사용자", description = "회원관련 컨트롤러 ")
+/*
+Customer Controller
+1. join               : 회원가입
+2. getMemberProfile   : 로그인
+3. sendEmail          : ID 찾기(이메일 인증)
+4. updatePw           : 비밀번호 재설정
+5. withdraw           : 회원탈퇴
+6. findPw             : 비밀번호 찾기 질문
+7. logout             : 로그아웃
+*/
 public class CustomerController {
    
    
@@ -75,110 +85,17 @@ public class CustomerController {
       return ResponseEntity.ok(res);
    }
    
-   
-   // 이미 가입되어있는 회원인지 확인(ID 중복체크)
-//   @PostMapping("/api/user/check")
-//   @Operation(summary = "ID 중복체크", description = "ID 중복체크")
-//   public ResponseEntity<CommonRes> check(@RequestBody @Valid CustomerJoinDto request) throws Exception {
-////   public ResponseEntity<?> check(@RequestBody CustomerDto requestDTO, Error error) throws Exception {
-////	   System.out.println("집가고싶다11.");
-//      return ResponseEntity.ok(customerService.checkId(request.getCusId()));
-//   }
-
-//    @PostMapping("login")
-//    @Operation(summary = "로그인", description = "로그인")
-//    public ResponseEntity<LoginRes> getMemberProfile(
-// 		   @RequestBody LoginReq dto, HttpServletResponse response
-// ) {
-//        LoginRes res = authService.login(dto);
-//        String token = res.getToken();
-// //       res.setToken("");
-       
-//        Cookie cookie = new Cookie("Set-Cookie", token);
-// //	   cookie.setHttpOnly(true); // JavaScript를 통한 접근 방지
-//        cookie.setPath("/"); // 전체 경로에 대해 쿠키 유효
-//        cookie.setMaxAge(60*60*60);
-//        // 쿠키의 보안 설정 (HTTPS 환경에서만 쿠키를 전송하도록 설정)
-//        // 개발 환경이 아닌 경우에만 Secure 플래그를 활성화해야 할 수 있습니다.
-// //       cookie.setSecure(false);
-       
-//        // 응답에 쿠키 추가
-//        response.addCookie(cookie);
-// //       return ResponseEntity.status(HttpStatus.OK).body(token);
-//        return ResponseEntity.ok(res);
-//    }
-   
-//    @PostMapping("login")
-//    @Operation(summary = "로그인", description = "로그인")
-//    public ResponseEntity<LoginRes> getMemberProfile(
-// 		   @RequestBody LoginReq dto, HttpServletResponse response
-// ) {
-//        LoginRes res = authService.login(dto);
-//        String token = res.getToken();
-// //       res.setToken("");
-       
-// 	   ResponseCookie cookie = ResponseCookie.from("Set-Cookie", token)
-// 			.domain("localhost")
-// 			.path("/*")
-// 			.httpOnly(true)
-// 			.secure(false)
-//  			.maxAge(60*60*60)
-//  			.sameSite("None")
-//  			.build();
-
-// // //	   cookie.setHttpOnly(true); // JavaScript를 통한 접근 방지
-// //        cookie.setPath("/"); // 전체 경로에 대해 쿠키 유효
-// //        cookie.setMaxAge(60*60*60);
-// //        // 쿠키의 보안 설정 (HTTPS 환경에서만 쿠키를 전송하도록 설정)
-// //        // 개발 환경이 아닌 경우에만 Secure 플래그를 활성화해야 할 수 있습니다.
-// //       cookie.setSecure(false);
-       
-//        // 응답에 쿠키 추가
-
-// //       return ResponseEntity.status(HttpStatus.OK).body(token);
-// 		return ResponseEntity.ok()
-// 			.header(HttpHeaders.SET_COOKIE, cookie.toString())
-// 			.build();
-//    }
-//   @PostMapping("login")
-//@Operation(summary = "로그인", description = "로그인")
-//public ResponseEntity<LoginRes> getMemberProfile(
-//        @RequestBody LoginReq dto, HttpServletResponse response
-//) {
-//    LoginRes res = authService.login(dto);
-//    String token = res.getToken();
-//    
-//    ResponseCookie cookie = ResponseCookie.from("Set-Cookie", token)
-//        .domain("localhost")
-//        .path("/*")
-//        .httpOnly(true)
-//        .secure(false)
-//        .maxAge(60*60*60)
-//        .sameSite("Lax")
-//        .build();
-//
-//    res.setToken(cookie.toString()); // Set the token in the response body
-//
-//    Cookie testcookie = new Cookie("token2", "1234");
-//   testcookie.setMaxAge(7 * 24 * 60 * 60); // 쿠키의 만료 시간을 7일로 설정
-//   response.addCookie(testcookie); // 쿠키를 응답에 추가
-//
-//    return ResponseEntity.ok()
-//        .header(HttpHeaders.SET_COOKIE, cookie.toString())
-//        .body(res); // Return the response body with the token
-//}
-   
+   // 로그인
    @PostMapping("login")
    @Operation(summary = "로그인", description = "로그인")
    public ResponseEntity<LoginRes> getMemberProfile(
 		   @RequestBody LoginReq dto, HttpServletResponse response
 		   
-) {		
+		   ) {		
 	   log.info("[Log] 로그인 : {}", dto.getCusId());
        LoginRes res = authService.login(dto);
        String token = res.getToken();
 
-//       res.setToken("");
        
        Cookie cookie = new Cookie("Set-Cookie", token);
 	   cookie.setHttpOnly(false); // JavaScript를 통한 접근 방지
@@ -190,10 +107,11 @@ public class CustomerController {
        
        // 응답에 쿠키 추가
        response.addCookie(cookie);
-//       return ResponseEntity.status(HttpStatus.OK).body(token);
+
        return ResponseEntity.ok(res);
    }
 
+   
 //   // 2024-04-04 ID 찾기 - 이메일 인증
    	 // /api/user?email=
    @PostMapping("/api/user/dispatch")
@@ -238,7 +156,6 @@ public class CustomerController {
                     
             })
 	public ResponseEntity<CommonRes> withdraw(HttpServletRequest request, HttpServletResponse response,
-//				 @RequestHeader("X-AUTH-TOKEN") String jwtToken
 				  @CookieValue(name = "Set-Cookie", required = false) String jwtToken) throws Exception {
 		
 		log.info("[Log] 회원 탈퇴 : {}", jwtUtil.getCusId(jwtToken));

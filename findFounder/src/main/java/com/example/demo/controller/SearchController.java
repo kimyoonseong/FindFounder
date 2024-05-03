@@ -42,6 +42,12 @@ import static net.logstash.logback.argument.StructuredArguments.kv;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "5. 검색", description = "send to Flask and send from Flask ")
+/*
+Search Controller
+1. Bring            : 해당 카테고리 상권 가지고오기
+2. Region           : 해당 카테고리 상권 가지고오기
+
+*/
 public class SearchController {
 	private SearchService service;
 	private JwtUtil jwtUtil;

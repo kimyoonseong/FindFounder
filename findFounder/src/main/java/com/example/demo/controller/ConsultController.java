@@ -41,6 +41,15 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "4. 컨설팅", description = "send to Flask and send from Flask ")
+/*
+Consult Controller
+1. createConsultation : 컨설팅 설문 답변 저장
+2. showConsultation   : 컨설팅 결과 조회
+3. Search             : 단순 지역 통계 조회
+4. sendToFlask        : Flask와 DTO 통신
+5. buyCoupon          : 컨설팅 쿠폰 구매
+6. checkCoupons       : 컨설팅 쿠폰 개수 조회
+*/
 public class ConsultController {
 	private ConsultService service;
 	private JwtUtil jwtUtil;
@@ -63,34 +72,16 @@ public class ConsultController {
 			
 	
 	}
-	//2024-03-29 컨설팅 결과 
-//	@Operation(summary = "프론트 컨설팅 결과", description = "Consult result",
-//			parameters =  {
-//                    @Parameter(name = "X-AUTH-TOKEN", description = "JWT Token", required = true, in = HEADER)
-//            })
-//	@GetMapping("/api/consultation")
-//	public ConsultDto showConsultation(@RequestHeader("X-AUTH-TOKEN") String jwtToken) {
-//		//return  "/api/consultation/"+consultId;
-//		
-//		// ConsultationService를 사용하여 consultId에 해당하는 데이터 가져오기
-//        ConsultDto dto = service.getConsultationById(jwtToken);
-//        return dto;
-//		
-//	
-//	}
-	//2024 04-23 결과ㄴ
+
+	//2024 04-23 컨설트 결과 프론트와 통신
 	@Operation(summary = "프론트 컨설팅 결과", description = "Consult result")
 	@PostMapping("/api/consultation/result")
 	public String showConsultation(@CookieValue(value = "Set-Cookie") String jwtToken) throws JsonProcessingException {
-		//return  "/api/consultation/"+consultId;
-
-	 	
-		// ConsultationService를 사용하여 consultId에 해당하는 데이터 가져오기
-        //ConsultDto dto = service.getConsultationById(jwtToken);
+		
         return service.getConsultationById(jwtToken);
 		
-	
 	}
+	
 	//2024-03-29 상권 통계 검색 
 	@Operation(summary = "통계 검색 ", description = "검색값 flask전송")
 	@GetMapping("/api/analysis")
@@ -113,7 +104,8 @@ public class ConsultController {
 		   
 		    return service.sendToFlask(jsonDto);
 	    }
-
+	
+	// 컨설팅 쿠폰 구매
 	@Operation(summary = "쿠폰구매", description = "user coupon개수 추가")
 	    @PostMapping("/api/consultation/coupon/{count}")
 	    public ResponseEntity<CommonRes> buyCoupon(@CookieValue(value = "Set-Cookie") String jwtToken,
@@ -122,13 +114,11 @@ public class ConsultController {
 	        // 쿠키로부터 토큰을 가져오고 이를 사용하여 쿿ㄱ에 구매를 처리하는 로직
 	        CommonRes res = service.buy(jwtToken, count);
 	        System.out.println(jwtToken);
-	        // 응답으로 토큰을 클라이언트에게 전달하기 위해 쿠키를 설정
-	        //Cookie cookie = new Cookie("X-AUTH-TOKEN", jwtToken);
-	        //cookie.setPath("/"); // 쿠키의 유효 경로 설정 (예시로 전체 경로로 설정)
-	        //response.addCookie(cookie); // 응답에 쿠키 추가
 
 	        return ResponseEntity.ok(res);
 	    }
+	
+	// 컨설팅 쿠폰 개수 체크
 	@Operation(summary = "쿠폰 수 체크", description = "user coupon개수 체크")
 	@GetMapping("/api/consultation/check-coupons")
     public ResponseEntity<String> checkCoupons(@CookieValue(value = "Set-Cookie") String jwtToken) {
