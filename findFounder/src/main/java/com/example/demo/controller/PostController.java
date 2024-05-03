@@ -50,6 +50,17 @@ import io.swagger.v3.oas.annotations.Parameters;
 @RestController
 @RequestMapping("/api/board")
 @Tag(name = "2. 게시글", description = "게시글 컨트롤러 ")
+/*
+Post Controller
+1. createPost           : 게시글 작성
+2. updatePost           : 게시글 수정
+3. getPosts             : 게시글 전체 조회
+4. getPostsByKeyword    : 게시글 검색
+5. deletePostById       : 게시글 삭제
+6. getPostDetailById    : 게시글 상세 조회
+7. getMyPostDetailById  : 내 게시글 조회
+8. updateReaction       : 리액션(좋아요, 싫어요) 
+*/
 public class PostController {
 
 	private PostService postService;

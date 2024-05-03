@@ -45,6 +45,12 @@ import static net.logstash.logback.argument.StructuredArguments.kv;
 @RestController
 @RequestMapping("/api")
 @Tag(name = "5. 마이페이지", description = "마이페이지 컨트롤러 ")
+/*
+MyPage Controller
+1. showMyPage         : 마이페이지 조회
+2. updateMyPage       : 회원정보 수정
+3. consultHistory     : 컨설트 내역 조회
+*/
 public class MyPageController {
 
 		@Autowired
