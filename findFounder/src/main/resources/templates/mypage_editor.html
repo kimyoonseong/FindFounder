@@ -16,6 +16,7 @@
 		}
 
 		.container {
+			font-family: "Yeon Sung", system-ui;
 			max-width: 800px;
 			margin: 100px auto;
 			background-color: #fff;
@@ -30,6 +31,8 @@
 		}
 
 		.info {
+			font-family: "Yeon Sung", system-ui;
+			font-size: 20px;
 			margin-top: 10px;
 		}
 
@@ -48,7 +51,7 @@
 		/* 버튼 스타일링 */
 		.button1 {
 			position: absolute;
-			bottom: 100px;
+			bottom: 40px;
 			/* 수정 */
 			right: 360px;
 			/* 수정 */
@@ -62,7 +65,7 @@
 
 		.button2 {
 			position: absolute;
-			bottom: 100px;
+			bottom: 40px;
 			/* 수정 */
 			left: 360px;
 			/* 수정 */
@@ -73,12 +76,16 @@
 			border-radius: 5px;
 			cursor: pointer;
 		}
+		
+		.form-control{
+			width : 300px;
+		}
 	</style>
 </head>
 
 <body>
 	<div class="container">
-		<h1>마이페이지 수정하기</h1>
+		<h1 style="font-size:45px;">마이페이지 수정하기</h1>
 		<div class="info" id="userInfo">
 			<div class="rectangle">
 				<form id="updateInfo">
@@ -107,7 +114,7 @@
 						</div>
 						</p>
 					</div>
-					<p><strong>비밀번호 질문에 대한 답:</strong> <input id="pwanswer" placeholder=""></input></p>
+					<p><strong>비밀번호 질문에 대한 답: </strong> <input id="pwanswer" placeholder=""></input></p>
 					<button class="button1" id="editButton" type="submit">수정완료</button>
 					<button class="button2" id="returnButton" type="submit">조회로 돌아가기</a></button>
 				</form>
