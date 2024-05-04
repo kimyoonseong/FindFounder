@@ -26,6 +26,36 @@
 			font-size: 40px;
 			margin-top: 5px;
 		}
+
+		.breadcrumb-item2 {
+			font-family: "Yeon Sung", system-ui;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 30px;
+			margin-top: 5px;
+			margin-bottom: 10px;
+		}
+
+		#introduction1-container ul,
+		#introduction1-container ul li,
+		#introduction1-container a {
+			font-family: 'Yeon Sung', sans-serif;
+			font-size: 25px;
+		}
+
+		#introduction2-container ul,
+		#introduction2-container ul li,
+		#introduction2-container a {
+			font-family: 'Yeon Sung', sans-serif;
+			font-size: 25px;
+		}
+
+		#introduction3-container ul,
+		#introduction3-container ul li,
+		#introduction3-container a {
+			font-family: 'Yeon Sung', sans-serif;
+			font-size: 25px;
+		}
 	</style>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -56,7 +86,8 @@
 			<main>
 				<div class="container-fluid px-4">
 					<div class="title" style="margin-bottom:10px;">개인사업자 대출 상품</div>
-
+					<div class="breadcrumb-item2">해당 링크로 접속 후 신청하시면 <strong style="color:blue">우대금리 혜택</strong>을 드립니다.
+					</div>
 					<!-- 폼 영역 -->
 					<div class="card mb-3">
 						<div id="introduction1-container" class="card-body">
@@ -108,19 +139,19 @@
 						</div>
 
 					</div>
-					해당 링크로 접속 후 신청하시면 <strong>우대금리 혜택</strong>을 드립니다.<br><br><br><br><br>
+
 				</div>
 			</main>
 			<footer th:replace="nav.html :: footer"></footer>
 		</div>
-			
-			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-				crossorigin="anonymous"></script>
-			<script src="js/scripts.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-				crossorigin="anonymous"></script>
 
-			<script src="js/datatables-simple-demo.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+			crossorigin="anonymous"></script>
+		<script src="js/scripts.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+			crossorigin="anonymous"></script>
+
+		<script src="js/datatables-simple-demo.js"></script>
 
 </body>
 

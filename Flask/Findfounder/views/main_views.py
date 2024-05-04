@@ -53,7 +53,7 @@ def receive_result_string():
         prefer_industry=dto_json.get('preferIndustry')
         prefer_loc_value = dto_json.get('preferLoc')
         
-        
+        combined_data={}
         if prefer_loc_value.endswith("구"):
                 prediction = predict_expand_gu(prefer_loc_value)# 자치구 매달 지출예측
                 prediction_sales = predict_sales_gu(prefer_loc_value,prefer_industry)# 매출예측
