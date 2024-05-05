@@ -363,7 +363,7 @@
                                </tr>`;
 					});
 					result += "</tbody>";
-					$('.resultTable').html(result);
+					document.querySelector('.resultTable').innerHTML = result;
 					// 행 클릭 이벤트 다시 바인딩
 					$('.clickable-row').on('click', function () {
 						var postId = $(this).data('id');

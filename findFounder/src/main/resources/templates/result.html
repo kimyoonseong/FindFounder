@@ -249,7 +249,7 @@
 						<div id="charts-container"></div>
 
 					</div>
-					<div id="pre-msg" class="card mb-4" style="text-align: center; font-size: 30px;"></div>
+					<div id="pre-msg"  style=" font-size: 30px;"></div>
 					
 					<div class="chart-and-table-container">
 						<div style="font-family:Yeon Sung; margin-left:80px; font-size: 30px;"> [서울시 예상 소비와 비교]</div>
@@ -430,8 +430,8 @@
 						// HTML 요소 생성
 						const resultDiv = document.createElement('div');
 						resultDiv.className = 'result';
-						resultDiv.innerHTML = `<div style="text-align: center; font-size: 30px;">AI 분석 결과 ${gu}, ${dong}에 ${recommendedIndustry} 추천드립니다.</div>`;
-
+						resultDiv.innerHTML = `<div style="text-align: center; font-size: 30px;">AI 분석 결과 ${gu}, ${dong}에 <font color="red">${recommendedIndustry}</font> 추천드립니다.</div>`
+						+ `<div style="text-align: center; font-size: 30px;">예상 매출 Top 3 업종입니다.</div>`;
 						// 결과를 표시할 부모 요소에 삽입
 						const parentElement = document.getElementById('result-container');
 						parentElement.appendChild(resultDiv);
@@ -476,13 +476,15 @@
 
 						console.log(avg2023, avg2024);
 						const preMsg = document.getElementById('pre-msg');
-						
+						console.log(data.week_sales_mean[0][0])
 						if (avg2023 > avg2024) {
 
-							preMsg.innerHTML = dong + " 소비는 <span class='decrease'>감소</span>할 전망입니다.";
+							preMsg.innerHTML = dong + ` 소비는 <font color='red'>감소</font>할 전망입니다. <br>
+							${gu}, ${dong}의 가장 높은 매출이 높은 요일은 <font color='blue'>${data.week_sales_mean[0][0]}</font>입니다.`;
 						}
 						else {
-							preMsg.innerHTML = dong + " 소비는  <span class='increase'>증가</span>할 전망입니다.";
+							preMsg.innerHTML = dong + ` 소비는  <font color='green'>증가</font>할 전망입니다. <br>
+							${gu}, ${dong}의 가장 높은 매출이 높은 요일은  <font color='blue'>${data.week_sales_mean[0][0]}</font>입니다.`;
 						}
 						
 						expandTable += "</tbody></table>";
@@ -501,7 +503,8 @@
 						const recommendedIndustry3 = data.industry_expect_expand['3']; // 3위 업종 추천
 						const resultDiv = document.createElement('div');
 						resultDiv.className = 'result';
-						resultDiv.innerHTML = `<div style="text-align: center; font-size: 40px;">AI 분석 결과 ${gu}에 ${recommendedIndustry} 추천드립니다.</div>`;
+						resultDiv.innerHTML = `<div style="text-align: center; font-size: 40px;">AI 분석 결과 ${gu}에 <font color="red">${recommendedIndustry}</font> 추천드립니다.</div>`
+						+ `<div style="text-align: center; font-size: 30px;">예상 매출 Top 3 업종입니다.</div>`;
 
 						// 결과를 표시할 부모 요소에 삽입
 						const parentElement = document.getElementById('result-container');
@@ -554,10 +557,12 @@
 						const preMsg = document.getElementById('pre-msg');
 						if (avg2023 > avg2024) {
 
-							preMsg.innerHTML = gu + " 소비는 <span class='decrease'>감소</span>할 전망입니다.";
+							preMsg.innerHTML = gu + ` 소비는 <font color='red'>감소</font>할 전망입니다. <br>
+							${gu}의 가장 높은 매출이 높은 요일은 <font color='blue'>${data.week_sales_mean[0][0]}</font>입니다.`;
 						}
 						else if (avg2023 <= avg2024) {
-							preMsg.innerHTML = gu + " 소비는  <span class='increase'>증가</span>할 전망입니다.";
+							preMsg.innerHTML = gu + ` 소비는  <font color='green'>증가</font>할 전망입니다. <br>
+							${gu}의 가장 높은 매출이 높은 요일은 <font color='blue'>${data.week_sales_mean[0][0]}</font>입니다.`;
 						}
 
 						expandTable += "</tbody></table>";

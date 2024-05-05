@@ -6,6 +6,7 @@ from openpyxl import load_workbook
 import numpy as np
 from sklearn.linear_model import LinearRegression
 import os
+from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 # 예측변수 리스트
 
@@ -162,3 +163,78 @@ def recommend_top_industries(predictions_dict):
     recommendation = {i: industry for i, (industry, _) in enumerate(sorted_industries, 1)}
 
     return recommendation
+
+
+def weekday_gu_sales(gu_name, category_name) :
+
+
+    col_list = [ 'MON_SELNG_AMT',
+                'TUES_SELNG_AMT',
+                'WED_SELNG_AMT',
+                'THUR_SELNG_AMT',
+                'FRI_SELNG_AMT',
+                'SAT_SELNG_AMT',
+                'SUN_SELNG_AMT']
+    weekday_dict = {
+          'MON_SELNG_AMT'     : "월요일"
+        , 'TUES_SELNG_AMT'    : "화요일"
+        , 'WED_SELNG_AMT'     : "수요일"
+        , 'THUR_SELNG_AMT'    : "목요일"
+        , 'FRI_SELNG_AMT'     : "금요일"
+        , 'SAT_SELNG_AMT'     : "토요일"
+        , 'SUN_SELNG_AMT'     : "일요일"
+    }
+    df_category = pd.read_csv("./views/csvFolder/Seoul_week_sale_cat.csv", encoding = "cp949")
+
+    gu_pred_weekday_sales_dict = {}
+    gu_pred_weekday_sales_mean_dict = {}
+
+    for col in col_list :
+        df_sigungu =  df_category[["STDR_YYQU_CD"
+                            , "SIGNGU_CD"
+                                , "SIGNGU_CD_NM"
+                                # , "THSMON_SELNG_AMT"
+                                , col
+                                , "SVC_INDUTY_MAIN_CD_NM"]]
+
+
+        df_sigungu = df_sigungu.groupby(["STDR_YYQU_CD"
+                                        , "SIGNGU_CD"
+                                        , "SIGNGU_CD_NM"
+                                        , "SVC_INDUTY_MAIN_CD_NM"]).sum().reset_index()
+
+
+        
+
+        # df_sigungu[f'THSMON_SELNG_AMT_AVG'] = df_sigungu[col] / df_sigungu['ADSTRD_COUNT']
+
+        arima2 = df_sigungu[df_sigungu.columns.to_list()[1:]]
+        arima2.index=df_sigungu['STDR_YYQU_CD']
+        arima2.reset_index(inplace=True)
+
+        if category_name != "상관없음" :
+            data1 = arima2[(arima2['SIGNGU_CD_NM'] == gu_name)  & (arima2['SVC_INDUTY_MAIN_CD_NM'] == category_name)]
+        else :
+            data1 = arima2[(arima2['SIGNGU_CD_NM'] == gu_name)  & (arima2['SVC_INDUTY_MAIN_CD_NM'] == "음식점")]
+        data1['STDR_YYQU_CD'] = pd.to_datetime(data1['STDR_YYQU_CD'])
+        data1.set_index('STDR_YYQU_CD', inplace=True)
+
+
+        model1 = SARIMAX(data1[col], order=(1, 1, 1), seasonal_order=(1, 1, 1, 12))
+        results1 = model1.fit()
+
+        forecast_start = pd.to_datetime('2023-07-01')
+        forecast_end = pd.to_datetime('2024-10-01')
+
+        forecast1 = results1.get_prediction(start=forecast_start, end=forecast_end, dynamic=False)
+        forecast_values1 = forecast1.predicted_mean
+
+        forecast_values1.to_dict()
+
+        formatted_prediction = {str(key).split()[0]: round(value/3, 0) for key, value in forecast_values1.to_dict().items()}
+
+
+        gu_pred_weekday_sales_dict[weekday_dict[col]] = formatted_prediction
+        gu_pred_weekday_sales_mean_dict[f"{weekday_dict[col]}"] = forecast_values1.mean()
+    
+    return gu_pred_weekday_sales_dict, gu_pred_weekday_sales_mean_dict

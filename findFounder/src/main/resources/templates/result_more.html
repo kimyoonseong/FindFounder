@@ -99,9 +99,9 @@
 		    align-items: flex-start; /* 테이블을 상단에 정렬 */
 		}
 		
-		.rankingService, .rankingVar {
-		    flex: 1; /* 두 요소가 동일한 너비를 가지도록 설정 */
-		    min-width: 50%; /* 각 요소의 최소 너비를 화면의 반으로 설정 */
+		.rankingService, .rankingVar, .rankingDay {
+		    flex: 0.5; /* 두 요소가 동일한 너비를 가지도록 설정 */
+		    min-width: 30%; /* 각 요소의 최소 너비를 화면의 반으로 설정 */
 		    padding: 10px; /* 테이블 주위에 여백 추가 */
 		}
 	</style>
@@ -130,10 +130,12 @@
             <main>
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Find-Founder</h1>
-                    <h1 class="mt-4">상위 10개의 업종 예상 매출입니다</h1> <!-- 추가된 문구 -->
+                    <h1 class="mt-4">추가적인 분석입니다.</h1> <!-- 추가된 문구 -->
                     <div class = "ranking">
 	                    <div class = "rankingService"></div>
+						<div class = "rankingDay"></div>
 	                    <div class = "rankingVar"></div>
+						
                     </div>
                     
                     <div id="chartContainer" style=" width:30%;"></div>
@@ -294,7 +296,8 @@
 
 						const sales=data.loc_expect_sales_dong;
 						const var_list = Object.entries(data.pred_var_list);
-						let result = `<table class="table table-bordered" style="text-align: center">
+						let result = `<h5>AI분석 변수 영향순위</h5>
+						<table class="table table-bordered" style="text-align: center">
 							<tr >
 	                        <th>순위</th>
 	                        <th>변수명</th>
@@ -318,7 +321,7 @@
 						const cnt = data.industry_cnt;
 						
 						
-						let result2 = `
+						let result2 = `<h5>${gu} ${dong} ${data.industry} 세부카테고리 매출 순위</h5>
 							<table 	class="table table-bordered" style="text-align: center">
 							<tr >
 	                        <th>순위</th>
@@ -339,6 +342,31 @@
 						result2 += "</tbody></table>";
 						
 						$('.rankingService').html(result2);
+						let result3 = `<h5>${gu} ${dong} ${data.industry} 요일별 매출 순위</h5>
+								<table 	class="table table-bordered" style="text-align: center">
+								
+								<tr>
+		                        <th>순위</th>
+		                        <th>요일명</th>
+								<th>추정매출</th>
+		                    </tr>
+		                    <tbody>
+							`;
+							
+							for(let i  = 0 ; i < data.week_sales_mean.length ; i++){
+								let weekSale = Number(data.week_sales_mean[i][1]).toLocaleString();
+								result3 += `<tr >
+										<td>${i+1}</td>
+			                            <td>${data.week_sales_mean[i][0]}</td>
+			                            <td>${weekSale}원</td>
+			
+			                      		</tr>`;
+							}
+							
+							
+							result3 += "</tbody></table>";
+							
+							$('.rankingDay').html(result3);
 						
                         drawexpectsales(sales);//차트 10개 그리는함수
                         
@@ -359,7 +387,8 @@
 						// 이제 추정 매출
 						const sales=data.industry_expect_expand;
 						const var_list = Object.entries(data.pred_var_list);
-						let result = `<table class="table table-bordered" style="text-align: center">
+						let result = `<h5>AI분석 변수 영향순위</h5>
+						<table class="table table-bordered" style="text-align: center">
 							<tr >
 	                        <th>순위</th>
 	                        <th>변수명</th>
@@ -383,7 +412,7 @@
 						const cnt = data.industry_cnt;
 						
 						
-						let result2 = `
+						let result2 = `<h5>${gu} ${data.industry} 세부카테고리 매출 순위</h5>
 							<table 						class="table table-bordered" style="text-align: center">
 							<tr >
 	                        <th>순위</th>
@@ -398,12 +427,44 @@
 			                            <td>${salesList[i][1]}</td>
 			
 			                      		</tr>`;
+							
 						}
 						
 						
 						result2 += "</tbody></table>";
 						
 						$('.rankingService').html(result2);
+						
+						
+						let result3 = `<h5>${gu} ${data.industry} 요일별 매출 순위</h5>
+							<table 	class="table table-bordered" style="text-align: center">
+							
+							<tr>
+	                        <th>순위</th>
+	                        <th>요일명</th>
+							<th>추정매출</th>
+	                    </tr>
+	                    <tbody>
+						`;
+						
+						for(let i  = 0 ; i < data.week_sales_mean.length ; i++){
+							let weekSale = Number(data.week_sales_mean[i][1]).toLocaleString();
+							result3 += `<tr >
+									<td>${i+1}</td>
+		                            <td>${data.week_sales_mean[i][0]}</td>
+		                            <td>${weekSale}원</td>
+		
+		                      		</tr>`;
+						}
+						
+						
+						result3 += "</tbody></table>";
+						
+						$('.rankingDay').html(result3);
+						
+						
+						
+						
 						
 						
                         drawexpectsales(sales);//차트 10개 그리는함수

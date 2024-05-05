@@ -171,7 +171,7 @@
 														style="position: absolute; font-size:16px; top: -20px; left: 50%; transform: translateX(-50%);"></span>
 												</div>
 											</div>
-											<div class="mb-3">
+											<!--<div class="mb-3">
 												<label class="form-label">경쟁도</label><br>
 												<div class="form-check form-check-inline" style="font-size : 16px;">
 													<input class="form-check-input" type="radio" name="competitiveness"
@@ -188,7 +188,7 @@
 														id="highRadio" value="3">
 													<label class="form-check-label" for="highRadio">상</label>
 												</div>
-											</div>
+											</div>-->
 											<div class="mb-3">
 												<label class="form-label">선호 업종</label><br>
 												<select class="form-select">
@@ -435,7 +435,7 @@
 					var sex = document.querySelector('input[name="gender"]:checked').value === "male";
 					var initFund = parseInt(document.getElementById("capitalRange").value);
 					var age = parseInt(document.getElementById("ageInput").value);
-					var competitive = parseInt(document.querySelector('input[name="competitiveness"]:checked').value);
+					var competitive = 1;
 					// 폼 데이터 수집
 					var formData = {
 						age: age,

@@ -13,8 +13,8 @@ from views.SeoulSimilarStore import get_similar
 from views.SeoulZipgack import get_zipgack
 from views.Expect_expand_gu import predict_expand_gu,predict_expand_gu2
 from views.Expect_expand_dong import predict_expand_dong
-from views.Expect_sales_gu import predict_sales_gu, get_pred_var_gu
-from views.Expect_sales_dong import predict_sales_dong, get_pred_var_dong
+from views.Expect_sales_gu import predict_sales_gu, get_pred_var_gu, weekday_gu_sales
+from views.Expect_sales_dong import predict_sales_dong, get_pred_var_dong, weekday_dong_sales
 from views.Expect_expand_seoul import predict_expand_seoul
 import requests
 bp = Blueprint('main', __name__)
@@ -59,20 +59,24 @@ def receive_result_string():
                 prediction_sales = predict_sales_gu(prefer_loc_value,prefer_industry)# 매출예측
                 pediction_seoul=predict_expand_seoul()
                 pre_var_list = get_pred_var_gu(prefer_loc_value)
+                week_sales, week_sales_mean = weekday_gu_sales(prefer_loc_value, prefer_industry)
 
                 if prefer_industry == "상관없음":
                         industry_cnt = 10
                 else :
                         industry_cnt = len(read_industry_from_csv(prefer_industry))
                 
-                
+                sorted(week_sales_mean.items(), key=lambda x : x[1], reverse = True)
                 combined_data = {
-                "gu" : prefer_loc_value,
-                "loc_expect_expand": prediction,#매월 구 지출액 및 예측(구단위) 0부터 시작함 
-                "loc_expect_expand_whole":pediction_seoul, #매월 모든 구 평균 지출액 및 예측(시 단위)
-                "industry_expect_expand": prediction_sales, #매출 예측 
-                "pred_var_list" : pre_var_list,
-                "industry_cnt" : industry_cnt
+                "gu"                      : prefer_loc_value,
+                "loc_expect_expand"       : prediction,#매월 구 지출액 및 예측(구단위) 0부터 시작함 
+                "loc_expect_expand_whole" :pediction_seoul, #매월 모든 구 평균 지출액 및 예측(시 단위)
+                "industry_expect_expand"  : prediction_sales, #매출 예측 
+                "pred_var_list"           : pre_var_list,
+                "industry_cnt"            : industry_cnt,
+                "week_sales"              : week_sales,
+                "week_sales_mean"         : sorted(week_sales_mean.items(), key=lambda x : x[1], reverse = True),
+                "industry"                : prefer_industry
                 #"변수":
                 }
                
@@ -84,6 +88,9 @@ def receive_result_string():
                 prediction_gu = predict_expand_gu2(region) # 자치구의 행정동 평균 매달 지출 예측
                 prediction_dong_expand=predict_sales_dong(prefer_loc_value,prefer_industry,region)
                 pre_var_list = get_pred_var_dong(prefer_loc_value)
+                week_sales, week_sales_mean = weekday_dong_sales(region, prefer_loc_value, prefer_industry)
+
+
 
                 if prefer_industry == "상관없음":
                         industry_cnt = 10
@@ -91,13 +98,16 @@ def receive_result_string():
                         industry_cnt = len(read_industry_from_csv(prefer_industry))
 
                 combined_data = {
-                "dong"  : prefer_loc_value,
-                "gu" : region,
-                "loc_expect_expand_gu": prediction_gu,#평균 행정동 매달 지출 예측
-                "loc_expect_expand_dong": prediction,  #행정동 매달 지출 예측
-                "loc_expect_sales_dong" : prediction_dong_expand, #행정동 업종 매출 예측
-                "pred_var_list" : pre_var_list,
-                "industry_cnt" : industry_cnt
+                "dong"                    : prefer_loc_value,
+                "gu"                      : region,
+                "loc_expect_expand_gu"    : prediction_gu,#평균 행정동 매달 지출 예측
+                "loc_expect_expand_dong"  : prediction,  #행정동 매달 지출 예측
+                "loc_expect_sales_dong"   : prediction_dong_expand, #행정동 업종 매출 예측
+                "pred_var_list"           : pre_var_list,
+                "industry_cnt"            : industry_cnt,
+                "week_sales"              : week_sales,
+                "week_sales_mean"         : sorted(week_sales_mean.items(), key=lambda x : x[1], reverse = True),
+                "industry"                : prefer_industry
                 }
         else:
         # 예외 처리: "구" 또는 "동"으로 끝나지 않는 경우
