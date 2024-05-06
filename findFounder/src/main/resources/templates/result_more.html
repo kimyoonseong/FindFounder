@@ -5,13 +5,19 @@
 <head>
 	<style>
 		#result-container {
-			margin-bottom: 80px; /* 아래쪽으로 20px 간격 추가 */
+			margin-bottom: 80px;
+			/* 아래쪽으로 20px 간격 추가 */
 		}
 
 		#chartContainer {
-			margin-top: 80px; /* 위쪽으로 20px 간격 추가 */
+
+			margin-top: 50px;
+			/* 위쪽으로 20px 간격 추가 */
 			margin-bottom: 80px;
 		}
+
+
+
 		.area {
 			position: absolute;
 			background: #fff;
@@ -22,23 +28,26 @@
 			left: 15px;
 			padding: 2px;
 		}
+
 		.chart-row {
 			display: flex;
 			justify-content: space-between;
 			margin-bottom: 20px;
-			width: 100%; /* 부모 요소의 너비를 100%로 설정 */
+			width: 100%;
+			/* 부모 요소의 너비를 100%로 설정 */
 		}
-		/* 차트의 크기를 조정합니다 */
-        .chart-container {
-            width: 33%;
-            display: inline-block;
-            margin: 10px 0;
-			height: 300px; 
-        }
 
-        .chart {
-            width: 100%;
-        }
+		/* 차트의 크기를 조정합니다 */
+		.chart-container {
+			width: 33%;
+			display: inline-block;
+			margin: 10px 0;
+			height: 300px;
+		}
+
+		.chart {
+			width: 100%;
+		}
 
 		.category-dropdown {
 			display: block;
@@ -90,19 +99,107 @@
 			font-size: 0.7rem;
 			/* 글꼴 크기 조정 */
 		}
+
 		.chart-title {
 			text-align: center;
 		}
+
 		.ranking {
-		    display: flex;
-		    justify-content: space-around; /* 테이블 사이의 간격을 일정하게 유지 */
-		    align-items: flex-start; /* 테이블을 상단에 정렬 */
+			display: flex;
+			justify-content: space-around;
+			/* 테이블 사이의 간격을 일정하게 유지 */
+			align-items: flex-start;
+			/* 테이블을 상단에 정렬 */
 		}
-		
-		.rankingService, .rankingVar, .rankingDay {
-		    flex: 0.5; /* 두 요소가 동일한 너비를 가지도록 설정 */
-		    min-width: 30%; /* 각 요소의 최소 너비를 화면의 반으로 설정 */
-		    padding: 10px; /* 테이블 주위에 여백 추가 */
+
+		.rankingService,
+		.rankingVar,
+		.rankingDay {
+			flex: 0.5;
+			/* 두 요소가 동일한 너비를 가지도록 설정 */
+			min-width: 30%;
+			/* 각 요소의 최소 너비를 화면의 반으로 설정 */
+			padding: 10px;
+			/* 테이블 주위에 여백 추가 */
+		}
+
+		.title {
+			font-family: "Yeon Sung", system-ui;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 60px;
+			margin-top: 18px;
+		}
+
+		.breadcrumb-item {
+			font-family: "Yeon Sung", system-ui;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 28px;
+			margin-top: 3px;
+		}
+
+		@font-face {
+			font-family: 'KCC-Hanbit';
+			src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/KCC-Hanbit.woff2') format('woff2');
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		.rankingDay {
+			font-family: "Yeon Sung", system-ui;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 28px;
+			margin-top: 3px;
+		}
+
+		.rankingVar {
+			font-family: "Yeon Sung", system-ui;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 27px;
+			margin-top: 3px;
+		}
+
+
+
+		.rankingService {
+			font-family: "Yeon Sung", system-ui;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 27px;
+			margin-top: 3px;
+		}
+
+		.chartname {
+			font-family: "Yeon Sung", system-ui;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 27px;
+		}
+
+		.table-bordered {
+			font-family: 'KCC-Hanbit', sans-serif;
+			font-size: 20px;
+		}
+
+		tr>th {
+			text-align: center;
+		}
+
+		td {
+			text-align: center;
+		}
+
+		.custom-btn {
+			font-family: "Yeon Sung", system-ui !important;
+			font-size: 25px;
+			font-style: normal;
+		}
+
+		.more {
+			text-align: center;
 		}
 	</style>
 	<meta charset="utf-8" />
@@ -115,46 +212,58 @@
 
 	<link href="/css/styles.css" rel="stylesheet" />
 
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
+	<div th:replace="nav.html :: navbar-top"></div>
 	<div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav th:replace="nav.html :: navbar-side"></nav>
-        </div>
-    
-        <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">Find-Founder</h1>
-                    <h1 class="mt-4">추가적인 분석입니다.</h1> <!-- 추가된 문구 -->
-                    <div class = "ranking">
-	                    <div class = "rankingService"></div>
-						<div class = "rankingDay"></div>
-	                    <div class = "rankingVar"></div>
-						
-                    </div>
-                    
-                    <div id="chartContainer" style=" width:30%;"></div>
-                </div>
-            </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
+		<div id="layoutSidenav_nav">
+			<nav th:replace="nav.html :: navbar-side"></nav>
+		</div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<div class="title">Find-Founder</div>
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item active">추가적인 분석 입니다</li>
+					</ol>
+					<div class="ranking">
+						<div class="rankingService"></div>
+						<div class="rankingDay"></div>
+						<div class="rankingVar"></div>
+
+					</div>
+					<div class="chartname">[세부카테고리 매출 순위 Top 10 차트]</div>
+					<div id="chartContainer" style=" width:30%;">
+
+					</div>
+				</div>
+				<div class="more">
+					<button onclick="window.location.href='/loan'" class="btn btn-info mt-4 custom-btn"
+						style="position: static; bottom: 20px;">대출상품 정보 보기</button>
+					<button onclick="window.location.href='/result'" class="btn btn-primary mt-4 custom-btn"
+						style="position: static; bottom: 20px;">전 페이지로 돌아가기</button>
+				</div>
+
+			</main>
+			<footer class="py-4 bg-light mt-auto">
+				<div class="container-fluid px-4">
+					<div class="d-flex align-items-center justify-content-between small">
+						<div class="text-muted">Copyright &copy; Your Website 2024</div>
+						<div>
+							<a href="#">Privacy Policy</a>
+							&middot;
+							<a href="#">Terms &amp; Conditions</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
 	<script src="js/scripts.js"></script>
@@ -212,14 +321,14 @@
 
 
 
-	
-	
+
+
 	<script>
 		// 로그인, 로그아웃 추가
 		// 로그인 상태를 확인하는 함수
 		function isLoggedIn() {
 			// 클라이언트의 모든 쿠키를 가져옵니다.
-			
+
 			const cookies = document.cookie.split(';');
 
 			// 쿠키에서 로그인 상태를 나타내는 특정 쿠키를 찾습니다.
@@ -249,7 +358,7 @@
 		document.addEventListener('DOMContentLoaded', function () {
 			try {
 				// 오류가 발생할 수 있는 코드
-				
+
 
 				// isLoggedIn() 함수 호출
 				if (isLoggedIn()) {
@@ -262,29 +371,29 @@
 			} catch (error) {
 				// 오류 발생 시 처리
 				console.error("An error occurred:", error);
-			}		
-			
-			});			
-											
-    </script>                
-	
-<!-- 최종 결과화면 호출 스크립트 -->
-	<script>
-			// result.html에서 실행될 JavaScript 코드
-			document.addEventListener("DOMContentLoaded", function() {
-				// 결과를 가져올 URL
-				var url = "/api/consultation/result";
+			}
 
-				// Fetch API를 사용하여 데이터 가져오기
-				fetch(url, {
-					method: "POST",
-					credentials: 'include',
-					headers: {
-						"Content-Type": "application/json",
-						// 쿠키 값 전달
-						"Cookie": document.cookie
-					}
-				})
+		});
+
+	</script>
+
+	<!-- 최종 결과화면 호출 스크립트 -->
+	<script>
+		// result.html에서 실행될 JavaScript 코드
+		document.addEventListener("DOMContentLoaded", function () {
+			// 결과를 가져올 URL
+			var url = "/api/consultation/result";
+
+			// Fetch API를 사용하여 데이터 가져오기
+			fetch(url, {
+				method: "POST",
+				credentials: 'include',
+				headers: {
+					"Content-Type": "application/json",
+					// 쿠키 값 전달
+					"Cookie": document.cookie
+				}
+			})
 				.then(response => response.json())
 				.then(data => {
 					console.log(data);
@@ -294,7 +403,7 @@
 						const expectDongExpand = data.loc_expect_expand_dong;
 						const expectGuExpand = data.loc_expect_expand_gu;
 
-						const sales=data.loc_expect_sales_dong;
+						const sales = data.loc_expect_sales_dong;
 						const var_list = Object.entries(data.pred_var_list);
 						let result = `<h5>AI분석 변수 영향순위</h5>
 						<table class="table table-bordered" style="text-align: center">
@@ -312,15 +421,15 @@
 
                       		</tr>`;
 
-    					});
+						});
 						result += "</tbody></table>";
-						
+
 						$('.rankingVar').html(result);
-						
-						const salesList= Object.entries(sales);
+
+						const salesList = Object.entries(sales);
 						const cnt = data.industry_cnt;
-						
-						
+
+
 						let result2 = `<h5>${gu} ${dong} ${data.industry} 세부카테고리 매출 순위</h5>
 							<table 	class="table table-bordered" style="text-align: center">
 							<tr >
@@ -329,18 +438,18 @@
 	                    </tr>
 	                    <tbody>
 						`;
-						
-						for(let i  = 0 ; i < cnt ; i++){
+
+						for (let i = 0; i < cnt; i++) {
 							result2 += `<tr >
 			                            <td>${salesList[i][0]}</td>
 			                            <td>${salesList[i][1]}</td>
 			
 			                      		</tr>`;
 						}
-						
-						
+
+
 						result2 += "</tbody></table>";
-						
+
 						$('.rankingService').html(result2);
 						let result3 = `<h5>${gu} ${dong} ${data.industry} 요일별 매출 순위</h5>
 								<table 	class="table table-bordered" style="text-align: center">
@@ -352,26 +461,26 @@
 		                    </tr>
 		                    <tbody>
 							`;
-							
-							for(let i  = 0 ; i < data.week_sales_mean.length ; i++){
-								let weekSale = Number(data.week_sales_mean[i][1]).toLocaleString();
-								result3 += `<tr >
-										<td>${i+1}</td>
+
+						for (let i = 0; i < data.week_sales_mean.length; i++) {
+							let weekSale = Number(data.week_sales_mean[i][1]).toLocaleString();
+							result3 += `<tr >
+										<td>${i + 1}</td>
 			                            <td>${data.week_sales_mean[i][0]}</td>
 			                            <td>${weekSale}원</td>
 			
 			                      		</tr>`;
-							}
-							
-							
-							result3 += "</tbody></table>";
-							
-							$('.rankingDay').html(result3);
-						
-                        drawexpectsales(sales);//차트 10개 그리는함수
-                        
-                       
-    					
+						}
+
+
+						result3 += "</tbody></table>";
+
+						$('.rankingDay').html(result3);
+
+						drawexpectsales(sales);//차트 10개 그리는함수
+
+
+
 
 					} else {
 						const gu = data.gu;
@@ -380,12 +489,12 @@
 						const recommendedIndustry2 = data.industry_expect_expand['2']; // 2위 업종 추천
 						const recommendedIndustry3 = data.industry_expect_expand['3']; // 3위 업종 추천
 						const resultDiv = document.createElement('div');
-						
+
 						// 동 데이터가 없는 경우의 처리
-                        
+
 
 						// 이제 추정 매출
-						const sales=data.industry_expect_expand;
+						const sales = data.industry_expect_expand;
 						const var_list = Object.entries(data.pred_var_list);
 						let result = `<h5>AI분석 변수 영향순위</h5>
 						<table class="table table-bordered" style="text-align: center">
@@ -403,16 +512,16 @@
 
                       		</tr>`;
 
-    					});
+						});
 						result += "</tbody></table>";
-						
+
 						$('.rankingVar').html(result);
-						
-						const salesList= Object.entries(sales);
+
+						const salesList = Object.entries(sales);
 						const cnt = data.industry_cnt;
-						
-						
-						let result2 = `<h5>${gu} ${data.industry} 세부카테고리 매출 순위</h5>
+
+
+						let result2 = `<h5>[${gu}, ${data.industry}] 세부카테고리 매출 순위</h5>
 							<table 						class="table table-bordered" style="text-align: center">
 							<tr >
 	                        <th>순위</th>
@@ -420,23 +529,23 @@
 	                    </tr>
 	                    <tbody>
 						`;
-						
-						for(let i  = 0 ; i < cnt ; i++){
+
+						for (let i = 0; i < cnt; i++) {
 							result2 += `<tr >
 			                            <td>${salesList[i][0]}</td>
 			                            <td>${salesList[i][1]}</td>
 			
 			                      		</tr>`;
-							
+
 						}
-						
-						
+
+
 						result2 += "</tbody></table>";
-						
+
 						$('.rankingService').html(result2);
-						
-						
-						let result3 = `<h5>${gu} ${data.industry} 요일별 매출 순위</h5>
+
+
+						let result3 = `<h5>[${gu}, ${data.industry}] 요일별 매출 순위</h5>
 							<table 	class="table table-bordered" style="text-align: center">
 							
 							<tr>
@@ -446,41 +555,40 @@
 	                    </tr>
 	                    <tbody>
 						`;
-						
-						for(let i  = 0 ; i < data.week_sales_mean.length ; i++){
+
+						for (let i = 0; i < data.week_sales_mean.length; i++) {
 							let weekSale = Number(data.week_sales_mean[i][1]).toLocaleString();
 							result3 += `<tr >
-									<td>${i+1}</td>
+									<td>${i + 1}</td>
 		                            <td>${data.week_sales_mean[i][0]}</td>
 		                            <td>${weekSale}원</td>
 		
 		                      		</tr>`;
 						}
-						
-						
+
+
 						result3 += "</tbody></table>";
-						
+
 						$('.rankingDay').html(result3);
-						
-						
-						
-						
-						
-						
-                        drawexpectsales(sales);//차트 10개 그리는함수
+
+
+
+
+
+						drawexpectsales(sales);//차트 10개 그리는함수
 					}
 
-						})
-							
-							
-						.catch(error => {
-							console.error("Error fetching data:", error);
-							// 오류 처리
-						});
-					});
-	</script>
-                    
-                    
-    </body >
+				})
 
-</html >
+
+				.catch(error => {
+					console.error("Error fetching data:", error);
+					// 오류 처리
+				});
+		});
+	</script>
+
+
+</body>
+
+</html>
