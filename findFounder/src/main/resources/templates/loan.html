@@ -56,6 +56,12 @@
 			font-family: 'Yeon Sung', sans-serif;
 			font-size: 25px;
 		}
+
+		.custom-btn {
+			font-family: "Yeon Sung", system-ui !important;
+			font-size: 25px !important; 
+			font-style: normal;
+		}
 	</style>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -141,6 +147,8 @@
 					</div>
 
 				</div>
+				<button onclick="window.location.href='/main2'" class="btn btn-primary mt-4 custom-btn"
+					style="position: static; bottom: 20px; margin-left:30px;">첫 화면으로 돌아가기</button>
 			</main>
 			<footer th:replace="nav.html :: footer"></footer>
 		</div>
