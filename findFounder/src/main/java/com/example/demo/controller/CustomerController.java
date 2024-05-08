@@ -81,6 +81,7 @@ public class CustomerController {
    @Operation(summary = "회원가입", description = "회원가입")
    public ResponseEntity<CommonRes> join(@RequestBody @Valid CustomerJoinDto request) throws Exception {
 	   log.info("[Log] 회원가입 : {}", request.getCusId());
+	 
       CommonRes res = customerService.join(request);
       return ResponseEntity.ok(res);
    }
