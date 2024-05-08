@@ -34,7 +34,7 @@ public class SearchService {
   //2024-04-15 flask에서 해당 카테고리 업종 가져오기. 
   	 public String bringIndustry(String category) {
   		 	RestTemplate restTemplate = new RestTemplate();
-  		 	String url = "http://127.0.0.1:5000/call_industry";
+  		 	String url = "http://13.125.180.154/call_industry";
   		 	
   		 	HttpHeaders headers = new HttpHeaders();
   		    headers.setContentType(MediaType.APPLICATION_JSON);
@@ -44,7 +44,7 @@ public class SearchService {
   		}
 	public String bringRegion(String category) {
 		RestTemplate restTemplate = new RestTemplate();
-		 	String url = "http://127.0.0.1:5000/call_region";
+		 	String url = "http://13.125.180.154/call_region";
 		 	
 		 	HttpHeaders headers = new HttpHeaders();
 		    headers.setContentType(MediaType.APPLICATION_JSON);

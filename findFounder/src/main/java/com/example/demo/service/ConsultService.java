@@ -139,7 +139,7 @@ public class ConsultService {
 		        HttpEntity<String> entity = new HttpEntity<>(jsonDto, headers);
 
 		        // 실제 Flask 서버와 연결하기 위한 URL
-		        String url = "http://127.0.0.1:5000/receive_string_result";
+		        String url = "http://13.125.180.154/receive_string_result";
 
 		        // Flask 서버로 데이터를 전송하고 받은 응답 값을 반환
 		        //System.out.println(restTemplate.postForObject(url, entity, String.class));
@@ -164,7 +164,7 @@ public class ConsultService {
 	        HttpEntity<String> entity = new HttpEntity<>(jsonDto, headers);
 
 	        // 실제 Flask 서버와 연결하기 위한 URL
-	        String url = "http://127.0.0.1:5000/receive_string";
+	        String url = "http://13.125.180.154/receive_string";
 
 	        // Flask 서버로 데이터를 전송하고 받은 응답 값을 반환
 	        return restTemplate.postForObject(url, entity, String.class);
@@ -175,7 +175,7 @@ public class ConsultService {
 	public String searchStatic(String region, String industry) {
 		// TODO Auto-generated method stub
 		 	RestTemplate restTemplate = new RestTemplate();
-		 	String url = "http://127.0.0.1:5000/receive_string";
+		 	String url = "http://13.125.180.154/receive_string";
 		 	
 		 // 헤더를 JSON으로 설정함
 	        HttpHeaders headers = new HttpHeaders();
