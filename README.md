@@ -22,6 +22,8 @@ MEMBERS : 김가영, 김윤성, 김찬기, 박명우, 윤종욱
 
 ![개발환경](https://github.com/kimyoonseong/FindFounder/assets/37408405/ea4aa16a-9086-49d9-bf16-29ca2528a794)
 ![image](https://github.com/kimyoonseong/FindFounder/assets/37408405/8d92ff05-9504-462b-a38a-ebf5bd2ea3e8)
+![image](https://github.com/kimyoonseong/FindFounder/assets/37408405/fd2072c3-daa7-4551-9c70-69bc88e1f95d)
+
 
 ## ** 어려웠던 점:**
 1.REST API 구축 후 SWAGGER에서 TEST가 끝나도 Front에 지식이 부족하여, api에서 return 된 json값을 화면에 나타내는데 어려움을 겪음.
@@ -32,6 +34,7 @@ MEMBERS : 김가영, 김윤성, 김찬기, 박명우, 윤종욱
 
 4.Flask 모델 서빙시, 여러 dictionary값들을 합쳐 json형식으로 만들어야 했는데, 순서가 spring boot로 넘어오며 섞이는 문제, key값으로 이름을지정하여 한번더 감싸서 해결
 
+5.kakao 맵 api 사용시 자치구별로 나눠서 가시적으로 표시해야했는데, 서울시 자치구 SHP파일을 QSIS앱으로 좌표를 Json으로 추출후 , Frontend에서 적용할때, 좌표 용량으로인해 , 용량을 줄이는데 어려움을 겪음
 
 ## **Try (시도할 내용):**
 ELK를이용한 사용자 로그 수집 및 Grafana , Prometheus를 이용한 시스템 로그수집(완료)
