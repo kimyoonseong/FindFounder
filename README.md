@@ -1,12 +1,12 @@
 # FIND FOUNDER
 # 우리 FISA 최종 프로젝트
-TEAM : FIFO
+* TEAM : FIFO
 
-[TEAM NOTION LINK](https://www.notion.so/d05de897559c443eb6e6cc4cd770588f)
+* [TEAM NOTION LINK](https://www.notion.so/d05de897559c443eb6e6cc4cd770588f)
 
-DATE : 2024-03-25 ~ 2024-05-08
+* DATE : 2024-03-25 ~ 2024-05-08
 
-MEMBERS : 김가영, 김윤성, 김찬기, 박명우, 윤종욱
+* MEMBERS : 김가영, 김윤성, 김찬기, 박명우, 윤종욱
 
 ## 만든이유
 고령사회에 정년퇴직 이후에도 자영업 희망하는 사람들이 많아졌다지만
