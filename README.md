@@ -26,8 +26,10 @@ MEMBERS : 김가영, 김윤성, 김찬기, 박명우, 윤종욱
 ![image](https://github.com/kimyoonseong/FindFounder/assets/37408405/8d92ff05-9504-462b-a38a-ebf5bd2ea3e8)
 ![image](https://github.com/kimyoonseong/FindFounder/assets/37408405/fd2072c3-daa7-4551-9c70-69bc88e1f95d)
 
-## 노션 링크
-
+## 주요 기능
+⭐ 지역 통계 : 서울 시내 지역별 업종 정보 습득(자치구, 행정동)
+⭐ ** AI 컨설팅 ** : 사용자 맞춤 업종 추천 및 인사이트 제공, 대출 상품 정보 제시
+⭐ 커뮤니티 : 사용자들 간 노하우 및 정보 공유
 
 ## ** 어려웠던 점:**
 1. REST API 구축 후 SWAGGER에서 TEST가 끝나도 Front에 지식이 부족하여, api에서 return 된 json값을 화면에 나타내는데 어려움을 겪음.
