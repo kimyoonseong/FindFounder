@@ -2,6 +2,8 @@
 # 우리 FISA 최종 프로젝트
 TEAM : FIFO
 
+[TEAM NOTION LINK](https://www.notion.so/d05de897559c443eb6e6cc4cd770588f)
+
 DATE : 2024-03-25 ~ 2024-05-08
 
 MEMBERS : 김가영, 김윤성, 김찬기, 박명우, 윤종욱
@@ -24,6 +26,8 @@ MEMBERS : 김가영, 김윤성, 김찬기, 박명우, 윤종욱
 ![image](https://github.com/kimyoonseong/FindFounder/assets/37408405/8d92ff05-9504-462b-a38a-ebf5bd2ea3e8)
 ![image](https://github.com/kimyoonseong/FindFounder/assets/37408405/fd2072c3-daa7-4551-9c70-69bc88e1f95d)
 
+## 노션 링크
+
 
 ## ** 어려웠던 점:**
 1. REST API 구축 후 SWAGGER에서 TEST가 끝나도 Front에 지식이 부족하여, api에서 return 된 json값을 화면에 나타내는데 어려움을 겪음.
@@ -36,7 +40,8 @@ MEMBERS : 김가영, 김윤성, 김찬기, 박명우, 윤종욱
 
 5. kakao 맵 api 사용시 자치구별로 나눠서 가시적으로 표시해야했는데, 서울시 자치구 SHP파일을 QSIS앱으로 좌표를 Json으로 추출후 , Frontend에서 적용할때, 좌표 용량으로인해 , 용량을 줄이는데 어려움을 겪음
 
-6. 이메일 인증 시스템 
+6. 이메일 인증 시스템
+   
 ## **Try (시도할 내용):**
 1. ELK를이용한 사용자 로그 수집 및 Grafana , Prometheus를 이용한 시스템 로그수집(완료)
 2. 배포환경에서도 동작하여 여러 사용자가 접속했을때 로그 확인
